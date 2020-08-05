@@ -1,0 +1,198 @@
+http://www.geoportal.eb.mil.br/portal/bdgex-1/servicos-ogc
+
+
+
+
+http://www.geoportal.eb.mil.br/csw
+
+
+
+===================================================================================
+
+
+bdgex.eb.mil.br/teogc/25/terraogcmed.cgi?service=WMS&request=GetCapabilities
+
+===================================================================================
+
+
+
+
+http://bdgex.eb.mil.br/cgi-bin/geoportal?service=WFS&request=GetFeature&typename=Mapeamento_em_andamento&outputFormat=application/json&version=1.1.0
+
+http://bdgex.eb.mil.br/cgi-bin/geoportal?service=WFS&request=GetCapabilities
+
+
+http://bdgex.eb.mil.br/mapcache?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&LAYERS=ortoimagens_codeplan&STYLES=&WIDTH=2880&HEIGHT=681&BBOX=-56355492.21409475,-13325725.763124488,56355492.21409475,13325725.763124488
+
+
+http://www.geoportal.eb.mil.br/cgi-bin/mapaindice?version=1.1.1&service=WMS&request=DescribeLayer&layers=F100_WGS84_VETORIAL
+
+
+http://www.geoportal.eb.mil.br/cgi-bin/mapaindice?version=1.1.1&service=WMS&request=GetLegendGraphic&layer=F100_WGS84_VETORIAL&format=image/png&STYLE=default
+
+
+http://www.geoportal.eb.mil.br/cgi-bin/mapaindice?service=WMS&srs=EPSG:4326&width=790&height=348&version=1.1.1&transparent=true&request=GetMap&layers=F100_WGS84_VETORIAL&format=image/png&bbox=-48.8324751944291,-23.82414847375575,-40.1532759756791,-20.00639945031825
+
+
+=======================================================================================
+
+
+http://bdgex.eb.mil.br/mapcache?service=WMS&srs=EPSG:4326&width=790&height=348&version=1.1.1&transparent=true&request=GetMap&layers=municipios&format=image/png&bbox=-47,-24,-41,-21
+
+
+=======================================================================================
+
+
+
+	
+	// teste -----------------------------
+	
+	// ctm50 curva_nivel100 curva_nivel50 rapideye ram_colorimetria_25
+	/*
+	
+capitais	
+ctm100	
+ctm25	
+ctm250	
+ctmmultiescalas_mercator	
+curva_nivel25	
+curva_nivel250	
+estados	
+landsat7	
+mds25	
+mds250	
+mds50	
+municipios	
+ortoimagem_scn25	
+ortoimagens_codeplan	
+ram_colorimetria_50	
+ram_mds
+	
+	*/
+
+      var landsat7 = new ol.layer.Tile({
+           source: new ol.source.TileWMS({
+               url: 'http://bdgex.eb.mil.br/mapcache',
+               params: {
+                   'LAYERS': 'landsat7',
+                   'transparent' : true,
+                   'FORMAT': 'image/png',
+                   'tiled': true,
+                   'antialias': 'full',
+                   'VERSION': '1.3.0'                   
+               }
+          })     
+      });	
+	
+      
+      var basebrasil = new ol.layer.Tile({
+          source: new ol.source.TileWMS({
+              url: 'http://bdgex.eb.mil.br/cgi-bin/geoportal',
+              params: {
+                  'LAYERS': 'basebrasil',
+                  'transparent' : true,
+                  'FORMAT': 'image/png',
+                  'tiled': true,
+                  'antialias': 'full',
+                  'VERSION': '1.3.0'                   
+              }
+         })     
+     });	      
+      
+
+      var Mapeamento_em_andamento = new ol.layer.Tile({
+          source: new ol.source.TileWMS({
+              url: 'http://bdgex.eb.mil.br/cgi-bin/geoportal',
+              params: {
+                  'LAYERS': 'Mapeamento_em_andamento',
+                  'transparent' : true,
+                  'FORMAT': 'image/png',
+                  'tiled': true,
+                  'antialias': 'full',
+                  'VERSION': '1.3.0'                   
+              }
+         })     
+     });	      
+            
+
+      var DNPM_Extracao_Mineral = new ol.layer.Tile({
+          source: new ol.source.TileWMS({
+              url: 'http://bdgex.eb.mil.br/cgi-bin/geoportal',
+              params: {
+                  'LAYERS': 'DNPM_Extracao_Mineral',
+                  'transparent' : true,
+                  'FORMAT': 'image/png',
+                  'tiled': true,
+                  'antialias': 'full',
+                  'VERSION': '1.3.0'                   
+              }
+         })     
+     });	      
+      
+      
+      var mapaBase = new ol.layer.Tile({
+    	  source : new ol.source.TileWMS({
+              url: 'http://osm.casnav.mb/osmope/wms/',
+              params: {
+                  'LAYERS': 'osm:OSMMapa',
+                  'FORMAT': 'image/png8', 
+                  'tiled': true,
+                  'antialias': 'full',
+                  'VERSION': '1.3.0'
+              }
+          })
+      });
+	
+      var curvasOsm = new ol.layer.Tile({
+    	  source : new ol.source.TileWMS({
+              url: 'http://osm.casnav.mb/osmope/wms/',
+              params: {
+                  'LAYERS': 'osm:curvas_nivel',
+                  'FORMAT': 'image/png8', 
+                  'tiled': true,
+                  'antialias': 'full',
+                  'VERSION': '1.3.0'
+              }
+          })	
+      });
+
+      
+      var testeBdgex = new ol.layer.Tile({
+    	  source : new ol.source.TileWMS({
+              url: 'http://www.geoportal.eb.mil.br/cgi-bin/mapaindice/',
+              params: {
+                  'LAYERS': 'F100_WGS84_VETORIAL',
+                  'FORMAT': 'image/png', 
+                  'tiled': true,
+                  'antialias': 'full',
+                  'VERSION': '1.1.1'
+              }
+          })	
+      });
+      
+      
+      var Alteracao_Fisiografica_Antropica = new ol.layer.Tile({
+    	  source : new ol.source.TileWMS({
+    		  url: 'http://bdgex.eb.mil.br/teogc/25/terraogcmed.cgi/',
+    		  params: {
+    			  'LAYERS': 'Alteracao_Fisiografica_Antropica',
+    			  'FORMAT': 'image/png', 
+    			  'tiled': true,
+    			  'antialias': 'full',
+    			  'VERSION': '1.1.1'
+    		  }
+    	  })	
+      });      
+      
+	var map = new ol.Map({
+		target: "map",
+		layers: [ basebrasil, Alteracao_Fisiografica_Antropica ],
+		view: new ol.View({
+			center: [-17,-43],
+			projection: 'EPSG:4326',
+			zoom: 2
+		})
+	});
+
+}
+

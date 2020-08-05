@@ -1,0 +1,96 @@
+﻿https://github.com/geo-data/cesium-terrain-server/tree/master/docker
+https://hub.docker.com/r/homme/cesium-terrain-builder/
+https://hub.docker.com/r/geodata/cesium-terrain-server/
+https://github.com/geo-data/cesium-terrain-server/issues/8
+
+
+
+phyghtmap --pbf –no-zero-contour –output-prefix contour –line-cat=500,100 –step=20 --jobs=8 --srtm=1 --a -44.978:-23.383:-40.902:-20.705 --earthdata-user=icemagno --earthdata-password=Antares2#2
+
+
+ls hgt/SRTM1v3.0/*.hgt > list_of_files.txt
+gdalbuildvrt -input_file_list list_of_files.txt -overwrite -addalpha imagens.vrt
+
+gdal_translate -tr 0.000170 0.000170 -r cubicspline -of GTiff imagens.vrt teste.tif
+
+gdaldem hillshade -co TILED=YES -co compress=lzw -s 111120 -z 5 -az 315 -combined -compute_edges teste.tif final.tif
+
+gdaladdo -r cubicspline --config COMPRESS_OVERVIEW DEFLATE --config GDAL_TIFF_OVR_BLOCKSIZE 512 final.tif 2 4 8 16 32
+
+---------------------------
+
+
+docker run -v /data/docker:/data homme/cesium-terrain-builder ctb-tile --output-dir /data/tilesets/terrain/test /data/rasters/S23W045.hgt
+
+
+
+docker run --name terrain-server -d -p 8002:8000 -v /data/docker/tilesets/terrain:/data/tilesets/terrain geodata/cesium-terrain-server
+
+
+
+
+http://localhost:8002/tilesets/test/layer.json
+/var/www/cesium/
+/data/tilesets/terrain/test
+
+
+
+cp /var/www/cesium/index.html /data/tilesets/terrain/test
+cp /data/tilesets/terrain/test/index.html /var/www/cesium/
+
+
+I had the same provlem but I got it running with some minor adjustments.
+According the Dockerfile the port is currently 8000 so you have to map -p 8002:8000. There was a change removing the 
+reverse proxy and I assume the docs were not updated everywhere.
+Within the index.html in /var/www/cesium/ is another mistake. The correct address for the tileset test is /tilesets/test you 
+can verify it by loading http://localhost:8002/tilesets/test/layer.json 
+wich should return a json even if the file not exists.
+
+docker ps
+docker commit 1ae8c52002ce magnoabreu/terrain-server:latest
+docker push magnoabreu/terrain-server:latest
+
+
+Host/volume 						Path in container
+/data/docker/tilesets/terrain		/data/tilesets/terrain
+
+
+/var/www/cesium/index.html
+
+
+root@osm:~# history | grep terrain
+  222  mkdir /data/docker/tilesets/terrain
+  223  mkdir -R /data/docker/tilesets/terrain
+  224  mkdir -r /data/docker/tilesets/terrain
+  229  mkdir /data/docker/tilesets/terrain
+  230  docker run -p 8097:80 -v /data/docker/tilesets/terrain:/data/tilesets/terrain \geodata/cesium-terrain-server
+  231  docker run -d -p 8080:80 -v /data/docker/tilesets/terrain:/data/tilesets/terrain \geodata/cesium-terrain-server
+  259  ls /data/docker/tilesets/terrain/
+  260  docker run -v /data/docker:/data homme/cesium-terrain-builder \ctb-tile --output-dir /data/docker/tilesets/terrain /home/apolo/srtm/imagens.vrt
+  261  ls /data/docker/tilesets/terrain
+  262  docker run -v /data/docker:/data homme/cesium-terrain-builder \ctb-tile --output-dir /data/tilesets/terrain /home/apolo/srtm/imagens.vrt
+  263  docker run -v /data/docker:/data homme/cesium-terrain-builder \ctb-tile --output-dir /data/tilesets/terrain /home/apolo/srtm/teste.tif
+  271  docker run -v /data/docker:/data homme/cesium-terrain-builder \ctb-tile --output-dir /data/tilesets/terrain/test /data/rasters/rio-de-janeiro.tif
+  272  mkdir /data/docker/tilesets/terrain/test
+  273  docker run -v /data/docker:/data homme/cesium-terrain-builder \ctb-tile --output-dir /data/tilesets/terrain/test /data/rasters/rio-de-janeiro.tif
+  274  docker run -p 8080:80 -v /data/docker/tilesets/terrain:/data/tilesets/terrain     geodata/cesium-terrain-server
+  275  docker run -d -p 8287:80 -v /data/docker/tilesets/terrain:/data/tilesets/terrain  geodata/cesium-terrain-server
+  281  ls /data/docker/tilesets/terrain/test/
+  282  docker run --name terrain-server -d -p 8002:8000 -v /data/docker/tilesets/terrain:/data/tilesets/terrain geodata/cesium-terrain-server
+  283  ls /data/docker/tilesets/terrain
+  284  ls /data/docker/tilesets/terrain
+  285  ls /data/docker/tilesets/terrain/test/
+  286  vim /data/docker/tilesets/terrain/test/index.html
+  288  rm -rf /data/docker/tilesets/terrain/test/*
+  293  docker run -v /data/docker:/data homme/cesium-terrain-builder ctb-tile --output-dir /data/tilesets/terrain/test /data/rasters/S23W045.hgt
+  294  vim /data/docker/tilesets/terrain/test/index.html
+  295  ls /data/docker/tilesets/terrain/test/
+  297  vim /data/docker/tilesets/terrain/test/index.html
+  304  docker run -v /data/docker:/data homme/cesium-terrain-builder ctb-tile --output-dir /data/tilesets/terrain/test /data/rasters/imagens.vrt
+  308  docker commit 1ae8c52002ce -a magno.mabreu@gmail.com magnoabreu/terrain-server:latest
+  309  docker commit 1ae8c52002ce magnoabreu/terrain-server:latest
+  311  docker push magnoabreu/terrain-server:latest
+  502  history | grep terrain
+
+
+

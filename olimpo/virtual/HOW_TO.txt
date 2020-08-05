@@ -1,0 +1,1 @@
+Copiar o VRT para a pasta SRTM para criar a superficie.

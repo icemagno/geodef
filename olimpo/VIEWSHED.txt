@@ -1,0 +1,9 @@
+https://github.com/jonnyhuck/Viewshed
+
+apt-get install gcc
+apt-get install g++
+apt-get install libgdal-dev
+gcc viewshed.cpp -lgdal -lm -o viewshed -O3
+
+
+./viewshed -r 20000 -x 345678 -y 456789 -z 50 -o 1.5 -t 100 -i DEM.tif -f VIEWSHED.tif

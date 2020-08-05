@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" 
+	xmlns:ogc="http://www.opengis.net/ogc"
+	xsi:schemaLocation="http://www.opengis.net/cat/csw/2.0.2 http://schemas.opengis.net/csw/2.0.2/CSW-discovery.xsd" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	maxRecords="1000" startPosition="1" outputFormat="application/json" outputSchema="http://www.isotc211.org/2005/gmd" resultType="results" service="CSW" version="2.0.2">
+   <csw:Query typeNames="csw:Record">
+      <csw:ElementSetName>full</csw:ElementSetName>
+      <csw:Constraint version="1.1.0">
+         <ogc:Filter>
+            <ogc:And>
+               <ogc:BBOX>
+                  <ogc:PropertyName>ows:BoundingBox</ogc:PropertyName>
+                  <gml:Envelope xmlns:gml="http://www.opengis.net/gml">
+                     <gml:lowerCorner>#bb# #ll#</gml:lowerCorner>
+                     <gml:upperCorner>#tt# #rr#</gml:upperCorner>
+                  </gml:Envelope>
+               </ogc:BBOX>
+               <ogc:Or>
+                  <ogc:PropertyIsLike escapeChar="\" singleChar="_" wildCard="%">
+                     <ogc:PropertyName>apiso:AnyText</ogc:PropertyName>
+                     <ogc:Literal>%SCN Carta Topografica Vetorial%</ogc:Literal>
+                  </ogc:PropertyIsLike>
+                  <ogc:PropertyIsLike escapeChar="\" singleChar="_" wildCard="%">
+                     <ogc:PropertyName>apiso:AnyText</ogc:PropertyName>
+                     <ogc:Literal>%Nao SCN Conj. de Dados Geoespaciais Vetoriais%</ogc:Literal>
+                  </ogc:PropertyIsLike>
+               </ogc:Or>
+            </ogc:And>
+         </ogc:Filter>
+      </csw:Constraint>
+      <ogc:SortBy>
+         <ogc:SortProperty>
+            <ogc:PropertyName>apiso:Title</ogc:PropertyName>
+            <ogc:SortOrder>ASC</ogc:SortOrder>
+         </ogc:SortProperty>
+      </ogc:SortBy>
+   </csw:Query>
+</csw:GetRecords>
+
+
