@@ -1,0 +1,4 @@
+# OsmType  Tag          DataType     Flags
+node,way   contour      text         linear
+node,way   contour_ext  text         linear
+node,way   ele          int4         linear

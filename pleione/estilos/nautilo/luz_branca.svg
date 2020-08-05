@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:ns3="http://ns.adobe.com/AdobeIllustrator/10.0/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="25.79558mm"
+   height="29.484293mm"
+   viewBox="0 0 25.79558 29.484293"
+   version="1.1"
+   id="svg5657"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="luz_branca.svg">
+  <defs
+     id="defs5651" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6568543"
+     inkscape:cx="1.2027827"
+     inkscape:cy="45.802672"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     inkscape:snap-bbox="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-smooth-nodes="true" />
+  <metadata
+     id="metadata5654">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-57.036111,-108.7372)">
+    <g
+       style="overflow:visible;fill:#c400ff;fill-opacity:1;fill-rule:nonzero"
+       id="g6220"
+       transform="matrix(-0.26278273,0.03081518,-0.03081518,-0.26278273,82.542081,136.49904)">
+      <switch
+         id="switch6208"
+         style="fill:#c400ff;fill-opacity:1;fill-rule:nonzero">
+        <foreignObject
+           height="1"
+           width="1"
+           y="0"
+           x="0"
+           requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/">
+          <ns3:pgfRef
+             xlink:href="#adobe_illustrator_pgf" />
+        </foreignObject>
+        <g
+           id="g6206"
+           ns3:extraneous="self"
+           style="fill:#c400ff;fill-opacity:1;fill-rule:nonzero">
+          <g
+             ns3:rgbTrio="#4F008000FFFF"
+             ns3:dimmedPercent="50"
+             ns3:layer="yes"
+             id="Calque_1"
+             style="fill:#c400ff;fill-opacity:1;fill-rule:nonzero">
+            <polygon
+               points="39.913,9.25 44.225,15.313 45.05,16.563 80.113,111.137 10.213,42.313 5.1,37.262 1.413,31.313 0,24.237 0.838,16.962 3.788,10.4 8.65,5.112 15.125,1.512 22.388,0 29.313,0.85 35.088,4.15 "
+               id="path10930"
+               style="fill:#c400ff;fill-opacity:1;fill-rule:nonzero" />
+          </g>
+        </g>
+      </switch>
+    </g>
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.065;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 58.065061,109.76285 12.128265,23.77194 1.575267,1.76343 1.425084,1.19151 1.61926,0.68923 1.845964,0.01 0.930999,-0.31057 0.930999,-0.31057 0.795292,-0.57277 0.795291,-0.57277 0.55735,-0.76971 0.557349,-0.76971 0.573,-1.81529 -0.004,-1.93756 -0.589361,-1.81591 -1.152199,-1.44968 z"
+       id="path3735"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

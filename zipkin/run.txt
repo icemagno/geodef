@@ -1,0 +1,1 @@
+docker run --name zipkin --network apolo --hostname=zipkin --restart=always -d -p 9411:9411 openzipkin/zipkin

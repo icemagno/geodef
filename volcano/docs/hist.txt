@@ -1,0 +1,1000 @@
+  125  cd osm/
+  126  ls
+  127  ls
+  128  cd /tmp/
+  129  rpm --help
+  130  rpm --nodeps osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  131  rpm -i --nodeps osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  132  rpm -i --nodeps osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  133  osm2pgsql 
+  134  cd /opt/
+  135  cd /usr/lib
+  136  ls
+  137  cd ..
+  138  cd local/lib
+  139  ls
+  140  ln -s libgeos-3.4.2.so libgeos-3.6.1.so 
+  141  ln -s libgeos-3.6.1.so  libgeos-3.4.2.so
+  142  ls -lah
+  143  ls -lah *geo¨s*
+  144  ls -lah *geos*
+  145  osm2pgsql 
+  146  yum install geos
+  147  yum install geos-devel
+  148  yum install libgeos
+  149  yum install geo
+  150  yum install geos
+  151  cd /tmp/
+  152  rpm -e osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  153  rpm -e osm2pgsql-0.92.0-1
+  154  rpm --erase osm2pgsql-0.92.0-1
+  155  rpm --erase osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  156  ls
+  157  rpm --help
+  158  rpm -e osm2pgsql
+  159  yum install osm2pgsql
+  160  yum install osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  161  ls
+  162  cd /opt/
+  163  ls
+  164  cd osm/
+  165  cd sources/osm2pgsql-0.92.x/
+  166  ls
+  167  cd build/
+  168  ls
+  169  rm -rf *
+  170  cmake ..
+  171  make
+  172  make install
+  173  rm -rf *
+  174  ls
+  175  cd ..
+  176  ls
+  177  make install
+  178  cd build/
+  179  lsa
+  180  ls
+  181  cmake ..
+  182  make
+  183  yum install glibc-devel
+  184  yum install glibc-static
+  185  cmake ..
+  186  rm -rf *
+  187  cmake ..
+  188  make
+  189  less
+  190  less /opt/osm/sources/osm2pgsql-0.92.x/geometry-builder.cpp
+  191  less /opt/osm/sources/osm2pgsql-0.92.x/geometry-builder.cpp
+  192  vi /opt/osm/sources/osm2pgsql-0.92.x/geometry-builder.cpp
+  193  yum install geos
+  194  yum install geos-devel
+  195  yum install libgeos
+  196  less /usr/local/include/geos/geom/GeometryFactory.h
+  197  vi /usr/local/include/geos/geom/GeometryFactory.h
+  198  ls
+  199  vi Makefile 
+  200  cd /tmp/
+  201  ls
+  202  wgewt 
+  203  wget https://github.com/openstreetmap/osm2pgsql/archive/master.zip
+  204  unzip master.zip 
+  205  mv osm2pgsql-master/ /opt/osm/
+  206  cd /opt/osm/
+  207  ls
+  208  cd osm2pgsql-master/
+  209  ls
+  210  mkdir build
+  211  cd build/
+  212  ls
+  213  cmake ..
+  214  make
+  215  make install
+  216  ls
+  217  cd /
+  218  /usr/local/bin/osm2pgsql 
+  219  /usr/local/bin/osm2pgsql -h
+  220  /usr/local/bin/osm2pgsql 
+  221  ls
+  222  exit
+  223  ls
+  224  cd /opt/
+  225  ls
+  226  df -h
+  227  cd osm/
+  228  ls
+  229  cd apache-tomcat-9.0.0.M17/
+  230  ls
+  231  cd bin/
+  232  ls
+  233  ./startup.sh &
+  234  ls -lah
+  235  ps ax |grep java
+  236  netstat -an |less
+  237  ls
+  238  history 
+  239  history |grep osm
+  240  do -u postgres /usr/local/pgsql/bin/initdb -D /opt/osm/postgres/data/
+  241  su postgres
+  242  cd /opt/
+  243  ls
+  244  cd osm/
+  245  ls
+  246  cd postgres/
+  247  ls
+  248  cd data/
+  249  ls
+  250  ls -lah
+  251  rm postmaster.pid 
+  252  vi pg_hba.conf 
+  253  ps ax |grep java
+  254  ps ax |grep postgres
+  255  ls
+  256  su postgres
+  257  ps ax |grep postgres
+  258  netstat -an |less
+  259  service firewalld status
+  260  service firewalld stop
+  261  exit
+  262  cd /opt/
+  263  ls
+  264  cd osm/
+  265  ls
+  266  cd apache-tomcat-9.0.0.M17/
+  267  cd bin/
+  268  vi startup.sh 
+  269  vi startup.sh 
+  270  exit
+  271  vi /etc/profile
+  272  ls
+  273  cd /opt/
+  274  ls
+  275  cd osm/
+  276  ls
+  277  cd apache-tomcat-9.0.0.M17/bin/
+  278  vi startup.sh 
+  279  vi /root/.bashrc 
+  280  exit
+  281  mv osmosis-latest.tgz sources/
+  282  cd sources/
+  283  ls
+  284  tar -zxvf osmosis-latest.tgz 
+  285  ls
+  286  rm -R lib
+  287  rm -r lib
+  288  ls
+  289  rm -R lib
+  290  ls
+  291  rm -r lib
+  292  rm -rf lib
+  293  ls
+  294  rm -rf bin
+  295  ls -lh
+  296  rm changes.txt 
+  297  date
+  298  clear
+  299  mkdir osmosis
+  300  tar -zxvf osmosis-latest.tgz osmosis
+  301  mv osmosis-latest.tgz osmosis
+  302  cd osmosis
+  303  tar -zxvf osmosis-latest.tgz 
+  304  ls
+  305  cd ..
+  306  ld
+  307  ls
+  308  cd ..
+  309  ls
+  310  mkdir osmupdates
+  311  cd osmupdates
+  312  osmosis --rrii workingDirectory=.
+  313  ../sources/osmosis/bin/osmosis --rrii workingDirectory=.
+  314  java
+  315  exit
+  316  ls
+  317  java
+  318  ls
+  319  cd /opt/osm/
+  320  ls
+  321  cd postgres/
+  322  cd data/
+  323  pwd
+  324  cd ..
+  325  ls
+  326  cd ..
+  327  ls
+  328  cd sources/
+  329  ls
+  330  cd postgresql-9.6.2/
+  331  ls
+  332  cd contrib/
+  333  ls
+  334  cd ..
+  335  ls
+  336  cd con
+  337  cd config
+  338  ls
+  339  cd ..
+  340  ls
+  341  ls -lah
+  342  cd contrib/
+  343  ls
+  344  cd start-scripts/
+  345  ls
+  346  cp -rp linux /etc/init.d/postgresql
+  347  chmod 755 /etc/init.d/postgresql
+  348  vi /etc/init.d/postgresql
+  349  chkconfig postgresql on
+  350  exit
+  351  cd osmupdates/
+  352  ls
+  353  java
+  354  ../sources/osmosis/bin/osmosis --rrii workingDirectory=.
+  355  ls -lh
+  356  vim
+  357  vi configuration.txt 
+  358  wget http://ftp5.gwdg.de/pub/misc/openstreetmap/planet.openstreetmap.org/replication/hour/state.txt
+  359  mkdir tmp
+  360  export JAVACMD_OPTIONS="-Djava.io.tmpdir=/opt/osm/osmupdates/tmp"
+  361  ../sources/osmosis/bin/osmosis  --rri workingDirectory=. --wxc update.osm.gz
+  362  ls -lh
+  363  history
+  364  history > history.txt
+  365  vi update.sh
+  366  vi update.sh
+  367  nice gzip -d -c update.osm.gz | nice /opt/osm/sources/osmosis/bin/osmosis --read-xml-change file=/dev/stdin --simplify-change --write-xml-change file=- | nice gzip -9 -c > update.unique.osm.gz
+  368  ls -lh
+  369  vi update.sh
+  370  vi update.sh
+  371  rm .update.sh.swp
+  372  vi update.sh
+  373  tail -f /opt/osm/data/wget-log 
+  374  ls -lh /opt/osm/data/
+  375  ls 
+  376  wget http://ftp5.gwdg.de/pub/misc/openstreetmap/planet.openstreetmap.org/replication/day/state.txt
+  377  cat state.txt
+  378  ls
+  379  rm state.txt
+  380  mv state.txt.1 state.txt
+  381  ls -lh
+  382  cat download.lock 
+  383  rm download.lock 
+  384  ls -lh /opt/osm/data/
+  385  tail -f /opt/osm/data/wget-log 
+  386  ls -lh /opt/osm/data/
+  387  ls -lh /opt/osm/data/
+  388  ls -lh /opt/osm/data/
+  389  ls -lh /opt/osm/data/
+  390  tail -f /opt/osm/data/wget-log 
+  391  tail -f /opt/osm/data/wget-log 
+  392  tail -f /opt/osm/data/wget-log 
+  393  ls -lh
+  394  ls -lh /opt/osm/data/
+  395  tail -f /opt/osm/data/wget-log 
+  396  wget www.google.com
+  397  rm index.html 
+  398  tail -f /opt/osm/data/wget-log 
+  399  ls -lh
+  400  vi update.sh
+  401  tail -f /opt/osm/data/wget-log 
+  402  tail -f /opt/osm/data/wget-log 
+  403  tail -f /opt/osm/data/wget-log 
+  404  vi /opt/osm/data/wget-log 
+  405  tail -f /opt/osm/data/wget-log 
+  406  ping www.google.com
+  407  tail -f /opt/osm/data/wget-log 
+  408  tail -f /opt/osm/data/wget-log 
+  409  tail -f /opt/osm/data/wget-log 
+  410  top
+  411  tail -f /opt/osm/data/wget-log 
+  412  tail -f /opt/osm/data/wget-log 
+  413  tail -f /opt/osm/data/wget-log 
+  414  tail -f /opt/osm/data/wget-log 
+  415  ls -lh /opt/osm/data/
+  416  rm /opt/osm/data/wget-log 
+  417  exit
+  418  exit
+  419   chown postgres:postgres /opt/osm/osm_tablespace
+  420  su postgres
+  421  ls -lh
+  422  cd ..
+  423  ls -lh
+  424  cd sources
+  425  ls
+  426  cd postgresql-9.6.2/
+  427  ls
+  428  whereis postgresql
+  429  whereis postgresql-9.6.2
+  430  cd ..
+  431  ls
+  432  cd ..
+  433  ls
+  434  cd postgres
+  435  ls
+  436  cd data
+  437  ls
+  438  vi postgresql.conf
+  439  ls /opt/osm/osm_tablespace/
+  440  vi postgresql.conf
+  441  su postgres
+  442  psql
+  443  ls
+  444  cd ..
+  445  ls
+  446  ls BD
+  447  ls
+  448  whereis psql
+  449  cd ..
+  450  ls
+  451  ls sources/
+  452  ls sources/postgresql-9.6.2/
+  453  ls /usr/bin/
+  454  ls 
+  455  ls postgres/
+  456  ls osm_tablespace/
+  457  ls -lh
+  458  service postgresql restart
+  459  ls
+  460  cd data
+  461  ls
+  462  vi import.sh
+  463  vi import.sh
+  464  chmod 0777 import.sh
+  465  ls
+  466  ./import.sh 
+  467  vi import.sh
+  468  ./import.sh 
+  469  ls ..
+  470  ls ../osm2pgsql-master/
+  471  history > hist.txt
+  472  vi hist.txt 
+  473  /usr/local/bin/osm2pgsql
+  474  vi import.sh
+  475  ./import.sh 
+  476  vim import.sh 
+  477  vi import.sh 
+  478  ./import.sh > log.txt &
+  479  l
+  480  l
+  481  ll
+  482  ll
+  483  ll
+  484  ll
+  485  ll
+  486  ll
+  487  ll
+  488  grep 
+  489  vi import.sh 
+  490  ./import.sh &
+  491  history      >       log.txt
+  492  cat log.txt 
+  493  vi import.sh 
+  494  ./import.sh &
+  495  vi import.sh 
+  496  ./import.sh &
+  497  vi import.sh 
+  498  ./import.sh & >> ./log.txt
+  499  ls -lh
+  500  rm log.txt 
+  501  nohup import.txt > log.txt
+  502  nohup import.sh > log.txt
+  503  nohup ./import.sh > log.txt
+  504  kill -9 2451
+  505  ps ax | grep import.sh
+  506  ps ax | grep osm2p
+  507  kill -9 2452
+  508  cd /opt/osm/
+  509  ls
+  510  cd data
+  511  ls
+  512  ls -lh
+  513  ps ax | grep osm2p
+  514  kill -9 2583
+  515  ps ax | grep import
+  516  ls
+  517  ls l-h
+  518  ls -lh
+  519  tail -f log.txt
+  520  ls -lh
+  521  ps ax | grep osm2p
+  522  kill -9 2702
+  523  kill -9 2702
+  524  ps ax | grep osm2p
+  525  kill -9 2680
+  526  ls -lh
+  527  ls -lh
+  528  ls -lh
+  529  ls -lh
+  530  ls -lh
+  531  ps ax | grep osm2p
+  532  kill -9 2750
+  533  ls -lh
+  534  ps ax | grep osm2p
+  535  kill -9 2790
+  536  screen
+  537  ls -lh
+  538  ls -lh
+  539  tail -f log.txt
+  540  tail -f log.txt
+  541  top
+  542  cd ..
+  543  ls
+  544  ls /usr/local/pgsql/
+  545  ls /usr/local/pgsql/bin
+  546  ls
+  547  ls postgres/
+  548  ls source
+  549  ls sources
+  550  ls sources/postgresql-9.6.2/
+  551  ls sources/postgresql-9.6.2/contrib/
+  552  cd data
+  553  ls
+  554  ls -lh
+  555  lsblk
+  556  lsblk
+  557  df -H
+  558  df -H
+  559  df -H
+  560  clear
+  561  tail -f log.txt
+  562  tail -f log.txt
+  563  df -H
+  564  df -H
+  565  df -H
+  566  df -H
+  567  cd /opt/osm/data
+  568  ls -lh
+  569  ls -lh
+  570  top
+  571  df -H
+  572  df -H
+  573  tail -f log.txt
+  574  df -H
+  575  ls -lh
+  576  ls -lh
+  577  tail -f log.txt
+  578  tail -f log.txt
+  579  tail -f log.txt
+  580  df -H
+  581  df -H
+  582  ls -lh
+  583  ls -lh
+  584  ls -lh
+  585  ls -lh
+  586  df -H
+  587  tail -f log.txt
+  588  top
+  589  top
+  590  tail -f log.txt
+  591  tail -f log.txt
+  592  tail -f log.txt
+  593  top
+  594  tail -f log.txt
+  595  exit
+  596  cd/opt/osm
+  597  cd /opt/osm
+  598  cd data
+  599  tail -f log.txt
+  600  df -H
+  601  df -H
+  602  tail -f log.txt
+  603  ls -lh
+  604  ls -lh
+  605  tail -f log.txt
+  606  df -H
+  607  df -H
+  608  df -H
+  609  tail -f /sys/block/xvdb/stat 
+  610  ls
+  611  ls
+  612  cd ..
+  613  ls
+  614  cd casnav/
+  615  ls
+  616  mv atop-2.3.0.tar.gz /opt/osm/sources/
+  617  cd /opt/osm/sources/
+  618  ls
+  619  tar zxvf atop-2.3.0.tar.gz 
+  620  cd atop-2.3.0
+  621  ls
+  622  make
+  623  make install
+  624  make systemdinstall
+  625  atop
+  626  atop --help
+  627  atop
+  628  exit
+  629  cd /opt/osm
+  630  ls
+  631  cd data
+  632  ls
+  633  ls -lh
+  634  tail -n 10 log.txt
+  635  tail -f log.txt
+  636  df -H
+  637  top
+  638  clear
+  639  sar
+  640  iotop
+  641  iodump
+  642  dstat
+  643  /proc/diskstats
+  644  df -H
+  645  /sys/block/xvdb/stat
+  646  atop
+  647  top
+  648  clear
+  649  tail -f log.txt
+  650  top
+  651  cat import.sh 
+  652  atop
+  653  yum install atop
+  654  ifconfig
+  655  tail -f /sys/block/xvdb/stat
+  656  clear
+  657  atop
+  658  atop -d
+  659  atop -n
+  660  atop -d
+  661  tail -f log.txt
+  662  cat import.sh 
+  663  tail -f log.txt
+  664  atop -d
+  665  top
+  666  df -H
+  667  df -H
+  668  tail -f log.txt
+  669  tail -f log.txt
+  670  ls -lh
+  671  > log.txt
+  672  ls -lh
+  673  ls -lh
+  674  s > log.txt
+  675  ls -lh > log.txt
+  676  ls -lh
+  677  touch log.txt
+  678  ls -lh
+  679  tail -f log.txt
+  680  exit
+  681  cd /opt/osm/data
+  682  tail -f log.txt
+  683  rm log.txt
+  684  atop -d
+  685  ls -lh
+  686  touch log.txt
+  687  ls -lh
+  688  ls -lh
+  689  atop -d
+  690  ls -lh
+  691  atop -d
+  692  exit
+  693  cd /opt/osm
+  694  clear
+  695  ls -lh
+  696  cd data
+  697  ls -lh
+  698  atop -d
+  699  top
+  700  df -H
+  701  psql
+  702  su postgres
+  703  clear
+  704  atop -d
+  705  atop -d
+  706  top
+  707  aux -ps | grep import.sh 
+  708  ps -aux | grep import
+  709  ls /proc/3875/fd
+  710  ls /proc/3875/fd/1
+  711  cat /proc/3875/fd/1
+  712  ps -aux | grep osm2
+  713  cat /proc/3876/fd/1
+  714  tail -f /proc/3875/fd/1
+  715  tail -f /proc/3876/fd/1
+  716  ls /proc/3876/fd/
+  717  cat /proc/3876/fd/2
+  718  cat /proc/3876/fd/3
+  719  cat /proc/3876/fd/4
+  720  ls /proc/3876/fd/
+  721  cat /proc/3876/fd/1
+  722  ls -lh /proc/3876/fd/
+  723  cat /proc/3876/fd/1
+  724  cp /proc/3876/fd/1 /opt/osm/test.txt
+  725  tail -n 10 /opt/osm/test.txt 
+  726  tail /opt/osm/test.txt 
+  727  cat /opt/osm/test.txt 
+  728  rm /opt/osm/test.txt 
+  729  tail -f /proc/3876/fd/1
+  730  tail -f /proc/3876/fd/1
+  731  exit
+  732  cd /opt/osm/data
+  733  ls -lh
+  734  tail -f /proc/3876/fd/1
+  735  ps -aux | grep osm2
+  736  atop -d
+  737  ls -lh /proc/3876/fd/
+  738  cp /proc/3876/fd/1 ./temp.txt
+  739  ls -lh
+  740  tail temp.txt
+  741  clear
+  742  tail -f /proc/3876/fd/1
+  743  df -H
+  744  tail -f /proc/3876/fd/1
+  745  clear
+  746  tail -f /proc/3876/fd/1
+  747  tail -f /proc/3876/fd/1
+  748  ls -lh
+  749  rm temp.txt
+  750  df -H
+  751  df -H
+  752  tail -f /proc/3876/fd/1
+  753  ls -lh
+  754  df -H
+  755  ls /opt/osm/osm_tablespace/
+  756  ls /opt/osm/osm_tablespace/PG_9.6_201608131/
+  757  ls /opt/osm/osm_tablespace/PG_9.6_201608131/27993/
+  758  ls -lh /opt/osm/osm_tablespace/PG_9.6_201608131/27993/
+  759  atop -d
+  760  top
+  761  tail -f /proc/3876/fd/1
+  762  ls /opt/osm/sources/
+  763  java -version
+  764  exit
+  765  tail -f /proc/3876/fd/1
+  766  atop -d
+  767  top
+  768  atop -d
+  769  atop -d
+  770  tail -f /proc/3876/fd/1
+  771  atop -d
+  772  top
+  773  atop -d
+  774  tail -f /proc/3876/fd/1
+  775  top
+  776  top
+  777  df -H
+  778  top
+  779  df -H
+  780  df -H
+  781  tail -f /proc/3876/fd/1
+  782  top
+  783  tail -f /proc/3876/fd/1
+  784  ls -lh /proc/3876/fd/
+  785  tail -f /proc/3876/fd/1
+  786  exit
+  787  cd /opt/osm
+  788  cd data
+  789  ls -lh
+  790  wget http://download.geofabrik.de/north-america-latest.osm.pbf
+  791  exit
+  792  atop -d
+  793  ls -lh /proc/3876/fd/
+  794  atop
+  795  uptime
+  796  uptime
+  797  uptime
+  798  service postgresql start
+  799  atop
+  800  cd /etc/init.d
+  801  ls
+  802  atop
+  803  ps aux | grep postgres
+  804  top
+  805  ps aux | grep postgres
+  806  netstat -a | grep postgres
+  807  netstat -a | grep 5432
+  808  ifconfig
+  809  cd /opt/osm
+  810  ls -lh
+  811  df -H
+  812  cd /opt/osm/osm_tablespace/
+  813  ls -lh
+  814  ls -lh PG_9.6_201608131/
+  815  ls -lh PG_9.6_201608131/27993/
+  816  cd /opt/osm/
+  817  history > hist.txt
+  818  vi hist.ttx
+  819  vi hist.txt
+  820  su postgres
+  821  ls /etc/init.d/
+  822  service firewalld status
+  823  service firewalld stop
+  824  clear
+  825  su postgres
+  826  service firewalld status
+  827  service firewalld stop
+  828  service firewalld stop
+  829  service firewalld status
+  830  clear
+  831  ls /etc/init.d/
+  832  ls -lh
+  833  cd data
+  834  ls
+  835  rm log.txt 
+  836  df -H
+  837  history > hist.txt
+  838  vi hist.txt
+  839  vi import.sh 
+  840  ls -lh
+  841  rm osm_flat_nodes.db 
+  842  vi import.sh 
+  843  ls -lh
+  844  wget http://download.geofabrik.de/south-america-latest.osm.pbf
+  845  nohup ./import.sh > log.txt
+  846  ls -lh
+  847  tail -f log.txt
+  848  ls -lh
+  849  ls -lh
+  850  ps aux | grep osm2
+  851  ./import.sh
+  852  ls -lh
+  853  cp import.sh import_south_america.sh
+  854  cp import.sh append_central_america.sh
+  855  vim append_central_america.sh 
+  856  vi append_central_america.sh 
+  857  ./append_central_america.sh 
+  858  vi append_central_america.sh 
+  859  ./append_central_america.sh 
+  860  ls -lh
+  861  rm osm_flat_nodes.db 
+  862  clear
+  863  service postgresql stop
+  864  service postgresql sto
+  865  service postgresql start
+  866  ls 
+  867  ls -lh ../osm_tablespace/PG_9.6_201608131/
+  868  ls -lh
+  869  vi append_south_america.sh 
+  870  ./append_south_america.sh 
+  871  vi append_central_america.sh 
+  872  vi append_south_america.sh 
+  873  ./append_south_america.sh 
+  874  vi append_central_america.sh 
+  875  ./append_central_america.sh 
+  876  vi append_central_america.sh 
+  877  ./append_central_america.sh 
+  878  ls -lh
+  879  mkdir osm_data_files
+  880  mv antarctica-latest.osm.pbf osm_data_files/
+  881  mv south-america-latest.osm.pbf osm_data_files/
+  882  mv central-america-latest.osm.pbf  osm_data_files/
+  883  ls -lh
+  884  cp import_north_america.sh import.sh
+  885  vi import.sh
+  886  cat import.sh
+  887  ls -lh
+  888  rm merged.pbf 
+  889  ls -lh
+  890  ls -lh
+  891  ls -lh
+  892  ls -lh
+  893  ls -lh
+  894  ls -lh
+  895  ls -lh
+  896  ls -lh
+  897  ls -lh
+  898  ls -lh
+  899  ls -lh
+  900  ls -lh
+  901  vi hist.txt
+  902  ls -lh
+  903  ls -lh
+  904  clear
+  905  ls -lh
+  906  cat import.sh
+  907  cleart
+  908  clear
+  909  ls -lh
+  910  ls -lh
+  911  ls -lh
+  912  vi import.sh
+  913  ls -lh
+  914  # at now +8 hours -f /opt/osm/data/import.sh
+  915  exit
+  916  cd /opt/osm/data
+  917  ls -lh
+  918  tail -f log.txt
+  919  cd opt/osm/data
+  920  cd /opt/osm/data
+  921  ls
+  922  wget http://download.geofabrik.de/central-america-latest.osm.pbf
+  923  wget http://download.geofabrik.de/antarctica-latest.osm.pbf
+  924  ls -lh
+  925  cp append_central_america.sh append_antarctica.sh
+  926  vi append_antarctica.sh 
+  927  cp append_antarctica.sh append_south_america.sh
+  928  vi append_south_america.sh 
+  929  mv import_south_america.sh import_north_america.sh
+  930  vi import_north_america.sh 
+  931  ls -lh
+  932  atop -d
+  933  top
+  934  ls -lh
+  935  df -H
+  936  top
+  937  ls -lh
+  938  ls -lh
+  939  ls -lh
+  940  ls -lh
+  941  ls -lh
+  942  ls -lh
+  943  ls -lh
+  944  ls -lh
+  945  ls -lh
+  946  ls -lh
+  947  ls -lh
+  948  ls -lh
+  949  top
+  950  atop 
+  951  top
+  952  ls
+  953  rm import.sh
+  954  rm import.sh
+  955  vi append_south_america.sh 
+  956  top
+  957  ls -lh
+  958  cat append_central_america.sh 
+  959  vi append_antarctica.sh 
+  960  vi import_north_america.sh 
+  961  vi append_south_america.sh 
+  962  cat import_north_america.sh 
+  963  top
+  964  atop -d
+  965  ls -lh
+  966  cd ..
+  967  ls
+  968  cd osmupdates
+  969  ls
+  970  cd ..
+  971  ls
+  972  ls sources
+  973  cd ..
+  974  cd osm/data
+  975  ls
+  976  /opt/osm/sources/osmosis/bin/osmosis --read-pbf-fast antarctica-latest.osm.pbf --read-pbf-fast south-america-latest.osm.pbf --merge --write-pbf merged.pbf
+  977  ls -lh
+  978  /opt/osm/sources/osmosis/bin/osmosis --read-pbf-fast south_antar_central.pbf --read-pbf-fast central-america-latest.osm.pbf --merge --write-pbf pbf
+  979  /opt/osm/sources/osmosis/bin/osmosis --read-pbf-fast south_antar_central.pbf --read-pbf-fast north-america-latest.osm.pbf --merge --write-pbf americas_antartica.osm.pbf
+  980  at -c $(atq | cut -f 1) or for each in $(atq | cut -f 1)
+  981  for j in $(atq | cut -f 1); do at -c "$j"; done
+  982  at -c 1
+  983  ls -lh
+  984  vi import.sh
+  985  nohup ./import.sh > log.txt
+  986  ps aux | osm2p
+  987  ps aux | grep osm2p
+  988  mv import_moved.sh import.sh
+  989  ls
+  990  vi import.sh
+  991  ps aux | grep osm2pg
+  992  vi import.sh
+  993  rm osm_flat_nodes.db 
+  994  rm log.txt
+  995  nohup ./import.sh > log.txt
+  996  tail -f log.txt
+  997  vi import.sh
+  998  rm log.txt
+  999  tail -f log.txt
+ 1000  nohup ./import.sh > log.txt
+ 1001  cd /opt/osm/
+ 1002  ls
+ 1003  cd data
+ 1004  ls -lh
+ 1005  tail -f log.txt
+ 1006  cat import.sh
+ 1007  ls
+ 1008  mv north-america-latest.osm.pbf osm_data_files/
+ 1009  ls
+ 1010  ls -lh
+ 1011  rm append_*
+ 1012  rm append_*
+ 1013  rm import_north_america.sh 
+ 1014  ls -l
+ 1015  mv planet-latest.osm.pbf osm_data_files/
+ 1016  ls
+ 1017  ls -lh
+ 1018  rm south_antar_central.pbf 
+ 1019  clear
+ 1020  ls -lh
+ 1021  cd ..
+ 1022  ls
+ 1023  cd osmupdates/
+ 1024  ls
+ 1025  cat update.sh
+ 1026  cd ..
+ 1027  mv -r osmupdates/ data/
+ 1028  mv -R osmupdates/ data/
+ 1029  mv osmupdates/ data/
+ 1030  ls -lh
+ 1031  cd data
+ 1032  clear
+ 1033  cd data
+ 1034  ls -lh
+ 1035  cd osmupdates/
+ 1036  ls
+ 1037  cat history.txt 
+ 1038  clear
+ 1039  ls -lh
+ 1040  cat state.txt
+ 1041  rm state.txt
+ 1042  ls tmp
+ 1043  rm -rf tmp
+ 1044  rm update.osm.gz 
+ 1045  rm update.unique.osm.gz 
+ 1046  ls
+ 1047  clear
+ 1048  ls -lh
+ 1049  cat configuration.txt 
+ 1050  cat update.sh 
+ 1051  ls
+ 1052  mkdir tmp
+ 1053  export JAVACMD_OPTIONS="-Djava.io.tmpdir=/opt/osm/data/osmupdates/tmp"
+ 1054  /opt/osm/sources/osmosis/bin/osmosis  --rri workingDirectory=. --wxc update.osm.gz
+ 1055  ls
+ 1056  cat history.txt
+ 1057  ../sources/osmosis/bin/osmosis --rrii workingDirectory=.
+ 1058  /opt/osm/sources/osmosis/bin/osmosis  --rrii workingDirectory=. 
+ 1059  mv configuration.txt config.old
+ 1060  /opt/osm/sources/osmosis/bin/osmosis  --rrii workingDirectory=. 
+ 1061  clear
+ 1062  ls -lh
+ 1063  rm configuration.txt 
+ 1064  rm download.lock 
+ 1065  mv config.old configuration.txt
+ 1066  cat configuration.txt 
+ 1067  cp update.sh prepare.sh
+ 1068  vi prepare.sh 
+ 1069  cat prepare.sh 
+ 1070  wget http://ftp5.gwdg.de/pub/misc/openstreetmap/planet.openstreetmap.org/replication/day/state.txt
+ 1071  cat update.sh 
+ 1072  /opt/osm/sources/osmosis/bin/osmosis  --rri workingDirectory=. --wxc update.osm.gz
+ 1073  ls -lh
+ 1074  nice gzip -d -c update.osm.gz | nice /opt/osm/sources/osmosis/bin/osmosis --read-xml-change file=/dev/stdin --simplify-change --write-xml-change file=- | nice gzip -9 -c > update.unique.osm.gz
+ 1075  cat ../import.sh 
+ 1076  osm2pgsql --append --latlong --number-processes 8 --flat-nodes /opt/osm/data/osm_flat_nodes.db --verbose  --hstore --slim --cache 23000 --database osm --username postgres --host 127.0.0.1 --style /opt/osm/data/default.style ./update.unique.osm.gz
+ 1077  /usr/local/bin/osm2pgsql --append --latlong --number-processes 8 --flat-nodes /opt/osm/data/osm_flat_nodes.db --verbose  --hstore --slim --cache 23000 --database osm --username postgres --host 127.0.0.1 --style /opt/osm/data/default.style ./update.unique.osm.gz
+ 1078  ls -lh
+ 1079  rm download.lock 
+ 1080  clear
+ 1081  ls
+ 1082  ls -lh
+ 1083  cat state.txt
+ 1084  /usr/local/bin/osm2pgsql --append --latlong --number-processes 8 --flat-nodes /opt/osm/data/osm_flat_nodes.db --verbose  --hstore --slim --cache 23000 --database osm --username postgres --host 127.0.0.1 --style /opt/osm/data/default.style ./update.unique.osm.gz
+ 1085  vi update.sh
+ 1086  ls -lh
+ 1087  ls tmp
+ 1088  rm *gz
+ 1089  ls -lh
+ 1090  cat configuration.txt 
+ 1091  vi configuration.txt 
+ 1092  mv state.txt state_day.txt
+ 1093  wget http://ftp5.gwdg.de/pub/misc/openstreetmap/planet.openstreetmap.org/replication/hour/state.txt
+ 1094  ls -lh
+ 1095  cat update.sh
+ 1096  /opt/osm/sources/osmosis/bin/osmosis  --rri workingDirectory=/opt/osm/data/osmupdates/ --wxc /opt/osm/data/osmupdates/update.osm.gz
+ 1097  ls -lh
+ 1098  rm update.osm.gz 
+ 1099  clear
+ 1100  cd ..
+ 1101  ls
+ 1102  cat hist.txt
+ 1103  vi hist.txt 
+ 1104  cd..
+ 1105  ls -lh
+ 1106  cd ..
+ 1107  ls -lh
+ 1108  cd postgres
+ 1109  ls
+ 1110  cd data
+ 1111  ls
+ 1112  vi postgresql.conf
+ 1113  service postgresql stop
+ 1114  service postgresql start
+ 1115  df -h
+ 1116  ls -lh
+ 1117  cd ..
+ 1118  cd ..
+ 1119  cd data
+ 1120  ls osm_data_files/ -lh
+ 1121  rm -rf osm_data_files/
+ 1122  df -h
+ 1123  ls -lh
+ 1124  history > hist.txt

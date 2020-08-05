@@ -1,0 +1,3 @@
+docker run --name prometheus -d -v /srv/prometheus:/etc/prometheus -p 9090:9090 prom/prometheus
+
+-v <PATH_TO_prometheus.yml_FILE>:/etc/prometheus/prometheus.yml

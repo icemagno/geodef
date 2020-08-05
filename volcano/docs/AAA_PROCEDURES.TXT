@@ -1,0 +1,83 @@
+
+http://themagiscian.com/2016/11/28/dem-slope-calculations-bicycle-routing-postgis/
+
+
+https://github.com/der-stefan/OpenTopoMap/blob/master/mapnik/HOWTO_DEM.md
+
+
+
+
+-------------------  FUNCIONANDO ------------------------------
+
+-- ARQUIVO UTILIZADO PARA TESTE: S23W043.HGT
+
+-- IMPORTA HGT PARA POSTGIS
+raster2pgsql -c -C -s 4326 -f raster -F -I -M -t 3601x3601 *.hgt public.srtmdata | psql "host='volcano-db' dbname='volcano' user='postgres' password='admin'"
+
+
+-- VERIFICA BOUNDING BOX
+select ST_AsText( ST_Envelope(raster) ) from srtmdata;
+
+-- VERIFICA A ALTITUDE EM UMA COORDENADA
+SELECT ST_Value(raster,ST_SetSRID( ST_Point( -42.0354, -22.5362 ), 4326 ) ) FROM srtmdata;
+
+
+-- CRIA SLOPES
+-- The ST_Slope takes as argument the raster field, the band number, the data encoding and the vertical exaggeration. 
+-- The output data has to be indexed
+CREATE TABLE staging.volcano_slope AS SELECT ST_Slope( b.raster, 1, '32BF', 'PERCENT', 1.0, false) raster FROM srtmdata b;
+ALTER TABLE staging.volcano_slope ADD COLUMN rid SERIAL PRIMARY KEY;
+CREATE INDEX volcano_slope_gix ON staging.volcano_slope USING GIST( ST_Convexhull(raster) );
+
+
+-- VETORIZA A TABELA DE SLOPES
+CREATE TABLE staging.volcano_slope_vector_square AS SELECT (ST_DumpAsPolygons(bslope.raster)).val slope, 
+(ST_DumpAsPolygons(bslope.raster)).geom geom FROM staging.volcano_slope bslope;
+
+ALTER TABLE staging.volcano_slope_vector_square ADD COLUMN id SERIAL PRIMARY;
+CREATE INDEX staging_volcano_slope_vector_square_gix ON staging.volcano_slope_vector_square USING GIST(geom);
+
+*************** METODO 2 ************************
+
+-- TABELA DE SLOPE COM PORCENTAGEM
+-- https://postgis.net/docs/RT_ST_Slope.html
+CREATE TABLE staging.volcano_slope_deg AS SELECT ST_Slope( b.raster, 1, '32BF', 'DEGREES', 111120, false) raster FROM srtmdata b;
+
+CREATE TABLE staging.volcano_slope_vector_square_deg AS SELECT ( ST_DumpAsPolygons( ST_Reclass( bslopedeg.raster, 1,'0-5):1, 5-15]:2,[10-15:3,[15-25):4,25-90]:5'::text,'32BF') )).val slope, (ST_DumpAsPolygons(bslopedeg.raster)).geom geom FROM staging.volcano_slope_deg bslopedeg;
+
+
+------------------------------------------------------------------------------------------------------------------
+-- COMBINA VARIOS HGT NUM UNICO ARQUIVO DE TRABALHO
+ls hgt/SRTM1v3.0/*.hgt > list_of_files.txt
+gdalbuildvrt -input_file_list list_of_files.txt -overwrite -addalpha imagens.vrt
+
+-- TRANSFORMA HGT EM TIFF
+gdal_translate -tr 0.000170 0.000170 -r cubicspline -of GTiff imagens.vrt teste.tif
+
+-- EXTRAI O HILLSHADE DO TIFF
+gdaldem hillshade -co TILED=YES -co compress=lzw -s 111120 -z 5 -az 315 -combined -compute_edges teste.tif final.tif
+
+-- COMPRIME O TIFF
+gdaladdo -r cubicspline --config COMPRESS_OVERVIEW DEFLATE --config GDAL_TIFF_OVR_BLOCKSIZE 512 final.tif 2 4 8 16 32
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+				CRIAR AS CURVAS DE NIVEL
+-------------------------------------------------------------------------------------------------------------------------
+1) Get the HGT files and create contour lines to import to OSM:
+	phyghtmap --pbf –no-zero-contour –output-prefix contour –line-cat=500,100 –step=20 --jobs=8 --srtm=1 S23W043.HGT
+
+2) Create VRT from the HGT files:
+    gdalbuildvrt ./teste.vrt hgt/SRTM1v3.0/S23W043.hgt  hgt/SRTM1v3.0/S23W044.hgt  hgt/SRTM1v3.0/S24W043.hgt  hgt/SRTM1v3.0/S24W044.hgt
+
+3) Do the abracadabra: 
+    gdal_translate -tr 0.000050 0.000050 -r cubicspline -of GTiff test.vrt test.tif
+
+4) And now do some kung-fu-code:
+    gdaldem hillshade -co TILED=YES -co compress=lzw -s 111120 -z 5 -combined -compute_edges test.tif final.tif
+
+5) Import contour lines to OSM. I prefer to create a separate database and give a small `.style` to import just the needed columns.
+
+	osmium merge *.osm.pbf -o merged.osm.pbf
+	osm2pgsql --verbose --create --latlong --slim --style ./srtm.style --database contour --username postgres --host volcano-db merged.osm.pbf	

@@ -1,0 +1,133 @@
+add-apt-repository ppa:ubuntugis/ppa && sudo apt-get update
+sudo apt-get install gdal-bin
+
+
+
+
+Melhor ate agora:
+
+
+srtm.style
+# OsmType Tag DataType Flags
+node,way contour text linear
+node,way contour_ext text linear
+node,way ele text linear
+
+
+phyghtmap --pbf --srtm=1 --a -43.7544:-23.2363:-42.0378:-22.3183 --earthdata-user=icemagno --earthdata-password=Antares2#2
+
+
+osm2pgsql --verbose --create --style ./srtm.style --database contour --username postgres -W --host 127.0.0.1 lon-43.23_-43.05lat-23.00_-22.90_srtm1v3.0.osm.pbf
+
+gdalbuildvrt ./teste.vrt hgt/SRTM1v3.0/S23W043.hgt  hgt/SRTM1v3.0/S23W044.hgt  hgt/SRTM1v3.0/S24W043.hgt  hgt/SRTM1v3.0/S24W044.hgt
+gdal_translate -tr 0.000050 0.000050 -r cubicspline -of GTiff teste.vrt teste.tif
+gdaldem hillshade -co TILED=YES -co compress=lzw -s 111120 -z 2 -combined -compute_edges teste.tif final.tif
+
+Ativar "antialiasing" "bilinear" para camadas WMS no geoserver.
+
+
+
+-----------------------------------------------------------------------------------------
+
+
+
+-rw-r--r-- 1 root     root 2.2M Jun  3 23:02 lon-43.00_-42.04lat-22.40_-22.32_srtm1v3.0.osm.pbf
+-rw-r--r-- 1 root     root 2.0M Jun  3 23:02 lon-43.00_-42.04lat-22.49_-22.40_srtm1v3.0.osm.pbf
+-rw-r--r-- 1 root     root 1.9M Jun  3 23:02 lon-43.00_-42.04lat-22.66_-22.49_srtm1v3.0.osm.pbf
+-rw-r--r-- 1 root     root 1.7M Jun  3 23:01 lon-43.00_-42.04lat-23.00_-22.66_srtm1v3.0.osm.pbf
+-rw-r--r-- 1 root     root 1.4K Jun  3 23:01 lon-43.00_-42.04lat-23.24_-23.00_srtm1v3.0.osm.pbf
+-rw-r--r-- 1 root     root 1.3M Jun  3 23:01 lon-43.75_-43.00lat-22.40_-22.32_srtm1v3.0.osm.pbf
+-rw-r--r-- 1 root     root 1.5M Jun  3 23:01 lon-43.75_-43.00lat-22.49_-22.40_srtm1v3.0.osm.pbf
+-rw-r--r-- 1 root     root 1.6M Jun  3 23:01 lon-43.75_-43.00lat-22.57_-22.49_srtm1v3.0.osm.pbf
+-rw-r--r-- 1 root     root 929K Jun  3 23:00 lon-43.75_-43.00lat-22.66_-22.57_srtm1v3.0.osm.pbf
+-rw-r--r-- 1 root     root 1.8M Jun  3 23:00 lon-43.75_-43.00lat-23.00_-22.66_srtm1v3.0.osm.pbf
+-rw-r--r-- 1 root     root  89K Jun  3 23:00 lon-43.75_-43.00lat-23.24_-23.00_srtm1v3.0.osm.pbf
+
+
+
+
+
+
+
+
+
+Melhor resultado:
+1) gdaldem hillshade teste.vrt teste.tif -co compress=lzw -s 111120 -z 0.8 -alt 10 -az 315 -compute_edges -combined
+2) gdaldem hillshade teste.vrt teste.tif -co compress=lzw -s 370400 -z 0.8 -alt 5 -az 315 -compute_edges -combined
+------------------------------------------------------------------------------------------------
+Comprimir:
+gdal_translate -of GTiff -co COMPRESS=JPEG teste.tif compressed.tif
+------------------------------------------------------------------------------------------------
+Não sei o que é:
+gdaladdo -r gauss compressed.tif 2 4 8 16 32
+------------------------------------------------------------------------------------------------
+
+
+
+PROMISSOR:  gdalwarp -tr 0.0001 0.0001  -r bilinear vrtteste.vrt teste.tif
+
+rm teste.tif
+gdalwarp -r average -tr 0,000166 -0,000166 teste.vrt teste.tif
+gdaldem hillshade -co compress=lzw  -s 370400  -compute_edges -combined teste.tif teste2.tif
+
+
+gdalinfo -mm teste.tif
+VRT: 0.000833333333333 -0.000833333333333
+     0.000083000000000,-0.000083000000000
+	 
+	 0,000833333333333 * 5 = 0.004166666666665
+	 0,000833333333333 * 20 = 0.01666666666666
+	 0,000833333333333 / 20 = 4.1666666666666
+	 
+	 
+	 
+osm2pgsql --latlong --keep-coastlines --verbose --create --hstore --slim --cache 4000 --database osm --username postgres --password --host 127.0.0.1 --style ./default.style ./south-america-latest.osm.pbf
+
+gdaldem hillshade S23W044.hgt S23W044.tiff -z 10 -s 90000
+
+gdaldem hillshade -of PNG jotunheimen.tif jotunheimen_hillshade.png
+
+phyghtmap --pbf --srtm=1 --a -43.7544:-23.2363:-42.0378:-22.3183 --earthdata-user=icemagno --earthdata-password=Antares2#2
+
+phyghtmap --download-only --srtm=1 --a -43.7544:-23.2363:-42.0378:-22.3183 --earthdata-user=icemagno --earthdata-password=Antares2#2 
+
+
+
+gdal_translate -of PNG -ot Byte -scale 15 2466 0 256 teste.tif teste.png
+
+
+gdalwarp -t_srs EPSG:4326 -r bilinear teste.vrt teste.tif
+gdalbuildvrt ./teste.vrt  hgt/SRTM3v3.0/S23W043.hgt hgt/SRTM3v3.0/S23W044.hgt
+gdalbuildvrt ./teste2.vrt  hgt/VIEW3/S23W043.hgt hgt/VIEW3/S23W044.hgt
+
+gdalbuildvrt ./teste.vrt hgt/SRTM1v3.0/S23W043.hgt  hgt/SRTM1v3.0/S23W044.hgt  hgt/SRTM1v3.0/S24W043.hgt  hgt/SRTM1v3.0/S24W044.hgt
+
+gdaldem hillshade -of PNG teste.tif teste_hillshade.png
+
+  652  gdaldem hillshade teste.vrt teste.tif -z 1 -s 90000
+  653  gdaldem hillshade teste.vrt teste.tif  -s 85000
+  654  gdaldem hillshade teste.vrt teste.tif -z 0  -s 85000
+  655  gdaldem hillshade teste.vrt teste.tif -z 3  -s 85000
+  656  gdaldem hillshade teste.vrt teste.tif -z 1  -s 85000
+  657  gdaldem hillshade teste.vrt teste.tif -z 1  -s 80000
+  658  gdaldem hillshade teste.vrt teste.tif -z 1  -s 80
+  659  gdaldem hillshade teste.vrt teste.tif -z 1  -s 185000
+  660  gdaldem hillshade teste.vrt teste.tif -z 1  -s 80000
+  661  gdaldem hillshade teste.vrt teste.tif -z 5 -s 111120
+  662  gdaldem hillshade teste.vrt teste.tif -z 1  -s 80000
+  663  gdaldem hillshade teste.vrt teste.tif -s 111120 -z 5 -az 315 -alt 60 -compute_edges
+  664  ls -lh ../../install_osm/pbffiles/
+  665  gdaldem hillshade teste.vrt teste.tif -combined -compute_edges
+  666  gdaldem hillshade teste.vrt teste.tif -s 111120 -z 5 -az 315 -alt 60 -compute_edges -combined
+  667  gdaldem hillshade teste.vrt teste.tif -s 111120 -z 1 -az 315 -alt 60 -compute_edges 
+  668  gdaldem hillshade teste.vrt teste.tif -combined -compute_edges
+
+---------------------------------------------------------------
+https://github.com/Ahlzen/TopOSM/blob/master/prep_toposm_data
+---------------------------------------------------------------
+gdaldem hillshade teste.vrt teste.tif -z 0.00001
+gdal_translate -of GTiff -co COMPRESS=JPEG teste.tif compressed.tif
+gdaladdo -r gauss compressed.tif 2 4 8 16 32
+
+
+

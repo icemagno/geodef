@@ -1,0 +1,14 @@
+<dataStore>
+  <name>volcano</name>
+  <description>Datastore do Volcano</description>
+  <enabled>true</enabled>
+  <connectionParameters>
+    <host>volcano-db</host>
+    <port>5432</port>
+    <database>contour</database>
+    <user>postgres</user>
+    <passwd>admin</passwd>
+    <dbtype>postgis</dbtype>
+	<schema>public</schema>
+  </connectionParameters>
+</dataStore>

@@ -1,0 +1,622 @@
+    1  sudo add-apt-repository ppa:webupd8team/java
+    2  apt-get update
+    3  apt-get install oracle-java8-installer
+    4  apt-get install oracle-java8-set-default
+    5  apt-get install tomcat8
+    6  ls
+    7  cd /home/geo
+    8  ls
+    9  wget https://downloads.sourceforge.net/project/geoserver/GeoServer/2.10.2/geoserver-2.10.2-war.zip?r=http%3A%2F%2Fgeoserver.org%2Frelease%2Fstable%2F&ts=1487895493&use_mirror=ufpr
+   10  ls
+   11  mv geoserver-2.10.2-war.zip\?r\=http%3A%2F%2Fgeoserver.org%2Frelease%2Fstable%2F geoserver.war
+   12  ls
+   13  mv geoserver.war geoserver.war.zip
+   14  apt-get install unzip
+   15  unzip geoserver.war.zip 
+   16  ls
+   17  service tomcat8 stop
+   18  mv geoserver.war /var/lib/tomcat8/webapps/
+   19  service tomcat8 start
+   20  ls
+   21  rm -r *
+   22  ls
+   23  apt-get install postgresql-9.5-postgis-2.2
+   24  su postgres
+   25  vim /etc/postgresql/9.5/main/postgresql.conf
+   26  mkdir -p /media/osm/osm_tablespace
+   27  vim /etc/postgresql/9.5/main/postgresql.conf
+   28  chown postgres:postgres /media/osm/osm_tablespace
+   29  su postgres
+   30  service postgresql restart
+   31  apt-get install osm2pgsql
+   32  shutdown now
+   33  apt-get update
+   34  apt-get upgrade
+   35  vim /etc/host
+   36  vim /etc/hostname 
+   37  vim /etc/hosts
+   38  vim /etc/network
+   39  vim /etc/networks
+   40  ifconfig
+   41  cd /media/d
+   42  wget https://raw.githubusercontent.com/openstreetmap/osm2pgsql/master/default.style
+   43  ls
+   44  wget https://github.com/boundlessgeo/OSM/raw/master/sld.zip
+   45  wget https://raw.githubusercontent.com/boundlessgeo/OSM/master/createDBobjects.sql
+   46  ls
+   47  cd /home/geo
+   48  ls
+   49  mkdir diffs
+   50  cd diffs
+   51  osmosis --rrii workingDirectory=.
+   52  ls
+   53  vim configuration.txt 
+   54  wget http://download.geofabrik.de/south-america-updates/state.txt -O state.txt
+   55  mkdir /media/d/tmp
+   56  export JAVACMD_OPTIONS="-Djava.io.tmpdir=/media/d/tmp"
+   57  ls
+   58  osmosis --rri workingDirectory=. --wxc update.osm.gz
+   59  ls
+   60  ls -lh
+   61  vim update.sh
+   62  chmod 0777 update.sh
+   63  nice
+   64  gzip
+   65  nice gzip -d -c update.osm.gz | nice osmosis --read-xml-change file=/dev/stdin --simplify-change --write-xml-change file=- | nice gzip -9 -c > update.unique.osm.gz
+   66  ls -lh
+   67  vim update.sh
+   68  ./update.sh
+   69  ls -lh
+   70  cp update.sh import.sh
+   71  vim import.sh
+   72  vim update.sh
+   73  cat state.txt
+   74  mount
+   75  fs -h
+   76  lf -h
+   77  ls -h
+   78  fdisk
+   79  fdisk -l
+   80  ls /media
+   81  mkdir /media/d
+   82  mount /dev/sdb /media/d
+   83  fdisk
+   84  fdisk -l
+   85  fdisk 
+   86  fdisk -l /dev/sdb
+   87  mount /dev/sdb /media/d
+   88  mount -t ext4 /dev/sdb /media/d
+   89  clear
+   90  mount
+   91  mount -t ext2 /dev/sdb /media/d
+   92  fdisk /dev/fdb
+   93  fdisk /dev/sdb
+   94  df -h
+   95  fdisk /dev/sdb
+   96  df -h
+   97  fdisk -l /dev/sdb
+   98  mount  /dev/sdb1 /media/d
+   99  blkid
+  100  df -H
+  101  mkntfs /dev/sdb1
+  102  mkfs /dev/sdb1
+  103  mount  /dev/sdb1 /media/d
+  104  cd /media/d
+  105  ls
+  106  wget http://download.geofabrik.de/south-america-latest.osm.pbf
+  107  osmosis
+  108  apt-get install osmosis
+  109  java --version
+  110  java -version
+  111  osmosis
+  112  ls
+  113  osm2pgsql --latlong --keep-coastlines --verbose --create --hstore --slim --cache 4000 --database osm --username postgres --host 127.0.0.1 --style ./default.style ./south-america-latest.osm.pbf 
+  114  osm2pgsql --latlong --keep-coastlines --verbose --create --hstore --slim --cache 4000 --database osm --username postgres --password admin --host 127.0.0.1 --style ./default.style ./south-america-latest.osm.pbf 
+  115  osm2pgsql --latlong --keep-coastlines --verbose --create --hstore --slim --cache 4000 --database osm --username postgres --password --host 127.0.0.1 --style ./default.style ./south-america-latest.osm.pbf 
+  116  shutdown now
+  117  cd /media/d/extra
+  118  wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_time_zones.zip
+  119  unzip ne_10m_time_zones.zip 
+  120  su postgres
+  121  top
+  122  ls
+  123  cd /home/geo
+  124  ls
+  125  cd ..
+  126  ls
+  127  cd geo
+  128  cd diffs
+  129  ls
+  130  cat state.txt
+  131  ./update.sh
+  132  cat state.txt
+  133  df -h
+  134  mount  /dev/sdb1 /media/d
+  135  df -h
+  136  cd ..
+  137  ls
+  138  cp ./diffs /media/d
+  139  cp -r ./diffs /media/d
+  140  cd /media/d
+  141  ls
+  142  mkdir extra
+  143  cd extra
+  144  wget -bqc http://data.openstreetmapdata.com/water-polygons-split-4326.zip
+  145  wget -bqc http://www.naturalearthdata.com/http//www.naturalearthdata.com/download
+  146  ls
+  147  rm download 
+  148  wget -bqc http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces_lines.zip
+  149  wget -bqc http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_boundary_lines_land.zip
+  150  su postgres
+  151  cd ..
+  152  unzip sdl.zip
+  153  unzip sld.zip
+  154  cd sld
+  155  ls
+  156  vim SLD_create.sh 
+  157  ./SLD_create.sh 
+  158  cd ..
+  159  cd extra
+  160  ls
+  161  unzip water-polygons-split-3957.zip
+  162  unzip water-polygons-split-4326.zip
+  163  unzip ne_10m_admin_0_boundary_lines_land.zip 
+  164  unzip ne_10m_admin_1_states_provinces_lines.zip 
+  165  ls
+  166  rm *zip
+  167  ls
+  168  shp2pgsql -g geom -s 4326 -I -D ne_10m_admin_1_states_provinces_lines.shp admin1 | psql - U postgres osm
+  169  shp2pgsql -g geom -s 4326 -I -D ne_10m_admin_1_states_provinces_lines.shp admin1 | psql -U postgres osm
+  170  shp2pgsql -g geom -s 4326 -I -D ne_10m_admin_1_states_provinces_lines.shp admin1 | psql -U -P postgres osm
+  171  shp2pgsql -g geom -s 4326 -I -D ne_10m_admin_1_states_provinces_lines.shp admin1 | psql -P -U postgres osm
+  172  psql
+  173  psql --help
+  174  shp2pgsql -g geom -s 4326 -I -D ne_10m_admin_1_states_provinces_lines.shp admin1 | psql -W -U postgres osm
+  175  su postgres
+  176  wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_land.zip
+  177  unzip ne_10m_land.zip 
+  178  su postgres
+  179  wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/raster/NE2_HR_LC_SR_W_DR.zip
+  180  ls
+  181  rm ne_*
+  182  ls
+  183  unzip NE2_HR_LC_SR_W_DR.zip 
+  184  ls
+  185  ls -lh NE2_HR_LC_SR_W_DR
+  186  mv NE2_HR_LC_SR_W_DR /var/lib/tomcat8/webapps/geoserver/data/
+  187  ls /var/lib/tomcat8/webapps/geoserver/data/
+  188  ls  /var/lib/tomcat8/webapps/geoserver/data/NE2_HR_LC_SR_W_DR/
+  189  ls -lh /var/lib/tomcat8/webapps/geoserver/data/NE2_HR_LC_SR_W_DR/
+  190  ls -lh /var/lib/tomcat8/webapps/geoserver/data/
+  191  chown -R tomcat8:tomcat8 /var/lib/tomcat8/webapps/geoserver/data/NE2_HR_LC_SR_W_DR/
+  192  ls -lh /var/lib/tomcat8/webapps/geoserver/data/
+  193  ls -lh /var/lib/tomcat8/webapps/geoserver/data/NE2_HR_LC_SR_W_DR/
+  194  cat /var/lib/tomcat8/webapps/geoserver/data/NE2_HR_LC_SR_W_DR/NE2_HR_LC_SR_W_DR.prj
+  195  top
+  196  shutdown now
+  197  cd /media/d
+  198  ls
+  199  cd extra
+  200  ls
+  201  rm ne_10m_land.zip
+  202  ls
+  203  rm ne_*
+  204  ls
+  205  rm -r water-polygons-split-4326/
+  206  top
+  207  cd /var/lib/tomcat8/webapps/geoserver/data/
+  208  ls
+  209  rm -R NE2_HR_LC_SR_W_DR/
+  210  top
+  211  shutdown now
+  212  top
+  213  tail -f /var/lib/tomcat8/logs/catalina.out
+  214  netstat -a | grep 8080
+  215  service tomcat8 stop
+  216  service tomcat8 start
+  217  tail -f /var/lib/tomcat8/logs/catalina.out
+  218  service tomcat8 start
+  219  netstat -a | grep 8080
+  220  netstat -a | tomcat
+  221  netstat -a | grep tomcat
+  222  netstat -a 
+  223  service tomcat8 stop
+  224  ifconfig
+  225  service tomcat8 stop
+  226  service tomcat8 start
+  227  tail -f /var/lib/tomcat8/logs/catalina.out
+  228  su postgres
+  229  shutdown now
+  230  mount  /dev/sdb1 /media/d
+  231  cd /media/d
+  232  ls
+  233  cd diffs
+  234  ls
+  235  ls -lh
+  236  ./update.sh
+  237  cat update.sh
+  238  export JAVACMD_OPTIONS="-Djava.io.tmpdir=/media/d/tmp"
+  239  osmosis --rri workingDirectory=. --wxc update.osm.gz
+  240  nice gzip -d -c update.osm.gz | nice osmosis --read-xml-change file=/dev/stdin --simplify-change --write-xml-change file=- | nice gzip -9 -c > update.unique.osm.gz
+  241  ./update.sh
+  242  cd ..
+  243  ls /home/geo
+  244  rm -R /home/geo/diffs
+  245  cp diffs /home/geo
+  246  cp -R diffs /home/geo
+  247  cd /home/geo/diffs
+  248  ls
+  249  cd ..
+  250  ls
+  251  ls -lh
+  252  chown -R geo:geo diffs
+  253  cd diffs
+  254  ls
+  255  ./import.sh
+  256  ./update.sh
+  257  vim import.sh
+  258  ./import.sh
+  259  ls
+  260  cp import.sh /media/d/diffs
+  261  ls /media/d/
+  262  cp /media/d/default.style .
+  263  ./import.sh
+  264  su postgres ./import.sh 
+  265  cd ..
+  266  chown -R postgres:postres diffs
+  267  ls -lh /media/d
+  268  ls -lh /media/d/extra
+  269  chown -R postgres diffs
+  270  cd diffs
+  271  su postgres
+  272  cp import.sh /media/d/diffs
+  273  ls /etc/cron.daily/
+  274  cat /etc/cron.daily/dpkg
+  275  ls -lh
+  276  vim import.sh
+  277  vim update.sh
+  278  ./update.sh
+  279  vim update.sh
+  280  ./update.sh
+  281  vim update.sh
+  282  vim /etc/postgresql/9.5/main/postgresql.conf 
+  283  vim /etc/postgresql/9.5/main/pg_hba.conf 
+  284  service postgresql restart
+  285  ./update.sh
+  286  vim /etc/postgresql/9.5/main/pg_hba.conf 
+  287  service postgresql restart
+  288  ./update.sh
+  289  ls
+  290  rm import.sh
+  291  cp update.sh /etc/cron.daily/
+  292  ls
+  293  zip *
+  294  ifconfig
+  295  top
+  296  ls /etc/default/
+  297  vim /etc/default/tomcat8 
+  298  service tomcat8 restart
+  299  cd /media/d
+  300  vim newTables.sql
+  301  mount /dev/sdb1 /media/d
+  302  ls /media/d
+  303  psql -U postgres
+  304  ls /var/lib/tomcat8/webapps/geoserver/data/
+  305  ls /var/lib/tomcat8/webapps/geoserver/data/styles/
+  306  ls /var/lib/tomcat8/webapps/geoserver/data/workspaces/
+  307  ls /var/lib/tomcat8/webapps/geoserver/data/workspaces/osm
+  308  ls /var/lib/tomcat8/webapps/geoserver/data/workspaces/osm/layergroups/
+  309  ls /var/lib/tomcat8/webapps/geoserver/data/
+  310  ls /var/lib/tomcat8/webapps/geoserver/data/coverages/
+  311  ls /var/lib/tomcat8/webapps/geoserver/data/
+  312  ls /var/lib/tomcat8/webapps/geoserver/data/workspaces/
+  313  ls /var/lib/tomcat8/webapps/geoserver/data/workspaces/osm/
+  314  ls -lh /var/lib/tomcat8/webapps/geoserver/data/workspaces/osm/
+  315  cp /var/lib/tomca
+  316  cd /media/d
+  317  ls -lh /var/lib/tomcat8/webapps/geoserver/data/workspaces/osm/
+  318  ls -lh /var/lib/tomcat8/webapps/geoserver/data/workspaces/osm/openstreetmap/
+  319  cp -R /var/lib/tomcat8/webapps/geoserver/data/workspaces/osm/ ./data_workspaces_osm/
+  320  ls data_workspaces_osm/
+  321  su postgres
+  322  ls
+  323  cd extra
+  324  ls
+  325  wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_time_zones.zip
+  326  unzip ne_10m_time_zones.zip 
+  327  rm ne_10m_time_zones.zip
+  328  cd ..
+  329  ls
+  330  vim import_shp.sh 
+  331  shutdown now
+  332  cd /home/geo/diffs
+  333  ls
+  334  ./update.sh
+  335  cat ./update.sh
+  336  osmosis --rri workingDirectory=/home/geo/diffs --wxc /home/geo/diffs/update.osm.gz
+  337  nice gzip -d -c /home/geo/diffs/update.osm.gz | nice osmosis --read-xml-change file=/dev/stdin --simplify-change --write-xml-change file=- | nice gzip -9 -c > /home/geo/diffs/update.unique.osm.gz
+  338  cat ./update.sh
+  339  ls -lh
+  340  gzip -d -c /home/geo/diffs/update.osm.gz 
+  341  nice gzip -d -c /home/geo/diffs/update.osm.gz 
+  342  cat ./update.sh
+  343  nice gzip -d -c /home/geo/diffs/update.osm.gz | nice osmosis --read-xml-change file=/dev/stdin --simplify-change --write-xml-change file=- | nice gzip -9 -c > /home/geo/diffs/update.unique.osm.gz
+  344  ls -lh
+  345  rm *gz
+  346  ls
+  347  cat update.sh 
+  348  osmosis --rri workingDirectory=/home/geo/diffs --wxc /home/geo/diffs/update.osm.gz
+  349  nice gzip -d -c /home/geo/diffs/update.osm.gz | nice osmosis --read-xml-change file=/dev/stdin --simplify-change --write-xml-change file=- | nice gzip -9 -c > /home/geo/diffs/update.unique.osm.gz
+  350  rm /home/geo/diffs/update.osm.gz
+  351  osm2pgsql --append --latlong --keep-coastlines --verbose  --hstore --slim --cache 4000 --database osm --username postgres --host 127.0.0.1 --style /home/geo/diffs/default.style /home/geo/diffs/update.unique.osm.gz
+  352  ./update.sh
+  353  ls -lh
+  354  vim update.sh
+  355  ls -lh
+  356  cat state.txt
+  357  cat configuration.txt 
+  358  cat update.sh
+  359  vim configuration.txt 
+  360  ./update.sh 
+  361  cat state.txt
+  362  ls -lh
+  363  cat update.sh
+  364  osmosis --rri workingDirectory=/home/geo/diffs --wxc /home/geo/diffs/update.osm.gz
+  365  ls -lh
+  366  wget http://download.geofabrik.de/south-america-updates/000/001/443.osc.gz
+  367  ls -lh
+  368  rm 443.osc.gz 
+  369  cat configuration.txt 
+  370  vim configuration.txt 
+  371  cat update.sh
+  372  osmosis --rri workingDirectory=/home/geo/diffs --wxc /home/geo/diffs/update.osm.gz
+  373  ls -lh
+  374  mv state.txt ssss.txt
+  375  ./update.sh 
+  376  ls -lh
+  377  mount /dev/sdb1 /media/d
+  378  mount
+  379  mount /dev/sdb1 /media/d
+  380  ls /media/d/diffs
+  381  cat /media/d/diffs/state.txt 
+  382  cp /media/d/diffs/state.txt .
+  383  ls
+  384  rm ssss.txt 
+  385  ls -lh
+  386  cat update.sh
+  387  osmosis --rri workingDirectory=/home/geo/diffs --wxc /home/geo/diffs/update.osm.gz
+  388  ls -lh
+  389  rm update.unique.osm.gz 
+  390  nice gzip -d -c /home/geo/diffs/update.osm.gz | nice osmosis --read-xml-change file=/dev/stdin --simplify-change --write-xml-change file=- | nice gzip -9 -c > /home/geo/diffs/update.unique.osm.gz
+  391  ls -lh
+  392  cat update.sh
+  393  vim update.sh
+  394  cp /media/d/diffs/state.txt .
+  395  ls -lh
+  396  rm update.osm.gz 
+  397  rm update.unique.osm.gz
+  398  cat update.sh 
+  399  osmosis --rri workingDirectory=/home/geo/diffs --simplify-change --wxc /home/geo/diffs/update.osm.gz
+  400  osmosis --rri workingDirectory=/home/geo/diffs  --wxc /home/geo/diffs/update.osm.gz
+  401  ls -lh
+  402  cat update.sh
+  403  osm2pgsql --append --latlong --keep-coastlines --verbose  --hstore --slim --cache 4000 --database osm --username postgres --host 127.0.0.1 --style /home/geo/diffs/default.style /home/geo/diffs/update.osm.gz
+  404  shutdown now
+  405  cd /home/geo/diffs
+  406  ls
+  407  ./update.sh 
+  408  ls -lh
+  409  ls
+  410  cd /home/geo
+  411  ls
+  412  history > history.txt
+  413  shutdown now
+  414  cd /media/d
+  415  cd srtm/
+  416  ls -lh
+  417  wget http://osm.michis-pla.net/code/Srtm2Osm-1.12.1.0.zip
+  418  unzip Srtm2Osm-1.12.1.0.zip 
+  419  ls -lh
+  420  rm Srtm2Osm-1.12.1.0.zip 
+  421  cd Srtm2Osm/
+  422  ls -lh
+  423  chmod 0777 Srtm2Osm.exe
+  424  mono Srtm2Osm.exe -bounds3 "http://www.openstreetmap.org/#map=11/-22.8816/-43.2594"
+  425  ls
+  426  apt-get install mono-gmcs
+  427  apt-get install mono-mcs
+  428  apt-get install libmono-system-runtime
+  429  apt-get install libmono-system
+  430  apt-get install libmono
+  431  apt-get update
+  432  apt-get install libmono-system-core4.0-cil 
+  433  apt-get install libmono-system4.0-cil 
+  434  apt-get install libmono-system-runtime4.0-cil 
+  435  apt-get install libmono-i18n4.0-cil
+  436  apt-get install libmono-system-runtime4.5-cil 
+  437  apt-get install libmono-corlib4.0-cil
+  438  apt-get install mono-reference-assemblies-4.0
+  439  apt-get upgrae
+  440  apt-get upgrade
+  441  mono Srtm2Osm.exe -bounds3 "http://www.openstreetmap.org/#map=11/-22.8816/-43.2594"
+  442  ls -lh
+  443  osm2pgsql -s -U postgres -d osm -W -h localhost name.osm
+  444  osm2pgsql -s -U postgres -d osm -W -H localhost name.osm
+  445  ls -lh
+  446  osm2pgsql -s -U postgres -d osm -W -H localhost srtm.osm
+  447  mono Srtm2Osm.exe -firstnodeid 4398046511104 -firstwayid 4398046511104 -bounds3 "http://www.openstreetmap.org/#map=11/-22.8816/-43.2594"
+  448  osm2pgsql -s -U postgres -d osm -W -H localhost srtm.osm
+  449  mono Srtm2Osm.exe -firstnodeid 4398046511 -firstwayid 4398046511 -bounds3 "http://www.openstreetmap.org/#map=11/-22.8816/-43.2594"
+  450  osm2pgsql -s -U postgres -d osm -W -H localhost srtm.osm
+  451  cat srtm.osm
+  452  psql -U postgres -W
+  453  su postgres
+  454  osm2pgsql --append --latlong --keep-coastlines --verbose  --hstore --slim --cache 4000 --database osm --username postgres --host 127.0.0.1 --style /home/geo/diffs/default.style srtm.osm
+  455  osm2pgsql --append  --keep-coastlines --verbose  --hstore --slim --cache 4000 --database osm --username postgres --host 127.0.0.1 --style /home/geo/diffs/default.style srtm.osm
+  456  osm2pgsql --append  --keep-coastlines --verbose  --hstore --slim --cache 4000 --database osm --username postgres --host 127.0.0.1  srtm.osm
+  457  osm2pgsql --append  --keep-coastlines --verbose  --slim --cache 4000 --database osm --username postgres --host 127.0.0.1  srtm.osm
+  458  su postgres
+  459  cd ..
+  460  ls
+  461  ls -lh
+  462  rm south-america-latest.osm.pbf 
+  463  wget http://download.geofabrik.de/south-america-latest.osm.pbf
+  464  osm2pgsql --latlong --keep-coastlines --verbose --create --hstore --slim --cache 4000 --database osm --username postgres --password --host 127.0.0.1 --style ./default.style ./south-america-latest.osm.pbf
+  465  exit
+  466  ifconfig
+  467  mount /dev/sdb1 /media/d
+  468  cd /media/d
+  469  ls
+  470  mkdir srtm
+  471  cd srtm
+  472  ls
+  473  gdal_contour
+  474  apt-get install gdal
+  475  apt-get install mono-runtime
+  476  cd /var/lib/postgresql/
+  477  ls
+  478  cd /var/lib/postgresql/9.5/
+  479  ls
+  480  cd main
+  481  ls
+  482  cd /
+  483  clear
+  484  psql -t -U postgres -W -P format=unaligned -c 'show hba_file'; 
+  485  vim /etc/postgresql/9.5/main/pg_hba.conf 
+  486  ifconfig
+  487  vim /etc/postgresql/9.5/main/pg_hba.conf 
+  488  ls -lh
+  489  service postgresql restart
+  490  ls /etc/postgresql/9.5/main/
+  491  vim /etc/postgresql/9.5/main/postgresql.conf 
+  492  clear
+  493  ps aux | grep 5432
+  494  netstat -a 
+  495  netstat -a  | grep 5432
+  496  service postgres stop
+  497  service postgresql stop
+  498  netstat -a  | grep 5432
+  499  service postgresql start
+  500  netstat -a  | grep 5432
+  501  vim /etc/postgresql/9.5/main/pg_hba.conf 
+  502  service postgresql stop
+  503  service postgresql start
+  504  cd /media/d
+  505  ls
+  506  cd srtm
+  507  mv /home/geo/srtm.osm .
+  508  shutdown now
+  509  cd /home/geo
+  510  ls
+  511  apt-get install gdal-bin
+  512  gdaldem hillshade S24W044.hgt S24W044.tiff -z 1 -s 10000
+  513  ls -lh
+  514  gdaldem hillshade S23W043.hgt S23W043.tiff -z 1 -s 10000
+  515  gdaldem hillshade S23W044.hgt S23W044.tiff -z 1 -s 10000
+  516  gdaldem hillshade S23W044.hgt S23W044.tiff -z 1 -s 1000
+  517  gdaldem hillshade S23W044.hgt S23W044.tiff -z 5 -s 10000
+  518  gdaldem hillshade S23W044.hgt S23W044.tiff -z 1 -s 90000
+  519  shutdown now
+  520  cd /var/lib/tomcat8/webapps/geoserver/data
+  521  mkdir blobstore
+  522  ls -lh
+  523  chown tomcat8:tomcat8 blobstore/
+  524  cd blobstore/
+  525  ls -lh
+  526  cd ..
+  527  cd data
+  528  ls blobstore/
+  529  ls blobstore/osm_osm/
+  530  shutdown now
+  531  ls
+  532  cd /home/geo
+  533  ls
+  534  ls -lh
+  535  gdaldem hillshade S23W044.hgt S23W044.tiff -z 1 -s 900
+  536  gdaldem hillshade S23W044.hgt S23W044.tiff -z 1 -s 900000
+  537  gdaldem hillshade S23W044.hgt S23W044.tiff -z 1000 -s 900000
+  538  gdaldem hillshade S23W044.hgt -of PNG S23W044.tiff 
+  539  ls -lh
+  540  gdaldem hillshade S23W044.hgt -of PNG S23W044.png
+  541  gdaldem hillshade S23W044.hgt S23W044.tiff -z 10 -s 900000
+  542  vim convert.sh
+  543  gdaldem hillshade S23W044.hgt S23W044.tiff -z 10 -s 90000
+  544  vim convert.sh 
+  545  gdaldem hillshade S23W044.hgt S23W044.tiff -z 10 -s 900000
+  546  gdaldem hillshade S23W044.hgt S23W044.tiff -z 10 -s 400000
+  547  gdalinfo -mm S23W044.tiff
+  548  gdal_translate -of PNG -ot Byte -scale 15 2466 0 256 S23W044.tiff jotunheimen.png
+  549  apt-get install python-matplotlib
+  550  wget http://katze.tfiu.de/projects/phyghtmap/phyghtmap_1.80-1_all.deb
+  551  dpkg -i phyghtmap_1.80-1_all.deb
+  552  apt-get install python-beautifulsoup
+  553  apt-get -f install
+  554  dpkg -i phyghtmap_1.80-1_all.deb
+  555  ls -lh
+  556  rm S2*
+  557  ls -lh
+  558  rm jot*
+  559  ls -lh
+  560  phyghtmap --pbf --srtm=1 --a -43.7544:-23.2363:-42.0378:-22.3183 --earthdata-user=icemagno --earthdata-password=Antares2#2
+  561  ls -lh
+  562  rm *pbf
+  563  ls -lh
+  564  ls hgt
+  565  ls hgt/SRTM1v3.0/
+  566  phyghtmap --download-only --a -43.7544:-23.2363:-42.0378:-22.3183 --earthdata-user=icemagno --earthdata-password=Antares2#2 --viewfinder-mask=1
+  567  ls -lh
+  568  ls hgt/
+  569  ls hgt/VIEW1/
+  570  ls
+  571  ls hgt/VIEW1/
+  572  ls hgt/
+  573  ls hgt/SRTM3v3.0/
+  574  ls hgt/SRTM3v3.0/ -lh
+  575  cp hgt/SRTM3v3.0/S23W043.hgt . 
+  576  ls -lh
+  577  gdalbuildvrt 
+  578  gdalbuildvrt ./teste.vrt  hgt/SRTM3v3.0/S23W043.hgt hgt/SRTM3v3.0/S23W044.hgt 
+  579  ls -lh
+  580  rm *.hgt
+  581  gdalwarp -t_srs EPSG:4326 -r bilinear teste.vrt teste.tif
+  582  ls -lh
+  583  cat teste.vrt
+  584  gdal_translate -of PNG -ot Byte -scale 15 2466 0 256 teste.tif teste.png
+  585  gdaldem hillshade -of PNG teste.tif teste_hillshade.png
+  586  gdaldem hillshade -of PNG -az 135 teste.tif teste_hillshade_az135.png
+  587  ls lh
+  588  ls -lh
+  589  rm teste_*
+  590  ls -lh
+  591  rm teste.png
+  592  rm *xml
+  593  ls -lh
+  594  clear
+  595  gdal_translate -of PNG -ot Byte  teste.tif teste.png
+  596  vim convert.sh 
+  597  ls -lh
+  598  ls hgt/SRTM1v3.0/
+  599  gdalbuildvrt ./teste.vrt hgt/SRTM1v3.0/S23W043.hgt  hgt/SRTM1v3.0/S23W044.hgt  hgt/SRTM1v3.0/S24W043.hgt  hgt/SRTM1v3.0/S24W044.hgt
+  600  gdaldem hillshade teste.vrt teste.tif -z 10 -s 90000
+  601  ls -lh
+  602  rm teste.png
+  603  rm teste.png.aux.xml 
+  604  rm teste.tif
+  605  ls -lh
+  606  gdalwarp -t_srs EPSG:4326 -r bilinear teste.vrt teste.tif
+  607  gdal_translate -of PNG -ot Byte -scale 15 2466 0 256 teste.tif teste.png
+  608  gdaldem hillshade -of PNG teste.tif teste_hillshade.png
+  609  gdaldem hillshade -z 100 -of PNG teste.tif teste_hillshade.png
+  610  clear
+  611  gdalinfo -mm teste.tif
+  612  gdal_translate -tr  -tr XRes YRes -r bilinear -r bilinear  teste.vrt teste.tif
+  613  gdal_translate -tr 0.001389 0.001389 -r bilinear -r bilinear  teste.vrt teste.tif
+  614  gdal_translate --help
+  615  gdal_translate -v
+  616  gdal_translate -version
+  617  gdal_translate --version
+  618  gdalwarp -tr 0.001389 0.001389 -r bilinear  teste.vrt teste.tif
+  619  rm teste.tif
+  620  gdalwarp -tr 0.001389 0.001389 -r bilinear  teste.vrt teste.tif
+  621  gdaldem hillshade -of PNG teste.tif teste_hillshade.png
+  622  history > hist_gdal.txt

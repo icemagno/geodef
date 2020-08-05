@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:se="http://www.opengis.net/se">
+  <NamedLayer>
+    <se:Name>area_de_fundeioPolygon</se:Name>
+    <UserStyle>
+      <se:Name>area_de_fundeioPolygon</se:Name>
+      <se:FeatureTypeStyle>
+        <se:Rule>
+          <se:Name>Area_De_Fundeio_De_Fundeio_De_Navios_Tanque</se:Name>
+          <se:Description>
+            <se:Title>Area_De_Fundeio_De_Fundeio_De_Navios_Tanque</se:Title>
+            <se:Abstract>Area_De_Fundeio_De_Fundeio_De_Navios_Tanque</se:Abstract>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>tipoareadefundeio</ogc:PropertyName>
+              <ogc:Literal>Fundeio de navios tanque</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:GraphicFill>
+                <se:Graphic>
+                  <se:Mark>
+                    <se:WellKnownName>circle</se:WellKnownName>
+                    <se:Fill>
+                      <se:SvgParameter name="fill">#ff0000</se:SvgParameter>
+                    </se:Fill>
+                    <se:Stroke>
+                      <se:SvgParameter name="stroke">#000000</se:SvgParameter>                      
+                    </se:Stroke>
+                  </se:Mark>
+                  <se:Size>8</se:Size>
+                </se:Graphic>
+              </se:GraphicFill>
+            </se:Fill>            
+          </se:PolygonSymbolizer>
+          <se:PolygonSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#000003</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">3</se:SvgParameter>
+              <se:SvgParameter name="stroke-linejoin">bevel</se:SvgParameter>
+            </se:Stroke>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+      </se:FeatureTypeStyle>
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>

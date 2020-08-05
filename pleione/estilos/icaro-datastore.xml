@@ -1,0 +1,14 @@
+<dataStore>
+  <name>icaro</name>
+  <description>Datastore do Icaro</description>
+  <enabled>true</enabled>
+  <connectionParameters>
+    <host>lucene-db</host>
+    <port>5432</port>
+    <database>lucene</database>
+    <user>postgres</user>
+    <passwd>admin</passwd>
+    <dbtype>postgis</dbtype>
+	<schema>icaro</schema>
+  </connectionParameters>
+</dataStore>

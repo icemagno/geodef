@@ -1,0 +1,996 @@
+    1  df -h
+    2  shutdown -h now
+    3  cat /var/log/boot.log | more
+    4  systemss
+    5  hhh
+    6  q
+    7  systemctl ssh.service status
+    8  systemctl status ssh.service
+    9  systemctl status sshd.service
+   10  netstat -antpl
+   11  shutdown -h now
+   12  vi /etc/hostname 
+   13  vi /etc/sysconfig/network-scripts/ifcfg-eth0 
+   14  mount /dev/cdrom /media/
+   15  /media/Linux/install.sh 
+   16  reboot
+   17  ip addr show
+   18  ping 172.30.0.1
+   19  echo $LANG
+   20  locale
+   21  vi /etc/sysconfig/keyboard
+   22  reboot
+   23  localectl status
+   24  localectl list-keymaps
+   25  localectl set-keymap br-abnt2
+   26  localectl status
+   27  vi /etc/sysctl.conf 
+   28  exit
+   29  vi /etc/sysctl.conf 
+   30  systemctl restart network
+   31  exit
+   32  passwd
+   33  exit
+   34  yum update
+   35  vi /etc/resolv.conf 
+   36  yum update
+   37  exit
+   38  scp root@10.200.1.17:/root/install.sh .
+   39  ./install.sh -i
+   40  yum install unzip
+   41  ./install.sh -i
+   42  exit
+   43  adduser casnav
+   44  passwd casnav
+   45  vi /etc/ssh/sshd_config 
+   46  systemctl restart sshd
+   47  systemctl status sshd
+   48  ps aux | grep ssh
+   49  journalctl -xe
+   50  tail -f /var/log/audit/audit.log 
+   51  semanage port -a -t ssh_port_t -p tcp 5322
+   52  yum install policycoreutils-python
+   53  semanage port -a -t ssh_port_t -p tcp 5322
+   54  systemctl restart sshd
+   55  journalctl -xe
+   56  yum install netstat
+   57  yum install net-tools
+   58  netstat -ant
+   59  exit
+   60  service ssh satus
+   61  service ssh status
+   62  service sshd status
+   63  chkconfig sshd on
+   64  firewall-cmd --zone=public --add-port=5322/tcp --permanent
+   65  firewall-cmd --reload
+   66  netstat -ant
+   67  exit
+   68  vi /etc/group
+   69  clear
+   70  exit
+   71  exit
+   72  cd /etc/
+   73  vi yum.conf 
+   74  cd yum.repos.d/
+   75  ls
+   76  vi CentOS-Base.repo 
+   77  vi CentOS-Sources.repo 
+   78  vi CentOS-Debuginfo.repo 
+   79  vi CentOS-Media.repo 
+   80  vi CentOS-Vault.repo 
+   81  vi CentOS-CR.repo 
+   82  vi CentOS-fasttrack.repo 
+   83  vi CentOS-Base.repo 
+   84  ls
+   85  cd ..
+   86  ls
+   87  cd yum
+   88  ls
+   89  vi version-groups.conf 
+   90  ls
+   91  cd protected.d/
+   92  ls
+   93  vi systemd.conf 
+   94  cd ..
+   95  ls
+   96  cd ..
+   97  ls
+   98  exit
+   99  ls
+  100  dmesg 
+  101  dmesg |less
+  102  fdisk -l
+  103  ftp
+  104  yum install ftp
+  105  ls
+  106  ftp
+  107  ls
+  108  ls -lah
+  109  ftp
+  110  fdisk -l
+  111  exit
+  112  exit
+  113  top
+  114  cd /opt/
+  115  ls
+  116  cd osm/
+  117  ls
+  118  tar zxvf gdal-2.1.2.tar.gz 
+  119  ls
+  120  tar zxvf pgrouting-2.3.2.tar.gz 
+  121  ls
+  122  tar zxvf postgis-2.3.
+  123  tar zxvf postgis-2.3.2.tar.gz 
+  124  ls
+  125  rm postgresql-9.6.0.tar.bz2
+  126  ls -lah
+  127  rm gdal-2.1.2.tar.gz
+  128  rm pgrouting-2.3.2.tar.gz 
+  129  rm postgis-2.3.2.tar.gz 
+  130  rm postgis-2.3.0.tar.gz 
+  131  ls -lah
+  132  ls
+  133  ls -lah
+  134  unzip geoserver-2.10.1-war.zip 
+  135  ls
+  136  rm GPL.txt 
+  137  rm LICENSE.txt 
+  138  ls -lah
+  139  ls
+  140  ls -l
+  141  rm geoserver-2.10.1-war.zip 
+  142  tar zxvf proj-4.9.2.tar.gz 
+  143  rm proj-4.9.2.tar.gz 
+  144  ls
+  145   ls -lah
+  146  rm target/ -rf
+  147  yum install bzip
+  148  yum install bunzip
+  149  yum install bzip2
+  150  bunzip2 postgresql-9.6.2.tar.bz2 
+  151  ls -lag
+  152  tar xvf postgresql-9.6.2.tar 
+  153  ls -lah
+  154  rm postgresql-9.6.2.tar 
+  155  ls -lah
+  156  unzip apache-tomcat-9.0.0.M17.zip 
+  157  ls -lah
+  158  rm apache-tomcat-9.0.0.M17.zip 
+  159  ls -l
+  160  tar zxvf json-c-json-c-0.11-20130402.tar.gz 
+  161  ls -lah
+  162  ls -lah
+  163  bunzip2 geos-3.6.1.tar.bz2 
+  164  ls -lah
+  165  tar xvf geos-3.6.1.tar 
+  166  rm geos-3.6.1.tar 
+  167  ls -l
+  168  rm json-c-json-c-0.11-20130402.tar.gz 
+  169  ls -l
+  170  mkdir -p /home/postgres
+  171  useradd postgres -p postgres -d /home/postgres
+  172  mkdir -p /opt/postgres/data
+  173  mkdir -p /opt/postgres/BD
+  174  cd postgresql-9.6.2/
+  175  ./configure 
+  176  make
+  177  make install
+  178  chown -R postgres.users /home/postgres
+  179  ls
+  180  cd /opt/
+  181  chown -R postgres.users postgres
+  182  chown -R postgres.users postgres/data
+  183  chown -R postgres.users BD
+  184  chown -R postgres.users postgres/BD
+  185  ls -lah
+  186  df -h
+  187  ls
+  188  cd postgres/
+  189  ls
+  190  cd data/
+  191  ls
+  192  cd ..
+  193  ls
+  194  cd ..
+  195  ls
+  196  mv postgres/ osm/
+  197  ls
+  198  cd osm/
+  199  ls
+  200  ls -lah
+  201  mkdir sources
+  202  mv apache-tomcat-9.0.0.M17/ gdal-2.1.2/ geos* json-c-json-c-0.11-20130402/ pgrouting-2.3.2/ postgis-2.3.* postgresql-9.6.2/ proj-4.9.2/ sources/
+  203  ls
+  204  ls -lah
+  205  cd sources/
+  206  ls
+  207  sudo -u postgres /usr/local/pgsql/bin/initdb -D /opt/osm/postgres/data/
+  208  cd ..
+  209  ls
+  210   cd postgres/data/
+  211  ls
+  212  netstat -an |grep 5322
+  213  ls
+  214  vi pg_hba.conf 
+  215  vi postgresql.conf 
+  216   /usr/local/pgsql/bin/pg_ctl -D /opt/osm/postgres/data/ -l logfile start
+  217  sudo  /usr/local/pgsql/bin/pg_ctl -D /opt/osm/postgres/data/ -l logfile start
+  218  sudo  postgres /usr/local/pgsql/bin/pg_ctl -D /opt/osm/postgres/data/ -l logfile start
+  219  su postgres
+  220  ps ax |grep postgres
+  221  ifconfig
+  222  netstat
+  223  netstat -an |less
+  224  ls
+  225  cd ..
+  226  ls
+  227  cd ..
+  228  ls
+  229  cd sources/
+  230  ls
+  231  cd geos-3.6.1/
+  232  ./configure 
+  233  ./make
+  234  make
+  235  make install
+  236  cd ..
+  237  cd proj-4.9.2/
+  238  ./configure
+  239  make
+  240  make install
+  241  cd ..
+  242  cd json-c-json-c-0.11-20130402/
+  243  ./configure 
+  244  make
+  245  make install
+  246  ldconfig
+  247  ldconfig -v
+  248  cd ..
+  249  cd gdal-2.1.2/
+  250  ./configure --with-pg=/usr/local/pgsql/bin/pg_config --with-geos
+  251  ./configure --with-pg=/usr/local/pgsql/bin/pg_config --with-geos=yes
+  252  ldconfi -v |less
+  253  ldconfig -v |less
+  254  find / -name libgeo*
+  255  vi /etc/ld.so.conf
+  256  vi /etc/ld.so.conf.d/osm.conf
+  257  ldconfig -v |less
+  258  ./configure --with-pg=/usr/local/pgsql/bin/pg_config --with-geos=yes
+  259  ./configure --with-pg=/usr/local/pgsql/bin/pg_config --with-geos=/usr/local/lib
+  260  less makefile.vc 
+  261  vi config.log 
+  262  ./configure --with-pg=/usr/local/pgsql/bin/pg_config
+  263  ldconfig
+  264  ./configure --with-pg=/usr/local/pgsql/bin/pg_config --with-geos=YES
+  265  less config.log 
+  266  make
+  267  make install
+  268  ldconfig -v |less
+  269  cd ..
+  270  cd postgis-2.3.2/
+  271  ./configure --with-pgconfig=/usr/local/pgsql/bin/pg_config
+  272  ./configure --with-pgconfig=/usr/local/pgsql/bin/pg_config --with-geosconfig=/usr/local/lib
+  273  find / -name geos
+  274  ./configure --with-pgconfig=/usr/local/pgsql/bin/pg_config --with-geosconfig=/usr/local/include/geos
+  275  lls
+  276  cd ..
+  277  ls
+  278  bunzip2 geos-3.6.0.tar.bz2 | tar xvf geos-3.6.0.tar
+  279  tar xvf  geos-3.6.0.tar 
+  280  cd geos-3.6.
+  281  cd geos-3.6.0
+  282  ./configure 
+  283  make
+  284  make install
+  285   /usr/local/bin/geos-config 
+  286   /usr/local/bin/geos-config  --version
+  287  ldconfig
+  288  ldconfig -v
+  289  ldconfig -v |less
+  290  cd ..
+  291  ls
+  292  cd gdal-2.1.2/
+  293  ls
+  294  ./configure --with-pg=/usr/local/pgsql/bin/pg_config --with-geos=yes
+  295  ls -lah
+  296  cd ..
+  297  ls
+  298  top
+  299  ls
+  300  cd postgresql-9.6.2/
+  301  cd contrib/
+  302  ls
+  303  cd unaccent/]
+  304  cd unaccent
+  305  make]
+  306  make
+  307  cd ..
+  308  ls
+  309  cd ..
+  310  ls
+  311  cd ..
+  312  ls
+  313  mv postgresql-9.6.2/ ../
+  314  cd ../postgres
+  315  cd ..
+  316  cd postgresq
+  317  cd postgresql-9.6.2/
+  318  cd contrib/
+  319  make
+  320  make install
+  321  ]cd ..
+  322  cd ..
+  323  cd contrib/
+  324  cd hstore
+  325  make
+  326  make install
+  327  psql
+  328  pgsql
+  329  /usr/local/pgsql/bin/psql
+  330  sudo postgres /usr/local/pgsql/bin/psql
+  331  su postgres
+  332  cd ..
+  333  ls
+  334  cd ..
+  335  ls
+  336  c d..
+  337  ls
+  338  cd ..
+  339  ls
+  340  cd sources/
+  341  ls /home/casnav/
+  342  mv /home/casnav/gdal-1.9.2/ .
+  343  chmod 755 gdal-1.9.2/ -R
+  344  cd gdal-1.9.2/
+  345  ./configure --with-pg=/usr/local/pgsql/bin/pg_config --with-geos=yes
+  346  cd ..
+  347  cd postgis-2.3.2/
+  348  ./configure --with-pgconfig=/usr/local/pgsql/bin/pg_config
+  349  ./configure --with-pgconfig=/usr/local/pgsql/bin/pg_config --with-geosconfig=/usr/local/bin/geos-config 
+  350  find / -name gdal-config
+  351  find / -name gdal-config -withgdalconfig=/usr/local/bin/gdal-config
+  352  ./configure --with-pg=/usr/local/pgsql/bin/pg_config --withgdalconfig=/usr/local/bin/gdal-config
+  353  ./configure --with-pgconfig=/usr/local/pgsql/bin/pg_config
+  354  ./configure --with-pg=/usr/local/pgsql/bin/pg_config --withgdalconfig=/usr/local/bin/gdal-config  --with-geosconfig=/usr/local/bin/geos-config 
+  355  ./configure --with-pg=/usr/local/pgsql/bin/pg_config --withgdalconfig=/usr/local/bin/gdal-config  --with-geosconfig=/usr/local/bin/geos-config
+  356  ./configure --helo
+  357  ./configure --help
+  358  ./configure --with-pg=/usr/local/pgsql/bin/pg_config  --with-gdalconfig=/usr/local/bin/gdal-config  --with-geosconfig=/usr/local/bin/geos-config
+  359  ./configure --with-pgconfig=/usr/local/pgsql/bin/pg_config --withgdalconfig=/usr/local/bin/gdal-config  --with-geosconfig=/usr/local/bin/geos-config
+  360  ./configure --with-pgconfig=/usr/local/pgsql/bin/pg_config --with-gdalconfig=/usr/local/bin/gdal-config  --with-geosconfig=/usr/local/bin/geos-config
+  361  make
+  362  cd ..
+  363  ls
+  364  cd geos-3.6.1/
+  365  make
+  366  make install
+  367  ldconfig -v
+  368  ls
+  369  cd ..
+  370  ls
+  371  cd postgis-2.3.
+  372  cd postgis-2.3.2/
+  373  ./configure --with-pgconfig=/usr/local/pgsql/bin/pg_config --with-gdalconfig=/usr/local/bin/gdal-config  --with-geosconfig=/usr/local/bin/geos-config
+  374  make
+  375  make install
+  376  sudo postgres
+  377  su postgres
+  378  ls
+  379  cd /tmp/
+  380  yum install wget
+  381  wget download.geofabrik.de
+  382  wget naturalearthdata.com
+  383  wget data.openstreetmapdata.com
+  384  ls
+  385  -lah
+  386  cd /opt/
+  387  ls
+  388  cd osm/
+  389  ls
+  390  cd sources/
+  391  ls
+  392  mv apache-tomcat-9.0.0.M17/ /opt/
+  393  cd /opt/
+  394  ls
+  395  mv apache-tomcat-9.0.0.M17/ osm/
+  396  cd osm/
+  397  cd apache-tomcat-9.0.0.M17/
+  398  ls
+  399  cd ..
+  400  cd apache-tomcat-9.0.0.M17/
+  401  ls
+  402  cd webapps/
+  403  ls
+  404  mv /opt/osm/sources/geoserver.war .
+  405  ls
+  406  cd ..
+  407  ls
+  408  ls -lah
+  409  ls
+  410  ls -lah
+  411  ls -lah
+  412  cd bin/
+  413  ls
+  414  cd ..
+  415  ls
+  416  cd ..
+  417  ls
+  418  mv postgresql-9.6.2/ sources/
+  419  ls
+  420  ls -lah
+  421  cd /tmp/
+  422  wget http://javadl.oracle.com/webapps/download/AutoDL?BundleId=218823_e9e7ea248e2c4826b92b3f075a80e441
+  423  ls
+  424  ls -lah
+  425  mv AutoDL\?BundleId\=218823_e9e7ea248e2c4826b92b3f075a80e441  java.bin
+  426  ls
+  427  sh java.bin 
+  428  tar zxvf java.bin 
+  429  ls
+  430  mv jre1.8.0_121/ /opt/osm/
+  431  cd /opt/osm/
+  432  ls
+  433  mv jre1.8.0_121/ java
+  434  ls
+  435  cd apache-tomcat-9.0.0.M17/
+  436  ls
+  437  cd bin/
+  438  ls
+  439  vi startup.sh 
+  440  ls
+  441  ls /opt/
+  442  vi shutdown.sh 
+  443  sh startup.sh 
+  444  cd ..
+  445  ls
+  446  cd ..
+  447  chmod 755 apache-tomcat-9.0.0.M17/ -R
+  448  cd apache-tomcat-9.0.0.M17/
+  449  ls
+  450  cd bin/
+  451  ./startup.sh 
+  452  ifconfig
+  453  netstat -an
+  454  netstat -an |less
+  455  ls -lah
+  456  ps ax |grep java
+  457  ls
+  458  cd ..
+  459  ls
+  460  cd webapps/
+  461  ls
+  462  cd geoserver
+  463  ls
+  464  cd ..
+  465  ls
+  466  cd ..
+  467  ls
+  468  cd ..
+  469  ls
+  470  cd ..
+  471  ls
+  472  cd osm/
+  473  ls
+  474  cd sources/
+  475  ls
+  476  cd pgrouting-2.3.2/
+  477  ls
+  478  automake
+  479  cd cmake/
+  480  automake
+  481  cmake
+  482  yum install cmake
+  483  cmake
+  484  ls
+  485  cd ..
+  486  cmake
+  487  ls
+  488  cmake .
+  489  export PATH="$PATH:/usr/local/pgsql/bin"
+  490  cmake .
+  491  less CMakeFiles/CMakeOutput.log
+  492  cmake .
+  493  ls
+  494  less CMakeLists.txt 
+  495  less BOOST_LICENSE_1_0.txt 
+  496  yum install boost
+  497  yum install bgl
+  498  yum install boost-devel
+  499  cmake .
+  500  yum install cgal-devel
+  501  yum install cgal
+  502  yum install libcgal
+  503  cd /tmp/
+  504  wget https://github.com/CGAL/cgal/archive/releases/CGAL-4.8-branch-tip.tar.gz
+  505  ls
+  506  mv CGAL-4.8-branch-tip.tar.gz /opt/osm/sources/
+  507  cd /opt/osm/sources/
+  508  ls
+  509  tar zxvf CGAL-4.8-branch-tip.tar.gz 
+  510  ls
+  511  cd cgal-releases-CGAL-4.8-branch-tip/
+  512  ls
+  513  cmake .
+  514  yum install gmp
+  515  yum install gmp-devel
+  516  cmake .
+  517  yum install mpfr
+  518  yum install mpfr-devel
+  519  cmake .
+  520  make
+  521  make install
+  522  ls
+  523  cd ..
+  524  ls
+  525  cd pgrouting-2.3.2/
+  526  ls
+  527  cmnake .
+  528  cmake .
+  529  make
+  530  make install
+  531  sudo postgres
+  532  su postgres
+  533  vi /etc/ld.so.conf.d/osm.conf 
+  534  ldconfig -v |less
+  535  su postgres
+  536  cd /tmp/
+  537  wget http://dl.fedoraproject.org/pub/epel/7/x86_64/o/osm2pgsql-0.92.0-1.el7.x86_64.rpm
+  538  rpm -ivh osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  539  wget https://github.com/openstreetmap/osm2pgsql/archive/master.zip
+  540  ls
+  541  mv master.zip osm2pgsql.zip
+  542  mv osm2pgsql.zip /opt/osm/sources/
+  543  cd /opt/osm/sources/
+  544  ls
+  545  unzip osm2pgsql.zip 
+  546  cd osm2pgsql
+  547  cd osm2pgsql-master/
+  548  ls
+  549  cmake .
+  550  ls
+  551  mkdir build
+  552  cd build/
+  553  cmake .
+  554  cmake ../
+  555  cmake ../.
+  556  ls
+  557  cd ..
+  558  ls
+  559  make
+  560  cmake
+  561  cmake build/
+  562  ls -lah
+  563  less README.md 
+  564  cd build/
+  565  cmake ..
+  566  ls
+  567  cmake ...
+  568  cmake ..
+  569  cmake .
+  570  cmake ..
+  571  less /opt/osm/sources/osm2pgsql-master/CMakeFiles/CMakeOutput.log
+  572  ls
+  573  cd ..
+  574  ls
+  575  cd build/
+  576  ls
+  577  mkdir build
+  578  cd build/
+  579  cmake ...
+  580  cmake ..
+  581  cmake .
+  582  cmake 
+  583  cd ..
+  584  cd ..
+  585  rm build/ -rf
+  586  ls
+  587  cmake
+  588  cmake .
+  589  less
+  590  less /opt/osm/sources/osm2pgsql-master/CMakeFiles/CMakeOutput.log
+  591  ls
+  592  cd tests/
+  593  ls
+  594  cd ..
+  595  ls
+  596  cd ..
+  597  ls
+  598  rm osm2pgsql* -rf
+  599  ls
+  600  cd /tmp/
+  601  wget https://github.com/openstreetmap/osm2pgsql/archive/0.92.x.zip
+  602  ls
+  603  mv 0.92.x.zip /opt/osm/sources/
+  604  cd /opt/osm/sources/
+  605  unzip 0.92.x.zip 
+  606  cd osm2pgsql-0.92.x/
+  607  ls
+  608  .cmake
+  609  cmake .
+  610  mkdir build
+  611  cmake .
+  612  cd build/
+  613  cmake ..
+  614  vi CMakeLists.txt
+  615  cd ..
+  616  vi CMakeLists.txt
+  617  ls
+  618  cd build/
+  619  cmake ..
+  620  cd ..
+  621  cmake -DCMAKE_INSTALL_PREFIX:PATH=build/
+  622  cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/osm/sources/osm2pgsql-0.92.x/build/
+  623  ls -lah
+  624  chmod 777 build/
+  625  cd build/
+  626  cmake ..
+  627  ls -lah
+  628  cd ..
+  629  ls
+  630  less CMakeFiles/
+  631  cd CMakeFiles/
+  632  ls
+  633  less CMakeOutput.log 
+  634  ls
+  635  cd ..
+  636  ls
+  637  cd ..
+  638  ls
+  639  rm osm2pgsql-0.92.x/ -rf
+  640  unzip 0.92.x.zip 
+  641  cd osm2pgsql-0.92.x/
+  642  ls
+  643  mkdir build
+  644  cd build/
+  645  cmake ..
+  646  yum install osmium
+  647  yum install osmium-devel
+  648  yum install expat
+  649  yum install expat-devel
+  650  cmake ..
+  651  yum install bzip2-devel
+  652  cmake ..
+  653  yum install lua
+  654  yum install lua-devel
+  655  cmake ..
+  656  make
+  657  ls
+  658  cd ..
+  659  ls
+  660  rm -rf build/
+  661  mkdir buill
+  662  mkdir build
+  663  cd build/
+  664  cmake ..
+  665  make
+  666  cd ..
+  667  rm buill/ -rf
+  668  rm build/ -rf
+  669  mkdir build
+  670  cd build/
+  671  cmake ..
+  672  ldconfig -v |less
+  673  cd /lib64
+  674  less libpq.so.5
+  675  ls -lah libpq.so.5.5 
+  676  ls -lah libpq.so.5*
+  677  ldd libpq.so.5
+  678  ldd /usr/local/pgsql/lib/libpq.so
+  679  ldd /usr/local/pgsql/lib/libpq.so.5.9 
+  680  cd /opt/osm/
+  681  ls
+  682  cd sources/
+  683  ls
+  684  cd osm2pgsql-0.92.x/
+  685  ls
+  686  cd build/
+  687  ls
+  688  rm *
+  689  rm * -rf
+  690  cmake ..
+  691  ls
+  692  cd ..
+  693  ls
+  694  cmake --help
+  695  ls
+  696  less CMakeLists.txt 
+  697  ls
+  698  cd ..
+  699  ls
+  700  cd osm2pgsql-0.92.x/
+  701  ls
+  702  cd build/
+  703  ls
+  704  less cmake_install.cmake 
+  705  ls
+  706  ls
+  707  less Makefile 
+  708  make
+  709  ls
+  710  cd /tmp/
+  711  ls
+  712  rpm -ivh osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  713  cd /
+  714  cd /usr/local/lib
+  715  ls
+  716  ls -lah
+  717  ln -s libgeos-3.4.2.so libgeos-3.6.1.so 
+  718  ln -s libgeos-3.6.1.so libgeos-3.4.2.so
+  719  cd /opt/osm/sources/osm2pgsql-0.92.x/
+  720  cd build/
+  721  ls
+  722  rm * -rf
+  723  cmake ..
+  724  make
+  725  ls
+  726  ldd
+  727  ldd --help
+  728  ldd -u
+  729  ldd -v
+  730  ldd ls
+  731  ls
+  732  less Makefile 
+  733  ls
+  734  cd /usr/
+  735  ls
+  736  find -name libpq
+  737  cd ..
+  738  find -name libpq
+  739  find -name libpq*.so
+  740  find -name libpq*.so
+  741  find -name libpq5*.so
+  742  find -name libpq*
+  743  cd /usr/lib64/
+  744  ls 
+  745  ls /usr/lib64/libpq*
+  746  cd /usr/local/pgsql/lib/
+  747  ls libpq.so *
+  748  ls libpq.so*
+  749  ls libpq.so* -lah
+  750  ln -s /usr/lib64/libpq.so.5 libpq.so
+  751  ls -lah
+  752  ln -s libpq.so /usr/lib64/libpq.so.5
+  753  ls -lah
+  754  ls
+  755  rm libpq.so libpq.so.5
+  756  ln -s libpq.so /usr/lib64/libpq.so.5
+  757  ln -s /usr/lib64/libpq.so.5 libpq.so
+  758  ln -s /usr/lib64/libpq.so.5 libpq.so.5
+  759  ldd libpq.so
+  760  cd /opt/osm/sources/osm2pgsql-0.92.x/
+  761  cd build/
+  762  rm * -rf
+  763  cmake ../
+  764  make
+  765  ls
+  766  cd ..
+  767  ls
+  768  cd /tmp/
+  769  rpm -ivh osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  770  ls /usr/local/lib64/
+  771  ls /usr/local/lib
+  772  ls -lah libgeos-3.4.2.so
+  773  cd /usr/local/lib
+  774  ls -lah libgeos-3.4.2.so
+  775  ldd libgeos-3.4.2.so
+  776  rm libgeos-3.4.2.so
+  777  ls -lah
+  778  ls
+  779  cd ..
+  780  cd lib64
+  781  ls
+  782  cd ..
+  783  cd ..
+  784  cd lib64/
+  785  ls
+  786  ls -lah
+  787  ls
+  788  ls
+  789  cd ..
+  790  cd /opt/
+  791  ls
+  792  cd osm/
+  793  ls
+  794  ls
+  795  cd /tmp/
+  796  rpm --help
+  797  rpm --nodeps osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  798  rpm -i --nodeps osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  799  rpm -i --nodeps osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  800  osm2pgsql 
+  801  cd /opt/
+  802  cd /usr/lib
+  803  ls
+  804  cd ..
+  805  cd local/lib
+  806  ls
+  807  ln -s libgeos-3.4.2.so libgeos-3.6.1.so 
+  808  ln -s libgeos-3.6.1.so  libgeos-3.4.2.so
+  809  ls -lah
+  810  ls -lah *geo¨s*
+  811  ls -lah *geos*
+  812  osm2pgsql 
+  813  yum install geos
+  814  yum install geos-devel
+  815  yum install libgeos
+  816  yum install geo
+  817  yum install geos
+  818  cd /tmp/
+  819  rpm -e osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  820  rpm -e osm2pgsql-0.92.0-1
+  821  rpm --erase osm2pgsql-0.92.0-1
+  822  rpm --erase osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  823  ls
+  824  rpm --help
+  825  rpm -e osm2pgsql
+  826  yum install osm2pgsql
+  827  yum install osm2pgsql-0.92.0-1.el7.x86_64.rpm 
+  828  ls
+  829  cd /opt/
+  830  ls
+  831  cd osm/
+  832  cd sources/osm2pgsql-0.92.x/
+  833  ls
+  834  cd build/
+  835  ls
+  836  rm -rf *
+  837  cmake ..
+  838  make
+  839  make install
+  840  rm -rf *
+  841  ls
+  842  cd ..
+  843  ls
+  844  make install
+  845  cd build/
+  846  lsa
+  847  ls
+  848  cmake ..
+  849  make
+  850  yum install glibc-devel
+  851  yum install glibc-static
+  852  cmake ..
+  853  rm -rf *
+  854  cmake ..
+  855  make
+  856  less
+  857  less /opt/osm/sources/osm2pgsql-0.92.x/geometry-builder.cpp
+  858  less /opt/osm/sources/osm2pgsql-0.92.x/geometry-builder.cpp
+  859  vi /opt/osm/sources/osm2pgsql-0.92.x/geometry-builder.cpp
+  860  yum install geos
+  861  yum install geos-devel
+  862  yum install libgeos
+  863  less /usr/local/include/geos/geom/GeometryFactory.h
+  864  vi /usr/local/include/geos/geom/GeometryFactory.h
+  865  ls
+  866  vi Makefile 
+  867  cd /tmp/
+  868  ls
+  869  wgewt 
+  870  wget https://github.com/openstreetmap/osm2pgsql/archive/master.zip
+  871  unzip master.zip 
+  872  mv osm2pgsql-master/ /opt/osm/
+  873  cd /opt/osm/
+  874  ls
+  875  cd osm2pgsql-master/
+  876  ls
+  877  mkdir build
+  878  cd build/
+  879  ls
+  880  cmake ..
+  881  make
+  882  make install
+  883  ls
+  884  cd /
+  885  /usr/local/bin/osm2pgsql 
+  886  /usr/local/bin/osm2pgsql -h
+  887  /usr/local/bin/osm2pgsql 
+  888  ls
+  889  exit
+  890  ls
+  891  cd /opt/
+  892  ls
+  893  df -h
+  894  cd osm/
+  895  ls
+  896  cd apache-tomcat-9.0.0.M17/
+  897  ls
+  898  cd bin/
+  899  ls
+  900  ./startup.sh &
+  901  ls -lah
+  902  ps ax |grep java
+  903  netstat -an |less
+  904  ls
+  905  history 
+  906  history |grep osm
+  907  do -u postgres /usr/local/pgsql/bin/initdb -D /opt/osm/postgres/data/
+  908  su postgres
+  909  cd /opt/
+  910  ls
+  911  cd osm/
+  912  ls
+  913  cd postgres/
+  914  ls
+  915  cd data/
+  916  ls
+  917  ls -lah
+  918  rm postmaster.pid 
+  919  vi pg_hba.conf 
+  920  ps ax |grep java
+  921  ps ax |grep postgres
+  922  ls
+  923  su postgres
+  924  ps ax |grep postgres
+  925  netstat -an |less
+  926  service firewalld status
+  927  service firewalld stop
+  928  exit
+  929  cd /opt/
+  930  ls
+  931  cd osm/
+  932  ls
+  933  cd apache-tomcat-9.0.0.M17/
+  934  cd bin/
+  935  vi startup.sh 
+  936  vi startup.sh 
+  937  exit
+  938  vi /etc/profile
+  939  ls
+  940  cd /opt/
+  941  ls
+  942  cd osm/
+  943  ls
+  944  cd apache-tomcat-9.0.0.M17/bin/
+  945  vi startup.sh 
+  946  vi /root/.bashrc 
+  947  exit
+  948  mv osmosis-latest.tgz sources/
+  949  cd sources/
+  950  ls
+  951  tar -zxvf osmosis-latest.tgz 
+  952  ls
+  953  rm -R lib
+  954  rm -r lib
+  955  ls
+  956  rm -R lib
+  957  ls
+  958  rm -r lib
+  959  rm -rf lib
+  960  ls
+  961  rm -rf bin
+  962  ls -lh
+  963  rm changes.txt 
+  964  date
+  965  clear
+  966  mkdir osmosis
+  967  tar -zxvf osmosis-latest.tgz osmosis
+  968  mv osmosis-latest.tgz osmosis
+  969  cd osmosis
+  970  tar -zxvf osmosis-latest.tgz 
+  971  ls
+  972  cd ..
+  973  ld
+  974  ls
+  975  cd ..
+  976  ls
+  977  mkdir osmupdates
+  978  cd osmupdates
+  979  osmosis --rrii workingDirectory=.
+  980  ../sources/osmosis/bin/osmosis --rrii workingDirectory=.
+  981  java
+  982  exit
+  983  cd osmupdates/
+  984  ls
+  985  java
+  986  ../sources/osmosis/bin/osmosis --rrii workingDirectory=.
+  987  ls -lh
+  988  vim
+  989  vi configuration.txt 
+  990  wget http://ftp5.gwdg.de/pub/misc/openstreetmap/planet.openstreetmap.org/replication/hour/state.txt
+  991  mkdir tmp
+  992  export JAVACMD_OPTIONS="-Djava.io.tmpdir=/opt/osm/osmupdates/tmp"
+  993  ../sources/osmosis/bin/osmosis  --rri workingDirectory=. --wxc update.osm.gz
+  994  ls -lh
+  995  history
+  996  history > history.txt

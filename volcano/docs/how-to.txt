@@ -1,0 +1,25 @@
+﻿Avenida Maracana SN
+20511-000, Andaraí, Rio de Janeiro, Rio De Janeiro, Rio De Janeiro, Brazil
+-22.919623, -43.234355
+
+
+>>>>>> IMPORTANTE: 
+http://themagiscian.com/2016/11/28/dem-slope-calculations-bicycle-routing-postgis/
+
+
+https://gis.stackexchange.com/questions/18254/loading-a-raster-into-a-postgis-2-0-database-on-windows
+
+
+You can already do this fairly easily;
+1) Download the SRTM elevation datasource for the region you're interested:
+
+http://e4ftl01.cr.usgs.gov/SRTM/SRTMUS1.003/2000.02.11/
+
+2) Load the .HGT files into PostGIS using raster2pgsql:
+
+http://postgis.net/docs/using_raster_dataman.html#RT_Raster_Loader
+
+3) Run your queries, relatively simple:
+
+SELECT ST_Value(rast,ST_SetSRID( ST_Point(-0.45,-52.45 ), 4326 ) ) FROM srtmdata;
+

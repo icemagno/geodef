@@ -1,0 +1,36 @@
+TESTES:
+
+# Info
+gdalinfo -mm S14W042.tmp.tif > S14W042.info.txt
+
+# Export as TIF
+gdal_translate -tr 0.000170 0.000170 -r cubicspline -of GTiff S14W042.hgt S14W042.base.tif
+
+# Export as PNG
+gdal_translate -tr 0.000170 0.000170 -r cubicspline -of PNG -ot Byte -scale 15 2466 0 256 S14W042.hgt S14W042.png
+
+# Hillshade
+gdaldem hillshade -co TILED=YES -co compress=lzw -s 111120 -z 3 -combined -compute_edges S14W042.base.tif S14W042_hill.tif
+
+# Comprime
+gdaladdo -r cubicspline --config COMPRESS_OVERVIEW DEFLATE --config GDAL_TIFF_OVR_BLOCKSIZE 512 S14W042_hill.tif 2 4 8 16 32
+
+# Como PNG
+gdaldem hillshade -of PNG -s 111120 -z 3 -combined -compute_edges S14W042.base.tif S14W042_hill.png
+
+# Color relief
+gdaldem color-relief S14W042.base.tif color-relief.txt S14W042.color.tif
+
+
+# Slope
+gdaldem slope -compute_edges -s 111120 S14W042.base.tif S14W042.slope.tif
+gdaldem color-relief S14W042.slope.tif color-slope.txt slope-shade.tif
+
+
+gdalwarp -ts 3000 0 -r bilinear S14W042_hill.tif S14W042_hill_rs.tif
+
+
+http_proxy="" curl -u admin:geoserver -v -XPUT -H "Content-type: image/tiff"  --data-binary @S14W042_hill.tif http://pleione:8080/geoserver/rest/workspaces/volcano/coveragestores/S14W042/file.geotiff
+
+
+

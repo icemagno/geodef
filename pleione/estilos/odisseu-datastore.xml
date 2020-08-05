@@ -1,0 +1,14 @@
+<dataStore>
+  <name>odisseu</name>
+  <description>Datastore do Odisseu</description>
+  <enabled>true</enabled>
+  <connectionParameters>
+    <host>lucene-db</host>
+    <port>5432</port>
+    <database>lucene</database>
+    <user>postgres</user>
+    <passwd>admin</passwd>
+    <dbtype>postgis</dbtype>
+	<schema>odisseu</schema>
+  </connectionParameters>
+</dataStore>

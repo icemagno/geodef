@@ -1,0 +1,75 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.6265616,
+          -22.4949849
+        ]
+      },
+      "properties": {
+        "ele": "906",
+        "fileName": "S23W044"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -42.9886679,
+          -22.4880063
+        ]
+      },
+      "properties": {
+        "ele": "6",
+        "fileName": "S23W043"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -42.5986533,
+          -22.6858074
+        ]
+      },
+      "properties": {
+        "ele": "1222",
+        "fileName": "S23W043"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -42.3033957,
+          -22.7801697
+        ]
+      },
+      "properties": {
+        "ele": "977",
+        "fileName": "S23W043"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.8751273,
+          -22.7997939
+        ]
+      },
+      "properties": {
+        "ele": "550",
+        "fileName": "S23W044"
+      }
+    }
+  ]
+}

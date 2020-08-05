@@ -1,0 +1,9 @@
+Note: The default geoserver user is 'admin' and the password is 'geoserver'. 
+We highly recommend changing the admin password on login.
+
+
+Lista de correspondencia entre OSM e INT1
+https://wiki.openstreetmap.org/wiki/User:Skippern/INT-1
+
+Icones 
+https://commons.wikimedia.org/wiki/Category:Nautical_Chart_Icons
