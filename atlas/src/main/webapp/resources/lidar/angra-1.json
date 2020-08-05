@@ -1,0 +1,18 @@
+{
+"asset": {
+"version": "0.0"
+},
+"geometricError": 10000,
+"refine": "add",
+"root":
+{
+"boundingVolume": {
+"sphere": [-1719119.7252312414,-2483562.618579343,5598720.0212653065,100]
+},
+"geometricError": 0,
+"content": {
+"url": "angra-1.pnts"
+},
+"children": []
+}
+}

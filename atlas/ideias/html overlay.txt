@@ -1,0 +1,10 @@
+var htmlOverlay = document.getElementById('htmlOverlay');
+var scratch = new Cesium.Cartesian2();
+viewer.scene.preRender.addEventListener(function() {
+    var position = Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883);
+    var canvasPosition = viewer.scene.cartesianToCanvasCoordinates(position, scratch);
+    if (Cesium.defined(canvasPosition)) {
+        htmlOverlay.style.top = canvasPosition.y + 'px';
+        htmlOverlay.style.left = canvasPosition.x + 'px';
+    }
+});

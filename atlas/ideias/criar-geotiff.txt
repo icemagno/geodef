@@ -1,0 +1,3 @@
+gdal_translate -of Gtiff -a_ullr LEFT_LON UPPER_LAT RIGHT_LON LOWER_LAT -a_srs EPSG_PROJ INPUT_PNG_FILE OUTPUT_GTIFF_FILE. 
+
+https://gis.stackexchange.com/questions/317910/convert-a-png-file-to-a-geotiff-while-knowing-the-boundings?noredirect=1&lq=1

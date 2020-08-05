@@ -1,0 +1,66 @@
+
+#userTable td{
+	padding : 2px !important;
+}
+
+
+#toolBarsContainer button {
+	margin-right : 3px;
+	width : 41px;
+	height : 34px;
+	float:right;
+	margin-left: -1px;
+}
+#toolBarsSubContainer  {
+	/*padding-right: 3px;*/
+}
+#toolBarsSubContainer button {
+	width : 41px;
+	height : 34px;
+	margin-right : 3px;
+	float:right;
+	margin-left: -1px;
+}
+ 	
+.fullWindow{position:absolute;left:0;height:100%;width:100%;margin:0;overflow:hidden;padding:0;}
+
+.loadingIndicator{display:block;position:absolute;top:0px;left:0px;margin-top:-33px;margin-left:-33px;width:66px;height:66px;background-position:center;background-repeat:no-repeat;background-image:url(Images/ajax-loader.gif);}
+
+.layerTable {
+	padding-top : 3px !important;
+	padding-right : 3px !important;
+	padding-bottom : 3px !important;
+	font-size: 11px;
+    font-family: monospace;
+}
+
+.box-body {
+	padding: 5px !important;
+}
+
+.toolBarMenuBox {
+	left: 695px; 
+	position: absolute; 
+	z-index: 9999;
+	top: 5px;
+	font-size: 11px;
+	display:none; 
+	width:340px; 
+	height:auto;
+	background-color : white; 
+	border: 1px solid #cacaca;
+}
+
+.poiicon{
+	width: 21px;
+	cursor : pointer; 
+	height: 23px;
+}
+
+#chm-bar {
+    background: url('../img/logo-chm.png');
+    background-size: contain;
+    border-bottom:1px dotted #cacaca;
+    height:42px;
+    width:100%
+}

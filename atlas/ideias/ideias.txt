@@ -1,0 +1,148 @@
+// TOPOJSON
+
+http://sisgeodef.defesa.mil.br:36212/geoserver/odisseu/wms?service=WMS&version=1.1.0&request=GetMap&layers=odisseu:aglomerado_rural_de_extensao_urbana_p&bbox=-45.2225074768066,-22.8278903961182,-45.1824951171875,-22.8082256317139&width=768&height=377&srs=EPSG:4326&format=application/json;type=topojson
+
+
+https://cesiumjs.org/Cesium/Build/Apps/Sandcastle/?src=Callback%20Property.html
+
+
+// HEAT MAP
+https://github.com/manuelnas/CesiumHeatmap
+https://github.com/manuelnas/CesiumHeatmap
+
+
+
+// ESPAÇO AEREO
+
+var greenRectangle = viewer.entities.add({
+    name : 'Green translucent, rotated, and extruded rectangle at height with outline',
+    rectangle : {
+        coordinates : Cesium.Rectangle.fromDegrees(-110.0, 30.0, -100.0, 40.0),
+        material : Cesium.Color.GREEN.withAlpha(0.5),
+        rotation : Cesium.Math.toRadians(45),
+        extrudedHeight : 300000.0,
+        height : 100000.0,
+        outline : true, // height must be set for outline to display
+        outlineColor : Cesium.Color.BLACK
+    }
+});
+
+
+INTRROGAR
+
+var pickRay = viewer.camera.getPickRay(windowPosition);
+var featuresPromise = viewer.imageryLayers.pickImageryLayerFeatures(pickRay, viewer.scene);
+if (!Cesium.defined(featuresPromise)) {
+    console.log('No features picked.');
+} else {
+    Cesium.when(featuresPromise, function(features) {
+        // This function is called asynchronously when the list if picked features is available.
+        console.log('Number of features: ' + features.length);
+        if (features.length > 0) {
+            console.log('First feature name: ' + features[0].name);
+        }
+    });
+}
+
+// USAR GEO JSON
+var dataSource = new Cesium.GeoJsonDataSource();
+viewer.dataSources.add(dataSource);
+dataSource.load(geo);
+
+//Reset the scene when switching demos.
+Sandcastle.reset = function() {
+  var camera = viewer.scene.camera;
+  camera.lookAt(Cesium.Cartesian3.fromDegrees(100, 0, 5000000),
+      Cesium.Cartesian3.fromDegrees(100, 0, 0), Cesium.Cartesian3.UNIT_Z);
+};
+
+
+
+	/*
+	MEDIDA DISTANCIA
+		var startCartesian3Point = Cesium.Cartesian3.fromDegrees(48.862165, 2.305189);
+		var endCartesian3Point = Cesium.Cartesian3.fromDegrees(45.755675, 4.822185);
+
+		var startCartographicPoint = Cesium.Cartographic.fromCartesian(startCartesian3Point);
+		var endCartographicPoint = Cesium.Cartographic.fromCartesian(endCartesian3Point);
+
+		var ellipsoidGeodesic = new Cesium.EllipsoidGeodesic(startCartographicPoint,
+		    endCartographicPoint );
+		var distance = ellipsoidGeodesic.surfaceDistance;
+		var distanceInKm = distance * 0.001;
+
+		console.log('Geodesic distance: ' + distanceInKm + ' Km');	
+
+	 */
+
+
+
+	/*
+	var heading = Cesium.Math.toRadians( 0.0 );
+	var pitch = Cesium.Math.toRadians(0.0);
+	var roll = Cesium.Math.toRadians(0.0);
+	var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
+	var thePosition = Cesium.Cartesian3.fromDegrees(-47.265102, -15.600131, 2000.0);
+	var theOrientation = Cesium.Transforms.headingPitchRollQuaternion(thePosition, hpr);
+
+	var yellowBall = new Cesium.Entity({
+	    name : 'name',
+	    position: thePosition,
+	    //orientation : theOrientation,
+	    show : true,
+	    ellipsoid : {
+	        radii : new Cesium.Cartesian3(200.0, 200.0, 200.0),
+	        material : Cesium.Color.GREEN.withAlpha(1),
+	    }
+	});
+	viewer.entities.add( yellowBall );
+	 */
+
+
+	/*
+	viewer.camera.setView({
+	    destination: Cesium.Rectangle.fromDegrees(114.591, -45.837, 148.970, -5.730)
+	});
+	 */
+
+	/*	
+	var promise = Cesium.KmlDataSource.load('/resources/FORMOSA_SHP.kml', {
+		camera: viewer.scene.camera,
+		canvas: viewer.scene.canvas,
+		clampToGround : true,
+		ellipsoid : Ellipsoid.WGS84
+	});
+
+	var x = 0;
+    promise.then(function(dataSource) {
+
+        var entities = dataSource.entities.values;
+        for (var i = 0; i < entities.length; i++) { 
+        	var entity = entities[i];
+        	entity.polygon.extrudedHeight = 3000;
+        }
+
+        viewer.dataSources.add(dataSource);
+    });    
+	 */
+
+	//viewer.dataSources.add( kmlDataSource );
+	// http://www.phpmind.com/blog/2015/09/cesiumjs-how-to-flies-to-an-entity-and-create-marker/
+	/*
+    var pinBuilder = new Cesium.PinBuilder();
+	var bluePin = viewer.entities.add({
+	    name : 'Blank blue pin',
+	    position : Cesium.Cartesian3.fromDegrees(-47.265102,-15.600131),
+	    billboard : {
+	        image : pinBuilder.fromColor(Cesium.Color.ROYALBLUE, 48).toDataURL(),
+	        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
+	    }
+	});
+	 */
+
+	/*
+	viewer.flyTo(bluePin).then(function(){
+	    viewer.trackedEntity = bluePin;
+	});	
+
+	 */

@@ -1,0 +1,56 @@
+	          <!-- Tasks Menu -->
+	          <li class="dropdown tasks-menu">
+	            <!-- Menu Toggle Button -->
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	              <i class="fa fa-flag-o"></i>
+	              <span class="label label-danger">9</span>
+	            </a>
+	            <ul class="dropdown-menu">
+	              <li class="header">Existem 9 avisos de sistema</li>
+	              <li>
+	                <!-- Inner menu: contains the tasks -->
+	                <ul class="menu">
+	                  <li><!-- Task item -->
+	                    <a href="#">
+	                      <!-- Task title and progress text -->
+	                      <h3>
+	                        Atualizando dados do BDGEX...
+	                        <small class="pull-right">20%</small>
+	                      </h3>
+	                      <!-- The progress bar -->
+	                      <div class="progress xs">
+	                        <!-- Change the css width attribute to simulate progress -->
+	                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
+	                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+	                          <span class="sr-only">20% Complete</span>
+	                        </div>
+	                      </div>
+	                    </a>
+	                  </li>
+					  
+	                  <li><!-- Task item -->
+	                    <a href="#">
+	                      <!-- Task title and progress text -->
+	                      <h3>
+	                        Importando dados do CPTEC...
+	                        <small class="pull-right">FALHA</small>
+	                      </h3>
+	                      <!-- The progress bar -->
+	                      <div class="progress xs">
+	                        <!-- Change the css width attribute to simulate progress -->
+	                        <div class="progress-bar progress-bar-red" style="width: 70%" role="progressbar"
+	                             aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+	                          <span class="sr-only">Falha</span>
+	                        </div>
+	                      </div>
+	                    </a>
+	                  </li>
+					  
+	                  <!-- end task item -->
+	                </ul>
+	              </li>
+	              <li class="footer">
+	                <a href="#">Ver Todos</a>
+	              </li>
+	            </ul>
+	          </li>
