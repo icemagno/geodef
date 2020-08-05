@@ -1,0 +1,162 @@
+{
+  "nautica": {
+    "classes": [
+      {
+        "nome": "Area_De_Fundeio",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "area_de_fundeio",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Area_De_Restricao",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "area_de_restricao",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Baliza",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "baliza",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Boia",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "boia",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Cabo_Submarino",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "cabo_submarino",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Construcao_Costeira",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "construcao_costeira",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Duto_Submarino",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "duto_submarino",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Luz",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "luz",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Obstrucao",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "obstrucao",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Plataforma_Offshore",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "plataforma_offshore",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Producao_Offshore",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "producao_offshore",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Rocha_Submersa",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "rocha_submersa",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Tenca",
+        "workspace": "nautilo",
+        "layers": [
+          {
+            "layer": "tenca",
+            "escalas": [
+              "300000"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

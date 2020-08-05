@@ -1,0 +1,196 @@
+{
+  "aeronautica": {
+    "classes": [
+      {
+        "nome": "airportheliport",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "airportheliport",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "airspace",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "airspace",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "airtrafficcontrolservice",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "airtrafficcontrolservice",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "designatedpoint",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "designatedpoint",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "dme",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "dme",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "geoborder",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "geoborder",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "glidepath",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "glidepath",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "informationservice",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "informationservice",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "localizer",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "localizer",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "markerbeacon",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "markerbeacon",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "navaid",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "navaid",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "ndb",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "ndb",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "routesegment",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "routesegment",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "runwaycentrelinepoint",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "runwaycentrelinepoint",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "runwaydirectionlightsystem",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "runwaydirectionlightsystem",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "safealtitudearea",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "safealtitudearea",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "taxiholdingposition",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "taxiholdingposition",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "unit",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "unit",
+            "escalas": []
+          }
+        ]
+      },
+      {
+        "nome": "vor",
+        "workspace": "icaro",
+        "layers": [
+          {
+            "layer": "vor",
+            "escalas": []
+          }
+        ]
+      }
+    ]
+  }
+}

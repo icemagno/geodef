@@ -1,0 +1,2646 @@
+{
+  "terrestre": [
+    {
+      "categoria": "Administração Pública",
+      "classes": [
+        {
+          "nome": "Area_Pub_Civil",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_pub_civil_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Pub_Militar",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_pub_militar_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Pub_Civil",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_pub_civil_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_pub_civil_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Pub_Militar",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_pub_militar_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_pub_militar_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Posto_Fiscal",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "posto_fiscal_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Posto_Pol_Rod",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "posto_pol_rod_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Educação e Cultura",
+      "classes": [
+        {
+          "nome": "Area_Ensino",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_ensino_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Lazer",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_lazer_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Religiosa",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_religiosa_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Ruinas",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_ruinas_a",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Arquibancada",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "arquibancada_a",
+              "escalas": [
+                "25000"
+              ]
+            },
+            {
+              "layer": "arquibancada_p",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Campo_Quadra",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "campo_quadra_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "campo_quadra_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Coreto_Tribuna",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "coreto_tribuna_p",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Const_Lazer",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_const_lazer_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_const_lazer_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Const_Turistica",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_const_turistica_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_const_turistica_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Ensino",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_ensino_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_ensino_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Religiosa",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_religiosa_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_religiosa_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Piscina",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "piscina_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Pista_Competicao",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "pista_competicao_l",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ruina",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ruina_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "ruina_a",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Energia e Comunicações",
+      "classes": [
+        {
+          "nome": "Antena_Comunic",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "antena_comunic_p",
+              "escalas": [
+                "250000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Comunicacao",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_comunicacao_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Energia_Eletrica",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_energia_eletrica_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Descontinuidade_Geom",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "descontinuidade_geom_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Comunic",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_comunic_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_comunic_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Energia",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_energia_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_energia_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Est_Gerad_Energia_Eletrica",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "est_gerad_energia_eletrica_p",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "est_gerad_energia_eletrica_a",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Grupo_Transformadores",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "grupo_transformadores_a",
+              "escalas": [
+                "25000"
+              ]
+            },
+            {
+              "layer": "grupo_transformadores_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Hidreletrica",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "hidreletrica_a",
+              "escalas": [
+                "250000"
+              ]
+            },
+            {
+              "layer": "hidreletrica_p",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ponto_Trecho_Energia",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ponto_trecho_energia_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Termeletrica",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "termeletrica_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Torre_Comunic",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "torre_comunic_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Torre_Energia",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "torre_energia_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Trecho_Comunic",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "trecho_comunic_l",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Trecho_Energia",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "trecho_energia_l",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Estrutura Econômica",
+      "classes": [
+        {
+          "nome": "Area_Agropec_Ext_Vegetal_Pesca",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_agropec_ext_vegetal_pesca_a",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Comerc_Serv",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_comerc_serv_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Ext_Mineral",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_ext_mineral_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Industrial",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_industrial_a",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Deposito_Geral",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "deposito_geral_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "deposito_geral_p",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Agropec_Ext_Vegetal_Pesca",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_agropec_ext_vegetal_pesca_p",
+              "escalas": [
+                "100000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_agropec_ext_vegetal_pesca_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Comerc_Serv",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_comerc_serv_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_comerc_serv_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Ext_Mineral",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_ext_mineral_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_ext_mineral_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Industrial",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_industrial_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_industrial_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Equip_Agropec",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "equip_agropec_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ext_Mineral",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ext_mineral_p",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "ext_mineral_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Hidrografia",
+      "classes": [
+        {
+          "nome": "Area_Umida",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_umida_a",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Banco_Areia",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "banco_areia_a",
+              "escalas": [
+                "100000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Barragem",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "barragem_a",
+              "escalas": [
+                "50000"
+              ]
+            },
+            {
+              "layer": "barragem_l",
+              "escalas": [
+                "100000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "barragem_p",
+              "escalas": [
+                "100000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Comporta",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "comporta_l",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Confluencia",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "confluencia_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Corredeira",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "corredeira_p",
+              "escalas": [
+                "50000"
+              ]
+            },
+            {
+              "layer": "corredeira_a",
+              "escalas": [
+                "50000"
+              ]
+            },
+            {
+              "layer": "corredeira_l",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Descontinuidade_Geom",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "descontinuidade_geom_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Fonte_Dagua",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "fonte_dagua_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Foz_Maritima",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "foz_maritima_l",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "foz_maritima_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ilha",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ilha_a",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "ilha_l",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Limite_Massa_Dagua",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "limite_massa_dagua_l",
+              "escalas": [
+                "100000",
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Massa_Dagua",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "massa_dagua_a",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ponto_Drenagem",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ponto_drenagem_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ponto_Inicio_Drenagem",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ponto_inicio_drenagem_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Quebramar_Molhe",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "quebramar_molhe_a",
+              "escalas": [
+                "25000"
+              ]
+            },
+            {
+              "layer": "quebramar_molhe_l",
+              "escalas": [
+                "100000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Queda_Dagua",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "queda_dagua_p",
+              "escalas": [
+                "100000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "queda_dagua_a",
+              "escalas": [
+                "50000"
+              ]
+            },
+            {
+              "layer": "queda_dagua_l",
+              "escalas": [
+                "100000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Recife",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "recife_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "recife_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Reservatorio_Hidrico",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "reservatorio_hidrico_a",
+              "escalas": [
+                "100000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Rocha_Em_Agua",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "rocha_em_agua_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "rocha_em_agua_a",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Sumidouro_Vertedouro",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "sumidouro_vertedouro_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Terreno_Sujeito_Inundacao",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "terreno_sujeito_inundacao_a",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Trecho_Drenagem",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "trecho_drenagem_l",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Trecho_Massa_Dagua",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "trecho_massa_dagua_a",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Limites",
+      "classes": [
+        {
+          "nome": "Bairro",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "bairro_a",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Delimitacao_Fisica",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "delimitacao_fisica_l",
+              "escalas": [
+                "100000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Limite_Area_Especial",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "limite_area_especial_l",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "limite_area_especial_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Limite_Politico_Administrativo",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "limite_politico_administrativo_l",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Municipio",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "municipio_a",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Outros_Limites_Oficiais",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "outros_limites_oficiais_l",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Pais",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "pais_a",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Regiao_Administrativa",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "regiao_administrativa_a",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Terra_Publica",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "terra_publica_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Unidade_Conservacao_Nao_Snuc",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "unidade_conservacao_nao_snuc_p",
+              "escalas": [
+                "250000"
+              ]
+            },
+            {
+              "layer": "unidade_conservacao_nao_snuc_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Unidade_Federacao",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "unidade_federacao_a",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Unidade_Protecao_Integral",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "unidade_protecao_integral_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "unidade_protecao_integral_p",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Unidade_Uso_Sustentavel",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "unidade_uso_sustentavel_a",
+              "escalas": [
+                "25000",
+                "250000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Localidades",
+      "classes": [
+        {
+          "nome": "Aglomerado_Rural_De_Extensao_Urbana",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "aglomerado_rural_de_extensao_urbana_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Aglomerado_Rural_Isolado",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "aglomerado_rural_isolado_p",
+              "escalas": [
+                "100000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Edificada",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_edificada_a",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Urbana_Isolada",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_urbana_isolada_a",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Capital",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "capital_p",
+              "escalas": [
+                "250000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Cidade",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "cidade_p",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Habitacional",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_habitacional_a",
+              "escalas": [
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_habitacional_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edificacao",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edificacao_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edificacao_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Hab_Indigena",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "hab_indigena_p",
+              "escalas": [
+                "250000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Nome_Local",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "nome_local_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Vila",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "vila_p",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Outros",
+      "classes": [
+        {
+          "nome": "Moldura",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "moldura_a",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Pontos de Referência",
+      "classes": [
+        {
+          "nome": "Pto_Controle",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "pto_controle_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Pto_Ref_Geod_Topo",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "pto_ref_geod_topo_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Relevo",
+      "classes": [
+        {
+          "nome": "Alteracao_Fisiografica_Antropica",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "alteracao_fisiografica_antropica_l",
+              "escalas": [
+                "50000"
+              ]
+            },
+            {
+              "layer": "alteracao_fisiografica_antropica_a",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Curva_Batimetrica",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "curva_batimetrica_l",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Curva_Nivel",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "curva_nivel_l",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Descontinuidade_Geom",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "descontinuidade_geom_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Dolina",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "dolina_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Duna",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "duna_a",
+              "escalas": [
+                "50000"
+              ]
+            },
+            {
+              "layer": "duna_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Elemento_Fisiografico_Natural",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "elemento_fisiografico_natural_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "elemento_fisiografico_natural_a",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "elemento_fisiografico_natural_l",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Gruta_Caverna",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "gruta_caverna_p",
+              "escalas": [
+                "100000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Pico",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "pico_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ponto_Cotado_Altimetrico",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ponto_cotado_altimetrico_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Rocha",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "rocha_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "rocha_a",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Terreno_Exposto",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "terreno_exposto_a",
+              "escalas": [
+                "100000",
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Saneamento Básico",
+      "classes": [
+        {
+          "nome": "Area_Saneamento",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_saneamento_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Cemiterio",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "cemiterio_p",
+              "escalas": [
+                "100000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "cemiterio_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Dep_Abast_Agua",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "dep_abast_agua_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "dep_abast_agua_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Dep_Saneamento",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "dep_saneamento_p",
+              "escalas": [
+                "25000"
+              ]
+            },
+            {
+              "layer": "dep_saneamento_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Abast_Agua",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_abast_agua_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_abast_agua_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Saneamento",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_saneamento_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_saneamento_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Saúde e Serviço Social",
+      "classes": [
+        {
+          "nome": "Area_Saude",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_saude_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Area_Servico_Social",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_servico_social_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Saude",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_saude_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_saude_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Servico_Social",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_servico_social_a",
+              "escalas": [
+                "25000"
+              ]
+            },
+            {
+              "layer": "edif_servico_social_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Sistema de Transporte",
+      "classes": [
+        {
+          "nome": "Area_Estrut_Transportes",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "area_estrut_transportes_a",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Arruamento",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "arruamento_l",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Atracadouro",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "atracadouro_a",
+              "escalas": [
+                "50000"
+              ]
+            },
+            {
+              "layer": "atracadouro_l",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "atracadouro_p",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Caminho_Aereo",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "caminho_aereo_l",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ciclovia",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ciclovia_l",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Cremalheira",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "cremalheira_l",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Descontinuidade_Geom",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "descontinuidade_geom_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Constr_Aeroportuaria",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_constr_aeroportuaria_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_constr_aeroportuaria_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Constr_Portuaria",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_constr_portuaria_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_constr_portuaria_p",
+              "escalas": [
+                "100000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Metro_Ferroviaria",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_metro_ferroviaria_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "edif_metro_ferroviaria_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Edif_Rodoviaria",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "edif_rodoviaria_a",
+              "escalas": [
+                "25000"
+              ]
+            },
+            {
+              "layer": "edif_rodoviaria_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Entroncamento",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "entroncamento_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Fundeadouro",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "fundeadouro_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Galeria_Bueiro",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "galeria_bueiro_l",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "galeria_bueiro_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Identificador_Trecho_Rodoviario",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "identificador_trecho_rodoviario_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Obstaculo_Navegacao",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "obstaculo_navegacao_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Passag_Elevada_Viaduto",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "passag_elevada_viaduto_l",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "passag_elevada_viaduto_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Passagem_Nivel",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "passagem_nivel_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Patio",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "patio_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "patio_p",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Pista_Ponto_Pouso",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "pista_ponto_pouso_a",
+              "escalas": [
+                "100000",
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "pista_ponto_pouso_l",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "pista_ponto_pouso_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ponte",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ponte_l",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "ponte_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ponto_Duto",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ponto_duto_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ponto_Ferroviario",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ponto_ferroviario_p",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Ponto_Rodoviario",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "ponto_rodoviario_p",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Posto_Combustivel",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "posto_combustivel_a",
+              "escalas": [
+                "25000"
+              ]
+            },
+            {
+              "layer": "posto_combustivel_p",
+              "escalas": [
+                "25000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Sinalizacao",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "sinalizacao_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Travessia",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "travessia_l",
+              "escalas": [
+                "100000",
+                "250000"
+              ]
+            },
+            {
+              "layer": "travessia_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Travessia_Pedestre",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "travessia_pedestre_l",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "travessia_pedestre_p",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Trecho_Duto",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "trecho_duto_l",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Trecho_Ferroviario",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "trecho_ferroviario_l",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Trecho_Rodoviario",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "trecho_rodoviario_l",
+              "escalas": [
+                "100000",
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Trilha_Picada",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "trilha_picada_l",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Tunel",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "tunel_l",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            },
+            {
+              "layer": "tunel_p",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoria": "Vegetação",
+      "classes": [
+        {
+          "nome": "Brejo_Pantano",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "brejo_pantano_a",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Campinarana",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "campinarana_a",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Campo",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "campo_a",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Cerrado_Cerradao",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "cerrado_cerradao_a",
+              "escalas": [
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Descontinuidade_Geom",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "descontinuidade_geom_l",
+              "escalas": [
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Floresta",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "floresta_a",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Macega_Chavascal",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "macega_chavascal_a",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Mangue",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "mangue_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Veg_Cultivada",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "veg_cultivada_a",
+              "escalas": [
+                "25000",
+                "250000",
+                "50000"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Veg_Restinga",
+          "workspace": "odisseu",
+          "layers": [
+            {
+              "layer": "veg_restinga_a",
+              "escalas": [
+                "25000",
+                "50000"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
