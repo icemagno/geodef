@@ -1,0 +1,46 @@
+0       admin
+84K     archimedes
+47M     ariia-db
+1.5M    atlantis
+84M     atlas-db
+193M    calisto
+0       draco
+13G     efestus-db
+211M    gdal
+46M     geonetwork
+1.3G    gitlab
+4.0K    grafana
+48M     guardiao-db
+0       rabbitmq
+1.2M    hades
+44M     icaro
+5.8M    iscy
+336K    lucene
+155M    icaro-db
+51G     efestus
+69M     midas
+24K     midas-old
+1.3M    nautilo
+253M    nautilo-db
+243M    nextcloud
+58M     nextcloud-db
+526M    nyx
+144K    odisseu
+691M    ortelius
+0       ortelius-db
+168K    pgadmin
+8.0K    prometheus
+142M    rbase
+649M    volcano
+1.2G    grass
+3.9G    odisseu-db
+4.6G    lucene-db
+1.2G    olimpo
+
+28G     pleione
+62G     volcano-db
+
+23G     srtm
+
+----------------------
+190G    total

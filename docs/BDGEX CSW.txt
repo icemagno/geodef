@@ -1,0 +1,140 @@
+http://bdgex.eb.mil.br/csw?service=csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=0597811e-b022-4eeb-c0db-be3876d351a4
+
+
+http://bdgex.eb.mil.br/csw?service=CSW&request=GetCapabilities&acceptFormats=application%2Fxml
+
+
+https://geonetwork-opensource.org/manuals/2.10.4/eng/developer/xml_services/csw_services.html
+
+
+http://bdgex.eb.mil.br/csw?service=CSW&request=GetRecords&service=CSW&version=2.0.2&constraint=csw:AnyText+like+%22borda%22&constraintLanguage=CQL_TEXT&ElementSetName=full&outputFormat=application/json&typeNames=csw:Record&resultType=results
+
+
+bdgex.eb.mil.br/csw/en/xml.user.login
+
+
+
+
+{
+  "csw:GetRecordsResponse": {
+    "@version": "2.0.2",
+    "@http://www.w3.org/2001/XMLSchema-instance:schemaLocation": "http://www.opengis.net/cat/csw/2.0.2 http://schemas.opengis.net/csw/2.0.2/CSW-discovery.xsd",
+    "csw:SearchStatus": {
+      "@timestamp": "2019-02-01T11:26:43Z"
+    },
+    "csw:SearchResults": {
+      "@nextRecord": "0",
+      "@numberOfRecordsMatched": "4",
+      "@numberOfRecordsReturned": "4",
+      "@recordSchema": "http://www.opengis.net/cat/csw/2.0.2",
+      "@elementSet": "full",
+      "csw:Record": [
+        {
+          "dc:identifier": "64771e44-69c6-11e0-9adb-00270e07db9f",
+          "dc:title": "SERRA DA BORDA - SD-21-Y-A-IV - 100.000",
+          "dc:type": "dataset",
+          "dc:format": "ESRI Shapefile",
+          "dct:references": {
+            "@scheme": "WWW:DOWNLOAD-1.0-http--download",
+            "#text": "http://www.geoportal.eb.mil.br/mediador/index.php?modulo=download&acao=baixar&identificador=64771e44-69c6-11e0-9adb-00270e07db9f"
+          },
+          "dct:modified": "2011-01-01",
+          "dct:abstract": "Conjunto de dados geoespaciais vetoriais na escala 1:100.000 elaborado a partir da base cartográfica analógica existente. A estrutura de dados utilizada foi a prevista na ET-EDGV v2.02 e geometrias adquiridas segundo a ET-ADGV v1.0.\r\n- Categoria de informações constantes do conjunto de dados geoespaciais:\r\nTodas as previstas na ET-EDGV com exceção da vegetação. A vegetação constante neste arquivo não segue a ET-EDGV apresentando apenas as áreas com vegetação arbórea.\r\n- Recursos utilizados por etapa:\r\nDigitalização Matricial e Vetorização:\r\n  Cartas topográficas e originais cartográficos;\r\nAtualização (2):\r\n  Imagens de sensores orbitais:\r\n    Geocover série 2000 - LandSat 7 (Insumo Principal de atualização);\r\n    LandSat 5; e\r\n    Spot 4.\r\n  Arquivos vetoriais (1):\r\n    Sistema de tranportes: oriundos da base de dados de  órgãos federais, estaduais e municípais com incumbência de gerir informações sobre sistema de transportes;\r\n    Limites: Extraídos do sítio do IBGE, CPRM, IBAMA, PCDL;\r\n    Localidades: Extraídos do sítio do IBGE; e\r\n    Outros insumos disponíveis.\r\nObservações:  \r\n(1) para maiores detalhes, verificar os metadados referentes à linhagem, outras informações podem ser obtidas junto ao órgão produtor consultando os metadados elaborados para cada feição constante do conjunto de dados geoespaciais. \r\n(2) Considerando os insumos utilizados e os objetivos específicos a atualização foi limitada apenas à algumas feições. Para maiores detalhes consultar a metodologia utilizada pelo órgão produtor a qual foi elaborada a partir do caderno de encargos relativos ao projeto.",
+          "dc:date": "2011-01-01",
+          "dc:creator": "2º Centro de Geoinformação",
+          "dc:publisher": "2º Centro de Geoinformação",
+          "dc:language": "pt-BR",
+          "dct:alternative": "2102",
+          "dct:spatial": {
+            "@scheme": "http://www.opengis.net/def/crs",
+            "#text": "urn:ogc:def:crs:EPSG:6.11:4674"
+          },
+          "ows:BoundingBox": {
+            "@crs": "urn:x-ogc:def:crs:EPSG:6.11:4326",
+            "@dimensions": "2",
+            "ows:LowerCorner": "-15.0 -60.0",
+            "ows:UpperCorner": "-14.5 -59.5"
+          }
+        },
+        {
+          "dc:identifier": "0597811e-b022-4eeb-c0db-be3876d351a4",
+          "dc:title": "BORDA DA MATA - SF-23-Y-B-I-4 - 50.000",
+          "dc:type": "dataset",
+          "dc:format": "Shape File",
+          "dct:references": {
+            "@scheme": "WWW:DOWNLOAD-1.0-http--download",
+            "#text": "http://www.geoportal.eb.mil.br/mediador/index.php?modulo=download&acao=baixar&identificador=0597811e-b022-4eeb-c0db-be3876d351a4"
+          },
+          "dct:modified": "1968-01-10",
+          "dct:abstract": "Independente de qualquer outra aplicação secundária, este conjunto de dados destina-se ao USO como dado fundamental de referências. Fornece o conjunto de dados das categorias previstas na EDGV. Limitado ao enquadramento previsto no índice de nomenclatura (Hidrografia e Relevo).",
+          "dc:date": "1968-01-10",
+          "dc:creator": "5º Centro de Geoinformação",
+          "dc:publisher": "5º Centro de Geoinformação",
+          "dct:alternative": "2709-4",
+          "dct:spatial": {
+            "@scheme": "http://www.opengis.net/def/crs",
+            "#text": "urn:ogc:def:crs:EPSG:6.11:4674"
+          },
+          "ows:BoundingBox": {
+            "@crs": "urn:x-ogc:def:crs:EPSG:6.11:4326",
+            "@dimensions": "2",
+            "ows:LowerCorner": "-22.5 -46.25",
+            "ows:UpperCorner": "-22.25 -46.0"
+          }
+        },
+        {
+          "dc:identifier": "7cd6586e-c7e7-11df-a661-00270e07db9f",
+          "dc:title": "SERRA DA BORDA - SD-21-Y-A-IV - 100.000",
+          "dc:type": "dataset",
+          "dc:format": "Carta Topográfica - GeoTIFF",
+          "dct:references": {
+            "@scheme": "WWW:DOWNLOAD-1.0-http--download",
+            "#text": "http://www.geoportal.eb.mil.br/mediador/index.php?modulo=download&acao=baixar&identificador=7cd6586e-c7e7-11df-a661-00270e07db9f"
+          },
+          "dct:modified": "1967-01-01",
+          "dct:abstract": "CARTAS DA SÉRIE 1/100.000",
+          "dc:date": "1967-01-01",
+          "dc:creator": "2º Centro de Geoinformação",
+          "dc:publisher": "2º Centro de Geoinformação",
+          "dct:alternative": "2102",
+          "dct:spatial": {
+            "@scheme": "http://www.opengis.net/def/crs",
+            "#text": "urn:ogc:def:crs:EPSG:6.11:4674"
+          },
+          "ows:BoundingBox": {
+            "@crs": "urn:x-ogc:def:crs:EPSG:6.11:4326",
+            "@dimensions": "2",
+            "ows:LowerCorner": "-15.0 -60.0",
+            "ows:UpperCorner": "-14.5 -59.5"
+          }
+        },
+        {
+          "dc:identifier": "2c673740-50b7-11e1-b016-00270e07db9f",
+          "dc:title": "BORDA DA MATA - SF-23-Y-B-I-4 - 50.000",
+          "dc:type": "dataset",
+          "dc:format": "Carta Topográfica - GeoTIFF",
+          "dct:references": {
+            "@scheme": "WWW:DOWNLOAD-1.0-http--download",
+            "#text": "http://www.geoportal.eb.mil.br/mediador/index.php?modulo=download&acao=baixar&identificador=2c673740-50b7-11e1-b016-00270e07db9f"
+          },
+          "dct:modified": "1972-01-01",
+          "dct:abstract": "CARTAS DA SÉRIE 1/50.000",
+          "dc:date": "1972-01-01",
+          "dc:creator": "Instituto Brasileiro de Geografia e Estatística",
+          "dc:publisher": "2º Centro de Geoinformação",
+          "dct:alternative": "2709-4",
+          "dct:spatial": {
+            "@scheme": "http://www.opengis.net/def/crs",
+            "#text": "urn:ogc:def:crs:EPSG:6.11:4674"
+          },
+          "ows:BoundingBox": {
+            "@crs": "urn:x-ogc:def:crs:EPSG:6.11:4326",
+            "@dimensions": "2",
+            "ows:LowerCorner": "-22.5 -46.25",
+            "ows:UpperCorner": "-22.25 -46.0"
+          }
+        }
+      ]
+    }
+  }
+}

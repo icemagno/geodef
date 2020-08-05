@@ -1,0 +1,17 @@
+gdal_polygonize.py /home/debora/Documents/sdi/sisgeodef/GT_metoc/clima/UTCI_APR.nc /home/debora/Documents/sdi/sisgeodef/GT_metoc/clima/shp/UTCI_APR.shp -b 1 -f "ESRI Shapefile" UTCI_APR UTCI
+
+LEGENDA = RGB OR HTML NOTATION
+
+HTML NOTATION
+
+1 Classe = #3c0f56
+2 Classe = #7a2ab0
+3 Classe = #b20acc
+4 Classe = #da7bf1
+5 Classe = #00bebe
+6 Classe = #1fc10c
+7 Classe = #fa7406
+8 Classe = #fa0505
+9 Classe = #ae0b0b
+10 Classe = #f60c0c
+
