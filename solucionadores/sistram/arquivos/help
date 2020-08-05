@@ -1,0 +1,23 @@
+Baixar Jsons
+http://sisgeodef.defesa.mil.br:36215/sistram/scan?lat=-22.5666666666667&lon=-40.5166666666667&raio=1500
+http://sisgeodef.defesa.mil.br:36215/sistram/plataformas
+
+Coverter para csv (https://json-csv.com/)
+
+
+importar para o banco
+
+ogr2ogr -overwrite -f PostgreSQL PG:"dbname=nautilo user=postgres password=admin port=36310 host=sisgeodef.defesa.mil.br" "/home/joaquim/NetBeansProjects/Fontes/Codificacao/sisgeodef/solucionadores/sistram/arquivos/navios.csv" -nln sistram.navios
+
+ogr2ogr -overwrite -f PostgreSQL PG:"dbname=nautilo user=postgres password=admin port=36310 host=sisgeodef.defesa.mil.br" "/home/joaquim/NetBeansProjects/Fontes/Codificacao/sisgeodef/solucionadores/sistram/arquivos/plataformas.csv" -nln sistram.plataformas
+
+
+
+SELECT 
+	json_build_object('data'::text, json_agg(row_to_json(r))) navios
+FROM sistram.navios r
+WHERE ((ST_Distance(ST_MakePoint(lon::numeric, lat::numeric, 4326), 
+(select ST_MakePoint(longdd::numeric, latdd::numeric, 4326) from sistram.plataformas where irin = 'H3YT' limit 1)
+)*100) * 0.539957) <= 0.9
+
+

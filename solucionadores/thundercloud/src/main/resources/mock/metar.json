@@ -1,0 +1,1958 @@
+[
+  {
+    "metar": {
+      "wind": {
+        "speed": 3,
+        "direction": "South East",
+        "directionDegrees": 130,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1800,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 540
+        },
+        {
+          "height": 5000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        5,
+        0
+      ],
+      "airport": {
+        "name": "Santos Dumont Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "SDU",
+        "icao": "SBRJ",
+        "latitude": -22.910499572799996,
+        "longitude": -43.1631011963,
+        "altitude": 11,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBRJ 230500Z 13003KT 9999 SCT018 OVC050 23/21 Q1013",
+      "temperature": 23,
+      "dewPoint": 21,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AZ",
+    "alpha": 3700,
+    "beta": 690
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 7,
+        "direction": "South East",
+        "directionDegrees": 150,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": "8000m",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1800,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 540
+        },
+        {
+          "height": 5000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [
+        {
+          "intensity": "LIGHT",
+          "descriptive": null,
+          "phenomenons": [
+            "RAIN"
+          ],
+          "valid": true
+        }
+      ],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        6,
+        0
+      ],
+      "airport": {
+        "name": "Santos Dumont Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "SDU",
+        "icao": "SBRJ",
+        "latitude": -22.910499572799996,
+        "longitude": -43.1631011963,
+        "altitude": 11,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBRJ 230600Z 15007KT 8000 -RA BKN018 OVC050 23/21 Q1013",
+      "temperature": 23,
+      "dewPoint": 21,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 3700,
+    "beta": 690
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 2,
+        "direction": "East",
+        "directionDegrees": 90,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1500,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 450
+        },
+        {
+          "height": 4000,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 1200
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        7,
+        0
+      ],
+      "airport": {
+        "name": "Santos Dumont Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "SDU",
+        "icao": "SBRJ",
+        "latitude": -22.910499572799996,
+        "longitude": -43.1631011963,
+        "altitude": 11,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBRJ 230700Z 09002KT 9999 SCT015 BKN040 22/22 Q1013",
+      "temperature": 22,
+      "dewPoint": 22,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 3700,
+    "beta": 690
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 4,
+        "direction": "North East",
+        "directionDegrees": 50,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1500,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 450
+        },
+        {
+          "height": 5000,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        8,
+        0
+      ],
+      "airport": {
+        "name": "Santos Dumont Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "SDU",
+        "icao": "SBRJ",
+        "latitude": -22.910499572799996,
+        "longitude": -43.1631011963,
+        "altitude": 11,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBRJ 230800Z 05004KT 9999 SCT015 BKN050 22/22 Q1014",
+      "temperature": 22,
+      "dewPoint": 22,
+      "altimeter": 1014,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AZ",
+    "alpha": 3700,
+    "beta": 690
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 4,
+        "direction": "North",
+        "directionDegrees": 20,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1500,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 450
+        },
+        {
+          "height": 5000,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        9,
+        0
+      ],
+      "airport": {
+        "name": "Santos Dumont Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "SDU",
+        "icao": "SBRJ",
+        "latitude": -22.910499572799996,
+        "longitude": -43.1631011963,
+        "altitude": 11,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBRJ 230900Z 02004KT 9999 SCT015 BKN050 23/21 Q1015",
+      "temperature": 23,
+      "dewPoint": 21,
+      "altimeter": 1015,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AZ",
+    "alpha": 3700,
+    "beta": 690
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 3,
+        "direction": "East",
+        "directionDegrees": 100,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1400,
+          "quantity": "FEW",
+          "type": null,
+          "altitude": 420
+        },
+        {
+          "height": 3000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 900
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        5,
+        0
+      ],
+      "airport": {
+        "name": "Rio Galeão – Tom Jobim International Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "GIG",
+        "icao": "SBGL",
+        "latitude": -22.8099994659,
+        "longitude": -43.2505569458,
+        "altitude": 28,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBGL 230500Z 10003KT 9999 FEW014 OVC030 22/18 Q1013",
+      "temperature": 22,
+      "dewPoint": 18,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 1600,
+    "beta": 610
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 5,
+        "direction": "East",
+        "directionDegrees": 90,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 2000,
+          "quantity": "FEW",
+          "type": null,
+          "altitude": 600
+        },
+        {
+          "height": 3000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 900
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        6,
+        0
+      ],
+      "airport": {
+        "name": "Rio Galeão – Tom Jobim International Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "GIG",
+        "icao": "SBGL",
+        "latitude": -22.8099994659,
+        "longitude": -43.2505569458,
+        "altitude": 28,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBGL 230600Z 09005KT 9999 FEW020 OVC030 22/19 Q1013",
+      "temperature": 22,
+      "dewPoint": 19,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 1600,
+    "beta": 610
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 7,
+        "direction": "North East",
+        "directionDegrees": 60,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1400,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 420
+        },
+        {
+          "height": 2000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 600
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        7,
+        0
+      ],
+      "airport": {
+        "name": "Rio Galeão – Tom Jobim International Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "GIG",
+        "icao": "SBGL",
+        "latitude": -22.8099994659,
+        "longitude": -43.2505569458,
+        "altitude": 28,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBGL 230700Z 06007KT 9999 SCT014 OVC020 22/19 Q1013",
+      "temperature": 22,
+      "dewPoint": 19,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 1600,
+    "beta": 610
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 6,
+        "direction": "East",
+        "directionDegrees": 70,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1400,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 420
+        },
+        {
+          "height": 2500,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 750
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        8,
+        0
+      ],
+      "airport": {
+        "name": "Rio Galeão – Tom Jobim International Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "GIG",
+        "icao": "SBGL",
+        "latitude": -22.8099994659,
+        "longitude": -43.2505569458,
+        "altitude": 28,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBGL 230800Z 07006KT 9999 SCT014 OVC025 21/19 Q1014",
+      "temperature": 21,
+      "dewPoint": 19,
+      "altimeter": 1014,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 1600,
+    "beta": 610
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 6,
+        "direction": "North East",
+        "directionDegrees": 60,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1000,
+          "quantity": "FEW",
+          "type": null,
+          "altitude": 300
+        },
+        {
+          "height": 3000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 900
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        9,
+        0
+      ],
+      "airport": {
+        "name": "Rio Galeão – Tom Jobim International Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "GIG",
+        "icao": "SBGL",
+        "latitude": -22.8099994659,
+        "longitude": -43.2505569458,
+        "altitude": 28,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBGL 230900Z 06006KT 9999 FEW010 OVC030 22/19 Q1015",
+      "temperature": 22,
+      "dewPoint": 19,
+      "altimeter": 1015,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 1600,
+    "beta": 610
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 5,
+        "direction": "East",
+        "directionDegrees": 100,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1500,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 450
+        },
+        {
+          "height": 2500,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 750
+        },
+        {
+          "height": 3500,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 1050
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        9,
+        0
+      ],
+      "airport": {
+        "name": "Campo Délio Jardim de Mattos Airport",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "N",
+        "icao": "SBAF",
+        "latitude": -22.875099,
+        "longitude": -43.384701,
+        "altitude": 110,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBAF 230900Z 10005KT 9999 SCT015 BKN025 OVC035 22/19 Q1016",
+      "temperature": 22,
+      "dewPoint": 19,
+      "altimeter": 1016,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 2400,
+    "beta": 960
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 4,
+        "direction": "South",
+        "directionDegrees": 200,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": "9000m",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1500,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 450
+        },
+        {
+          "height": 5000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        5,
+        0
+      ],
+      "airport": {
+        "name": "Santa Cruz Air Force Base",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "SNZ",
+        "icao": "SBSC",
+        "latitude": -22.9324,
+        "longitude": -43.719101,
+        "altitude": 10,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBSC 230500Z 20004KT 9000 SCT015 OVC050 22/18 Q1014",
+      "temperature": 22,
+      "dewPoint": 18,
+      "altimeter": 1014,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 1600,
+    "beta": 510
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 4,
+        "direction": "South",
+        "directionDegrees": 190,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": "8000m",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1500,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 450
+        },
+        {
+          "height": 5000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [
+        {
+          "intensity": "LIGHT",
+          "descriptive": null,
+          "phenomenons": [
+            "RAIN"
+          ],
+          "valid": true
+        }
+      ],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        6,
+        0
+      ],
+      "airport": {
+        "name": "Santa Cruz Air Force Base",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "SNZ",
+        "icao": "SBSC",
+        "latitude": -22.9324,
+        "longitude": -43.719101,
+        "altitude": 10,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBSC 230600Z 19004KT 8000 -RA SCT015 OVC050 21/18 Q1014",
+      "temperature": 21,
+      "dewPoint": 18,
+      "altimeter": 1014,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 1600,
+    "beta": 510
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 4,
+        "direction": "South",
+        "directionDegrees": 180,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": "8000m",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1500,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 450
+        },
+        {
+          "height": 5000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        7,
+        0
+      ],
+      "airport": {
+        "name": "Santa Cruz Air Force Base",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "SNZ",
+        "icao": "SBSC",
+        "latitude": -22.9324,
+        "longitude": -43.719101,
+        "altitude": 10,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBSC 230700Z 18004KT 8000 SCT015 OVC050 21/18 Q1013",
+      "temperature": 21,
+      "dewPoint": 18,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 1600,
+    "beta": 510
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 0,
+        "direction": "North",
+        "directionDegrees": 0,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1500,
+          "quantity": "FEW",
+          "type": null,
+          "altitude": 450
+        },
+        {
+          "height": 5000,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 1500
+        },
+        {
+          "height": 9000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 2700
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        8,
+        0
+      ],
+      "airport": {
+        "name": "Santa Cruz Air Force Base",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "SNZ",
+        "icao": "SBSC",
+        "latitude": -22.9324,
+        "longitude": -43.719101,
+        "altitude": 10,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBSC 230800Z 00000KT 9999 FEW015 BKN050 OVC090 22/19 Q1013",
+      "temperature": 22,
+      "dewPoint": 19,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AZ",
+    "alpha": 1600,
+    "beta": 510
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 3,
+        "direction": "East",
+        "directionDegrees": 110,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1500,
+          "quantity": "FEW",
+          "type": null,
+          "altitude": 450
+        },
+        {
+          "height": 3000,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 900
+        },
+        {
+          "height": 5000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        9,
+        0
+      ],
+      "airport": {
+        "name": "Santa Cruz Air Force Base",
+        "city": "Rio De Janeiro",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "SNZ",
+        "icao": "SBSC",
+        "latitude": -22.9324,
+        "longitude": -43.719101,
+        "altitude": 10,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBSC 230900Z 11003KT 9999 FEW015 BKN030 OVC050 22/19 Q1014",
+      "temperature": 22,
+      "dewPoint": 19,
+      "altimeter": 1014,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "VD",
+    "alpha": 1600,
+    "beta": 510
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 2,
+        "direction": "Variable",
+        "directionDegrees": null,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1000,
+          "quantity": "FEW",
+          "type": null,
+          "altitude": 300
+        },
+        {
+          "height": 1300,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 390
+        },
+        {
+          "height": 5000,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        8,
+        0
+      ],
+      "airport": {
+        "name": "São Pedro da Aldeia Airport",
+        "city": "Sao Pedro Da Aldeia",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "N",
+        "icao": "SBES",
+        "latitude": -22.81290054321289,
+        "longitude": -42.09260177612305,
+        "altitude": 61,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBES 230800Z VRB02KT 9999 FEW010 SCT013 BKN050 22/20 Q1014",
+      "temperature": 22,
+      "dewPoint": 20,
+      "altimeter": 1014,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AZ",
+    "alpha": 1600,
+    "beta": 440
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 3,
+        "direction": "North",
+        "directionDegrees": 360,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 500,
+          "quantity": "FEW",
+          "type": null,
+          "altitude": 150
+        },
+        {
+          "height": 5000,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        9,
+        0
+      ],
+      "airport": {
+        "name": "São Pedro da Aldeia Airport",
+        "city": "Sao Pedro Da Aldeia",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "N",
+        "icao": "SBES",
+        "latitude": -22.81290054321289,
+        "longitude": -42.09260177612305,
+        "altitude": 61,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBES 230900Z 36003KT 9999 FEW005 BKN050 21/20 Q1015",
+      "temperature": 21,
+      "dewPoint": 20,
+      "altimeter": 1015,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AZ",
+    "alpha": 1600,
+    "beta": 440
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 2,
+        "direction": "North East",
+        "directionDegrees": 30,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 1000,
+          "quantity": "FEW",
+          "type": null,
+          "altitude": 300
+        },
+        {
+          "height": 5000,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 1500
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        9,
+        0
+      ],
+      "airport": {
+        "name": "Cabo Frio Airport",
+        "city": "Cabo Frio",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "CFB",
+        "icao": "SBCB",
+        "latitude": -22.921699523900003,
+        "longitude": -42.074298858599995,
+        "altitude": 23,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBCB 230900Z 03002KT 9999 FEW010 SCT050 21/19 Q1015",
+      "temperature": 21,
+      "dewPoint": 19,
+      "altimeter": 1015,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AZ",
+    "alpha": 1600,
+    "beta": 477
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 2,
+        "direction": "West",
+        "directionDegrees": 280,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 2500,
+          "quantity": "FEW",
+          "type": null,
+          "altitude": 750
+        },
+        {
+          "height": 7000,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 2100
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        5,
+        0
+      ],
+      "airport": {
+        "name": "Macaé Airport",
+        "city": "Macaé",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "MEA",
+        "icao": "SBME",
+        "latitude": -22.343000412,
+        "longitude": -41.7659988403,
+        "altitude": 8,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBME 230500Z 28002KT 9999 FEW025 BKN070 20/19 Q1013",
+      "temperature": 20,
+      "dewPoint": 19,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AZ",
+    "alpha": 1600,
+    "beta": 450
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 2,
+        "direction": "West",
+        "directionDegrees": 260,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": ">10km",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 2000,
+          "quantity": "SCT",
+          "type": null,
+          "altitude": 600
+        },
+        {
+          "height": 8000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 2400
+        }
+      ],
+      "weatherConditions": [],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        6,
+        0
+      ],
+      "airport": {
+        "name": "Macaé Airport",
+        "city": "Macaé",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "MEA",
+        "icao": "SBME",
+        "latitude": -22.343000412,
+        "longitude": -41.7659988403,
+        "altitude": 8,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBME 230600Z 26002KT 9999 SCT020 OVC080 20/19 Q1012",
+      "temperature": 20,
+      "dewPoint": 19,
+      "altimeter": 1012,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AZ",
+    "alpha": 1600,
+    "beta": 450
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 2,
+        "direction": "South West",
+        "directionDegrees": 230,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": "4000m",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 600,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 180
+        },
+        {
+          "height": 2000,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 600
+        }
+      ],
+      "weatherConditions": [
+        {
+          "intensity": "LIGHT",
+          "descriptive": null,
+          "phenomenons": [
+            "RAIN"
+          ],
+          "valid": true
+        }
+      ],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        6,
+        25
+      ],
+      "airport": {
+        "name": "Macaé Airport",
+        "city": "Macaé",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "MEA",
+        "icao": "SBME",
+        "latitude": -22.343000412,
+        "longitude": -41.7659988403,
+        "altitude": 8,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBME 230625Z 23002KT 4000 -RA BKN006 BKN020 20/19 Q1013",
+      "temperature": 20,
+      "dewPoint": 19,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AM",
+    "alpha": 1600,
+    "beta": 450
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 1,
+        "direction": "South",
+        "directionDegrees": 190,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": "3000m",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 500,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 150
+        },
+        {
+          "height": 1000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 300
+        }
+      ],
+      "weatherConditions": [
+        {
+          "intensity": "LIGHT",
+          "descriptive": null,
+          "phenomenons": [
+            "RAIN"
+          ],
+          "valid": true
+        }
+      ],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        7,
+        0
+      ],
+      "airport": {
+        "name": "Macaé Airport",
+        "city": "Macaé",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "MEA",
+        "icao": "SBME",
+        "latitude": -22.343000412,
+        "longitude": -41.7659988403,
+        "altitude": 8,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBME 230700Z 19001KT 3000 -RA BKN005 OVC010 20/20 Q1013",
+      "temperature": 20,
+      "dewPoint": 20,
+      "altimeter": 1013,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AM",
+    "alpha": 1600,
+    "beta": 450
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 5,
+        "direction": "East",
+        "directionDegrees": 110,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": "4000m",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 500,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 150
+        },
+        {
+          "height": 1000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 300
+        }
+      ],
+      "weatherConditions": [
+        {
+          "intensity": "LIGHT",
+          "descriptive": null,
+          "phenomenons": [
+            "RAIN"
+          ],
+          "valid": true
+        }
+      ],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        8,
+        0
+      ],
+      "airport": {
+        "name": "Macaé Airport",
+        "city": "Macaé",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "MEA",
+        "icao": "SBME",
+        "latitude": -22.343000412,
+        "longitude": -41.7659988403,
+        "altitude": 8,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBME 230800Z 11005KT 4000 -RA BKN005 OVC010 21/20 Q1014",
+      "temperature": 21,
+      "dewPoint": 20,
+      "altimeter": 1014,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AM",
+    "alpha": 1600,
+    "beta": 450
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 4,
+        "direction": "South East",
+        "directionDegrees": 130,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": "2000m",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 500,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 150
+        },
+        {
+          "height": 1000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 300
+        }
+      ],
+      "weatherConditions": [
+        {
+          "intensity": null,
+          "descriptive": null,
+          "phenomenons": [
+            "RAIN"
+          ],
+          "valid": true
+        },
+        {
+          "intensity": null,
+          "descriptive": null,
+          "phenomenons": [
+            "MIST"
+          ],
+          "valid": true
+        }
+      ],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        8,
+        30
+      ],
+      "airport": {
+        "name": "Macaé Airport",
+        "city": "Macaé",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "MEA",
+        "icao": "SBME",
+        "latitude": -22.343000412,
+        "longitude": -41.7659988403,
+        "altitude": 8,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBME 230830Z 13004KT 2000 RA BR BKN005 OVC010 21/20 Q1014",
+      "temperature": 21,
+      "dewPoint": 20,
+      "altimeter": 1014,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AM",
+    "alpha": 1600,
+    "beta": 450
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 4,
+        "direction": "South East",
+        "directionDegrees": 130,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": "4000m",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 600,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 180
+        },
+        {
+          "height": 1000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 300
+        }
+      ],
+      "weatherConditions": [
+        {
+          "intensity": "LIGHT",
+          "descriptive": null,
+          "phenomenons": [
+            "RAIN"
+          ],
+          "valid": true
+        },
+        {
+          "intensity": null,
+          "descriptive": null,
+          "phenomenons": [
+            "MIST"
+          ],
+          "valid": true
+        },
+        {
+          "intensity": null,
+          "descriptive": null,
+          "phenomenons": [
+            "RAIN"
+          ],
+          "valid": true
+        }
+      ],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        9,
+        0
+      ],
+      "airport": {
+        "name": "Macaé Airport",
+        "city": "Macaé",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "MEA",
+        "icao": "SBME",
+        "latitude": -22.343000412,
+        "longitude": -41.7659988403,
+        "altitude": 8,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBME 230900Z 13004KT 4000 -RA BR BKN006 OVC010 21/20 Q1015 RERA",
+      "temperature": 21,
+      "dewPoint": 20,
+      "altimeter": 1015,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AM",
+    "alpha": 1600,
+    "beta": 450
+  },
+  {
+    "metar": {
+      "wind": {
+        "speed": 8,
+        "direction": "South",
+        "directionDegrees": 180,
+        "gust": 0,
+        "extreme1": 0,
+        "extreme2": 0,
+        "unit": "KT"
+      },
+      "visibility": {
+        "mainVisibility": "3000m",
+        "minVisibility": 0,
+        "minDirection": null
+      },
+      "clouds": [
+        {
+          "height": 600,
+          "quantity": "BKN",
+          "type": null,
+          "altitude": 180
+        },
+        {
+          "height": 8000,
+          "quantity": "OVC",
+          "type": null,
+          "altitude": 2400
+        }
+      ],
+      "weatherConditions": [
+        {
+          "intensity": "LIGHT",
+          "descriptive": null,
+          "phenomenons": [
+            "RAIN"
+          ],
+          "valid": true
+        }
+      ],
+      "verticalVisibility": null,
+      "windShear": null,
+      "cavok": false,
+      "remark": null,
+      "day": 23,
+      "time": [
+        9,
+        15
+      ],
+      "airport": {
+        "name": "Bartolomeu Lisandro Airport",
+        "city": "Campos",
+        "country": {
+          "name": "Brazil"
+        },
+        "iata": "CAW",
+        "icao": "SBCP",
+        "latitude": -21.698299408,
+        "longitude": -41.301700592,
+        "altitude": 57,
+        "timezone": "-3",
+        "dst": "S",
+        "tzDatabase": null
+      },
+      "message": "SBCP 230915Z 18008KT 3000 -RA BKN006 OVC080 22/21 Q1015",
+      "temperature": 22,
+      "dewPoint": 21,
+      "altimeter": 1015,
+      "nosig": false,
+      "auto": false,
+      "runways": [],
+      "trends": []
+    },
+    "cm": "AM",
+    "alpha": 1600,
+    "beta": 500
+  }
+]

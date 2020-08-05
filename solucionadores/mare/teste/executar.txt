@@ -1,0 +1,11 @@
+
+Não esquecer de pegar os modulos !!
+
+Para rodar o JAVA 
+// arq_const, arq_prev, tipo, di, mi, ai, df, mf, af, nivel, op, sim
+java -jar -Djna.library.path=/opt/libraries previsa.jar "AL" "/opt/constantes/teste/constantes_256.txt" "/opt/constantes/teste/AL.txt" "2" "15" "06" "2020" "25" "06" "2020" "0000068.87" "N" "S"
+
+
+ MM
+ AL
+ PP
