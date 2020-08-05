@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>Cesium Box</title>
+    <link href="Cesium/Widgets/widgets.css" rel="stylesheet">
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="Cesium/Cesium.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <style>
+        html, body, #cesiumContainer {
+            width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;background-color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+<div id="cesiumContainer"></div>
+
+<div id='toolbar' class="param-container tool-bar">
+    <button type="button" id="chooseView" class="button black">Choose view</button>
+    <button type="button" id="addPoint" class="button black">Add point</button>
+    <button type="button" id="clear" class="button black">Clear</button>
+</div>
+
+
+<script type="text/javascript">
+
+	var west = -45;
+	var south = -24;
+	var east = -40;
+	var north = -20;	
+	var operationArea = Cesium.Rectangle.fromDegrees(west, south, east, north);
+
+
+	var terrainProvider = new Cesium.CesiumTerrainProvider({
+		url : 'http://sisgeodef.defesa.mil.br:36503/tilesets/sisgide',
+		requestVertexNormals : true,
+		isSct : false,
+		requestWaterMask : true
+	});
+
+	
+	var baseOsmProvider = new Cesium.createOpenStreetMapImageryProvider({
+		url : 'https://a.tile.openstreetmap.org/'
+	});
+		
+	var viewer = new Cesium.Viewer('cesiumContainer',{
+		terrainProvider : terrainProvider,
+		timeline: false,
+		animation: false,
+		baseLayerPicker: false,
+		skyAtmosphere: false,
+		fullscreenButton : false,
+		geocoder : false,
+		homeButton : false,
+		infoBox : false,
+		sceneModePicker : false,
+		selectionIndicator : false,
+		navigationHelpButton : false,
+		requestRenderMode : true,
+	    imageryProvider: baseOsmProvider,
+	    scene3DOnly : true,
+	    shouldAnimate : true
+	});
+	
+	var camera = viewer.camera;
+	var scene = viewer.scene;
+	scene.scene3DOnly = true;
+	scene.highDynamicRange = false;
+	scene.globe.enableLighting = false;
+	scene.globe.baseColor = Cesium.Color.WHITE;
+	scene.screenSpaceCameraController.enableLook = false;
+	scene.screenSpaceCameraController.enableCollisionDetection = false;
+	scene.screenSpaceCameraController.inertiaZoom = 0.8;
+	scene.screenSpaceCameraController.inertiaTranslate = 0.8;
+	scene.globe.maximumScreenSpaceError = 1;
+	scene.globe.depthTestAgainstTerrain = true;
+	scene.globe.tileCacheSize = 250;
+	scene.pickTranslucentDepth = true;
+	scene.useDepthPicking = true;
+
+	//scene.shadowMap.darkness = 1.275;
+	//scene.skyAtmosphere.brightnessShift=0.4;
+	//scene.debugShowFramesPerSecond = true;
+	scene.hdrEnabled = false;
+	scene.sun.show = false;
+
+	var center = Cesium.Rectangle.center(operationArea);
+	var initialPosition = Cesium.Cartesian3.fromRadians(center.longitude, center.latitude, 980000);
+	var initialOrientation = new Cesium.HeadingPitchRoll.fromDegrees(0, -90, 0);
+	scene.camera.setView({
+	    destination: initialPosition,
+	    orientation: initialOrientation,
+	    endTransform: Cesium.Matrix4.IDENTITY
+	});	
+
+
+</script>
+</body>
+</html>
