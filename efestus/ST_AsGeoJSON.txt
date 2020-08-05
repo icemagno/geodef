@@ -1,0 +1,26 @@
+
+RETIRAR O LIMIT E COLOCAR O BOUNDING BOX
+
+
+select row_to_json(fc)
+from (
+    select
+        'FeatureCollection' as "type",
+        array_to_json(array_agg(f)) as "features"
+    from (
+        select
+            'Feature' as "type",
+            ST_AsGeoJSON(ST_Transform(way, 4326), 6) :: json as "geometry",
+            (
+                select json_strip_nulls(row_to_json(t))
+                from (
+                    select
+                        osm_id,
+                        height
+                ) t
+            ) as "properties"
+        from planet_osm_polygon
+        where height is not null
+        limit 1000
+    ) as f
+) as fc;

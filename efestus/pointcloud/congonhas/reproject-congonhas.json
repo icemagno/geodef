@@ -1,0 +1,22 @@
+[
+    {
+        "filename":"congonhas.las",
+        "type":"readers.las",
+        "spatialreference":"EPSG:32723"
+    },
+    {
+        "type":"filters.reprojection",
+        "in_srs":"EPSG:32723",
+        "out_srs":"EPSG:4326"
+    },
+    {
+        "type":"writers.las",
+        "scale_x":"0.0000001",
+        "scale_y":"0.0000001",
+        "scale_z":"0.01",
+        "offset_x":"auto",
+        "offset_y":"auto",
+        "offset_z":"auto",
+        "filename":"congonhas-4326.las"
+    }
+]

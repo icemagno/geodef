@@ -1,0 +1,1 @@
+pg_dump --file "/var/lib/postgresql/data/guardiao.backup" --username "postgres" --verbose --format=t --blobs "guardiao"

@@ -1,0 +1,20 @@
+{
+  "pipeline":[
+    {
+      "type":"readers.las",
+      "filename":"congonhas-4326.las",
+	  "spatialreference":"EPSG:4326"
+    },
+    {
+      "type":"filters.chipper",
+      "capacity":400
+    },    
+	{
+      "type":"writers.pgpointcloud",
+      "connection":"dbname=efestus host='efestus' user='postgres' password='admin'",
+      "table":"congonhas",
+      "srid":"4326",
+      "overwrite":"true"
+    }
+  ]
+}
