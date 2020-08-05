@@ -1,0 +1,17 @@
+server:
+  port: 36219
+  
+ 
+eureka:
+  instance:
+    appname: draco
+  client:
+    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://delphos:36204/eureka/
+      
+swagger: 
+  config: 
+    refreshrate: 5000
