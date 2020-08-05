@@ -1,0 +1,2 @@
+https://dzone.com/articles/centralized-documentation-in-microservice-spring-b
+https://github.com/hellosatish/microservice-patterns/tree/master/centralized-swagger-docs

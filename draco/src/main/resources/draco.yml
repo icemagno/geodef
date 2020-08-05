@@ -1,0 +1,17 @@
+server:
+  port: 9093
+  
+ 
+eureka:
+  instance:
+    appname: documentation-application
+  client:
+    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://sisgeodef.defesa.mil.br:36204/eureka/
+      
+swagger: 
+  config: 
+    refreshrate: 5000
