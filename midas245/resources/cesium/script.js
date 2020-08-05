@@ -1,7 +1,6 @@
 function run(){
 	console.log('Sight Line Loaded!');
 	
-	
 	var sightline = new Cesium.Sightline(scene);
 	sightline.couldRemove = false;
 
@@ -37,10 +36,9 @@ function run(){
 		}
 	}	
 	
-	
-	handlerPoint.drawEvt.addEventListener(function(result){
+	handlerPoint.drawEvt.addEventListener( function(result){
 		var point = result.object;
-		point.show = false;
+		point.show = true;
 		var position = result.object.position;
 
 		var cartographic = Cesium.Cartographic.fromCartesian(position);
@@ -52,11 +50,35 @@ function run(){
 			sightline.viewPosition = [longitude, latitude, height];
 			scene.viewFlag = false;
 		}else {
+			var pName = "point" + new Date();
 			sightline.addTargetPoint({
 				position : [longitude, latitude, height],
-				name : "point" + new Date()
+				name : pName
 			});
 			sightline.couldRemove = true;
+			
+			setTimeout(function () {
+				sightline.getBarrierPoint(pName, function (e) {
+					console.log(e);
+					
+					/*
+					viewer.entities.add({
+						name : 'ROTA_PONTO',
+						position : thePosition,
+						point : {
+							clampToGround : true,
+							pixelSize : 8,
+							color : Cesium.Color.BROWN,
+							outlineColor : Cesium.Color.YELLOW,
+							outlineWidth : 3,		    	
+						}
+					});
+					*/
+					
+					
+				})
+			},50);			
+			
 		}
 	});
 	
@@ -64,4 +86,7 @@ function run(){
 	
 }
 
-run();
+$( document ).ready(function() {
+	run();
+});
+
