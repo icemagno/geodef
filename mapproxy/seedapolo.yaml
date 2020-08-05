@@ -1,0 +1,57 @@
+# ---------------------------------------
+# MapProxy example seeding configuration.
+# ---------------------------------------
+#
+# This is a minimal MapProxy seeding configuration.
+# See full_seed_example.yaml and the documentation for more options.
+#
+
+# mapproxy-seed -f mapproxy.yaml -c 10 seedapolo.yaml
+# mapproxy-seed -f mapproxy.yaml -c 3 seedapolo.yaml --seed=seedapolo_orgmil_cache &
+
+seeds:
+  seedapolo_mma_cache:
+    caches: [apolo_mma_cache]
+    coverages: [prototipo]
+    levels:
+      to: 15
+  seedsisclaten_01_cache:
+    caches: [sisclaten_01_cache]
+    coverages: [prototipo]
+    levels:
+      to: 15
+  seedapolo_dnit_cache:
+    caches: [osm_seamaps_cache]
+    coverages: [prototipo]
+    levels:
+      to: 15
+  seedapolo_linhas_cache:
+    caches: [rapideye_cache]
+    coverages: [prototipo]
+    levels:
+      to: 15
+  seedapolo_usinas_cache:
+    caches: [bdgexcartas_cache]
+    coverages: [prototipo]
+    levels:
+      to: 15
+  seedapolo_amazonia_cache:
+    caches: [osm_cache]
+    coverages: [prototipo]
+    levels:
+      to: 15
+  seedapolo_orgmil_cache:
+    caches: [osm_cache]
+    coverages: [prototipo]
+    levels:
+      to: 17
+      
+      
+coverages:
+  brasil:
+    # west, south, east, north
+    bbox: [-45.0,-24.0,-40.0,-20.0]
+    srs: 'EPSG:4326'
+  prototipo:
+    bbox: [-45,-24,-40,-20]
+    srs: 'EPSG:4326'

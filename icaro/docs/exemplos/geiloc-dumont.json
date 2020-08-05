@@ -1,0 +1,35 @@
+{
+  "aisweb": {
+    "geiloc": {
+      "item": [
+        {
+          "uf": "SP",
+          "IcaoCode": "SNDD",
+          "city": "Elias Fausto",
+          "name": "Condomínio Aeronáutico Santos Dumont",
+          "id": "3541336a-192b-459b-9478-c2f4c7d4d2fc",
+          "type": "AD",
+          "status": "Ativo"
+        },
+        {
+          "uf": "RJ",
+          "IcaoCode": "SBRJ",
+          "city": "RIO DE JANEIRO",
+          "name": "SANTOS DUMONT",
+          "id": "da71e59b-4145-11e7-a4c1-00505680c1b4",
+          "type": "AD",
+          "status": "Ativo"
+        },
+        {
+          "uf": "RO",
+          "IcaoCode": "SWDS",
+          "city": "Ji-Paraná",
+          "name": "Condomínio Aéreo Santos Dumont",
+          "id": "de38b4bc-7147-4f32-a63c-8ab31e6c95c5",
+          "type": "AD",
+          "status": "Ativo"
+        }
+      ]
+    }
+  }
+}

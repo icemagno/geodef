@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-shared-configuration>
+    <spring-data xmlns="http://www.netbeans.org/ns/spring-data/1">
+        <config-files>
+            <config-file>spring-servlet.xml</config-file>
+        </config-files>
+        <config-file-groups/>
+    </spring-data>
+</project-shared-configuration>

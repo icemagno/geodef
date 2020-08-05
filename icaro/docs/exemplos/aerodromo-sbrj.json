@@ -1,0 +1,568 @@
+{
+  "aisweb": {
+    "distance": "2E",
+    "city": "Rio de Janeiro",
+    "jur": "SRPV-SP",
+    "AeroCode": "SBRJ",
+    "type": "AD",
+    "fir": "SBCW",
+    "dt": "2019-05-02",
+    "uf": "RJ",
+    "rmk": {
+      "count": 28,
+      "rmkText": [
+        {
+          "cod": 2.2,
+          "content": "Pátio de ACFT e área de estadia restrito para PRKG ou pernoite de ACFT com peso superior a 5700 Kg. A administração do aeroporto deverá ser consultada com antecedênciase há disponibilidade"
+        },
+        {
+          "cod": 2.2,
+          "content": "Não AUTH apresentação de Plano de Voo por radiotelefonia"
+        },
+        {
+          "cod": 2.8,
+          "content": "Operador de aeródromo deve realizar procedimento de verificação de segurança de aeronaves dos operadores de táxi aéreo e da aviação geral após o pouso e parada nas posições no pátio de estacionamento diariamente de 0800 às 0100"
+        },
+        {
+          "cod": 2.8,
+          "content": "Pátio GEIV exclusivo para ACFT MIL de asa fixa, com envergadura máxima de até 20m e comprimento de até 21m. A necessidade de utilização do pátio do GEIV deverá ser informada com antecedência MNM de 24HR pelos tel: (21) 2101-6433 ou (21) 2101-6423. As ACFT deverão entrar em CTC com TÁTICA IV (india victor), FREQ 123.50 Mhz, informando a maior autoridade a bordo e apoio de solo necessário."
+        },
+        {
+          "cod": 2.8,
+          "content": "PRKG DECEA 1 (Antigo Patio 3 MIL) AVBL somente para ACFT MIL mediante coor previa atraves do tel (21)98554-4227"
+        },
+        {
+          "cod": 2.8,
+          "content": "OPS noturna OBS falta de balizamento."
+        },
+        {
+          "cod": 2.8,
+          "content": "ACFT com destino ao patio deverão entrar em CTC FREQ 122.30MHZ (OPS RIO), informando a maior autoridade a bordo e apoio ao solo se necessário."
+        },
+        {
+          "cod": 2.8,
+          "content": " Pátio A reservado para embarque, com tolerância máxima de uma hora"
+        },
+        {
+          "cod": 2.8,
+          "content": "Recomenda-se amarrar e bloquear comandos ACFT estacionadas nos canteiros 5 e 6 ADJ TWY BRAVO, devido a táxi de HEL naquele local"
+        },
+        {
+          "cod": 2.8,
+          "content": "Pátio PRKG do DECEA (antigo pátio 3 MIL) AVBL somente para ACFT MIL PPR através do TEL: (21) 98554-4227. "
+        },
+        {
+          "cod": 2.8,
+          "content": "ACFT com destino ao pátio deverão entrar em CTC FREQ 122.300 MHz (OPS RIO) informando maior autoridade a bordo e apoio ao solo se necessário"
+        },
+        {
+          "cod": 2.1,
+          "content": "Cuidado: Morro Pão de Açúcar com ALT 1326FT e demais OBST situados nas suas imediações encontram-se a 3697M (2NM da THR 02R no prolongamento do eixo da RWY). (Ver também carta de obstáculo e ENR 2)"
+        },
+        {
+          "cod": 2.1,
+          "content": "OBST NO LGTD:<br>\n1) Árvore nas COORD 225457.26S/0430941.12W DIST 125M THR 02R\nAZM 078 DEG ALT 14.349M AMSL<br>\n2) Árvore nas COORD 225456.97S/0430940.97W DIST 134M THR 02R\nAZM 075 DEG ALT 13.804M AMSL<br>\n3) Árvore nas COORD 225456.52S/0430940.90W DIST 143M THR 02R\nAZM 072 DEG ALT 14.505M AMSL<br>\n4) Árvore nas COORD 225456.08S/0430940.90W DIST 152M THR 02R\nAZM 068 DEG ALT 13.077M AMSL<br>\n5) Árvore nas COORD 225455.16S/0430941.05W DIST 170M THR 02R\nAZM 060 DEG ALT 16.665M AMSL<br>\n6) Edificação nas COORD 225457.89S/0430940.23W DIST 138M THR\n02R AZM 091 DEG ALT 12.152M AMSL\n7) Edificação nas COORD 225457.48S/0430940.45W DIST 137M THR\n02R AZM 085 DEG ALT 14.024M AMSL<br>\n8) Edificação nas COORD 225456.45S/0430940.53W DIST 152M THR\n02R AZM 074 DEG ALT 14.016M AMSL<br>\n9) Edificação nas COORD 225455.91S/0430939.60W DIST 185M THR\n02R AZM 074 DEG ALT 13.184M AMSL"
+        },
+        {
+          "cod": 2.1,
+          "content": "OBS OBST (EDIFICAÇÃO) LGTD  225357S/0431213W ELEV 61,22M"
+        },
+        {
+          "cod": 2.12,
+          "content": "RCD:<br>\nRWY 02L/20R 3C<br>\nRWY 02R/20L 4C"
+        },
+        {
+          "cod": 2.14,
+          "content": "OPS noturna OBS falta de balizamento "
+        },
+        {
+          "cod": 2.2,
+          "content": "As subidas VMC para ACFT com destino ao SUL deverão ser efetuadas via BARRA (entrada da Baía da Guanabara)."
+        },
+        {
+          "cod": 2.2,
+          "content": "Proibidos os voos de instrução primária, de pilotagem elementar, de treinamento e de cargueiros."
+        },
+        {
+          "cod": 2.23,
+          "content": "Aeronaves em aproximação para as pistas 02L e 02R, observar cruzamento de viaturas entre a Escola Naval e o pátio de estacionamento do aeroporto, próximo à cabeceira"
+        },
+        {
+          "cod": 2.23,
+          "content": " Se o piloto não conhecer o aeródromo, solicitar o apoio de FOLLOW-ME  à TWR SOLO"
+        },
+        {
+          "cod": 2.23,
+          "content": "APAPI THR 20R ângulo normal de rampa 3.12DEG METH 35FT."
+        },
+        {
+          "cod": 2.23,
+          "content": "A TWR Rio de Janeiro não informará a hora de TKOF às ACFT. A instrução quanto a frequência do próximo órgão a ser chamado após a TKOF e, se necessárias, instruções complementares, serão emitidas juntamente com a AUTH de TKOF."
+        },
+        {
+          "cod": 2.23,
+          "content": "Nas OPS de ARR, os pilotos não reportarão para a TWR Santos Dumont a condição de trem de pouso, exceto situações de emergência com referência ao seu baixamento e/ou travamento."
+        },
+        {
+          "cod": 2.23,
+          "content": "Para informações adicionais consultar Centro de Informações Aeronáuticas Rio De Janeiro (C-AIS RJ), Tel Pln/Fax (21) 3398-4738"
+        },
+        {
+          "cod": 2.23,
+          "content": "ACFT da aviação geral, inclusive táxi aéreo, deverão COOR previamente sua operação MNM 03 HR BFR LDG pretendido pelo TEL: (55) (21) 3814-7279 ou email: aviacaogeral.sbrj@infraero.gov.br e cumprir os seguintes critérios:<br>\n- Informar data e horário de LDG e TKOF, tipo ICAO, envergadura, origem, DEST e número PAX;<br>\n- Tempo de permanência no solo MAX 04 dias."
+        },
+        {
+          "cod": 2.24,
+          "content": "OBS VAC para entrada ou saída do circuito de tráfego"
+        },
+        {
+          "cod": 2.24,
+          "content": " Em virtude dos requisitos operacionais necessários para as STAR e/ou SID na área terminal do Rio de Janeiro, a utilização das rotas RNAV 5, saindo ou chegando do AD, será destinada exclusivamente para as aeronaves homologadas RNAV 1 ou RNP 1"
+        },
+        {
+          "cod": 2.24,
+          "content": "Cartas ver AIP MAP"
+        }
+      ]
+    },
+    "latRotaer": "22 54 36S",
+    "cat": "NAC",
+    "runways": {
+      "count": 2,
+      "runway": [
+        {
+          "surface_c": {
+            "compl": "",
+            "content": "39/F/B/X/T"
+          },
+          "surface": {
+            "compl": "",
+            "content": "ASPH"
+          },
+          "ident": "02L/20R",
+          "length": {
+            "compl": "",
+            "content": 1260
+          },
+          "width": {
+            "compl": "",
+            "content": 30
+          },
+          "compl": "",
+          "type": "RWY",
+          "lights": {
+            "light": {
+              "descr": "Luzes ao longo das laterais da pista, de 60 em 60 metros",
+              "compl": "",
+              "content": "L14"
+            }
+          },
+          "thr": [
+            {
+              "ident": "02L",
+              "compl": "",
+              "lights": {
+                "light": [
+                  {
+                    "descr": "APAPI",
+                    "gradient": 3.23,
+                    "compl": "",
+                    "content": "L9A"
+                  },
+                  {
+                    "descr": "Luzes de cabeceira (verde no início e vermelha no fim da pista)",
+                    "compl": "",
+                    "content": "L12"
+                  }
+                ]
+              }
+            },
+            {
+              "ident": "20R",
+              "compl": "",
+              "lights": {
+                "light": [
+                  {
+                    "descr": "APAPI",
+                    "gradient": 3.12,
+                    "compl": "",
+                    "content": "L9A"
+                  },
+                  {
+                    "descr": "Luzes de cabeceira (verde no início e vermelha no fim da pista)",
+                    "compl": "",
+                    "content": "L12"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "surface_c": {
+            "compl": "",
+            "content": "65/F/B/X/T"
+          },
+          "surface": {
+            "compl": "",
+            "content": "ASPH"
+          },
+          "ident": "02R/20L",
+          "length": {
+            "compl": "",
+            "content": 1323
+          },
+          "width": {
+            "compl": "",
+            "content": 42
+          },
+          "compl": "",
+          "type": "RWY",
+          "lights": {
+            "light": {
+              "descr": "Luzes ao longo das laterais da pista, de 60 em 60 metros",
+              "compl": "",
+              "content": "L14"
+            }
+          },
+          "thr": [
+            {
+              "ident": "02R",
+              "compl": "",
+              "lights": {
+                "light": [
+                  {
+                    "descr": "PAPI",
+                    "gradient": 3.23,
+                    "compl": "",
+                    "content": "L9"
+                  },
+                  {
+                    "descr": "Luzes de cabeceira (verde no início e vermelha no fim da pista)",
+                    "compl": "",
+                    "content": "L12"
+                  }
+                ]
+              }
+            },
+            {
+              "ident": "20L",
+              "compl": "",
+              "lights": {
+                "light": [
+                  {
+                    "descr": "PAPI",
+                    "gradient": 3.12,
+                    "compl": "",
+                    "content": "L9"
+                  },
+                  {
+                    "descr": "Luzes de cabeceira (verde no início e vermelha no fim da pista)",
+                    "compl": "",
+                    "content": "L12"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "lngRotaer": "043 09 45W",
+    "lat": -22.91,
+    "altFt": 10,
+    "lights": {
+      "light": [
+        {
+          "descr": "Indicador de direção de vento iluminado",
+          "compl": "",
+          "content": "L26"
+        },
+        {
+          "descr": "Luzes de obstáculo",
+          "compl": "",
+          "content": "L23"
+        },
+        {
+          "descr": "Farol rotativo de aeródromo",
+          "compl": "",
+          "content": "L21"
+        }
+      ]
+    },
+    "lng": -43.1625,
+    "org": {
+      "name": "INFRAERO",
+      "military": "CIVIL",
+      "type": "ORG"
+    },
+    "utc": -3,
+    "ciad": "RJ0002",
+    "altM": 3,
+    "compls": {
+      "count": 16,
+      "compl": [
+        {
+          "cod": 2.8,
+          "n": 1,
+          "content": "Utilização CLR somente dentro da DIST DE 1NM da THR"
+        },
+        {
+          "cod": 2.14,
+          "n": 2,
+          "content": "MEHT: 40FT"
+        },
+        {
+          "cod": 2.18,
+          "n": 3,
+          "content": " EMERG"
+        },
+        {
+          "cod": 2.2,
+          "n": 4,
+          "content": "Aceita PLN e suas atualizações por TEL. TEL CMA: (21) 2101-6640. TEL/FAX PLN: (21) 3814-7733"
+        },
+        {
+          "cod": 2.14,
+          "n": 5,
+          "content": "MEHT: 37.40FT"
+        },
+        {
+          "cod": 2.14,
+          "n": 6,
+          "content": "MEHT: 39FT"
+        },
+        {
+          "cod": 2.12,
+          "n": 8,
+          "content": "GROOVING para a pista 02/20 e camada porosa de atrito"
+        },
+        {
+          "cod": 2.3,
+          "n": 9,
+          "content": "(DLY 0930-0330)"
+        },
+        {
+          "cod": 2.3,
+          "n": 10,
+          "content": "(DLY 0900-0200)"
+        },
+        {
+          "cod": 2.23,
+          "n": 11,
+          "content": "PETROBRAS: H24. TEL: (21) 3814-7781 ou 3814-7437"
+        },
+        {
+          "cod": 2.3,
+          "n": 12,
+          "content": "(DLY 0800-0200) - O/R: SHELL TEL: (21) 2262-0013 ou (21) 3814- 7301."
+        },
+        {
+          "cod": 2.23,
+          "n": 13,
+          "content": "Autoatendimento"
+        },
+        {
+          "cod": 2.23,
+          "n": 14,
+          "content": "Para INFO ADDN, consultar o C-AIS Rio de Janeiro. TEL PLN/FAX: (21) 3398-4738."
+        },
+        {
+          "cod": 2.23,
+          "n": 17,
+          "content": "D-ATIS AUTH DE TFC VIA DATA LINK ACF\n"
+        },
+        {
+          "cod": 2.23,
+          "n": 18,
+          "content": "D-CL AUTH DE TFC VIA DATA LINK ACF"
+        },
+        {
+          "cod": 2.3,
+          "n": 19,
+          "content": "(DLY 0900-0200)"
+        }
+      ]
+    },
+    "workinghour": {
+      "compl": ""
+    },
+    "services": {
+      "service": [
+        {
+          "fuel": "",
+          "type": "AirportSuppliesService"
+        },
+        {
+          "rffs": 7,
+          "type": "AirportGroundService"
+        },
+        {
+          "cat": 7,
+          "name": "Hangar",
+          "type": "AircraftGroundService"
+        },
+        {
+          "org": {
+            "name": "",
+            "military": "",
+            "type": ""
+          },
+          "callsign": "RIO",
+          "freqs": {
+            "freq": [
+              {
+                "compl": "",
+                "content": 118.7
+              },
+              {
+                "compl": 3,
+                "content": 121.5
+              }
+            ]
+          },
+          "compl": "10,18,19",
+          "type": [
+            "COM",
+            "Torre"
+          ]
+        },
+        {
+          "org": {
+            "name": "",
+            "military": "",
+            "type": ""
+          },
+          "callsign": "RIO",
+          "freqs": {
+            "freq": {
+              "compl": 13,
+              "content": 121.7
+            }
+          },
+          "compl": 9,
+          "type": [
+            "COM",
+            "Solo"
+          ]
+        },
+        {
+          "org": {
+            "name": "",
+            "military": "",
+            "type": ""
+          },
+          "callsign": "RIO",
+          "freqs": {
+            "freq": {
+              "compl": "",
+              "content": 121.05
+            }
+          },
+          "compl": 9,
+          "type": [
+            "COM",
+            "Tráfego"
+          ]
+        },
+        {
+          "org": {
+            "name": "",
+            "military": "",
+            "type": ""
+          },
+          "callsign": "RIO",
+          "freqs": {
+            "freq": {
+              "compl": "",
+              "content": 132.65
+            }
+          },
+          "compl": "17,19",
+          "type": [
+            "COM",
+            "ATIS"
+          ]
+        },
+        {
+          "org": {
+            "name": "INFRAERO",
+            "military": "CIVIL",
+            "type": "ORG"
+          },
+          "contact": "",
+          "selfservice": 1,
+          "type": [
+            "MET",
+            "Civil"
+          ],
+          "products": ""
+        },
+        {
+          "org": {
+            "name": "INFRAERO",
+            "military": "CIVIL",
+            "type": "ORG"
+          },
+          "contact": "(21) 3814-7203",
+          "selfservice": 0,
+          "type": [
+            "AIS",
+            "Civil"
+          ]
+        }
+      ]
+    },
+    "typeUtil": "PUB/MIL",
+    "timesheets": {
+      "timesheet": [
+        {
+          "hours": {
+            "end": "03:30",
+            "begin": "09:30"
+          },
+          "hol": 1,
+          "days": {
+            "day": "DLY"
+          },
+          "n": 9
+        },
+        {
+          "hours": {
+            "end": "02:00",
+            "begin": "09:00"
+          },
+          "hol": 1,
+          "days": {
+            "day": "DLY"
+          },
+          "n": 10
+        },
+        {
+          "hours": {
+            "end": "02:00",
+            "begin": "08:00"
+          },
+          "hol": 1,
+          "days": {
+            "day": "DLY"
+          },
+          "n": 12
+        },
+        {
+          "hours": {
+            "end": "02:00",
+            "begin": "09:00"
+          },
+          "hol": 1,
+          "days": {
+            "day": "DLY"
+          },
+          "n": 19
+        }
+      ]
+    },
+    "name": "Santos Dumont",
+    "status": "Active"
+  }
+}

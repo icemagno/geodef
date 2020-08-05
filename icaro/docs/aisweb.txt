@@ -1,0 +1,11 @@
+http://www.aisweb.aer.mil.br/api/?apiKey=2046730488&apiPass=adc9f816-5cf6-11e7-a4c1-00505680c1b4&area=rotaer&icaoCode=SBSP
+https://documenter.getpostman.com/view/6803747/S17wMRAF#f1926f69-15d3-4ad9-b8a1-8e1cc6a1a5a7
+
+Utilize os seguintes dados para o acesso:
+
+    API-Key: 2046730488
+    API-Pass: adc9f816-5cf6-11e7-a4c1-00505680c1b4
+    Link: http://www.aisweb.aer.mil.br/api/
+
+
+A documentação e mais informações ou canal para dúvidas estão disponíveis em: http://www.aisweb.aer.mil.br/api/doc/

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>DPMM - Situação do Militar</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            function buscaCpf() {
+                var tipo = document.getElementById("tipo").value;
+                var cpf = document.getElementById("cpf").value;
+
+                window.location.href = "dpmm/v1/situacaomilitar" + tipo + "?cpf=" + cpf + "&nome=&mae=&nascimento_data=";
+            }
+
+            function buscaNome() {
+                var tipo = document.getElementById("tipo").value;
+                var nome = encodeURI(document.getElementById("nome").value);
+                var mae = encodeURI(document.getElementById("nome_mae").value);
+                var nascimento_data = document.getElementById("data_nascimento").value;
+
+                if (nome == '' || mae == '' || nascimento_data == '') {
+                    alert('Preencha todos os campos');
+                    return;
+                }
+
+                window.location.href = "dpmm/v1/situacaomilitar/pesquisa" + tipo + "?nome=" + nome + "&mae=" + mae + "&nascimento_data=" + nascimento_data + "&cpf=";
+            }
+
+            function montaTela(selectObject) {
+                var value = selectObject.value;
+
+                var um = document.getElementById("busca_por_cpf");
+                var dois = document.getElementById("busca_por_nome");
+
+                if (value == 1) {
+                    um.style.display = 'block';
+                    dois.style.display = 'none';
+                } else if (value == 2) {
+                    um.style.display = 'none';
+                    dois.style.display = 'block';
+                } else {
+                    um.style.display = 'none';
+                    dois.style.display = 'none';
+                }
+
+            }
+
+        </script>
+    </head>
+    <body>
+
+        <h3 style="text-align: left;"><strong>Webservi&ccedil;e Situa&ccedil;&atilde;o dos Militares - Marinha.</strong></h3>
+        <p style="text-align: left;"><strong><a href="swagger-ui.html">Documenta&ccedil;&atilde;o Swagger da API</a></strong></p>
+        <p style="text-align: left;">Formatos Dispon&iacute;veis: JSON e XML</p>
+        <p style="text-align: left;">&nbsp;</p>
+
+        <p style="text-align: left;"><b>Exemplos:</b></p>
+
+
+        <div style="padding-left: 5%; border-style: solid;">
+
+
+            Tipo de Arquivo: <select id="tipo" >
+                <option value=".json">JSON</option>
+                <option value=".xml">XML</option>
+            </select>
+            <br>
+            Pesquisar por: <select id="api_test" onchange="montaTela(this)">
+                <option value="0">Selecione</option>
+                <option value="1">CPF</option>
+                <option value="2">Nome, Nome da Mãe e Data de Nascimento</option>
+            </select>
+        </div>
+        <br>
+
+        <div id="busca_por_cpf" style="display:none; padding-left: 5%; border-style: solid;">
+
+            <table>
+                <tbody>         
+                    <tr>
+                        <td>CPF:</td>
+                        <td><input id="cpf" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="button" name="Pesquisar" value="Pesquisar" onclick="buscaCpf()"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div id="busca_por_nome" style="display:none; padding-left: 5%; border-style: solid;" >
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Nome:&nbsp;</td>
+                        <td><input id="nome" type="text" placeholder="Nome completo (campo obrigatório)"/></td>
+                    </tr>
+                    <tr>
+                        <td>Nome da M&atilde;e:</td>
+                        <td><input id="nome_mae" type="text" placeholder="Nome completo (campo obrigatório)"/></td>
+                    </tr>
+                    <tr>
+                        <td>Data de nascimento:</td>
+                        <td><input id="data_nascimento" type="text" placeholder="DD/MM/AAAA (campo obrigatório)" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="button" name="Pesquisar" value="Pesquisar" onclick="buscaNome()"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+    </body>
+</html>

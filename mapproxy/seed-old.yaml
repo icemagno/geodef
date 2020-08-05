@@ -1,0 +1,24 @@
+# ---------------------------------------
+# MapProxy example seeding configuration.
+# ---------------------------------------
+#
+# This is a minimal MapProxy seeding configuration.
+# See full_seed_example.yaml and the documentation for more options.
+#
+
+seeds:
+  myseed1:
+    caches: [rapideye_cache]
+    # grids: []
+    coverages: [prototipo]
+    levels:
+      to: 15
+
+# west, south, east, north
+coverages:
+  brasil:
+    bbox: [-74.09,-33.87,-34.37,5.97]
+    srs: 'EPSG:4326'
+  prototipo:
+    bbox: [-45,-24,-40,-20]
+    srs: 'EPSG:4326'

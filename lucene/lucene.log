@@ -1,0 +1,105 @@
+2019-06-18 11:19:27.148  INFO [lucene,,,] 5756 --- [main] b.m.d.a.i.ChmApplication                 : The following profiles are active: default
+2019-06-18 11:19:27.742  WARN [lucene,,,] 5756 --- [main] o.s.boot.actuate.endpoint.EndpointId     : Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2019-06-18 11:19:27.945  INFO [lucene,,,] 5756 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=449f6a26-cc92-35fe-a94f-e5d939a1d80d
+2019-06-18 11:19:27.961  INFO [lucene,,,] 5756 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$80314c0c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-18 11:19:28.132  INFO [lucene,,,] 5756 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b9c58dde] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-18 11:19:28.168  INFO [lucene,,,] 5756 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$d5df90db] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-18 11:19:28.481  INFO [lucene,,,] 5756 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 36501 (http)
+2019-06-18 11:19:28.497  INFO [lucene,,,] 5756 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-18 11:19:28.497  INFO [lucene,,,] 5756 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-06-18 11:19:28.512  INFO [lucene,,,] 5756 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.21]
+2019-06-18 11:19:28.512  INFO [lucene,,,] 5756 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2019-06-18 11:19:28.512  INFO [lucene,,,] 5756 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-06-18 11:19:28.512  INFO [lucene,,,] 5756 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-06-18 11:19:29.528  INFO [lucene,,,] 5756 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2019-06-18 11:19:29.627  INFO [lucene,,,] 5756 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-18 11:19:29.627  INFO [lucene,,,] 5756 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2479 ms
+2019-06-18 11:19:29.752  WARN [lucene,,,] 5756 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-18 11:19:29.752  INFO [lucene,,,] 5756 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-18 11:19:29.752  INFO [lucene,,,] 5756 --- [main] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@6be6931f
+2019-06-18 11:19:30.612  WARN [lucene,,,] 5756 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jobInfoSender': Unsatisfied dependency expressed through field 'queue'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.amqp.core.Queue' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2019-06-18 11:19:31.626  WARN [lucene,,,] 5756 --- [main] z.r.AsyncReporter$BoundedAsyncReporter   : Timed out waiting for in-flight spans to send
+2019-06-18 11:19:33.206  INFO [lucene,,,] 5756 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-06-18 11:19:33.209  INFO [lucene,,,] 5756 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-06-18 11:19:33.334 ERROR [lucene,,,] 5756 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field queue in br.mil.defesa.sisgeodef.rabbit.JobInfoSender required a bean of type 'org.springframework.amqp.core.Queue' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.amqp.core.Queue' in your configuration.
+
+2019-06-18 11:20:52.825  INFO [lucene,,,] 3804 --- [main] b.m.d.a.i.ChmApplication                 : The following profiles are active: default
+2019-06-18 11:20:53.591  WARN [lucene,,,] 3804 --- [main] o.s.boot.actuate.endpoint.EndpointId     : Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2019-06-18 11:20:53.810  INFO [lucene,,,] 3804 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=44a59e9c-d0a8-3fc3-b51b-b06d5799543b
+2019-06-18 11:20:53.826  INFO [lucene,,,] 3804 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$b4f58ffb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-18 11:20:54.013  INFO [lucene,,,] 3804 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ee89d1cd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-18 11:20:54.060  INFO [lucene,,,] 3804 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$aa3d4ca] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-18 11:20:54.404  INFO [lucene,,,] 3804 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 36501 (http)
+2019-06-18 11:20:54.420  INFO [lucene,,,] 3804 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-18 11:20:54.420  INFO [lucene,,,] 3804 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-06-18 11:20:54.420  INFO [lucene,,,] 3804 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.21]
+2019-06-18 11:20:54.420  INFO [lucene,,,] 3804 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2019-06-18 11:20:54.420  INFO [lucene,,,] 3804 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-06-18 11:20:54.420  INFO [lucene,,,] 3804 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-06-18 11:20:55.467  INFO [lucene,,,] 3804 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2019-06-18 11:20:55.581  INFO [lucene,,,] 3804 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-18 11:20:55.581  INFO [lucene,,,] 3804 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2740 ms
+2019-06-18 11:20:55.722  WARN [lucene,,,] 3804 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-18 11:20:55.722  INFO [lucene,,,] 3804 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-18 11:20:55.737  INFO [lucene,,,] 3804 --- [main] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@2e952845
+2019-06-18 11:20:57.097  INFO [lucene,,,] 3804 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 21 endpoint(s) beneath base path '/actuator'
+2019-06-18 11:20:57.209  INFO [lucene,,,] 3804 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-18 11:20:57.397  WARN [lucene,,,] 3804 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-18 11:20:57.397  INFO [lucene,,,] 3804 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-18 11:20:58.147  INFO [lucene,,,] 3804 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2019-06-18 11:20:58.171  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2019-06-18 11:20:58.280  INFO [lucene,,,] 3804 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2019-06-18 11:20:58.280  INFO [lucene,,,] 3804 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2019-06-18 11:20:58.343  INFO [lucene,,,] 3804 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2019-06-18 11:20:58.343  INFO [lucene,,,] 3804 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2019-06-18 11:20:58.452  INFO [lucene,,,] 3804 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2019-06-18 11:20:58.483  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2019-06-18 11:20:58.483  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2019-06-18 11:20:58.483  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2019-06-18 11:20:58.483  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2019-06-18 11:20:58.483  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2019-06-18 11:20:58.483  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2019-06-18 11:20:58.483  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2019-06-18 11:20:58.562  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2019-06-18 11:20:58.562  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 1
+2019-06-18 11:20:58.562  INFO [lucene,,,] 3804 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2019-06-18 11:20:58.562  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1560867658562 with initial instances count: 9
+2019-06-18 11:20:58.577  INFO [lucene,,,] 3804 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application LUCENE with eureka with status UP
+2019-06-18 11:20:58.577  INFO [lucene,,,] 3804 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1560867658577, current=UP, previous=STARTING]
+2019-06-18 11:20:58.577  INFO [lucene,,,] 3804 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_LUCENE/PERDISYS.casnav1.mb:lucene:36501: registering service...
+2019-06-18 11:20:58.577  INFO [lucene,,,] 3804 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-18 11:20:58.593  INFO [lucene,,,] 3804 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-18 11:20:58.608  INFO [lucene,,,] 3804 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_LUCENE/PERDISYS.casnav1.mb:lucene:36501 - registration status: 204
+2019-06-18 11:20:58.624  INFO [lucene,,,] 3804 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-18 11:20:58.765  INFO [lucene,,,] 3804 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 36501 (http) with context path ''
+2019-06-18 11:20:58.765  INFO [lucene,,,] 3804 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 36501
+2019-06-18 11:20:58.765  INFO [lucene,,,] 3804 --- [main] b.m.d.a.i.ChmApplication                 : Started ChmApplication in 7.925 seconds (JVM running for 8.378)
+2019-06-18 11:21:08.141  INFO [lucene,,,] 3804 --- [RMI TCP Connection(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-06-18 11:21:08.148  INFO [lucene,,,] 3804 --- [RMI TCP Connection(3)-127.0.0.1] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application LUCENE with eureka with status DOWN
+2019-06-18 11:21:08.148  WARN [lucene,,,] 3804 --- [RMI TCP Connection(3)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1560867668148, current=DOWN, previous=UP]
+2019-06-18 11:21:08.148  INFO [lucene,,,] 3804 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_LUCENE/PERDISYS.casnav1.mb:lucene:36501: registering service...
+2019-06-18 11:21:08.149  INFO [lucene,,,] 3804 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_LUCENE/PERDISYS.casnav1.mb:lucene:36501 - registration status: 204
+2019-06-18 11:21:09.165  WARN [lucene,,,] 3804 --- [RMI TCP Connection(3)-127.0.0.1] z.r.AsyncReporter$BoundedAsyncReporter   : Timed out waiting for in-flight spans to send
+2019-06-18 11:21:11.261  INFO [lucene,,,] 3804 --- [RMI TCP Connection(3)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2019-06-18 11:21:14.264  INFO [lucene,,,] 3804 --- [RMI TCP Connection(3)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2019-06-18 11:21:14.266  INFO [lucene,,,] 3804 --- [RMI TCP Connection(3)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_LUCENE/PERDISYS.casnav1.mb:lucene:36501 - deregister  status: 200
+2019-06-18 11:21:14.266  INFO [lucene,,,] 3804 --- [RMI TCP Connection(3)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2019-06-18 11:21:14.286  INFO [lucene,,,] 3804 --- [RMI TCP Connection(3)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]

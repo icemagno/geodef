@@ -1,0 +1,99 @@
+As séries nacionais podem assumir 6 valores, cada um correspondendo a um centro expedidor de NOTAM:
+
+    B – CRN de Recife;
+    D – CRN de São Paulo;
+    E – CRN de Curitiba;
+    F – CRN de Brasília;
+    G – CRN de Manaus; e
+    Z – CGN.
+
+As séries internacionais podem assumir 5 valores, cada um correspondendo ao espaço aéreo abrangido por uma FIR:
+
+    I – FIR Recife;
+    J – FIR Brasília;
+    K – FIR Curitiba;
+    N – FIR Atlântico; e
+    O – FIR Amazônica.
+
+	
+Espaço aéreo. Pode ser utilizado um dos seguintes valores:
+
+    L - espaço aéreo inferior;
+    H - espaço aéreo superior.
+
+	
+Tipo da rota. Pode ser utilizado um dos seguintes valores:
+
+    PREF - Preferencial;
+    ALT - Alternativa.
+	
+	
+Tipo de elemento. Pode ser utilizado um dos seguintes valores:
+
+    AD (aeródromo);
+    HD (helideck);
+    HP (Heliponto);
+    TMA;
+    FIR;
+
+Tipo de aeródromo. Pode ser utilizado um dos seguintes valores:
+
+    AD (aeródromo);
+    HD (helideck);
+    HP (Heliponto).
+	
+	
+Tipo de operação possível no aeródromo. Pode ser utilizado um dos seguintes valores:
+
+    IFR;
+    IFR Diurna;
+    VFR;
+    VFR Diurna;
+    VFR IFR;
+    VFR IFR Diurna.
+
+	
+Indicativo da FIR sob a qual o aeródromo se encontra. 
+Pode ser utilizado um dos seguintes valores:
+
+    SBCW (Curitiba);
+    SBAO (Atlântico);
+    SBAZ (Amazônica);
+    SBRE (Recife);
+    SBBS (Brasília).
+	
+	
+Tipo de superfície da pista. Pode ser utilizado um dos seguintes valores:
+
+    AÇO - Aço;
+    ARE - Areia;
+    ARG - Argila;
+    ASPH - Asfalto ou Conc. Asfáltico;
+    BAR - Barro;
+    GRVL - Cascalho;
+    CIN - Cinza;
+    CONC - Concreto;
+    GRASS - Grama;
+    MAC - Macadame;
+    MAD - Madeira;
+    MTAL - Metálico;
+    PAR - Paralelepípedo;
+    PIÇ - Piçarra;
+    SAI - Saibro;
+    SIL - Sílica;
+    TER - Terra;
+    TIJ - Tijolo.
+	
+	
+Tipo de utilização do aeródromo. Pode ser utilizado um dos seguintes valores:
+
+    PUB - aeródromo de uso público;
+    MIL - aeródromo de uso militar;
+    PRIV - aeródromo de uso privado;
+    PRIV/PUB - aeródromo de uso público e privado;
+    PUB/MIL - aeródromo de uso público e militar;
+    PUB/REST - aeródromo de uso público, mas restrito.
+	
+	
+	
+	
