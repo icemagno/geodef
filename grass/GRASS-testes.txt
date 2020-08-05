@@ -1,0 +1,330 @@
+https://grass.osgeo.org/grass72/manuals/manual_gallery.html
+
+# CORES PADRONIZADAS
+https://grass.osgeo.org/grass70/manuals/d.vect.html
+
+r.in.srtm input=/home/magno/grass/S23W043.hgt --overwrite --verbose -1
+
+g.region -p
+projection: 3 (Latitude-Longitude)
+zone:       0
+datum:      wgs84
+ellipsoid:  wgs84
+north:      21:59:59.5S
+south:      23:00:00.508S
+west:       43:00:00.5W
+east:       41:59:59.492W
+nsres:      0:00:00.612
+ewres:      0:00:00.612
+rows:       5884
+cols:       5884
+cells:      34621456
+
+
+g.region -c
+north-south center: 22:30:00.004S
+east-west center: 42:29:59.996W
+
+g.region -w
+bbox=-43.0001388888889,-23.0001411111111,-41.9998588888889,-21.9998611111111
+
+g.list type=raster
+g.list type=vector
+
+## CRIA HILL SHADE
+r.relief input=S23W043 output=S23W043_HSH
+
+## EXPORTA HILL SHADE PARA IMAGEM
+r.out.png input=S23W043_HSH output=/home/magno/grass/S23W043_HSH.png -t --overwrite compression=9 -w
+
+## HILL SHADE COLORIDO
+r.shade shade=S23W043_HSH color=S23W043 output=S23W043_CLR
+
+## EXPORTA HILL SHADE COLORIDO PARA IMAGEM
+r.out.png input=S23W043_CLR output=/home/magno/grass/S23W043_CLR.png -t --overwrite compression=9 -w
+
+
+
+#################  EXPORTA GEOTIFF ###################
+https://grass.osgeo.org/grass72/manuals/r.relief.html
+
+r.mapcalc "elevation_shade_byte = #S23W043_HSH"
+# r.info elevation_shade_byte
+r.colors elevation_shade_byte color=grey
+
+r.out.gdal input=elevation_shade_byte createopt="COMPRESS=DEFLATE,BIGTIFF=YES" output=S23W043_HSH.tif
+gdaladdo --config GDAL_CACHEMAX 2000 S23W043_HSH.tif 2 4 8 16
+######################################################
+
+
+
+
+
+# CRIA CURVAS DE NIVEL
+r.contour in=S23W043 out=S23W043_CNT levels=60,90,120,150 --o
+r.contour in=S23W043 out=S23W043_CNT step=100 cut=200 --o
+
+# VARIAS FORMAS DE EXPORTAR CURVAS DE NIVEL
+v.out.ogr input=S23W043_CNT output="PG:host=192.168.0.7 dbname=viewsheds user=postgres password=admin" format=PostgreSQL
+v.out.ogr input=S23W043_CNT output=/home/magno/grass/S23W043_CNT.kml format=KML --overwrite
+v.out.png input=S23W043_CNT output=/home/magno/grass/S23W043_CNT.png -t --overwrite compression=9 -w
+
+# FUNDE CURVA DE NIVEL COM SHADE ( S23W043_CLR ou S23W043_HSH )
+d.mon start=png --overwrite
+d.rast S23W043_HSH
+d.vect S23W043_CNT color=red
+d.mon stop=png
+
+
+
+## CRIA VIEWSHED
+r.viewshed input=S23W043 output=S23W043_VS max_distance=5000 coordinates=-42.30,-22.30
+
+## EXPORTA VIEWSHED PARA IMAGEM
+r.out.png input=S23W043_VS output=/home/magno/grass/S23W043_VS.png -t --overwrite compression=9 -w
+
+## EXPORTA VIEWSHED PARA VETOR
+r.to.vect input=S23W043_VS output=S23W043_SHP type=area
+
+## VARIAS FORMAS DE EXPORTAR O VETOR COM A AREA VISTA
+v.out.ogr input=S23W043_SHP output=/home/magno/grass/S23W043_SHP.shp -c --overwrite -e --verbose
+v.out.ogr input=S23W043_SHP output=/home/magno/grass/S23W043_SHP.kml format=KML 
+v.out.ogr input=S23W043_SHP output="PG:host=192.168.0.7 dbname=viewsheds user=postgres password=admin" format=PostgreSQL
+
+
+
+# FUNDE HILLSHADE COLOR com VIEWSHED
+d.mon start=png --overwrite
+d.rast S23W043_CLR
+d.vect S23W043_SHP
+d.mon stop=png
+
+# FUNDE HILLSHADE com VIEWSHED
+d.mon start=png --overwrite
+d.rast S23W043_HSH
+d.vect S23W043_SHP
+d.mon stop=png
+
+
+## NAO FUNCIONA
+m.nviz.image elevation_map=S23W043 output=S23W043_ELEV perspective=15
+
+g.remove -f type=raster name=S23W043
+g.remove -f type=raster name=elev
+
+
+###########################################################
+###############   CONSTRUCOES 3D NO OSM ###################
+###########################################################
+https://grasswiki.osgeo.org/wiki/Extrude_2D_polygons_to_3D
+###########################################################
+
+#########################  IMPORTAR DE UM SHAPE ###########################
+v.in.ogr rio/buildings.shp out=riodejaneiro2D
+
+## OU
+
+#########################  IMPORTAR DIRETO DO OSM ###########################
+
+# QUAIS TAGS DEVEM SE TORNAR ATRIBUTOS?
+export OSM_CONFIG_FILE=/home/magno/grass/osm_config.ini
+
+# IMPORTA COMO CAMADA VECTOR
+v.in.ogr input=map.osm layer=multipolygons output=riodejaneiro2D where="building is not null and height is not null" --overwrite
+
+# IMPORTA DIRETO PARA POSTGRESQL
+v.out.ogr input=riodejaneiro2D output="PG:host=192.168.0.7 dbname=viewsheds user=postgres password=admin" format=PostgreSQL --overwrite
+
+
+# INFO
+v.info riodejaneiro2D
+
+# COLORIDO
+v.colors riodejaneiro2D column=cat color=random
+
+# AJUSTA BBOX DO GRASS PARA OS DADOS IMPORTADOS
+g.region vect=riodejaneiro2D
+
+# INFO
+g.region -p
+projection: 3 (Latitude-Longitude)
+zone:       0
+datum:      wgs84
+ellipsoid:  wgs84
+north:      22:34:48.89316S
+south:      23:03:11.51244S
+west:       43:34:47.97084W
+east:       42:55:12.02052W
+nsres:      0:00:00.612013
+ewres:      0:00:00.612043
+rows:       2782
+cols:       3882
+cells:      10799724
+
+# COSPE
+d.mon start=png --overwrite
+d.vect riodejaneiro2D
+d.barscale 
+d.mon stop=png
+
+# INFO
+db.describe table=riodejaneiro2D
+
+# AJUSTAR CENTROIDES ( Skipping area XXX without centroid )
+v.centroids input=riodejaneiro2D output=riodejaneiro2DCT
+
+# SIMULAR ALTURA 20 METROS
+v.extrude riodejaneiro2DCT out=riodejaneiro3D height=20 --overwrite
+
+# CRIAR NOVA COLUNA COMO DOUBLE PARA ALTURA
+v.db.addcolumn riodejaneiro2D col="altura double precision"
+
+# COPIAR COM CAST
+v.db.update riodejaneiro2D col=altura qcol="CAST(height AS double precision)" 
+
+# EXTRUDE
+v.extrude riodejaneiro2D out=riodejaneiro3D height_column=altura --overwrite elevation=S23W043 layer=multipolygons
+
+# EXPORTAR PARA VTK - USE PARAVIEW
+v.out.vtk input=riodejaneiro3D type=face  output=riodejaneiro3D.vtk --overwrite
+
+# CHECAR
+v.db.select riodejaneiro2D columns=altura
+
+# CHECAR
+v.info riodejaneiro3D
+ +----------------------------------------------------------------------------+
+ | Name:            riodejaneiro3D                                            |
+ | Mapset:          PERMANENT                                                 |
+ | Location:        magno01                                                   |
+ | Database:        /home/magno/grass                                         |
+ | Title:                                                                     |
+ | Map scale:       1:1                                                       |
+ | Name of creator: root                                                      |
+ | Organization:                                                              |
+ | Source date:     Thu Jun 13 23:30:26 2019                                  |
+ | Timestamp (first layer): none                                              |
+ |----------------------------------------------------------------------------|
+ | Map format:      native                                                    |
+ |----------------------------------------------------------------------------|
+ |   Type of map: vector (level: 2)                                           |
+ |                                                                            |
+ |   Number of points:       0               Number of centroids:  0          |
+ |   Number of lines:        0               Number of boundaries: 0          |
+ |   Number of areas:        0               Number of islands:    0          |
+ |   Number of faces:        813248          Number of kernels:    93192      |
+ |   Number of volumes:      0               Number of holes:      0          |
+ |                                                                            |
+ |   Map is 3D:              Yes                                              |
+ |   Number of dblinks:      1                                                |
+ |                                                                            |
+ |   Projection: Latitude-Longitude                                           |
+ |                                                                            |
+ |               N:   22:34:48.89316S    S:   23:03:11.51244S                 |
+ |               E:   42:55:12.02052W    W:   43:34:47.97084W                 |
+ |               B:                 0    T:                20                 |
+ |                                                                            |
+ |   Digitization threshold: 0                                                |
+ |   Comment:                                                                 |
+ |     Generated by v.extrude from vector map <riodejaneiro2DCT@PERMANENT>    |
+ +----------------------------------------------------------------------------+
+
+
+v.out.ogr input=riodejaneiro3D type=face output=riodejaneiro3D.kml format=KML --overwrite output_layer=multipolygons  
+v.out.ogr input=riodejaneiro3D type=face output=riodejaneiro3D.shp format=ESRI_Shapefile --overwrite output_layer=multipolygons 
+
+###############################################################################################
+###############################################################################################
+
+point: a point;
+line: a directed sequence of connected vertices with two endpoints called nodes;
+boundary: the border line to describe an area;
+centroid: a point within a closed ring of boundaries;
+area: the topological composition of a closed ring of boundaries and a centroid;
+face: a 3D area;
+kernel: a 3D centroid in a volume (not yet implemented);
+volume: a 3D corpus, the topological composition of faces and kernel (not yet implemented).
+
+# RASTERS
+S23W043
+S23W043_CLR
+S23W043_HSH
+S23W043_VS
+S23W043_ASP 
+S23W043_SLP
+elevation_shade_byte
+
+# VECTORS
+S23W043_CNT
+S23W043_SHP
+osmdata
+osmdata3D
+osmdatact
+riodejaneiro2D
+riodejaneiro2DCT
+
+###############################################################################################
+###############################################################################################
+
+## COMBINAR REGIAO DE VARIOS RASTERS
+g.region raster=map1,map2,map3,map4 -p
+
+
+## DOWNLOAD DE UM GEOSERVER VIA WMS ( REGION? )
+r.in.wms url=http://siscom.ibama.gov.br/geoserver/wms layers=publica:veg_cerrado_mdbbs_2009_a output=teste1234 format=png --overwrite
+r.out.png input=teste1234 output=/home/magno/grass/teste1234.png -t --overwrite compression=9 -w
+
+## COMBINA / MERGE VARIOS RASTERS
+r.patch input=teste1234,S23W043_CLR output=combined
+r.out.png input=combined output=/home/magno/grass/combined.png -t --overwrite compression=9 -w
+
+
+########################  SLOPE #########################
+r.slope.aspect elevation=S23W043 slope=S23W043_SLP aspect=S23W043_ASP
+r.colors -n map=S23W043_SLP color=sepia
+r.out.png input=S23W043_SLP output=/home/magno/grass/S23W043_SLP2.png -t --overwrite compression=9 -w
+ 
+########################  LEGENDA #########################
+d.mon start=png --overwrite
+d.rast S23W043_SLP
+d.legend raster=S23W043_SLP -t label_step=10 label_values=5 title=Legend -b bgcolor=255:255:204 border_color=gray
+d.mon stop=png
+
+
+########################  LAKE  #########################
+##########  CALCULA AREAS DE INUNCACAO ##################
+https://grass.osgeo.org/grass72/manuals/r.lake.html
+#########################################################
+
+
+
+
+d.mon start=png --overwrite output=/home/magno/grass/map.png width=3840 height=2160  # 4K
+d.mon start=png --overwrite output=/home/magno/grass/map.png width=1920 height=1080  # F-HD
+d.rast S23W043_SLP
+d.legend S23W043_SLP at=2,40,2,6
+d.out.file S23W043_SLP
+d.rast S23W043_ASP
+d.legend S23W043_ASP at=2,40,2,6
+d.out.file S23W043_ASP
+
+##
+r.mapcalc "elev_int = int(S23W043)"
+r.slope.aspect elev_int aspect=S23W043_ASP slope=S23W043_SLP --overwrite
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+		 

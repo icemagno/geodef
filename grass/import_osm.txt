@@ -1,0 +1,19 @@
+
+export OSM_CONFIG_FILE=/data/osm_config.ini
+
+v.in.ogr input=brazil-latest.osm.pbf output=OSM_BRASIL layer=multipolygons where="( (building <> '') or (building is not null) )" --overwrite -o
+
+
+v.in.ogr layer=gws_buildings output=OSM_BRASIL input="PG:host=volcano-db dbname=volcano user=postgres password=admin" format=PostgreSQL --overwrite where="building is not null and height is not null"
+
+
+
+v.in.ogr input=formosa.osm layer=multipolygons output=OSM_FORMOSA where="( (building <> '') or (building is not null) )" --overwrite -o
+
+
+v.info OSM_BRASIL
+
+g.region vect=OSM_BRASIL
+v.db.select OSM_BRASIL columns=height
+
+v.out.ogr -s input=OSM_BRASIL output="PG:host=volcano-db dbname=volcano user=postgres password=admin" format=PostgreSQL --overwrite
