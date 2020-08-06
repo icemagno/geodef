@@ -1494,6 +1494,7 @@
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoEmptyProvider.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoBuildingsProvider.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoPointCloudProvider.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/js/providers/MagnoMarineTrafficProvider.js" type="text/javascript"></script>
 	
 	<script src="${midasLocation}/atlas/resources/js/geohash.js" type="text/javascript"></script>
 	

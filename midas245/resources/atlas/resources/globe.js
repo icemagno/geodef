@@ -193,23 +193,26 @@ function startMap() {
 
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
+	
+	var magnoMarineTrafficProvider = new MagnoMarineTrafficProvider({
+		whenFeaturesAcquired : function( shipPackageData ){
+			if( shipPackageData.ships.length > 0 ) console.log( shipPackageData );
+		}
+	});
+	viewer.imageryLayers.addImageryProvider( magnoMarineTrafficProvider );	
+	
+	/*
 	var testScript = getUrlParam('testscript','xxx');
-	
 	if( testScript !== 'xxx'){
-	
 		var url = 'http://sisgeodef.defesa.mil.br:36280/scripts/'+testScript+'.js?_d=' + createUUID();
 		console.log('Sandbox: invocando run() em ' + url);
-		
 		loadScript( url, function(){
 			run();
 		});
-		
 	}
-
 	console.log( 'Variaveis passadas:');
 	console.log( getUrlVars() );
-	
-	
+	*/
 }
 
 function bindInterfaceElements() {
