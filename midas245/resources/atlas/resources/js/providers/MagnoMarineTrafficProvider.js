@@ -21,13 +21,24 @@ var MagnoMarineTrafficProvider = function MagnoMarineTrafficProvider(options) {
     this._requestImage = Cesium.defaultValue(options.requestImage, null );
     this._minimumLevel = Cesium.defaultValue(options.minimumLevel, 0);
     this._maximumLevel = Cesium.defaultValue(options.maximumLevel, 22);
-    this._tilingScheme = Cesium.defined(options.tilingScheme) ? options.tilingScheme : new Cesium.GeographicTilingScheme({ ellipsoid: options.ellipsoid });
+    this._tilingScheme = Cesium.defined(options.tilingScheme) ? options.tilingScheme : new Cesium.WebMercatorTilingScheme({ ellipsoid: options.ellipsoid });
     this._color = Cesium.defaultValue(options.color, Cesium.Color.YELLOW);
     this._errorEvent = new Cesium.Event();
-    this._tileWidth = Cesium.defaultValue(options.tileWidth, 256);
-    this._tileHeight = Cesium.defaultValue(options.tileHeight, 256);
+    this._tileWidth = 512;
+    this._tileHeight = 512;
     this._readyPromise = Cesium.when.resolve(true);
-    this._debugTiles =  Cesium.defaultValue(options.debugTiles, false);
+    this._onWhenFeaturesAcquired = Cesium.defaultValue(options.whenFeaturesAcquired, null);
+
+	this._imageryProvider = new Cesium.UrlTemplateImageryProvider({
+		url: "https://tiles.marinetraffic.com/ais_helpers/shiptilesingle.aspx?output=png&sat=1&grouping=shiptype&tile_size=512&legends=1&zoom={z}&X={x}&Y={y}",
+		ellipsoid: options.ellipsoid,
+		minimumLevel: options.minimumLevel,
+		maximumLevel: options.maximumLevel,
+		tileWidth : 256,
+		tileHeight : 256,
+		rectangle: options.rectangle,
+	});	
+	
 }
 
 Object.defineProperties(MagnoMarineTrafficProvider.prototype, {
@@ -234,56 +245,29 @@ MagnoMarineTrafficProvider.prototype.getTileCredits = function (x, y, level) {
  *          Image or a Canvas DOM object.
  */
 MagnoMarineTrafficProvider.prototype.requestImage = function (x, y, level, request) {
-    var interval = 180.0 / Math.pow(2, level);
-
-    var lon = x * interval-180;
-    var lat = 90 - y * interval;
-    var nwCorner = {};
-    nwCorner.lat = lat;
-    nwCorner.lon = lon;
-
-    
-    var lon1 = (x + 1) * interval-180;
-    var lat1 = 90 - (y + 1) * interval;
-    var seCorner = {};
-    seCorner.lat = lat1;
-    seCorner.lon = lon1;
-    
-    var neCorner = {};
-    neCorner.lat = lat;
-    neCorner.lon = lon1;
-
-    var swCorner = {};
-    swCorner.lat = lat1;
-    swCorner.lon = lon;
-    
-    var bbox = {};
-    bbox.nwCorner = nwCorner
-    bbox.seCorner = seCorner;
-    bbox.neCorner = neCorner
-    bbox.swCorner = swCorner;
-    
-    var canvas = document.createElement('canvas');
-    canvas.width = 256;
-    canvas.height = 256;
-
-	var lvl = level;
-	var url = "https://tiles.marinetraffic.com/ais_helpers/shiptilesingle.aspx?output=json&sat=1&grouping=shiptype&tile_size=512&legends=1&zoom="+ lvl + "&X=" + x + "&Y=" + y;
+	var lvl = level + 1;
+	var that = this;
 	
-	console.log( url );
+	if( ( that._onWhenFeaturesAcquired != null) && (lvl >= 13) ){
+		
+		var url = "https://tiles.marinetraffic.com/ais_helpers/shiptilesingle.aspx?output=json&sat=1&grouping=shiptype&tile_size=512&legends=1&zoom="+ lvl + "&X=" + x + "&Y=" + y;
+		$.ajax({
+			url: url
+		}).done(function( str ) {
+			// https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=212653&size=thumb300
+			// https://www.marinetraffic.com/img/vessel_types/vi8.png
+			// https://www.marinetraffic.com/img/flags/png40/MH.png
+			var shipPackageData = {};
+			shipPackageData.ships = JSON.parse( str );
+			shipPackageData.x = x;
+			shipPackageData.y = y;
+			shipPackageData.level = lvl;
+			that._onWhenFeaturesAcquired( shipPackageData );
+		});	
+	}
 	
-	
-	$.ajax({
-		url: url
-	}).done(function( str ) {
-		var obj = JSON.parse( str );
-		for( var x=0; x< obj.length; x++ ){
-			var ship = obj[x];
-			console.log( ship );
-		}
-	});	
-	
-    return canvas;
+	var promise =  this._imageryProvider.requestImage(x, y, lvl, request);
+	return promise;
 };
 
 

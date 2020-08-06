@@ -2,10 +2,8 @@ function run(){
 	console.log('Marine Traffic Provider Loaded!');
 
 	var magnoMarineTrafficProvider = new MagnoMarineTrafficProvider({
-		debugTiles : true,
-		activationLevel : 7,
-		whenFeaturesAcquired : function( entities ){
-			console.log( entities.length + " buildings received." );
+		whenFeaturesAcquired : function( shipPackageData ){
+			if( shipPackageData.ships.length > 0 ) console.log( shipPackageData );
 		}
 	});
 
