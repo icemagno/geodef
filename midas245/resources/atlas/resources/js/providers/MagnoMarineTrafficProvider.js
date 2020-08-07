@@ -248,7 +248,7 @@ MagnoMarineTrafficProvider.prototype.requestImage = function (x, y, level, reque
 	var lvl = level + 1;
 	var that = this;
 	
-	if( ( that._onWhenFeaturesAcquired != null) && (lvl >= 13) ){
+	if( ( that._onWhenFeaturesAcquired != null ) && (lvl >= 13) ){
 		
 		var url = "https://tiles.marinetraffic.com/ais_helpers/shiptilesingle.aspx?output=json&sat=1&grouping=shiptype&tile_size=512&legends=1&zoom="+ lvl + "&X=" + x + "&Y=" + y;
 		$.ajax({
@@ -287,7 +287,6 @@ MagnoMarineTrafficProvider.prototype.requestImage = function (x, y, level, reque
  *                   It may also be undefined if picking is not supported.
  */
 MagnoMarineTrafficProvider.prototype.pickFeatures = function (x, y, level, longitude, latitude) {
-	console.log( "Pick at " + longitude + "," + latitude );
     return undefined;
 };
 

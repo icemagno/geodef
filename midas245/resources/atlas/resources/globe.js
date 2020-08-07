@@ -88,7 +88,8 @@ function startMap() {
 	
 	terrainProvider = new Cesium.CesiumTerrainProvider({
 		url : sisgeodefHost + ':36503/tilesets/sisgide',
-		requestVertexNormals : true
+		requestVertexNormals : true,
+		isSct : false
 	});
 	
 	
@@ -129,14 +130,19 @@ function startMap() {
 		requestRenderMode : true,
 	    imageryProvider: baseOsmProvider,
 	    scene3DOnly : true,
-	    shouldAnimate : true
+	    shouldAnimate : true,
+        contextOptions: {
+            requestWebgl2: true
+        },	    
 	});
+	
 	
 	viewer.extend( Cesium.viewerCesiumNavigationMixin, {
 		enableCompass : false,
 		enableZoomControls : false,
 		enableCompassOuterRing : false
 	});
+	
 	
 	camera = viewer.camera;
 	scene = viewer.scene;
@@ -157,6 +163,12 @@ function startMap() {
 	scene.pickTranslucentDepth = true;
 	scene.useDepthPicking = true;
 
+	
+	scene.skyBox.show = false;
+	scene.sun.show = false;
+	scene.bloomEffect.show = true;
+	scene.bloomEffect.threshold = 0.1;
+	scene.bloomEffect.bloomIntensity = 0.3;		
 	
 	// drawOperationArea( homeLocation );
 	goToOperationArea( homeLocation );
@@ -193,13 +205,37 @@ function startMap() {
 
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
+
 	
-	var magnoMarineTrafficProvider = new MagnoMarineTrafficProvider({
-		whenFeaturesAcquired : function( shipPackageData ){
-			if( shipPackageData.ships.length > 0 ) console.log( shipPackageData );
+/*	
+var promise =  scene.outputSceneToFile();
+  Cesium.when(promise,function(base64data){
+     $("#ID").css("background","url(" + base64data +")");
+   })	
+*/	
+	
+	doWindParticles();
+	
+	
+	/*
+	var promise =  viewer.scene.addFieldLayer("/resources/data/climatologia/UTCI_APR.nc");
+	Cesium.when(promise,function(fieldLayer){
+		fieldLayer.particleVelocityFieldEffect.velocityScale = 100.0;
+		fieldLayer.particleVelocityFieldEffect.particleSize = 2;
+		fieldLayer.particleVelocityFieldEffect.paricleCountPerDegree = 1.5;
+		scene.primitives.add(fieldLayer);
+		fieldLayer.particleVelocityFieldEffect.colorTable = colorTable;
+		var options = {
+			longitude:'lon',
+	        latitude:'lat',
+	        uwnd:'uwnd',
+	        vwnd:'uwnd'
 		}
+		fieldLayer.NetCDFData = options;
 	});
-	viewer.imageryLayers.addImageryProvider( magnoMarineTrafficProvider );	
+	*/
+	
+	
 	
 	/*
 	var testScript = getUrlParam('testscript','xxx');
@@ -311,6 +347,28 @@ function bindInterfaceElements() {
 			deleteLayer( openseamap.layer.properties.uuid );
 		}
 	});
+
+	
+	jQuery("#sysLayerMarineTraffic").click( function(){
+		var isChecked = jQuery("#sysLayerMarineTraffic").prop('checked');
+		if( isChecked ) {
+			marinetraffic = addMarineTrafficLayer( this.id );
+			addBasicLayerToPanel( 'Marine Traffic', marinetraffic );
+			
+			marineTrafficEventHandler.setInputAction(function ( e ) {
+				var position = e.position;
+				var clickPoint = getLatLogFromMouse( position );
+		        var longitude = clickPoint.longitude;
+		        var latitude = clickPoint.latitude;
+				queryMarineTraffic( latitude, longitude );
+			}, Cesium.ScreenSpaceEventType.LEFT_CLICK);			
+
+		} else {
+			deleteLayer( marinetraffic.layer.properties.uuid );
+			marineTrafficEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK);
+		}
+	});
+	
 	
 	jQuery("#sysLayerOSM").click( function(){
 		var isChecked = jQuery("#sysLayerOSM").prop('checked');
@@ -447,6 +505,7 @@ jQuery(function () {
 			osmTileServer = obj.osmTileServer;
 			startMap();
 			mainEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
+			marineTrafficEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
 			removeMouseDoubleClickListener();
 			addMouseHoverListener();
 			addCameraChangeListener();
@@ -583,7 +642,7 @@ function updateCamera() {
 }
 
 function updatePanelFooter( position ) {
-	cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic(position);
+	cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic( position );
 	var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(10);
 	var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(10);    	    
 
@@ -605,25 +664,13 @@ function updatePanelFooter( position ) {
 		updateProfileGraph( mapPointerHeight );
 		
 		
-		var geohash = Geohash.encode( mapPointerLatitude, mapPointerLongitude, 12 );
+		var geohash = Geohash.encode( mapPointerLatitude, mapPointerLongitude, 8 );
 		jQuery("#mapGeohash").text( geohash );
 		
 		
 	});
 	
 }
-
-/*
-function bindGeoHashClick(){
-	mainEventHandler.setInputAction(function ( e ) {
-		var position = e.position;
-		var clickPoint = getLatLogFromMouse( position );
-        var longitude = clickPoint.longitude;
-        var latitude = clickPoint.latitude;
-		makeGrid( latitude, longitude );
-	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);			
-}
-*/
 
 
 function getMapMousePosition( movement ) {

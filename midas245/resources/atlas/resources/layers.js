@@ -3,7 +3,6 @@ var searchedLayersResult = [];
 var stackedProviders = [];
 var baseLayer = null;	
 
-//var baseOsmProvider = null; 
 var bdgexCartasImageryProvider = null;
 var rapidEyeImagery = null;
 var contourLines = null;
@@ -11,9 +10,11 @@ var contourShade = null;
 var openseamap = null;
 var cartasCHM = null;
 var metocLayer = null;
-
+var marinetraffic = null;
 
 function deleteLayer( uuid ) {
+	
+	
 	for( x=0; x < stackedProviders.length;x++ ) {
 		var ll = stackedProviders[x];
 		if ( ll.uuid == uuid ) {
@@ -634,6 +635,39 @@ function addLayer( layerName, sourceUrl, sourceLayers, canQuery, transparency, i
 	layer.name = layerName;
 	layerStack.push( layer );
 	return layer.imageryLayer;
+}
+
+
+function addMarineTrafficLayer( elementId ) {
+	var layer = {};
+	var layerName = 'MarineTraffic';
+	var provider = new MagnoMarineTrafficProvider({
+		whenFeaturesAcquired : function( shipPackageData ){
+			for( x=0; x < shipPackageData.ships.length; x++   ) {
+				var theShip = shipPackageData.ships[x];
+				var lat = theShip[1];
+				var lon = theShip[0];
+				var theHash = Geohash.encode(lat,lon,10);
+				var key = theShip[2];
+				theShip.push( theHash );
+				shipsInScreen[ key ] = theShip;
+			}
+			console.log( shipPackageData );
+		}
+	});
+	layer.imageryLayer = viewer.imageryLayers.addImageryProvider( provider ); 
+	layer.name = layerName;
+	layerStack.push( layer );
+	
+	var uuid = createUUID();
+	var theProvider = {};
+	theProvider.uuid = uuid;
+	theProvider.layer = layer.imageryLayer;
+	
+	var props = { 'uuid':uuid, 'elementId':elementId, 'layerName': layerName, 'sourceUrl':'', 'sourceLayers':'' };
+	theProvider.layer.properties = props; 
+	stackedProviders.push( theProvider );
+	return theProvider;
 }
 
 
