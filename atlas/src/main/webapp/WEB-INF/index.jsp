@@ -1267,6 +1267,15 @@
 							<p>Exibe elementos náuticos OpenSeaMap.</p>
 						</div>
 
+						<div class="form-group">
+							<label class="control-sidebar-subheading"> Exibir Camada
+								MarineTraffic <input id="sysLayerMarineTraffic" type="checkbox"
+								class="pull-right">
+							</label>
+							<p>Exibe tráfego marítimo MarineTraffic.</p>
+						</div>
+
+
 					</form>
 
 				</div>
@@ -1414,10 +1423,9 @@
 	<!-- LOAD JAVASCRIPT FILES -->
 	<jsp:include page="requiredscripts.jsp" />
 
-	<!-- <script src="https://cesiumjs.org/releases/1.50/Build/Cesium/Cesium.js"></script> -->
 	<script src="/resources/Cesium/Cesium.js" type="text/javascript"></script>
 
-	<script src="/resources/scalebar/viewerCesiumNavigationMixin.min.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/scalebar/viewerCesiumNavigationMixin.min.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
 	$( document ).ready(function() {
@@ -1428,37 +1436,6 @@
 		}
 	});	
 	</script>
-
-
-
-<!-- 
-	<script src="/resources/3dcity/Intersection/IntersectionAPI.js"></script>
-	<script src="/resources/3dcity/3dcitydb-web-map.js"></script>  
-	<script src="/resources/3dcity/CitydbUtil.js"></script>  
-	<script src="/resources/3dcity/CitydbWebworker.js"></script>
-	<script src="/resources/3dcity/CitydbSceneTransforms.js"></script> 
-	<script src="/resources/3dcity/CitydbKmlHighlightingManager.js"></script>   
-	<script src="/resources/3dcity/CitydbKmlTilingManager.js"></script>  
-	<script src="/resources/3dcity/CitydbKmlDataSource.js"></script>    
-	<script src="/resources/3dcity/CitydbKmlLayer.js"></script> 
-    <script src="/resources/3dcity/Cesium3DTilesDataLayer.js"></script>
- -->	
-
-
-    <!-- Mashup Data Source Service -->
-<!--     
-    <script src="/resources/3dcity/ds/core/DataRecord.js"></script>
-    <script src="/resources/3dcity/ds/core/DataSourceCapability.js"></script>
-    <script src="/resources/3dcity/ds/core/QueryResult.js"></script>
-    <script src="/resources/3dcity/ds/core/ReadableDataSource.js"></script>
-    <script src="/resources/3dcity/ds/core/WritableDataSource.js"></script>
-    <script src="/resources/3dcity/ds/core/DataSource.js"></script>
-    <script src="/resources/3dcity/ds/core/SQLDataSource.js"></script>
-    <script src="/resources/3dcity/ds/application/GoogleSheets.js"></script>
-    <script src="/resources/3dcity/ds/application/PostgreSQL.js"></script>
-    <script src="/resources/3dcity/ds/core/MashupDataSource.js"></script>
-    <script src="/resources/3dcity/ds/application/DataSourceController.js"></script>
- -->
 
 
 	<script src="${midasLocation}/atlas/resources/globe.js" type="text/javascript"></script>
@@ -1489,11 +1466,13 @@
 	<script src="${midasLocation}/atlas/resources/cormeteoro.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/export.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/anewradar.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/marinetraffic.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/windparticle.js" type="text/javascript"></script>
 	
-	
-	<script src="${midasLocation}/atlas/resources/js/providers/MagnoEmptyProvider.js" type="text/javascript"></script>
+	<!-- 	
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoBuildingsProvider.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoPointCloudProvider.js" type="text/javascript"></script>
+	 -->
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoMarineTrafficProvider.js" type="text/javascript"></script>
 	
 	<script src="${midasLocation}/atlas/resources/js/geohash.js" type="text/javascript"></script>
