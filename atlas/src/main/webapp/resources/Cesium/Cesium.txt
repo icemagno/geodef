@@ -1,0 +1,7 @@
+O Cesium atual é de um site de exemplos em ingles.
+Ele tratou melhor as particulas de vento.
+Precisa testar mais para ver incompatibilidade.
+
+Cesium-CH é também do site de exemplos, mas chines.
+
+O Cesium-Orig faz parte do pacote instalado.
