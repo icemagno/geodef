@@ -1,6 +1,7 @@
 package br.mil.defesa.sisgeodef.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,7 +59,8 @@ public class MarineTrafficController {
 	    byte[] image = outputStream.toByteArray();
 	    try {
 	    	String img = x+"-"+y+"-"+z+".jpg";
-		    FileOutputStream fos = new FileOutputStream("/marinetraffic/" + img);
+	    	new File("/srv/calisto/marinetraffic/").mkdirs();
+		    FileOutputStream fos = new FileOutputStream("/srv/calisto/marinetraffic/" + img);
 		    try {
 		        fos.write( image );
 		    } finally {

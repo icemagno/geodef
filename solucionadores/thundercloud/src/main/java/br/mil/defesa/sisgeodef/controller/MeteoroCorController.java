@@ -1,6 +1,5 @@
 package br.mil.defesa.sisgeodef.controller;
 
-import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,11 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
-import com.google.common.io.CharStreams;
 
 import br.mil.defesa.sisgeodef.misc.ColorHelper;
 import br.mil.defesa.sisgeodef.misc.MetarData;
@@ -37,43 +31,15 @@ import io.github.mivek.model.Metar;
 import io.github.mivek.model.WeatherCondition;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/metar")
 public class MeteoroCorController {
 	
-    @Value("classpath:mock/metar.json")
-    Resource mockMetar;	
-    
 	@Value("${proxy.useProxy}")
 	private boolean useProxy;	
 	    
     
     @Autowired
     AuthService authService;
-
-	@RequestMapping(value = "/mock", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public @ResponseBody String getColor( @RequestParam(value="icaoCode",required=true) String icaoCode  ) {
-		String result = "";
-		try {
-			String metarText = getMetar( icaoCode );
-			
-			result = metarText;
-		} catch ( Exception ex ) {
-			ex.printStackTrace();
-			result = ex.getMessage();
-		}
-		return result;
-	}	
-	
-	@RequestMapping(value = "/mockall", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public @ResponseBody String getColorAll( ) {
-		String result = "";
-		try {
-			result = CharStreams.toString( new InputStreamReader( mockMetar.getInputStream() ) );
-		} catch ( Exception e ) {
-			e.printStackTrace();
-		}
-		return result;
-	}	
 
 	private String doRequestGet( String url ) {
 		
@@ -225,16 +191,6 @@ public class MeteoroCorController {
 		return md;
 	}
 	
-	
-	private String getMetar( String icaoCode ) throws Exception {
-		String data = CharStreams.toString( new InputStreamReader( mockMetar.getInputStream() ) );
-		JSONArray arr = new JSONArray( data );
-		for( int x=0; x<arr.length(); x++  ) {
-			JSONObject metar = arr.getJSONObject(x);
-			System.out.println( metar.toString() );
-		}
-		return "";
-	}
 	
 	private String calcColor( MetarData metarData ) {
 		Metar metar = metarData.getMetar();

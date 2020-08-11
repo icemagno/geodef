@@ -24,6 +24,46 @@ function loadScript(url, callback){
     document.getElementsByTagName("head")[0].appendChild(script);
 }
 
+function getBox( callBack ){
+
+	// Cesium.ClampMode.Ground
+	// Cesium.ClampMode.Raster
+	// Cesium.ClampMode.Space
+	
+	var handlerPolygon = new Cesium.DrawHandler( viewer, Cesium.DrawMode.Polygon, Cesium.ClampMode.Space );
+	handlerPolygon.enableDepthTest = false;
+	
+	handlerPolygon.drawEvt.addEventListener(function(result) {
+		var polygon = result.object;
+		var positions = polygon.positions;
+		var flatPoints = [];
+		var result = {};
+		result.cartesian = positions;
+	   
+		for(var i = 0, j = positions.length; i < j; i++) {
+			var position = positions[i];
+			var cartographic = Cesium.Cartographic.fromCartesian(position);
+			var lon = Cesium.Math.toDegrees(cartographic.longitude);
+			var lat = Cesium.Math.toDegrees(cartographic.latitude);
+			var height = cartographic.height;
+			var aPoint = {lat,lon,height};
+			flatPoints.push( aPoint );
+		}
+		
+		result.cartographic = flatPoints;
+		
+		handlerPolygon.clear();
+		handlerPolygon.deactivate();
+		if( callBack != null ) callBack( result );	
+	});	
+	
+	handlerPolygon.movingEvt.addEventListener(function(result){
+		//
+	});	
+	
+	handlerPolygon.activate();
+
+}
 
 function importModule( module ){
 	var url = 'http://sisgeodef.defesa.mil.br:36280/scripts/' + module + '.js?_d=' + createUUID();

@@ -206,15 +206,8 @@ function startMap() {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 
-	
-/*	
-var promise =  scene.outputSceneToFile();
-  Cesium.when(promise,function(base64data){
-     $("#ID").css("background","url(" + base64data +")");
-   })	
-*/	
-	
-	doWindParticles();
+	// Teste de particulas de vento
+	// doWindParticles();
 	
 	
 	/*
@@ -237,7 +230,7 @@ var promise =  scene.outputSceneToFile();
 	
 	
 	
-	/*
+	
 	var testScript = getUrlParam('testscript','xxx');
 	if( testScript !== 'xxx'){
 		var url = 'http://sisgeodef.defesa.mil.br:36280/scripts/'+testScript+'.js?_d=' + createUUID();
@@ -248,7 +241,7 @@ var promise =  scene.outputSceneToFile();
 	}
 	console.log( 'Variaveis passadas:');
 	console.log( getUrlVars() );
-	*/
+	
 }
 
 function bindInterfaceElements() {
