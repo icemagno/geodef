@@ -17,7 +17,8 @@ function run(){
 		lineString = lineString + "," + cartographics[0].lon + " " +cartographics[0].lat + ")";
 		
 	    jQuery.ajax({
-			url:"http://sisgeodef.defesa.mil.br:36003/ibge/municipios", 
+			//url:"http://sisgeodef.defesa.mil.br:36003/ibge/municipios", 
+			url:"/metoc/municipios", 
 			type: "POST", 
 			data : {'lineString':lineString},
 			success: function( obj ) {

@@ -58,7 +58,8 @@ function getBox( callBack ){
 	});	
 	
 	handlerPolygon.movingEvt.addEventListener(function(result){
-		//
+		console.log('Moving ... ');
+		console.log( result );
 	});	
 	
 	handlerPolygon.activate();
