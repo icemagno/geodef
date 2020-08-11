@@ -642,6 +642,7 @@ function addMarineTrafficLayer( elementId ) {
 	var layer = {};
 	var layerName = 'MarineTraffic';
 	var provider = new MagnoMarineTrafficProvider({
+		url : "https://tiles.marinetraffic.com/ais_helpers/shiptilesingle.aspx?output=png&sat=1&grouping=shiptype&tile_size=512&legends=1&zoom={z}&X={x}&Y={y}",
 		whenFeaturesAcquired : function( shipPackageData ){
 			for( x=0; x < shipPackageData.ships.length; x++   ) {
 				var theShip = shipPackageData.ships[x];

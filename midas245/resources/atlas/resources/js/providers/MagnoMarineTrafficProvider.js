@@ -17,8 +17,10 @@
     */
 
 var MagnoMarineTrafficProvider = function MagnoMarineTrafficProvider(options) {
+	var defaultUrl = "https://tiles.marinetraffic.com/ais_helpers/shiptilesingle.aspx?output=png&sat=1&grouping=shiptype&tile_size=512&legends=1&zoom={z}&X={x}&Y={y}";
 	options = Cesium.defaultValue(options, Cesium.defaultValue.EMPTY_OBJECT);    
-    this._requestImage = Cesium.defaultValue(options.requestImage, null );
+
+	this._requestImage = Cesium.defaultValue(options.requestImage, null );
     this._minimumLevel = Cesium.defaultValue(options.minimumLevel, 0);
     this._maximumLevel = Cesium.defaultValue(options.maximumLevel, 22);
     this._tilingScheme = Cesium.defined(options.tilingScheme) ? options.tilingScheme : new Cesium.WebMercatorTilingScheme({ ellipsoid: options.ellipsoid });
@@ -28,9 +30,10 @@ var MagnoMarineTrafficProvider = function MagnoMarineTrafficProvider(options) {
     this._tileHeight = 512;
     this._readyPromise = Cesium.when.resolve(true);
     this._onWhenFeaturesAcquired = Cesium.defaultValue(options.whenFeaturesAcquired, null);
+    this._url = Cesium.defaultValue(options.url, defaultUrl);
 
 	this._imageryProvider = new Cesium.UrlTemplateImageryProvider({
-		url: "https://tiles.marinetraffic.com/ais_helpers/shiptilesingle.aspx?output=png&sat=1&grouping=shiptype&tile_size=512&legends=1&zoom={z}&X={x}&Y={y}",
+		url: this._url,
 		ellipsoid: options.ellipsoid,
 		minimumLevel: options.minimumLevel,
 		maximumLevel: options.maximumLevel,

@@ -1,6 +1,6 @@
 FROM openjdk:13-jdk-alpine
 MAINTAINER magno.mabreu@gmail.com
-RUN mkdir /templates
+RUN mkdir /templates && mkdir /marinetraffic
 COPY ./templates /templates/
 COPY ./target/atlas-1.0.war /opt/lib/
 ENTRYPOINT ["java"]

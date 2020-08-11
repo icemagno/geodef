@@ -33,7 +33,7 @@
 		               <div class="row">
 		                  <div class="col-sm-7 brand-holder">
 		                     <h1 style="padding-left: 150px;">
-		                        <img style="width: 150px;position: absolute;top: 2px;left: 0px;" src="/resources/img/defesa-novo-hor.png"> | Geoportal ATLAS
+		                        <img style="width: 150px;position: absolute;top: 2px;left: 0px;" src="/resources/img/defesa-novo-hor.png"> | Geoportal SisGEODEF
 		                     </h1>
 		                     <h3>Sistema de Geoinformação de Defesa</h3>
 		                     <p class="text-justify">
@@ -83,7 +83,7 @@
          <hr class="footer-fixed">
          <div class="container footer-container">
    <div class="pull-right hidden-xs">
-     versão 04/08/2020
+     versão 10/08/2020
    </div>
    <!-- Default to the left -->
    <strong>Sistema de Geoinformação de Defesa</strong> 
