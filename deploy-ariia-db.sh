@@ -14,7 +14,6 @@ docker run --name ariia-db --network apolo --hostname=ariia-db \
 -e POSTGRES_DB=ariia \
 -v /srv/ariia-db/:/var/lib/postgresql/data/ \
 -v /etc/localtime:/etc/localtime:ro \
--p 36341:5432 \
 -d sisgeodef/ariia-db:1.0
 
 docker network connect sisgeodef ariia-db

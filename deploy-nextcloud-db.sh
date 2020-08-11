@@ -15,7 +15,6 @@ docker run --name nextcloud-db --network apolo --hostname=nextcloud-db \
 -e POSTGRES_USER=nextcloud \
 -v /srv/nextcloud-db/:/var/lib/postgresql/data/ \
 -v /etc/localtime:/etc/localtime:ro \
--p 36316:5432 \
 -d sisgeodef/nextcloud-db:1.0
 
 docker network connect sisgeodef nextcloud-db

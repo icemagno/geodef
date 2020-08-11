@@ -17,7 +17,6 @@ docker run --name nautilo-db --hostname=nautilo-db \
 -e POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology \
 -v /srv/nautilo-db/:/var/lib/postgresql/ \
 -v /etc/localtime:/etc/localtime:ro \
--p 36310:5432 \
 -d sisgeodef/nautilo-db:1.0
 
 

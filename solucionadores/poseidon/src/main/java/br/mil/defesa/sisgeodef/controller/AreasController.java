@@ -1,10 +1,6 @@
 package br.mil.defesa.sisgeodef.controller;
 
-import java.io.InputStreamReader;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,41 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.google.common.io.CharStreams;
-
 import br.mil.defesa.sisgeodef.services.AuthService;
 
 @RestController
-@RequestMapping("/areas")
+@RequestMapping("/mautempo")
 public class AreasController {
 	
-    @Value("classpath:mock/areas.json")
-    private Resource mockAreas;	
-
-    @Value("${apolo.areasmautempo.url}")
-    private String apoloMauTempoEndpoint;	
-    
     @Autowired
     private AuthService authService;
 
-	@RequestMapping(value = "/mock", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public @ResponseBody String getAreasMock( ) {
-		String result = "";
-		try {
-			result = CharStreams.toString( new InputStreamReader( mockAreas.getInputStream() ) );
-		} catch ( Exception ex ) {
-			ex.printStackTrace();
-			result = ex.getMessage();
-		}
-		return result;
-	}	
-
-
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	@RequestMapping(value = "/areas", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody String getAreas( ) {
 		String result = "";
 		try {
-			result = doRequestGet( apoloMauTempoEndpoint );
+			result = doRequestGet( "" );
 		} catch ( Exception ex ) {
 			ex.printStackTrace();
 			result = ex.getMessage();

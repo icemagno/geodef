@@ -18,7 +18,6 @@ docker run --name volcano-db --hostname=volcano-db \
 -e ALLOW_IP_RANGE='0.0.0.0/0' \
 -v /srv/volcano-db/:/var/lib/postgresql/data/ \
 -v /etc/localtime:/etc/localtime:ro \
--p 36350:5432 \
 -d sisgeodef/volcano-db:1.0
 
 echo "Aguardando a imagem... (5 segundos)"

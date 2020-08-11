@@ -17,7 +17,6 @@ docker run --name odisseu-db --network apolo --hostname=odisseu-db \
 -v /etc/localtime:/etc/localtime:ro \
 -e POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology \
 -v /srv/odisseu-db/:/var/lib/postgresql/ \
--p 36302:5432 \
 -d sisgeodef/odisseu-db:1.0
 
 docker network connect sisgeodef odisseu-db

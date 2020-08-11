@@ -17,7 +17,6 @@ docker run --name poseidon-db --hostname=poseidon-db \
 -v /etc/localtime:/etc/localtime:ro \
 -e POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology \
 -v /srv/poseidon-db/:/var/lib/postgresql/ \
--p 36007:5432 \
 -d sisgeodef/poseidon-db:1.0
 
 docker network connect sisgeodef poseidon-db

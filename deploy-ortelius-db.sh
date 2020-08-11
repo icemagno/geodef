@@ -17,7 +17,6 @@ docker run --name ortelius-db --hostname=ortelius-db \
 -e ALLOW_IP_RANGE='0.0.0.0/0' \
 -v /etc/localtime:/etc/localtime:ro \
 -v /srv/ortelius-db/:/var/lib/postgresql/data/ \
--p 36304:5432 \
 -d sisgeodef/ortelius-db:1.0
 
 echo "Aguardando a imagem... (5 segundos)"

@@ -17,7 +17,6 @@ docker run --name indra-db --network apolo --hostname=indra-db \
 -e POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology \
 -v /srv/indra-db/:/var/lib/postgresql/ \
 -v /etc/localtime:/etc/localtime:ro \
--p 36500:5432 \
 -d sisgeodef/indra-db:1.0
 
 docker network connect sisgeodef indra-db

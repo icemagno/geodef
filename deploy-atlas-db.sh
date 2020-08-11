@@ -12,7 +12,6 @@ docker run --name atlas-db --hostname=atlas-db \
 -e POSTGRES_DB=guardiao \
 -v /srv/atlas-db/:/var/lib/postgresql/data/ \
 -v /etc/localtime:/etc/localtime:ro \
--p 36210:5432 \
 -d sisgeodef/atlas-db:1.0
 
 sleep 5
