@@ -217,10 +217,11 @@ function queryLayer() {
 	    	
 	    	if ( entity.name === 'ROTA_POI') showRotaPoi( entity );
 	    	if ( entity.name === 'PHOTO_HASTE') showStreetImage( entity );
-	    	if ( entity.name === "PLATAFORMA") showPlataformaInfo( entity );
-	    	if ( entity.name === "NAVIO_SISTRAM") showNavioInfo( entity );
+	    	//if ( entity.name === "PLATAFORMA") showPlataformaInfo( entity );
+	    	//if ( entity.name === "NAVIO_SISTRAM") showNavioInfo( entity );
 	    	if ( entity.name === "PCN_RUNWAY") showRunwayInfo( entity );
 	    	if ( entity.name === "CORMET_AERODROMO") showColorAerodromo( entity );
+	    	if ( entity.name === "MUNICIPIO_PREVISAO") showPrevisaoMunicipio( entity );
 	    	
 	    } else {
 	    	console.log('Nenhuma entidade clicada.');

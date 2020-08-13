@@ -39,7 +39,7 @@
 }
 
 .toolBarMenuBox {
-	left: 695px; 
+	right: 250px; 
 	position: absolute; 
 	z-index: 9999;
 	top: 5px;
