@@ -23,4 +23,15 @@ public class MetocController {
 	}	
 
 	
+	@RequestMapping(value = "/aerodromos", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody String aerodromos( @RequestParam(value="lineString",required=true) String lineString ) {
+		return thundercloud.getAerodromos( lineString );
+	}	
+	
+	@RequestMapping(value = "/estacoes", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody String estacoes( @RequestParam(value="lineString",required=true) String lineString ) {
+		return thundercloud.getEstacoes( lineString );
+	}	
+
+	
 }

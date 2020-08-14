@@ -72,7 +72,7 @@ public class ImportadorService {
 	
 	
 	public String importEstacoes() {
-		String data = getData("https://apitempo.inmet.gov.br/WSI/estacoes/T");
+		String data = getData("https://mapas.inmet.gov.br/estacoes.json");
 		return data;
 	}
 

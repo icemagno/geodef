@@ -205,7 +205,23 @@ function startMap() {
 
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
-
+	
+	
+	/*  Maldito CORS !!
+	var imageryProvider = new Cesium.SingleTileImageryProvider({
+	    url : "https://mapas.inmet.gov.br/BR.gif",
+	    rectangle : Cesium.Rectangle.fromDegrees(-95.0, -60.17, -19.8, 22.4   ) //west, south, east, north
+	});
+	
+	imageryProvider.defaultAlpha = 0.7;
+		
+	var layers = viewer.scene.imageryLayers;
+	layers.addImageryProvider( imageryProvider );	
+	*/
+	
+	
+	
+	
 	// Teste de particulas de vento
 	// doWindParticles();
 	

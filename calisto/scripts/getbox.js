@@ -38,55 +38,115 @@ function run(){
 		}	
 		lineString = lineString + "," + cartographics[0].lon + " " +cartographics[0].lat + ")";
 		
-	    jQuery.ajax({
-			url:"/metoc/municipios", 
-			type: "POST", 
-			data : {'lineString':lineString},
-			success: function( obj ) {
-				var municipios = {};
-				
-				var promise = Cesium.GeoJsonDataSource.load( obj, {
-					clampToGround: false,
-				});
-
-				promise.then(function(dataSource) {
-					var entities = dataSource.entities.values;
-					
-					for (var i = 0; i < entities.length; i++) {
-						var entity = entities[i];
-						var nmMunicipio = entity.properties['nm_municip'].getValue();
-						var geocode = entity.properties['cd_geocodm'].getValue();
-						var center = Cesium.BoundingSphere.fromPoints( entity.polygon.hierarchy.getValue().positions ).center;
-						var newCenter = projectPosition( center, 5000, 0, 0 );
-						
-						
-						var municipio = {};
-						municipio.geocode = geocode;
-						municipio.nome = nmMunicipio;
-						municipio.center = newCenter;
-						municipios[ geocode ] = municipio;
-						
-					}
-					
-					getTempoMunicipios( municipios );
-					
-				});
-				
-				
-			},
-		    error: function(xhr, textStatus) {
-		    	//
-		    }, 		
-	    });
-	
+		processaMunicipios( lineString );
+		processaAerodromos( lineString );
 	    // run();
 		
 	});
 	
+}
+
+
+function processaAerodromos( lineString ){
 	
+	console.log( lineString );
+	
+    jQuery.ajax({
+		url:"/metoc/aerodromos", 
+		type: "POST", 
+		data : {'lineString':lineString},
+		success: function( obj ) {
+			var icone = "/resources/img/aerodromos/aerodromo.jpg";
+			
+			console.log( obj );
+			
+			var promise = Cesium.GeoJsonDataSource.load( obj, {
+				clampToGround: true,
+			});
+
+			promise.then(function(dataSource) {
+
+				var entities = dataSource.entities.values;
+				for (var i = 0; i < entities.length; i++) {
+					var entity = entities[i];
+					
+					
+			    	var platPoint = viewer.entities.add({
+			    		name : 'PLATAFORMA',
+			            position : position,
+			            properties : plataforma,
+					    ellipse: {
+					    	outline : true,
+					    	extrudedHeight : 200,
+					    	heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
+					    	height : 10,
+					    	
+					        semiMajorAxis: 300,
+					        semiMinorAxis: 300,
+			                material: new Cesium.ImageMaterialProperty({ 
+			                	image: icone,
+			                	color :  Cesium.Color.AQUAMARINE, //.withAlpha(0.9)
+			                }),   
+					    }					
+			    	});
+					
+				}
+			});
+			
+			
+		},
+	    error: function(xhr, textStatus) {
+	    	//
+	    }, 		
+    });
 	
 }
+
+
+function processaMunicipios( lineString ){
+    jQuery.ajax({
+		url:"/metoc/municipios", 
+		type: "POST", 
+		data : {'lineString':lineString},
+		success: function( obj ) {
+			var municipios = {};
+			
+			var promise = Cesium.GeoJsonDataSource.load( obj, {
+				clampToGround: false,
+			});
+
+			promise.then(function(dataSource) {
+				var entities = dataSource.entities.values;
+				
+				for (var i = 0; i < entities.length; i++) {
+					var entity = entities[i];
+					var nmMunicipio = entity.properties['nm_municip'].getValue();
+					var geocode = entity.properties['cd_geocodm'].getValue();
+					var center = Cesium.BoundingSphere.fromPoints( entity.polygon.hierarchy.getValue().positions ).center;
+					var newCenter = projectPosition( center, 5000, 0, 0 );
+					
+					
+					var municipio = {};
+					municipio.geocode = geocode;
+					municipio.nome = nmMunicipio;
+					municipio.center = newCenter;
+					municipios[ geocode ] = municipio;
+					
+				}
+				
+				getTempoMunicipios( municipios );
+				
+			});
+			
+			
+		},
+	    error: function(xhr, textStatus) {
+	    	//
+	    }, 		
+    });
 	
+}
+
 function getTempoMunicipios( municipios ){
 	var icones = {};
 	// https://apiprevmet3.inmet.gov.br/previsao/5300108
