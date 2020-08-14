@@ -28,9 +28,6 @@ public class IbgeService {
 	private String password;  		
 	
 	public String getMunicipios(String polygon) {
-		
-		System.out.println( polygon );
-		
 		String result = "{}";
 		String sql = "select * from getmunicipios('" + polygon + "') as resultset";
 		
