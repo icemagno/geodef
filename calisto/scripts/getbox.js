@@ -56,9 +56,6 @@ function processaAerodromos( lineString ){
 		type: "POST", 
 		data : {'lineString':lineString},
 		success: function( obj ) {
-			var icone = "/resources/img/aerodromos/aerodromo.jpg";
-			
-			console.log( obj );
 			
 			var promise = Cesium.GeoJsonDataSource.load( obj, {
 				clampToGround: true,
@@ -72,22 +69,36 @@ function processaAerodromos( lineString ){
 					
 					
 			    	var platPoint = viewer.entities.add({
-			    		name : 'PLATAFORMA',
-			            position : position,
-			            properties : plataforma,
+			    		name : 'AERODROMO_METOC',
+			            position : entity.position,
+			            properties : entity.properties,
 					    ellipse: {
 					    	outline : true,
-					    	extrudedHeight : 200,
+					    	extrudedHeight : 210,
 					    	heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
-					    	height : 10,
-					    	
-					        semiMajorAxis: 300,
-					        semiMinorAxis: 300,
+					    	height : 15,
+					        semiMajorAxis: 500,
+					        semiMinorAxis: 500,
 			                material: new Cesium.ImageMaterialProperty({ 
-			                	image: icone,
-			                	color :  Cesium.Color.AQUAMARINE, //.withAlpha(0.9)
+			                	color :  Cesium.Color.RED, //.withAlpha(0.9)
 			                }),   
-					    }					
+					    },
+			            label : {
+			                text : entity.properties['aerocode'].getValue(),
+			                //style : Cesium.LabelStyle.FILL_AND_OUTLINE,
+			                fillColor : Cesium.Color.BLACK,
+			                //outlineColor : Cesium.Color.BLACK,	                
+			                font: '12px Consolas',
+			                //outlineWidth : 1,
+			                showBackground : false,
+			                backgroundColor : Cesium.Color.WHITE,
+			                horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
+			                eyeOffset : new Cesium.Cartesian3(0.0, 1500.0, 0.0),
+			                pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.3, 1.5e7, 0.5),
+			                heightReference : Cesium.HeightReference.RELATIVE_TO_GROUND,
+			                disableDepthTestDistance : Number.POSITIVE_INFINITY,
+			            }					    
+					    
 			    	});
 					
 				}
@@ -147,12 +158,11 @@ function processaMunicipios( lineString ){
 	
 }
 
+
 function getTempoMunicipios( municipios ){
 	var icones = {};
 	// https://apiprevmet3.inmet.gov.br/previsao/5300108
 	// https://apitempo.inmet.gov.br/estacao/diaria/2020-07-01/2020-07-31/A422
-	// https://apitempo.inmet.gov.br/estacoes/T
-	// https://apitempo.inmet.gov.br/estacoes/M
 	// https://tempo.inmet.gov.br/TabelaEstacoes/A422	
 	
 	
@@ -210,6 +220,25 @@ function getTempoMunicipios( municipios ){
  
 }
 
+
+function showMetarAerodromo( entity ) {
+	
+	var icao = entity.properties["aerocode"].getValue();
+	
+    jQuery.ajax({
+		url:"http://aisweb.decea.gov.br/api/?apiKey=2046730488&apiPass=adc9f816-5cf6-11e7-a4c1-00505680c1b4&area=met&icaoCode=" + icao, 
+		type: "GET", 
+		success: function( obj ) {
+			console.log( obj );
+		},
+	    error: function(xhr, textStatus) {
+	    	//
+	    }, 				
+	});			
+	
+	
+}
+
 function showPrevisaoMunicipio( entity ){
 	var municipio = entity.properties;
 	var nome = municipio.nome.getValue();
@@ -234,12 +263,11 @@ function showPrevisaoMunicipio( entity ){
 		var tabela = "<table style='width:100%;border:0px;margin:0px;padding:0px'>";
 		
 		if ( diaValue.manha != null ){
-			tabela = tabela + "<tr><td>Manhã<br>"+ diaValue.manha.resumo +"</td><td>Tarde<br>"+diaValue.tarde.resumo+"</td><td>Noite<br>"+diaValue.noite.resumo+"</td></tr>";
+			tabela = tabela + "<tr><td>Manhã</td><td>Tarde</td><td>Noite</td></tr>";
 			
-			tabela = tabela + "<tr><td style='border-right:1px solid #cacaca'><img style='width: 42px;' src='"+ diaValue.manha.icone +
-				"'></td><td style='border-right:1px solid #cacaca'><img style='width: 42px;' src='"+ diaValue.tarde.icone +
-				"'></td><td><img style='width: 42px;' src='"+ diaValue.noite.icone +
-			"'></td></tr>";
+			tabela = tabela + "<tr><td style='border-right:1px solid #cacaca'><img title='"+ diaValue.manha.resumo +"' style='width: 42px;' src='"+ diaValue.manha.icone +
+				"'></td><td style='border-right:1px solid #cacaca'><img title='"+ diaValue.tarde.resumo +"'style='width: 42px;' src='"+ diaValue.tarde.icone +
+				"'></td><td><img style='width: 42px;' title='"+ diaValue.noite.resumo +"' src='"+ diaValue.noite.icone + "'></td></tr>";
 
 			tabela = tabela + "<tr><td>"+diaValue.manha.temp_max+"&deg;<img style='width: 10px;margin-right:10px' title='"+diaValue.manha.temp_max_tende+"' src='"+ diaValue.manha.temp_max_tende_icone + "'>" + 
 			diaValue.manha.temp_min+ "&deg;<img style='width: 10px;' title='"+diaValue.manha.temp_min_tende+"' src='"+ diaValue.manha.temp_min_tende_icone + "'></td>" +
