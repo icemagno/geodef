@@ -110,7 +110,7 @@ public class ImportadorService {
 				"'" + venVel +  "'," +
 				"'" + venDir +  "'," +
 				"'" + venRaj +  "'," +
-				", ST_SetSRID(ST_MakePoint("+lng+","+lat+"),4326))";	
+				" ST_SetSRID(ST_MakePoint("+lng+","+lat+"),4326))";	
 				
 				System.out.println( sqlString );
 				

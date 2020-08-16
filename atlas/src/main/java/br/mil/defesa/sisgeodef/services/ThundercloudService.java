@@ -112,8 +112,37 @@ public class ThundercloudService {
 	}
 
 
-	public String getEstacoes(String lineString) {
-		return "[]";
+	public String getEstacoes(String data) {
+		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");
+		String thundercloudAddress = thundercloudInstance.getUri().toString(); 
+			
+		String uri = thundercloudAddress +  "/inmet/estacoes";
+		System.out.println( uri );
+
+		RestTemplate restTemplate = new RestTemplate();
+    	
+		HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+	    MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+	    map.add("lineString", data);
+	    HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+	    
+	    
+        String responseBody = "[]";
+        try {
+        	ResponseEntity<String> result = restTemplate.postForEntity( uri, request, String.class);        
+        	responseBody = result.getBody().toString();
+        
+		} catch ( HttpClientErrorException e) {
+		    responseBody = e.getResponseBodyAsString();
+		    String statusText = e.getStatusText();
+		    System.out.println( statusText );
+		} catch ( Exception ex) {
+			return ex.getMessage();
+		}
+		return responseBody ;
+        
 	}
 
 

@@ -23,6 +23,12 @@ public class InmetController {
 		return inmetService.getestacoes( lineString );
 	}
 	
+
+	@RequestMapping(value = "/estacao/{cdwmo}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody String estacao( @PathVariable("cdwmo") String cdwmo ) {
+		return inmetService.getestacao( cdwmo );
+	}
+	
 	
 	@RequestMapping(value = "/municipio/{geocode}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody String previsaoMunicipio(  @PathVariable("geocode") String geocode ) {

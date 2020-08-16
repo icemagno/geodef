@@ -75,5 +75,10 @@ public class InmetService {
 		}
 		return responseBody;
 	}
+
+
+	public String getestacao(String cdwmo) {
+		return "{}";
+	}
 	
 }
