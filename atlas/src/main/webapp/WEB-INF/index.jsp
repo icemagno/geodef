@@ -779,7 +779,7 @@
 										
 										
 										<tr>
-											<td class="layerTable" colspan="2"><span style="font-size: 11px"><b>Previsão do Tempo</b></span></td>
+											<td style="text-align:center" class="layerTable" colspan="2"><span style="font-size: 11px"><b>Previsão do Tempo</b></span></td>
 										</tr>
 										<tr>
 											<td class="layerTable" colspan="2"><span style="font-size: 11px"><i>Selecione uma área para receber a previsão do tempo.</i></span></td>
@@ -789,6 +789,20 @@
 												<button id="loadPrevisaoBtn" type="button" class="btn btn-block btn-primary btn-xs btn-flat">Selecionar Área</button>
 											</td>
 										</tr>
+										
+										
+										<tr>
+											<td style="text-align:center" class="layerTable" colspan="2"><span style="font-size: 11px"><b>Cor Meteorológica</b></span></td>
+										</tr>
+										<tr>
+											<td class="layerTable" colspan="2"><span style="font-size: 11px"><i>Exibe a cor meteorológica dos aeródromos.</i></span></td>
+										</tr>
+										<tr>
+											<td colspan="2" class="layerTable">
+												<button id="toolCorBtn" type="button" class="btn btn-block btn-primary btn-xs btn-flat">Exibir</button>
+											</td>
+										</tr>
+										
 										
 									</table>
 								</div>

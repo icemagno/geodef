@@ -19,17 +19,23 @@ function loadPrevisaoDoTempo(){
 	});
 }
 
-
 function processaAerodromos( lineString ){
-	
-	console.log( lineString );
+	var loadingId = createUUID();
 	
     jQuery.ajax({
 		url:"/metoc/aerodromos", 
 		type: "POST", 
 		data : {'lineString':lineString},
+		beforeSend : function() { 
+			var loading = "<tr id='"+ loadingId +"'><td id='"+ loadingId +"_td' colspan='2' class='layerTable'>" +
+            "<div class='progress progress-sm active'>" +
+            "<div class='progress-bar progress-bar-primary progress-bar-striped' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'>"+
+            "</div></div>" + 		
+			"Aguarde...</td></tr>";
+			jQuery("#metocMenuTable").append( loading );
+		},		
 		success: function( obj ) {
-			
+			var tr = jQuery("#" + loadingId );
 			var promise = Cesium.GeoJsonDataSource.load( obj, {
 				clampToGround: true,
 			});
@@ -75,12 +81,18 @@ function processaAerodromos( lineString ){
 			    	});
 					
 				}
+		        tr.fadeOut(5000, function(){
+		            tr.remove();
+		        });					
 			});
 			
 			
 		},
 	    error: function(xhr, textStatus) {
-	    	//
+	    	var tr = jQuery("#" + loadingId );
+	        tr.fadeOut(5000, function(){
+	            tr.remove();
+	        });			    	
 	    }, 		
     });
 	
@@ -88,13 +100,22 @@ function processaAerodromos( lineString ){
 
 
 function processaMunicipios( lineString ){
+	var loadingId = createUUID();
     jQuery.ajax({
 		url:"/metoc/municipios", 
 		type: "POST", 
 		data : {'lineString':lineString},
+		beforeSend : function() { 
+			var loading = "<tr id='"+ loadingId +"'><td id='"+ loadingId +"_td' colspan='2' class='layerTable'>" +
+            "<div class='progress progress-sm active'>" +
+            "<div class='progress-bar progress-bar-primary progress-bar-striped' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'>"+
+            "</div></div>" + 		
+			"Aguarde...</td></tr>";
+			jQuery("#metocMenuTable").append( loading );
+		},		
 		success: function( obj ) {
 			var municipios = {};
-			
+			var tr = jQuery("#" + loadingId );
 			var promise = Cesium.GeoJsonDataSource.load( obj, {
 				clampToGround: false,
 			});
@@ -120,12 +141,19 @@ function processaMunicipios( lineString ){
 				
 				getTempoMunicipios( municipios );
 				
+		        tr.fadeOut(5000, function(){
+		            tr.remove();
+		        });						
 			});
 			
 			
 		},
 	    error: function(xhr, textStatus) {
-	    	//
+	    	var tr = jQuery("#" + loadingId );
+	        tr.fadeOut(5000, function(){
+	            tr.remove();
+	        });			    	
+
 	    }, 		
     });
 	
@@ -138,12 +166,9 @@ function getTempoMunicipios( municipios ){
 	// https://apitempo.inmet.gov.br/estacao/diaria/2020-07-01/2020-07-31/A422
 	// https://tempo.inmet.gov.br/TabelaEstacoes/A422	
 	
-	
 	var keys = Object.keys( municipios );
 	for( xx=0; xx<keys.length;xx++ ) {
 		var geoc = keys[xx];
-			
-		
 	    jQuery.ajax({
 			url:"/metoc/municipio/" + geoc, 
 			type: "GET", 
@@ -197,8 +222,7 @@ function getTempoMunicipios( municipios ){
 function showMetarAerodromo( entity ) {
 	var icao = entity.properties["aerocode"].getValue();
 	var loadingId = createUUID();
-	
-	console.log( icao );
+	jQuery(".queryRowDetails").remove();
 	
     jQuery.ajax({
 		url:"/metoc/aerodromo/" + icao, 
@@ -237,7 +261,6 @@ function showMetarAerodromo( entity ) {
 	        		queryData = queryData + "<tr class='queryRowDetails'><td colspan='2' class='layerTable'>"+ taf +"</td></tr>";		        		
 	        	}
 	        	
-	        	jQuery(".queryRowDetails").remove();
 	           	jQuery("#queryMenuTable").append( queryData );	        	
 	        	
 	        }

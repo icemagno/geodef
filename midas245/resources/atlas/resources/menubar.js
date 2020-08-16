@@ -267,7 +267,9 @@ function bindToolBarButtons() {
 		loadPrevisaoDoTempo();
 	});
 
-
+	jQuery("#toolCorBtn").click( function(){
+		loadCores( );
+	});
 	/*
 	jQuery("#loadClimatologiaBtn").click( function(){
 		loadClimato();
@@ -275,10 +277,6 @@ function bindToolBarButtons() {
 	
 	jQuery("#toolMetoc").click( function(){
 		jQuery("#metocMenuBox").show(300);
-	});
-	
-	jQuery("#toolCOR").click( function(){
-		loadCores( );
 	});
 	*/	
 

@@ -73,6 +73,55 @@ public class ImportadorService {
 	
 	public String importEstacoes() {
 		String data = getData("https://mapas.inmet.gov.br/estacoes.json");
+		try {
+			JSONArray collection = new JSONObject( data ).getJSONArray("features");
+			String sqlString;
+			
+			Connection sqlConnection  =  DriverManager.getConnection(connectionString, user, password);
+			Statement stmt = sqlConnection.createStatement();
+			
+			int flag = stmt.executeUpdate("delete from estacoes_inmet");
+			
+			for( int x = 0; x < collection.length(); x++ ) {
+				JSONObject feature = collection.getJSONObject(x);
+				JSONArray coordinates = feature.getJSONObject("geometry").getJSONArray("coordinates");
+				JSONObject properties = feature.getJSONObject("properties");
+				
+				double lng = coordinates.getDouble(0);
+				double lat = coordinates.getDouble(1);
+				
+				String cdEstacao = properties.getString("CD_ESTACAO");
+				String cdWmo = properties.getString("CD_WMO");
+				String dtMedicao = properties.getString("DT_MEDICAO");
+				String hrMedicao = properties.getString("HR_MEDICAO");
+				String uf = properties.getString("UF");
+				String vlAltitude = properties.getString("VL_ALTITUDE");
+				String venVel = properties.getString("VEN_VEL");
+				String venDir = properties.getString("VEN_DIR");
+				String venRaj = properties.getString("VEN_RAJ");
+				
+				sqlString = "insert into estacoes_inmet (CD_ESTACAO,CD_WMO,DT_MEDICAO,HR_MEDICAO,UF,VL_ALTITUDE,VEN_VEL,VEN_DIR,VEN_RAJ,geom) values (" + 
+				"'" + cdEstacao +  "'," +
+				"'" + cdWmo +  "'," +
+				"'" + dtMedicao +  "'," +
+				"'" + hrMedicao +  "'," +
+				"'" + uf +  "'," +
+				"'" + vlAltitude +  "'," +
+				"'" + venVel +  "'," +
+				"'" + venDir +  "'," +
+				"'" + venRaj +  "'," +
+				", ST_SetSRID(ST_MakePoint("+lng+","+lat+"),4326))";	
+				
+				System.out.println( sqlString );
+				
+				flag = stmt.executeUpdate( sqlString );				
+				
+			}
+			
+			
+		} catch ( Exception e ) {
+			e.printStackTrace();
+		}
 		return data;
 	}
 
