@@ -16,8 +16,89 @@ function loadPrevisaoDoTempo(){
 		
 		processaMunicipios( lineString );
 		processaAerodromos( lineString );
+		processaEstacoes( lineString );
 	});
 }
+
+
+function processaEstacoes( lineString ){
+	var loadingId = createUUID();
+	
+    jQuery.ajax({
+		url:"/metoc/estacoes", 
+		type: "POST", 
+		data : {'lineString':lineString},
+		beforeSend : function() { 
+			var loading = "<tr id='"+ loadingId +"'><td id='"+ loadingId +"_td' colspan='2' class='layerTable'>" +
+            "<div class='progress progress-sm active'>" +
+            "<div class='progress-bar progress-bar-primary progress-bar-striped' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'>"+
+            "</div></div>" + 		
+			"Carregando Estações INMET...</td></tr>";
+			jQuery("#metocMenuTable").append( loading );
+		},		
+		success: function( obj ) {
+			var tr = jQuery("#" + loadingId );
+			var promise = Cesium.GeoJsonDataSource.load( obj, {
+				clampToGround: true,
+			});
+
+			promise.then(function(dataSource) {
+				var entities = dataSource.entities.values;
+				for (var i = 0; i < entities.length; i++) {
+					var entity = entities[i];
+					console.log( entity.properties['cd_estacao'].getValue() );
+					/*
+			    	var estacaoPoint = viewer.entities.add({
+			    		name : 'ESTACAO_METOC',
+			            position : entity.position,
+			            properties : entity.properties,
+					    ellipse: {
+					    	outline : true,
+					    	extrudedHeight : 210,
+					    	heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
+					    	height : 15,
+					        semiMajorAxis: 500,
+					        semiMinorAxis: 500,
+			                material: new Cesium.ImageMaterialProperty({ 
+			                	color :  Cesium.Color.RED, //.withAlpha(0.9)
+			                }),   
+					    },
+			            label : {
+			                text : entity.properties['cd_estacao'].getValue(),
+			                //style : Cesium.LabelStyle.FILL_AND_OUTLINE,
+			                fillColor : Cesium.Color.BLACK,
+			                //outlineColor : Cesium.Color.BLACK,	                
+			                font: '12px Consolas',
+			                //outlineWidth : 1,
+			                showBackground : false,
+			                backgroundColor : Cesium.Color.WHITE,
+			                horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
+			                eyeOffset : new Cesium.Cartesian3(0.0, 1500.0, 0.0),
+			                pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.3, 1.5e7, 0.5),
+			                heightReference : Cesium.HeightReference.RELATIVE_TO_GROUND,
+			                disableDepthTestDistance : Number.POSITIVE_INFINITY,
+			            }					    
+					    
+			    	});
+					*/
+				}
+		        tr.fadeOut(5000, function(){
+		            tr.remove();
+		        });					
+			});
+			
+			
+		},
+	    error: function(xhr, textStatus) {
+	    	var tr = jQuery("#" + loadingId );
+	        tr.fadeOut(5000, function(){
+	            tr.remove();
+	        });			    	
+	    }, 		
+    });
+	
+}
+
 
 function processaAerodromos( lineString ){
 	var loadingId = createUUID();
@@ -31,7 +112,7 @@ function processaAerodromos( lineString ){
             "<div class='progress progress-sm active'>" +
             "<div class='progress-bar progress-bar-primary progress-bar-striped' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'>"+
             "</div></div>" + 		
-			"Aguarde...</td></tr>";
+			"Carregando Aeródromos AISWEB...</td></tr>";
 			jQuery("#metocMenuTable").append( loading );
 		},		
 		success: function( obj ) {
@@ -110,7 +191,7 @@ function processaMunicipios( lineString ){
             "<div class='progress progress-sm active'>" +
             "<div class='progress-bar progress-bar-primary progress-bar-striped' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'>"+
             "</div></div>" + 		
-			"Aguarde...</td></tr>";
+			"Carregando Municípios IBGE...</td></tr>";
 			jQuery("#metocMenuTable").append( loading );
 		},		
 		success: function( obj ) {

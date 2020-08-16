@@ -113,8 +113,11 @@ public class ImportadorService {
 				" ST_SetSRID(ST_MakePoint("+lng+","+lat+"),4326))";	
 				
 				System.out.println( sqlString );
-				
-				flag = stmt.executeUpdate( sqlString );				
+				try {
+					flag = stmt.executeUpdate( sqlString );
+				} catch ( Exception e ) {
+					// Violacao de chave pois algumas estacoes vem repetidas
+				}
 				
 			}
 			

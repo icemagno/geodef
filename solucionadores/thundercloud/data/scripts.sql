@@ -98,7 +98,7 @@ $func$ LANGUAGE sql STABLE STRICT;
 
 
 create table estacoes_inmet(
-	CD_ESTACAO character varying(250),
+	CD_ESTACAO character varying(250) primary key,
 	CD_WMO char(5),
 	DT_MEDICAO char(10),
 	HR_MEDICAO char(4),
@@ -106,7 +106,8 @@ create table estacoes_inmet(
 	VL_ALTITUDE character varying(10),
 	VEN_VEL character varying(10),
 	VEN_DIR character varying(10),
-	VEN_RAJ character varying(10)
+	VEN_RAJ character varying(10),
+	geom Geometry
 );
 
 create table aerodromos (
