@@ -41,46 +41,32 @@ function processaEstacoes( lineString ){
 			var promise = Cesium.GeoJsonDataSource.load( obj, {
 				clampToGround: true,
 			});
-
+			
 			promise.then(function(dataSource) {
 				var entities = dataSource.entities.values;
+				
 				for (var i = 0; i < entities.length; i++) {
 					var entity = entities[i];
-					console.log( entity.properties['cd_estacao'].getValue() );
-					/*
-			    	var estacaoPoint = viewer.entities.add({
+					var head = entity.properties['ven_dir'].getValue();
+			    	
+					var estacaoPoint = viewer.entities.add({
 			    		name : 'ESTACAO_METOC',
 			            position : entity.position,
 			            properties : entity.properties,
 					    ellipse: {
-					    	outline : true,
-					    	extrudedHeight : 210,
+					    	outline : false,
+					    	stRotation : head,
+					    	extrudedHeight : 900,
 					    	heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
 					    	height : 15,
-					        semiMajorAxis: 500,
-					        semiMinorAxis: 500,
+					        semiMajorAxis: 800,
+					        semiMinorAxis: 800,
 			                material: new Cesium.ImageMaterialProperty({ 
-			                	color :  Cesium.Color.RED, //.withAlpha(0.9)
+			                	image: '/resources/img/vento.jpg',
+			                	color :  Cesium.Color.WHITE.withAlpha(1.0)
 			                }),   
-					    },
-			            label : {
-			                text : entity.properties['cd_estacao'].getValue(),
-			                //style : Cesium.LabelStyle.FILL_AND_OUTLINE,
-			                fillColor : Cesium.Color.BLACK,
-			                //outlineColor : Cesium.Color.BLACK,	                
-			                font: '12px Consolas',
-			                //outlineWidth : 1,
-			                showBackground : false,
-			                backgroundColor : Cesium.Color.WHITE,
-			                horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
-			                eyeOffset : new Cesium.Cartesian3(0.0, 1500.0, 0.0),
-			                pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.3, 1.5e7, 0.5),
-			                heightReference : Cesium.HeightReference.RELATIVE_TO_GROUND,
-			                disableDepthTestDistance : Number.POSITIVE_INFINITY,
-			            }					    
-					    
+					    }					    
 			    	});
-					*/
 				}
 		        tr.fadeOut(5000, function(){
 		            tr.remove();
