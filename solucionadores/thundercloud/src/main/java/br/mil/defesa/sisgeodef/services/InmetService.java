@@ -9,8 +9,12 @@ import java.sql.SQLException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class InmetService {
@@ -26,7 +30,6 @@ public class InmetService {
 
 	@Value("${spring.datasource.password}")
 	private String password;  		
-	
 	
 	// LINESTRING(-43.5763491352785 -22.405300535515252,-43.575770503011086 -22.885701042358264,-42.89193825941143 -22.924609032557,-42.51131533563798 -22.480900032582642,-42.80822499135502 -22.229932275691375,-43.5763491352785 -22.405300535515252)
 	public String getestacoes(String polygon) {
@@ -48,6 +51,29 @@ public class InmetService {
 		
 		return result;
 		
+	}
+
+
+	@Cacheable("previsaoMunicipio")
+	public String getPrevisaoMunicipio(String geocode) {
+		
+		String uri = "https://apiprevmet3.inmet.gov.br/previsao/" + geocode;
+
+		System.out.println( uri );
+		
+		String responseBody = "[]";
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
+			responseBody = result.getBody().toString();
+		} catch (HttpClientErrorException e) {
+		    responseBody = e.getResponseBodyAsString();
+		    String statusText = e.getStatusText();
+		    System.out.println( statusText );
+		} catch ( Exception ex) {
+			return ex.getMessage();
+		}
+		return responseBody;
 	}
 	
 }

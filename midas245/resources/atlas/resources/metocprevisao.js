@@ -1,31 +1,7 @@
 var pickHandle = null;
 
 
-function run(){
-	/*
-    jQuery.ajax({
-		url:"https://apicommet.inmet.gov.br/ANALISE_ORG/AS/analise_org/2020-07-08/00:00", 
-		type: "GET", 
-		success: function( obj ) {
-
-			var imageryProvider = new Cesium.SingleTileImageryProvider({
-			    url : obj[0].base64,
-			    rectangle : Cesium.Rectangle.fromDegrees(-95.0, -60.17, -19.8, 22.4   ) //west, south, east, north
-			});
-			
-			imageryProvider.defaultAlpha = 0.7;
-				
-			var layers = viewer.scene.imageryLayers;
-			layers.addImageryProvider( imageryProvider );	
-			
-			
-			
-			
-		}
-    });
-    */
-	
-	
+function loadPrevisaoDoTempo(){
 	getBox( function( points ) {
 		var cartographics = points.cartographic;
 		if( cartographics.length < 3 ) return;
@@ -40,10 +16,7 @@ function run(){
 		
 		processaMunicipios( lineString );
 		processaAerodromos( lineString );
-	    // run();
-		
 	});
-	
 }
 
 

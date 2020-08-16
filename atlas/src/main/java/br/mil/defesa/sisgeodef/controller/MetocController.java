@@ -2,6 +2,7 @@ package br.mil.defesa.sisgeodef.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,18 @@ public class MetocController {
 		return thundercloud.getMunicipios( lineString );
 	}	
 
+	
+	@RequestMapping(value = "/municipio/{geocode}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody String previsaoMunicipio(  @PathVariable("geocode") String geocode ) {
+		return thundercloud.getPrevisaoMunicipio( geocode );
+	}	
+	
+
+	@RequestMapping(value = "/aerodromo/{icao}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody String previsaoAerodromo(  @PathVariable("icao") String icao ) {
+		return thundercloud.getPrevisaoAerodromo( icao );
+	}	
+	
 	
 	@RequestMapping(value = "/aerodromos", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody String aerodromos( @RequestParam(value="lineString",required=true) String lineString ) {

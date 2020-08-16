@@ -114,6 +114,54 @@ public class ThundercloudService {
 
 	public String getEstacoes(String lineString) {
 		return "[]";
+	}
+
+
+	public String getPrevisaoMunicipio(String geocode) {
+		
+		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");
+		String thundercloudAddress = thundercloudInstance.getUri().toString(); 
+			
+		String uri = thundercloudAddress + "/inmet/municipio/" + geocode;
+		System.out.println( uri );
+
+		String responseBody = "[]";
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
+			responseBody = result.getBody().toString();
+		} catch (HttpClientErrorException e) {
+		    responseBody = e.getResponseBodyAsString();
+		    String statusText = e.getStatusText();
+		    System.out.println( statusText );
+		} catch ( Exception ex) {
+			return ex.getMessage();
+		}
+		return responseBody;
+		
+	}
+
+
+	public String getPrevisaoAerodromo(String icao) {
+		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");
+		String thundercloudAddress = thundercloudInstance.getUri().toString(); 
+			
+		String uri = thundercloudAddress + "/aisweb/aerodromo/" + icao;
+		System.out.println( uri );
+
+		String responseBody = "[]";
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
+			responseBody = result.getBody().toString();
+		} catch (HttpClientErrorException e) {
+		    responseBody = e.getResponseBodyAsString();
+		    String statusText = e.getStatusText();
+		    System.out.println( statusText );
+		} catch ( Exception ex) {
+			return ex.getMessage();
+		}
+		return responseBody;
 	}    
 	
 }

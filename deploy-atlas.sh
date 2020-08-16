@@ -1,5 +1,10 @@
 #! /bin/sh
 
+
+cp calisto/scripts/* /srv/calisto/scripts/
+cp -R midas245/resources/atlas/* /srv/midas/atlas/
+
+
 cd atlas/
 svn update
 mvn clean package

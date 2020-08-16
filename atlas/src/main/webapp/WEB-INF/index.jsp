@@ -766,6 +766,38 @@
 						<div id="metocMenuBox" class="toolBarMenuBox">
 							<div class="box-body">
 								<div class="table-responsive">
+									<table id="metocMenuTable" class="table" style="margin-bottom: 0px; width: 100%">
+										<tr>
+											<td class="layerTable"><img
+												src="/resources/img/clima2.png"
+												style="width: 15px; height: 15px;"> &nbsp;<b>Meteorologia</b></td>
+											<td style="width: 5px; padding: 0px;"><a title="Fechar"
+												href="#" onClick="closeMetocToolBarMenu();"
+												class="text-light-blue pull-right"><i
+													class="fa fa-close"></i></a></td>
+										</tr>
+										
+										
+										<tr>
+											<td class="layerTable" colspan="2"><span style="font-size: 11px"><b>Previsão do Tempo</b></span></td>
+										</tr>
+										<tr>
+											<td class="layerTable" colspan="2"><span style="font-size: 11px"><i>Selecione uma área para receber a previsão do tempo.</i></span></td>
+										</tr>
+										<tr>
+											<td colspan="2" class="layerTable">
+												<button id="loadPrevisaoBtn" type="button" class="btn btn-block btn-primary btn-xs btn-flat">Selecionar Área</button>
+											</td>
+										</tr>
+										
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- 
+						<div id="metocMenuBox" class="toolBarMenuBox">
+							<div class="box-body">
+								<div class="table-responsive">
 									<table id="metocMenuTable" class="table"
 										style="margin-bottom: 0px; width: 100%">
 										<tr>
@@ -811,7 +843,9 @@
 								</div>
 							</div>
 						</div>
-
+ 						-->
+ 
+ 
 						<!-- PCN -->
 						<div id="pcnMenuBox" class="toolBarMenuBox">
 							<div class="box-body">
@@ -992,22 +1026,35 @@
 									<img src="/resources/img/plataforma.png"
 										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
-								
-								<button title="Climatologia" id="toolMetoc"
+
+								<button title="Meteorologia" id="toolMetocMain"
 									type="button" class="btn btn-warning  btn-flat">
 									<img src="/resources/img/clima2.png"
 										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
 
-								<button title="Número de Classificação de Pavimento (PCN)" id="toolPCN"
+								
+								<!-- 
+								<button title="Climatologia" id="toolMetoc"
 									type="button" class="btn btn-warning  btn-flat">
-									<img src="/resources/img/pcn.png"
-										style="width: 29px;height: 25px;left: 5px;position: absolute;top: 2px;">
+									<img src="/resources/img/clima2.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
-
+								
 								<button title="Cor Meteorológica" id="toolCOR"
 									type="button" class="btn btn-warning  btn-flat">
 									<img src="/resources/img/cormet.png"
+										style="width: 29px;height: 25px;left: 5px;position: absolute;top: 2px;">
+								</button>
+								
+ 								-->
+
+
+
+ 
+								<button title="Número de Classificação de Pavimento (PCN)" id="toolPCN"
+									type="button" class="btn btn-warning  btn-flat">
+									<img src="/resources/img/pcn.png"
 										style="width: 29px;height: 25px;left: 5px;position: absolute;top: 2px;">
 								</button>
 
@@ -1468,6 +1515,8 @@
 	<script src="${midasLocation}/atlas/resources/js/anewradar.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/marinetraffic.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/windparticle.js" type="text/javascript"></script>
+	
+	<script src="${midasLocation}/atlas/resources/metocprevisao.js" type="text/javascript"></script>
 	
 	<!-- 	
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoBuildingsProvider.js" type="text/javascript"></script>
