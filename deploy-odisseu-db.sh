@@ -9,7 +9,7 @@ docker ps -a | awk '{ print $1,$2 }' | grep sisgeodef/odisseu-db:1.0 | awk '{pri
 docker rmi sisgeodef/odisseu-db:1.0
 docker build --tag=sisgeodef/odisseu-db:1.0 --rm=true .
 
-docker run --name odisseu-db --network apolo --hostname=odisseu-db \
+docker run --name odisseu-db --hostname=odisseu-db \
 -e POSTGRES_USER=postgres \
 -e POSTGRES_PASS=admin \
 -e POSTGRES_DBNAME=odisseu \
@@ -19,6 +19,7 @@ docker run --name odisseu-db --network apolo --hostname=odisseu-db \
 -v /srv/odisseu-db/:/var/lib/postgresql/ \
 -d sisgeodef/odisseu-db:1.0
 
+docker network connect apolo odisseu-db
 docker network connect sisgeodef odisseu-db
 
 cp ./*.sql /srv/odisseu-db/

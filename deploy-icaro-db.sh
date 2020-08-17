@@ -9,7 +9,7 @@ docker ps -a | awk '{ print $1,$2 }' | grep sisgeodef/icaro-db:1.0 | awk '{print
 docker rmi sisgeodef/icaro-db:1.0
 docker build --tag=sisgeodef/icaro-db:1.0 --rm=true .
 
-docker run --name icaro-db --network apolo --hostname=icaro-db \
+docker run --name icaro-db --hostname=icaro-db \
 -e POSTGRES_USER=postgres \
 -e POSTGRES_PASS=admin \
 -e POSTGRES_DBNAME=icaro \
@@ -19,6 +19,7 @@ docker run --name icaro-db --network apolo --hostname=icaro-db \
 -v /etc/localtime:/etc/localtime:ro \
 -d sisgeodef/icaro-db:1.0
 
+docker network connect apolo icaro-db
 docker network connect sisgeodef icaro-db
 
 cp ./*.sql /srv/icaro-db/
