@@ -22,7 +22,7 @@ public class VesselTrackerController {
     
 	private String doRequestGet( String url ) {
 		
-		ServiceInstance gaiaInstance = loadBalancer.choose("gaia");
+		ServiceInstance gaiaInstance = loadBalancer.choose("vesseltracker");
 		String gaiaAddress = gaiaInstance.getUri().toString(); 
 			
 		String uri = gaiaAddress +  url;
@@ -45,7 +45,7 @@ public class VesselTrackerController {
 	@RequestMapping(value = "/search", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody String searchShips(  @RequestParam("term") String term ) {
 		// https://www.vesseltracker.com/en/search?term=9375733
-		return doRequestGet( "/vesseltracker/v1/searchinfo?term=" + term );
+		return doRequestGet( "/v1/searchinfo?term=" + term );
 	}
 
 	
