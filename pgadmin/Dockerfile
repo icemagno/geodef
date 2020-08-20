@@ -1,2 +1,2 @@
-FROM dpage/pgadmin4:4.12
+FROM dpage/pgadmin4:latest
 MAINTAINER magno.mabreu@gmail.com
