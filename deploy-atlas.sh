@@ -20,7 +20,7 @@ docker run --name atlas --hostname=atlas \
 -v /etc/localtime:/etc/localtime:ro \
 -v /srv/calisto/:/srv/calisto/ \
 -e CONFIG_PROFILES=default \
--p 80:36215 \
+-p 36215:36215 \
 -d sisgeodef/atlas:1.0
 
 docker network connect sisgeodef atlas
