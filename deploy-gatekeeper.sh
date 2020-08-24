@@ -7,6 +7,8 @@ docker rmi sisgeodef/gatekeeper:1.0
 docker build --tag=sisgeodef/gatekeeper:1.0 --rm=true .
 
 docker run --name gatekeeper --hostname=gatekeeper \
+--network-alias=sisgeodef.defesa.mil.br \
+--restart=always \
 -v /etc/localtime:/etc/localtime:ro \
 -p 80:80 \
 -d sisgeodef/gatekeeper:1.0
