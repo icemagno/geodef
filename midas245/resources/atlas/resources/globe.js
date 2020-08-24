@@ -49,11 +49,11 @@ var bdqueimadas = 'http://queimadas.dgi.inpe.br/queimadas/terrama2q/geoserver/wm
 var handler = null;
 
 function updateSisgeodefAddress(){
-	osmLocal = sisgeodefHost + ':36890/service/wms';
-	mapproxy = sisgeodefHost + ':36890/service/wms';
-	pleione = sisgeodefHost + ':36212/geoserver/wms';
-	efestus = sisgeodefHost + ':36212/geoserver/wms';
-	volcano = sisgeodefHost + ':36212/geoserver/wms';
+	osmLocal = sisgeodefHost + '/mapproxy/service/wms';
+	mapproxy = sisgeodefHost + '/mapproxy/service/wms';
+	pleione = sisgeodefHost + '/pleione/geoserver/wms';
+	efestus = sisgeodefHost + '/pleione/geoserver/wms';
+	volcano = sisgeodefHost + '/pleione/geoserver/wms';
 }
 
 
