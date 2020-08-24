@@ -43,6 +43,7 @@ var pleione;
 var mapproxy;
 var osmLocal;
 var osmTileServer;
+var olimpo;
 
 var bdqueimadas = 'http://queimadas.dgi.inpe.br/queimadas/terrama2q/geoserver/wms';
 
@@ -54,6 +55,7 @@ function updateSisgeodefAddress(){
 	pleione = sisgeodefHost + '/pleione/geoserver/wms';
 	efestus = sisgeodefHost + '/pleione/geoserver/wms';
 	volcano = sisgeodefHost + '/pleione/geoserver/wms';
+	olimpo = sisgeodefHost + '/olimpo/tilesets/sisgide';
 }
 
 
@@ -87,7 +89,7 @@ function goToOperationArea( operationArea ) {
 function startMap() {
 	
 	terrainProvider = new Cesium.CesiumTerrainProvider({
-		url : sisgeodefHost + ':36503/tilesets/sisgide',
+		url : olimpo,
 		requestVertexNormals : true,
 		isSct : false
 	});
@@ -102,7 +104,6 @@ function startMap() {
 	} else {
 		fireToast( 'info', 'OpenStreetMap', 'Você está usando o OpenStreetMap em ' + osmTileServer , '000' );
 		baseOsmProvider = new Cesium.UrlTemplateImageryProvider({
-			//url : 'http://sisgeodef.defesa.mil.br:36880/tile/{z}/{x}/{y}.png',
 			url : osmTileServer + 'tile/{z}/{x}/{y}.png',
 			credit : 'Ministério da Defesa - SisGeoDef',
 			maximumLevel : 25,
