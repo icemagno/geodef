@@ -12,7 +12,6 @@ docker rmi sisgeodef/calisto
 docker build --tag=sisgeodef/calisto --rm=true .
 
 docker run --name calisto --hostname=calisto \
--p 36280:80 \
 -v /srv/calisto/:/usr/local/apache2/htdocs \
 -v /srv/srtm/:/usr/local/apache2/htdocs/srtm/:ro \
 -v /etc/localtime:/etc/localtime:ro \
