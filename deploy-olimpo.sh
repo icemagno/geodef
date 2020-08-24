@@ -11,7 +11,6 @@ docker build --tag=sisgeodef/olimpo:1.0 --rm=true .
 docker run --name olimpo --hostname=olimpo  \
 -v /etc/localtime:/etc/localtime:ro \
 -v /srv/olimpo/:/data/ \
--p 36503:8000 \
 -d sisgeodef/olimpo:1.0
 
 docker network connect apolo olimpo

@@ -12,8 +12,7 @@ cp ./mapproxy.yaml /srv/mapproxy/
 cp ./seed.yaml /srv/mapproxy/
 chmod -R 0777 /srv/mapproxy
 
-docker run -it --name mapproxy --hostname=mapproxy --add-host osm.casnav.mb:10.5.112.81 \
--p 36890:8080 \
+docker run -it --name mapproxy --hostname=mapproxy \
 -v /srv/mapproxy:/mapproxy/ \
 -d sisgeodef/mapproxy mapproxy http
 

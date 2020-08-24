@@ -18,7 +18,6 @@ docker run --name pleione --hostname=pleione \
 -e GEOSERVER_ADMIN_PASSWORD=sisgeodef \
 -v /etc/localtime:/etc/localtime:ro \
 -v /srv/pleione/:/opt/geoserver/data_dir/ \
--p 36212:8080 \
 -d sisgeodef/pleione:1.0
 
 docker network connect sisgeodef pleione
