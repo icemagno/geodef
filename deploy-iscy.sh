@@ -9,7 +9,6 @@ docker rmi sisgeodef/iscy
 docker build --tag=sisgeodef/iscy --rm=true .
 
 docker run --name iscy --hostname=iscy \
--p 36284:80 \
 -v /srv/iscy/:/usr/local/apache2/htdocs \
 -v /etc/localtime:/etc/localtime:ro \
 -d sisgeodef/iscy

@@ -128,26 +128,9 @@ function bindToolBarButtons() {
     });
     
     jQuery("#toolEdgvBook").click( function(){
-    	
-    	
-    	//addWMTSLayer( "VIIRS", "https://map1a.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi?", "VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1", true, "2019-11-20" );
-    	
-    	//addMetocLayer( "teste", mapproxy, "corrente", true, "2019-11-01T00:00:00.000Z" );
-    	// https://thredds-jumbo.unidata.ucar.edu/thredds/wms/grib/NCEP/GFS/Global_0p25deg/GFS_Global_0p25deg_20191101_1200.grib2?LAYERS=wind%20%40%20Specified%20height%20level%20above%20ground&ELEVATION=10&TIME=2019-11-01T12%3A00%3A00.000Z&TRANSPARENT=true&STYLES=barb%2Fgreyscale&COLORSCALERANGE=0.07095%2C23.41&NUMCOLORBANDS=10&LOGSCALE=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image%2Fpng&SRS=EPSG%3A4326&BBOX=-47.65869140625,-27.79541015625,-30.78369140625,-14.61181640625&WIDTH=768&HEIGHT=600
-    	
-    	
-    	// *** TESTE FLIGHTRADAR
-    	// flightcontrol.js
-    	/*
-    	setInterval( function(){ 
-    		flightRadarFromApolo();
-    	}, 2000 );
-    	*/	
-    	// **********************
-    	// loadPC( );
-    	
-    	window.open( sisgeodefHost + ":36284/");
+    	window.open( sisgeodefHost + "/iscy/");
     });
+    
     jQuery("#toolGuia").click( function(){
     	window.open("/resources/img/fastguide/index.html");
     });
@@ -161,7 +144,17 @@ function bindToolBarButtons() {
     	}
     });
     
-	
+    jQuery("#toolCatalogs").click( function(){
+    	var wasVisible = isVisible('BAR_CATALOGS');
+    	hideAllButtonBars();
+    	if( !wasVisible ) {
+    		visibleBar = 'BAR_CATALOGS';	
+    		showButtonBar( "#toolBarCatalogs" );
+    	}
+    });
+
+    
+    
 	// *****************************************
     
 	jQuery("#toolGoTopView").click( function(){

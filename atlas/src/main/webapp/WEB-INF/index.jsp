@@ -72,6 +72,14 @@
 						<a style="font-size: 25px;" href="/" class="navbar-brand">GEOPORTAL</a>
 					</div>
 
+<!--    DEMO de botao com imagem externa 
+<button title="Avisos Rádio" id="toolAvisoRadio"
+	type="button" class="btn btn-warning  btn-flat">
+	<img src="${midasLocation}/atlas/icons/wave.png"
+		style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
+</button>
+-->
+
 
 						<!--  BARRA DE BOTÕES DE FERRAMENTAS -->
 						<div id="toolBarsContainer"
@@ -79,58 +87,69 @@
 							<div id="toolBarStandard" class="btn-group"
 								style="float: left; opacity: 0.6;">
 								
-								<button title="Guia Rápido" id="toolGuia" 
+								<button title="Ajuda" id="toolGuia" 
 									type="button" class="btn btn-primary btn-flat">
-									<i class="fa fa-info-circle"></i>
-								</button>
-								<button title="Catálogo EDGV-DEFESA" id="toolEdgvBook" style="margin-left:10px;"
-									type="button" class="btn btn-primary btn-flat">
-									<i class="fa fa-book"></i>
+									<img src="${midasLocation}/atlas/icons/catalogs.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
 								
+								<button title="Catálogos Diversos" id="toolCatalogs" style="margin-left:10px;"
+									type="button" class="btn btn-primary btn-flat">
+									<img src="${midasLocation}/atlas/icons/catalogs.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
+								</button>
 								
 								<button title="Solucionadores" id="toolSolucionadores"
 									type="button" class="btn btn-primary btn-flat">
-									<i class="fa fa-bolt"></i>
+									<img src="${midasLocation}/atlas/icons/solucionadores.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
 								<button title="Interrogar" id="showToolQuery" type="button"
 									class="btn btn-primary btn-flat">
-									<i class="fa fa-question"></i>
+									<img src="${midasLocation}/atlas/icons/query.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
 								<button title="Ferramentas de Rota" id="showToolRoutes"
 									type="button" class="btn btn-primary btn-flat">
 									<i class="fa fa-automobile"></i>
 								</button>
-								<button title="Salva a tela atual como imagem"
+								<button title="Salvar Tela"
 									id="toolScreenSnapShot" type="button"
 									class="btn btn-primary btn-flat">
-									<i class="fa fa-camera"></i>
+									<img src="${midasLocation}/atlas/icons/savescreen.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
-								<button title="Ferramentas de Desenho de Feições"
-									id="showDesignTools" type="button"
+								<button title="Desenho de Feições"	id="showDesignTools" type="button"
 									class="btn btn-primary btn-flat">
-									<i class="fa fa-pencil-square-o"></i>
+									<img src="${midasLocation}/atlas/icons/desenho.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
-								<button title="Ferramentas de Análise 3D" id="show3DTools"
+								<button title="Análise 3D" id="show3DTools"
 									type="button" class="btn btn-primary btn-flat">
-									<i class="fa fa-cube"></i>
+									<img src="${midasLocation}/atlas/icons/3d.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
-								<button title="Ferramentas de Medição" id="showMeasureTools"
+								<button title="Medir Distâncias e Áreas" id="showMeasureTools"
 									type="button" class="btn btn-primary btn-flat">
-									<i class="fa fa-arrows-h"></i>
+									<img src="${midasLocation}/atlas/icons/measure.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
 								<button title="Barra de Componentes" id="showComponentsBar"
 									type="button" class="btn btn-primary btn-flat">
 									<i class="fa fa-server"></i>
 								</button>
-								<button title="Voltar ao Início" id="toolHome" type="button" style="margin-right:10px"
+								<button title="Início" id="toolHome" type="button" style="margin-right:10px"
 									class="btn btn-success btn-flat">
-									<i class="fa fa-home"></i>
+									<img src="${midasLocation}/atlas/icons/home.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
-								<button title="Visualizar de Cima" id="toolGoTopView" type="button"
-									class="btn btn-success btn-flat">
-									<i class="fa fa-level-down"></i>
-								</button>
+								
+								<button title="Visão Nadir" id="toolGoTopView"
+									type="button" class="btn btn-warning  btn-flat">
+									<img src="${midasLocation}/atlas/icons/nadir.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
+								</button>								
+								
 							</div>
 						</div>
 
@@ -992,11 +1011,13 @@
 								style="display: none; float: right;">
 								<button title="Domínio de Terreno" id="toolViewShed"
 									type="button" class="btn btn-warning btn-flat">
-									<i class="fa fa-eye"></i>
+									<img src="${midasLocation}/atlas/icons/viewshed.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">									
 								</button>
 								<button title="Construções OSM 3D" id="toolOSM3D" type="button"
 									class="btn btn-warning btn-flat">
-									<i class="fa fa-bank"></i>
+									<img src="${midasLocation}/atlas/icons/osm3d.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">									
 								</button>
 							</div>
 
@@ -1021,6 +1042,22 @@
 								</button>
 							</div>
 
+	
+							<!-- CATALOGOS -->
+							<!-- Va em menubar.js para os handlers  -->
+							<div id="toolBarCatalogs" class="btn-group"	style="display: none; float: right;">
+								
+								<button title="Catálogo EDGV-DEFESA" id="toolEdgvBook" style="margin-left:10px;"
+									type="button" class="btn btn-primary btn-flat">
+									<img src="${midasLocation}/atlas/icons/edgv.png"
+										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
+								</button>
+
+								
+							</div>
+
+
+
 							<!-- SOLUCIONADORES -->
 							<!-- Va em menubar.js para os handlers  -->
 							<div id="toolBarSolucionadores" class="btn-group"
@@ -1028,13 +1065,13 @@
 								
 								<button title="Avisos Rádio" id="toolAvisoRadio"
 									type="button" class="btn btn-warning  btn-flat">
-									<img src="/resources/img/wave.png"
+									<img src="${midasLocation}/atlas/icons/aviradio.png"
 										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
 
 								<button title="Área de Segurança de Plataformas" id="toolGtOpA"
 									type="button" class="btn btn-warning  btn-flat">
-									<img src="/resources/img/plataforma.png"
+									<img src="${midasLocation}/atlas/icons/plataforma.png"
 										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
 
@@ -1048,19 +1085,19 @@
 								
 								<button title="Climatologia" id="toolMetoc"
 									type="button" class="btn btn-warning  btn-flat">
-									<img src="/resources/img/clima2.png"
+									<img src="${midasLocation}/atlas/icons/metoc.png"
 										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
 								
 								<button title="Cor Meteorológica" id="toolCOR"
 									type="button" class="btn btn-warning  btn-flat">
-									<img src="/resources/img/cormet.png" style="width: 29px;height: 25px;left: 5px;position: absolute;top: 2px;">
+									<img src="${midasLocation}/atlas/icons/cormet.png" style="width: 29px;height: 25px;left: 5px;position: absolute;top: 2px;">
 								</button>
 
  
 								<button title="Número de Classificação de Pavimento (PCN)" id="toolPCN"
 									type="button" class="btn btn-warning  btn-flat">
-									<img src="/resources/img/pcn.png"
+									<img src="${midasLocation}/atlas/icons/pcn.png"
 										style="width: 29px;height: 25px;left: 5px;position: absolute;top: 2px;">
 								</button>
 
