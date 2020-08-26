@@ -252,36 +252,29 @@ function bindToolBarButtons() {
 		var sarEventsOnlyFilter = jQuery("#sarEventsOnly").prop('checked');
 		avisosRadio( sarEventsOnlyFilter );
 	});	
-
-	/* --------------   PCN   --------------------  */
-	jQuery("#toolPCN").click( function(){
-		jQuery("#pcnMenuBox").show(300);
-	});	
-
-
+	
 	/* --------------   METOC --------------------  */
-	jQuery("#toolMetocMain").click( function(){
-		jQuery("#metocMenuBox").show(300);
-	});
-	jQuery("#loadPrevisaoBtn").click( function(){
-		loadPrevisaoDoTempo();
-	});
-
-	jQuery("#toolCorBtn").click( function(){
-		loadCores( );
-	});
-	/*
+	// Reverti o menu de Climatologia
 	jQuery("#loadClimatologiaBtn").click( function(){
+		//var time = jQuery("#metocLayerTimeDate").val();
 		loadClimato();
 	});
 	
 	jQuery("#toolMetoc").click( function(){
 		jQuery("#metocMenuBox").show(300);
 	});
-	*/	
+	
+	/* -------------------------------------------- */
+	
+	jQuery("#toolPCN").click( function(){
+		jQuery("#pcnMenuBox").show(300);
+	});	
 
-
-
+	
+	jQuery("#toolCOR").click( function(){
+		loadCores( );
+		//jQuery("#pcnMenuBox").show(300);
+	});	
 	
 	/* **************************************************
 	 *                     EXPERIMENTAL 

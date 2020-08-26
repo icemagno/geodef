@@ -692,12 +692,6 @@
 											<td class="layerTable">Somente Eventos SAR</td>
 											<td class="layerTable" style="text-align: right;"><input id="sarEventsOnly" type="checkbox" class="pull-right"></td>
 										</tr>
-										<!-- 
-										<tr>
-											<td class="layerTable">Usar Dados Fictícios</td>
-											<td class="layerTable" style="text-align: right;"><input id="avisoMockData" type="checkbox" class="pull-right"></td>
-										</tr>
-										 -->
 										<tr>
 											<td colspan="2" class="layerTable">
 												<button id="loadAvisosRadioBtn" type="button" class="btn btn-block btn-primary btn-xs btn-flat">Carregar Dados</button>
@@ -763,6 +757,7 @@
 						</div>
 
 						<!-- METEOROLOGIA -->
+						<!-- 
 						<div id="metocMenuBox" class="toolBarMenuBox">
 							<div class="box-body">
 								<div class="table-responsive">
@@ -808,7 +803,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- 
+						-->
+						
+						
 						<div id="metocMenuBox" class="toolBarMenuBox">
 							<div class="box-body">
 								<div class="table-responsive">
@@ -857,7 +854,7 @@
 								</div>
 							</div>
 						</div>
- 						-->
+ 						
  
  
 						<!-- PCN -->
@@ -1041,14 +1038,14 @@
 										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
 
+<!-- 
 								<button title="Meteorologia" id="toolMetocMain"
 									type="button" class="btn btn-warning  btn-flat">
 									<img src="/resources/img/clima2.png"
 										style="width: 20px; height: 20px; left: 10px; position: absolute; top: 7px;">
 								</button>
-
+-->
 								
-								<!-- 
 								<button title="Climatologia" id="toolMetoc"
 									type="button" class="btn btn-warning  btn-flat">
 									<img src="/resources/img/clima2.png"
@@ -1057,13 +1054,8 @@
 								
 								<button title="Cor Meteorológica" id="toolCOR"
 									type="button" class="btn btn-warning  btn-flat">
-									<img src="/resources/img/cormet.png"
-										style="width: 29px;height: 25px;left: 5px;position: absolute;top: 2px;">
+									<img src="/resources/img/cormet.png" style="width: 29px;height: 25px;left: 5px;position: absolute;top: 2px;">
 								</button>
-								
- 								-->
-
-
 
  
 								<button title="Número de Classificação de Pavimento (PCN)" id="toolPCN"
