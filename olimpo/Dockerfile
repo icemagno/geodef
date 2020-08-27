@@ -1,2 +1,2 @@
-FROM geodata/cesium-terrain-server
+FROM nmccready/cesium-terrain-server
 MAINTAINER magno.mabreu@gmail.com

@@ -55,7 +55,7 @@ function updateSisgeodefAddress(){
 	pleione = sisgeodefHost + '/pleione/geoserver/wms';
 	efestus = sisgeodefHost + '/pleione/geoserver/wms';
 	volcano = sisgeodefHost + '/pleione/geoserver/wms';
-	olimpo = sisgeodefHost + '/calisto/tilesets/sisgide/';
+	olimpo = sisgeodefHost + '/olimpo/tilesets/sisgide/';
 }
 
 

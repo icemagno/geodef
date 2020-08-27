@@ -1,3 +1,3 @@
-FROM kartoza/geoserver:2.15.2
+FROM kartoza/geoserver
 MAINTAINER magno.mabreu@gmail.com
 

@@ -80,7 +80,7 @@
 								
 								<button title="Ajuda" id="toolGuia" 
 									type="button" class="btn btn-primary btn-flat" style="padding: 0px;">
-									<img src="${midasLocation}/atlas/icons/ajuda.png"
+									<img src="${midasLocation}/atlas/icons/help.png"
 										style="width: 100%; height: 100%;">
 								</button>
 								
@@ -129,8 +129,8 @@
 									type="button" class="btn btn-primary btn-flat">
 									<i class="fa fa-server"></i>
 								</button>
-								<button title="Início" id="toolHome" type="button" style="margin-right:10px"
-									class="btn btn-success btn-flat" style="padding: 0px;">
+								<button title="Início" id="toolHome" type="button" style="margin-right:10px;padding: 0px;"
+									class="btn btn-success btn-flat">
 									<img src="${midasLocation}/atlas/icons/home.png"
 										style="width: 100%; height: 100%;">
 								</button>
