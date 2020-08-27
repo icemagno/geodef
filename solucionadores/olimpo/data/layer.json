@@ -1,0 +1,30 @@
+{
+  "tilejson": "2.1.0",
+  "name": "prototipo",
+  "description": "",
+  "version": "1.1.0",
+  "format": "quantized-mesh-1.0",
+  "attribution": "",
+  "schema": "tms",
+  "extensions": [ "octvertexnormals" ],
+  "tiles": [ "{z}/{x}/{y}.terrain?v={version}" ],
+  "projection": "EPSG:4326",
+  "bounds": [ -180.00, -90.00, 0.00, 90.00 ],
+  "available": [
+    [ { "startX": 0, "startY": 0, "endX": 1, "endY": 0 } ]
+   ,[ { "startX": 1, "startY": 0, "endX": 1, "endY": 0 } ]
+   ,[ { "startX": 2, "startY": 1, "endX": 3, "endY": 1 } ]
+   ,[ { "startX": 5, "startY": 2, "endX": 6, "endY": 3 } ]
+   ,[ { "startX": 11, "startY": 5, "endX": 12, "endY": 6 } ]
+   ,[ { "startX": 23, "startY": 11, "endX": 24, "endY": 12 } ]
+   ,[ { "startX": 47, "startY": 23, "endX": 49, "endY": 24 } ]
+   ,[ { "startX": 95, "startY": 46, "endX": 99, "endY": 49 } ]
+   ,[ { "startX": 191, "startY": 93, "endX": 199, "endY": 99 } ]
+   ,[ { "startX": 383, "startY": 187, "endX": 398, "endY": 199 } ]
+   ,[ { "startX": 767, "startY": 375, "endX": 796, "endY": 398 } ]
+   ,[ { "startX": 1535, "startY": 750, "endX": 1592, "endY": 796 } ]
+   ,[ { "startX": 3071, "startY": 1501, "endX": 3185, "endY": 1592 } ]
+   ,[ { "startX": 6143, "startY": 3003, "endX": 6371, "endY": 3185 } ]
+   ,[ { "startX": 12287, "startY": 6007, "endX": 12743, "endY": 6371 } ]
+  ]
+}

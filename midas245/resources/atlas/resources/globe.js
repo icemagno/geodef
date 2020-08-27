@@ -1,10 +1,10 @@
 var viewer = null;
 var camera = null;
 var terrainProvider = null;
-var west = -45;
-var south = -24;
-var east = -40;
-var north = -20;	
+var west = -92.72;
+var south = -42.16;
+var east = 17.14;
+var north = 15.79;	
 var homeLocation = Cesium.Rectangle.fromDegrees(west, south, east, north);
 var mainEventHandler = null;
 var scene = null;
@@ -55,7 +55,7 @@ function updateSisgeodefAddress(){
 	pleione = sisgeodefHost + '/pleione/geoserver/wms';
 	efestus = sisgeodefHost + '/pleione/geoserver/wms';
 	volcano = sisgeodefHost + '/pleione/geoserver/wms';
-	olimpo = sisgeodefHost + '/olimpo/tilesets/sisgide/';
+	olimpo = sisgeodefHost + '/olimpo/tilesets/terrain/sisgide';
 }
 
 

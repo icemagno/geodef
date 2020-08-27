@@ -13,6 +13,7 @@ docker run --name olimpo --hostname=olimpo  \
 -v /srv/olimpo/:/data/ \
 -e SERVE_STATIC=0 \
 -e LOG_LEVEL=debug \
+-p 36503:8000 \
 -d sisgeodef/olimpo:1.0
 
 docker network connect apolo olimpo
