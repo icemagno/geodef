@@ -1,10 +1,10 @@
 var viewer = null;
 var camera = null;
 var terrainProvider = null;
-var west = -92.72;
-var south = -42.16;
-var east = 17.14;
-var north = 15.79;	
+var west = -80.72;
+var south = -37.16;
+var east = -31.14;
+var north = 11.79;	
 var homeLocation = Cesium.Rectangle.fromDegrees(west, south, east, north);
 var mainEventHandler = null;
 var scene = null;
@@ -75,8 +75,10 @@ function drawOperationArea( operationArea ) {
 
 
 function goToOperationArea( operationArea ) {
+
+	
 	var center = Cesium.Rectangle.center(operationArea);
-	var initialPosition = Cesium.Cartesian3.fromRadians(center.longitude, center.latitude, 980000);
+	var initialPosition = Cesium.Cartesian3.fromRadians(center.longitude, center.latitude, 8900000);
 	var initialOrientation = new Cesium.HeadingPitchRoll.fromDegrees(0, -90, 0);
 	scene.camera.setView({
 	    destination: initialPosition,
@@ -139,9 +141,9 @@ function startMap() {
 	
 	
 	viewer.extend( Cesium.viewerCesiumNavigationMixin, {
-		enableCompass : false,
-		enableZoomControls : false,
-		enableCompassOuterRing : false
+		enableCompass : true,
+		enableZoomControls : true,
+		enableCompassOuterRing : true
 	});
 	
 	
@@ -467,6 +469,7 @@ function bindInterfaceElements() {
     
     // MACETES - ESCONDER ELEMENTOS "DESNECESSARIOS"
     jQuery(".cesium-viewer-bottom").hide();
+    jQuery(".cesium-viewer-navigationContainer").hide();
     jQuery(".navigation-controls").hide();
     jQuery(".compass").hide();
     jQuery(".distance-legend").css( {"border": "none", "background-color" : "rgb(60, 141, 188, 0.5)", "height" : 25, "bottom": 60, "right" : 61, "border-radius": 0} );
@@ -613,8 +616,8 @@ function applyMargins() {
 	var tabContentHeight= contentHeight - 200;
 	jQuery(".content-wrapper").css({"height": contentHeight});
 	jQuery(".content-wrapper").css({"min-height": contentHeight});
-	jQuery(".control-sidebar-subheading").css({"font-size": "12px"});
-	jQuery(".form-group p").css({"font-size": "11px"});
+	jQuery(".control-sidebar-subheading").css({"font-size": "15px"});
+	jQuery(".form-group p").css({"font-size": "14px"});
 }
 
 function addCameraChangeListener() {

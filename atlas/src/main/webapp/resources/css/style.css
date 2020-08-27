@@ -1,4 +1,12 @@
 
+#layerContainer button{
+	font-size : 15px;
+}
+
+.toolBarMenuBox td{
+	font-size : 15px;
+}
+
 #userTable td{
 	padding : 2px !important;
 }
@@ -43,7 +51,7 @@
 	position: absolute; 
 	z-index: 9999;
 	top: 5px;
-	font-size: 11px;
+	font-size: 15px;
 	display:none; 
 	width:340px; 
 	height:auto;

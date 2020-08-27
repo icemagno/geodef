@@ -84,8 +84,8 @@
 										style="width: 100%; height: 100%;">
 								</button>
 								
-								<button title="Catálogos Diversos" id="toolCatalogs" style="margin-left:10px;"
-									type="button" class="btn btn-primary btn-flat" style="padding: 0px;">
+								<button title="Catálogos Diversos" id="toolCatalogs" style="margin-left:10px;padding: 0px;"
+									type="button" class="btn btn-primary btn-flat" >
 									<img src="${midasLocation}/atlas/icons/catalogs.png"
 										style="width: 100%; height: 100%;">
 								</button>
@@ -136,7 +136,7 @@
 								</button>
 								
 								<button title="Visão Nadir" id="toolGoTopView"
-									type="button" class="btn btn-warning  btn-flat" style="padding: 0px;">
+									type="button" class="btn btn-success  btn-flat" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/nadir.png"
 										style="width: 100%; height: 100%;">
 								</button>								
@@ -232,7 +232,7 @@
 									<div id="interactive"
 										style="height: 80px; width: 310px; float: left;"></div>
 									<div id="profilePanel"
-										style="height: 80px; width: 80px; float: left; font-family: Consolas; font-size: 11px;">
+										style="height: 80px; width: 80px; float: left; font-family: Consolas; font-size: 15px;">
 										<div id="profileHeightValue"></div>
 										<div id="profileMaxHeightValue"></div>
 									</div>
@@ -243,7 +243,7 @@
 
 						<!-- PAINEL LATERAL DE ELEMENTOS -->
 						<div id="layerContainer"
-							style="display: none; font-size: 11px; height: auto; left: 10px; position: absolute; z-index: 9999; top: 5px; width: 300px; background-color: white;">
+							style="display: none; font-size: 15px; height: auto; left: 10px; position: absolute; z-index: 9999; top: 5px; width: 300px; background-color: white;">
 
 							<!-- ARVORE -->
 							<div class="panel" style="margin-bottom: 0px">
@@ -364,7 +364,7 @@
 														</td>
 													</tr>
 													<tr>
-														<td id="climatoMonth" colspan="3" class="layerTable" style="font-weight:bold;font-size: 12px;text-align: center;">&nbsp;</td>
+														<td id="climatoMonth" colspan="3" class="layerTable" style="font-weight:bold;font-size: 15px;text-align: center;">&nbsp;</td>
 													</tr>
 												</table>
 											</div>		
@@ -500,7 +500,7 @@
 
 						<!-- DIREÇÕES DAS ROTAS -->
 						<div id="routeContainer"
-							style="display: none; font-size: 11px; height: 523px; left: 320px; position: absolute; z-index: 9999; top: 45px; width: 250px; background-color: white; border-bottom: 2px solid #3c8dbc;">
+							style="display: none; font-size: 15px; height: 523px; left: 320px; position: absolute; z-index: 9999; top: 45px; width: 250px; background-color: white; border-bottom: 2px solid #3c8dbc;">
 							<div style="padding: 0px;" class="box-header with-border">
 								<button id="routeDirButton" style="text-align: left;"
 									type="button" class="btn btn-block btn-primary btn-xs btn-flat">
@@ -536,7 +536,7 @@
 										</tr>
 										<tr style="border-bottom: 2px solid #3c8dbc">
 											<td class="layerTable" colspan="2"><span
-												style="font-size: 11px"><i>Use o botão direito do
+												style="font-size: 15px"><i>Use o botão direito do
 														mouse para abrir as opções.</i></span></td>
 										</tr>
 										<tr>
@@ -582,7 +582,7 @@
 										</tr>
 										<tr style="border-bottom: 2px solid #3c8dbc">
 											<td class="layerTable" colspan="3"><span
-												style="font-size: 11px"><i>Clique e solte o botão
+												style="font-size: 15px"><i>Clique e solte o botão
 														esquerdo sobre o item que deseja interrogar.</i></span></td>
 										</tr>
 									</table>
@@ -606,7 +606,7 @@
 										</tr>
 										<tr style="border-bottom: 2px solid #3c8dbc">
 											<td class="layerTable" colspan="2"><span
-												style="font-size: 11px"><i>Clique e solte o botão
+												style="font-size: 15px"><i>Clique e solte o botão
 														esquerdo para posicionar os pontos. Botão direito para
 														terminar.</i></span></td>
 										</tr>
@@ -634,16 +634,16 @@
 										</tr>
 										<tr style="border-bottom: 2px solid #3c8dbc">
 											<td class="layerTable" colspan="2"><span
-												style="font-size: 11px"><i><b>Domínio de Terreno:</b> Clique e solte o botão
+												style="font-size: 15px"><i><b>Domínio de Terreno:</b> Clique e solte o botão
 														esquerdo para posicionar a origem. Mova o mouse lentamente
 														sem arrastar para posicionar o sensor. Botão direito para
 														terminar.</i></span></td>
 										</tr>
 										<tr style="border-bottom: 2px solid #3c8dbc">
 											<td class="layerTable" colspan="2"><span
-												style="font-size: 11px"><i><b>Construções OSM:</b> Clique no canto inferior esquerdo 
+												style="font-size: 15px"><i><b>Construções OSM:</b> Clique no canto inferior esquerdo 
 												e no canto superior direito da área desejada.</i></span><span
-												style="font-size: 11px"><i>Selecione áreas pequenas (aprox. 5km2)</i></span></td>
+												style="font-size: 15px"><i>Selecione áreas pequenas (aprox. 5km2)</i></span></td>
 										</tr>
 									</table>
 								</div>
@@ -666,7 +666,7 @@
 										</tr>
 										<tr style="border-bottom: 2px solid #3c8dbc">
 											<td class="layerTable" colspan="2"><span
-												style="font-size: 11px"><i>Selecione uma
+												style="font-size: 15px"><i>Selecione uma
 														ferramenta. Clique com o botão esquerdo para posicionar os
 														pontos de medição. Botão direito para terminar.</i></span></td>
 										</tr>
@@ -696,7 +696,7 @@
 										</tr>
 										<tr style="border-bottom: 2px solid #3c8dbc">
 											<td class="layerTable" colspan="2"><span
-												style="font-size: 11px"><i>Centro de Hidrografia da Marinha</i></span></td>
+												style="font-size: 15px"><i>Centro de Hidrografia da Marinha</i></span></td>
 										</tr>
 										<tr>
 											<td class="layerTable">Somente Eventos SAR</td>
@@ -716,7 +716,7 @@
 
 						<!-- CONTEUDO DOS AVISOS -->
 						<div id="avisosContainer"
-							style="display: none; font-size: 11px; height: 323px; left: 320px; position: absolute; z-index: 9999; top: 45px; width: 350px; background-color: white; border-bottom: 2px solid #3c8dbc;">
+							style="display: none; font-size: 15px; height: 323px; left: 320px; position: absolute; z-index: 9999; top: 45px; width: 350px; background-color: white; border-bottom: 2px solid #3c8dbc;">
 							<div style="padding: 0px;" class="box-header with-border">
 								<button id="avisosButton" style="text-align: left;"
 									type="button" class="btn btn-block btn-primary btn-xs btn-flat">
@@ -751,7 +751,7 @@
 										</tr>
 										<tr style="border-bottom: 2px solid #3c8dbc">
 											<td class="layerTable" colspan="2"><span
-												style="font-size: 11px"><i>Clique em uma
+												style="font-size: 15px"><i>Clique em uma
 														plataforma para verificar área de segurança.</i></span></td>
 										</tr>
 										<tr>
@@ -784,10 +784,10 @@
 										
 										
 										<tr>
-											<td style="text-align:center" class="layerTable" colspan="2"><span style="font-size: 11px"><b>Previsão do Tempo</b></span></td>
+											<td style="text-align:center" class="layerTable" colspan="2"><span style="font-size: 15px"><b>Previsão do Tempo</b></span></td>
 										</tr>
 										<tr>
-											<td class="layerTable" colspan="2"><span style="font-size: 11px"><i>Selecione uma área para receber a previsão do tempo.</i></span></td>
+											<td class="layerTable" colspan="2"><span style="font-size: 15px"><i>Selecione uma área para receber a previsão do tempo.</i></span></td>
 										</tr>
 										<tr>
 											<td colspan="2" class="layerTable">
@@ -797,10 +797,10 @@
 										
 										
 										<tr>
-											<td style="text-align:center" class="layerTable" colspan="2"><span style="font-size: 11px"><b>Cor Meteorológica</b></span></td>
+											<td style="text-align:center" class="layerTable" colspan="2"><span style="font-size: 15px"><b>Cor Meteorológica</b></span></td>
 										</tr>
 										<tr>
-											<td class="layerTable" colspan="2"><span style="font-size: 11px"><i>Exibe a cor meteorológica dos aeródromos.</i></span></td>
+											<td class="layerTable" colspan="2"><span style="font-size: 15px"><i>Exibe a cor meteorológica dos aeródromos.</i></span></td>
 										</tr>
 										<tr>
 											<td colspan="2" class="layerTable">
@@ -832,7 +832,7 @@
 										</tr>
 										<tr style="border-bottom: 2px solid #3c8dbc">
 											<td class="layerTable" colspan="2"><span
-												style="font-size: 11px"><i>Climatologia - Séries Históricas.</i></span></td>
+												style="font-size: 15px"><i>Climatologia - Séries Históricas.</i></span></td>
 										</tr>
 										<tr>
 											<td class="layerTable">Período</td>
@@ -884,7 +884,7 @@
 										</tr>
 										<tr style="border-bottom: 2px solid #3c8dbc">
 											<td class="layerTable" colspan="2"><span
-												style="font-size: 11px"><i>Localiza pistas de pouso por critério de PCN.</i></span></td>
+												style="font-size: 15px"><i>Localiza pistas de pouso por critério de PCN.</i></span></td>
 										</tr>
 										<tr>
 											<td class="layerTable">Largura Mínima (m)</td>
@@ -1038,8 +1038,8 @@
 							<!-- Va em menubar.js para os handlers  -->
 							<div id="toolBarCatalogs" class="btn-group"	style="display: none; float: right;">
 								
-								<button title="Catálogo EDGV-DEFESA" id="toolEdgvBook" style="margin-left:10px;"
-									type="button" class="btn btn-primary btn-flat" style="padding: 0px;">
+								<button title="Catálogo EDGV-DEFESA" id="toolEdgvBook" style="margin-left:10px;padding: 0px;"
+									type="button" class="btn btn-warning btn-flat" >
 									<img src="${midasLocation}/atlas/icons/edgv.png"
 										style="width: 100%; height: 100%;">
 								</button>
@@ -1119,7 +1119,7 @@
 						</div>
 
 						<div id="bottonBar"
-							style="width: 100%; position: absolute; z-index: 9999; font-family: Consolas; font-size: 11px; bottom: 0px; height: 15px; background-color: rgb(60, 141, 188); color: white;">
+							style="width: 100%; position: absolute; z-index: 9999; font-family: Consolas; font-size: 12px; bottom: 0px; height: 15px; background-color: rgb(60, 141, 188); color: white;">
 
 							<div class="layerCounter" id="layerLoadingPanelGau" style="width: 150px; display:none;float: left; margin-left: 20px;margin-right:5px;padding-top:3px">
 								<div class='progress progress-sm active'>

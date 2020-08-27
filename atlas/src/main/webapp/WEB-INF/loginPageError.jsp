@@ -79,7 +79,7 @@
          <hr class="footer-fixed">
          <div class="container footer-container">
    <div class="pull-right hidden-xs">
-     Ministério da Defesa
+     versão 27/08/2020
    </div>
    <!-- Default to the left -->
    <strong>Sistema de Geoinformação de Defesa</strong> 
