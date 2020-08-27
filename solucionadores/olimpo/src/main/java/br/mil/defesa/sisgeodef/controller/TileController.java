@@ -5,8 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -21,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tilesets")
 public class TileController {
 
-	private Logger logger = LoggerFactory.getLogger( TileController.class );
+	//private Logger logger = LoggerFactory.getLogger( TileController.class );
 
 	
 	@RequestMapping(value = "/{name}/{x}/{y}/{z}", method = RequestMethod.GET )
@@ -31,7 +29,9 @@ public class TileController {
 			@PathVariable("y") Integer y,
 			@PathVariable("z") String z) throws Exception {
 		
-		logger.info( name + ": " + x + "/" + y + "/" + z );
+		if( !z.contains("terrain") ) {
+			z = z + ".terrain";
+		}
 		
 		HttpHeaders headers = new HttpHeaders(); 
 		headers.add( HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + z );
@@ -42,7 +42,7 @@ public class TileController {
 		
 		File file = new File( filePath );
 		
-		logger.info( filePath );
+		//logger.info( filePath );
 		
 	    Path path = Paths.get( file.getAbsolutePath() );
 	    ByteArrayResource resource = new ByteArrayResource( Files.readAllBytes( path ) );
@@ -66,7 +66,7 @@ public class TileController {
 		
 		File file = new File( filePath );
 		
-		logger.info( filePath );
+		//logger.info( filePath );
 		
 	    Path path = Paths.get( file.getAbsolutePath() );
 	    ByteArrayResource resource = new ByteArrayResource( Files.readAllBytes( path ) );
