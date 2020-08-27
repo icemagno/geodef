@@ -52,9 +52,9 @@ var handler = null;
 function updateSisgeodefAddress(){
 	osmLocal = sisgeodefHost + '/mapproxy/service/wms';
 	mapproxy = sisgeodefHost + '/mapproxy/service/wms';
-	pleione = sisgeodefHost + '/pleione/geoserver/wms';
-	efestus = sisgeodefHost + '/pleione/geoserver/wms';
-	volcano = sisgeodefHost + '/pleione/geoserver/wms';
+	pleione = sisgeodefHost + '/geoserver/wms';
+	efestus = sisgeodefHost + '/geoserver/wms';
+	volcano = sisgeodefHost + '/geoserver/wms';
 	olimpo = sisgeodefHost + '/olimpo/tilesets/sisgide';
 }
 
