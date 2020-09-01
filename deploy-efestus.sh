@@ -20,22 +20,21 @@ docker run --name efestus --hostname=efestus \
 -v /srv/efestus/:/home/ \
 -v /srv/osmfile/:/osmfile/ \
 -v /etc/localtime:/etc/localtime:ro \
--p 36322:5432 \
 -d sisgeodef/efestus:1.0
 
 docker network connect sisgeodef efestus
 docker network connect apolo efestus
 
-cp ./build.sh /srv/efestus/
-cp ./default.style /srv/efestus/
-cp ./generate_buildings.sql /srv/efestus/
-cp ./osm2pgsql-0.96.0.tar.gz /srv/efestus/
+#cp ./build.sh /srv/efestus/
+#cp ./default.style /srv/efestus/
+#cp ./generate_buildings.sql /srv/efestus/
+#cp ./osm2pgsql-0.96.0.tar.gz /srv/efestus/
 
-chmod 0777 /srv/efestus/build.sh
+#chmod 0777 /srv/efestus/build.sh
 
-echo "Aguardando o servidor... 20 segundos"
+#echo "Aguardando o servidor... 20 segundos"
 
-sleep 20
+#sleep 20
 
 # docker exec efestus /home/build.sh
 
