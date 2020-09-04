@@ -9,6 +9,7 @@ docker rmi sisgeodef/midas:2.4.5
 docker build --tag=sisgeodef/midas:2.4.5 --rm=true .
 
 docker run --name midas --hostname=midas \
+-p 36203:36203 \
 -v /srv/midas/:/usr/local/apache2/htdocs \
 -v /etc/localtime:/etc/localtime:ro \
 -d sisgeodef/midas:2.4.5

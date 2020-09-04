@@ -6,8 +6,7 @@
     <link href="Cesium/Widgets/widgets.css" rel="stylesheet">
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="Cesium/Cesium.js"></script>
-    <script type="text/javascript" src="script.js"></script>
-    <script type="text/javascript" src="../atlas/resources/js/providers/MagnoMarineTrafficProvider.js"></script>
+    <script type="text/javascript" src="viewshed.js"></script>
     <style>
         html, body, #cesiumContainer {
             width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;background-color: #000000;
@@ -22,6 +21,7 @@
     <button type="button" id="chooseView" class="button black">Choose view</button>
     <button type="button" id="addPoint" class="button black">Add point</button>
     <button type="button" id="clear" class="button black">Clear</button>
+    <button type="button" id="viewshed" class="button black">ViewShed3D</button>
 </div>
 
 
@@ -35,7 +35,7 @@
 
 
 	var terrainProvider = new Cesium.CesiumTerrainProvider({
-		url : 'http://sisgeodef.defesa.mil.br:36503/tilesets/sisgide',
+		url : 'http://sisgeodef.defesa.mil.br/olimpo/tilesets/sisgide',
 		requestVertexNormals : true,
 		isSct : false,
 		requestWaterMask : true
@@ -94,6 +94,12 @@
 	    destination: initialPosition,
 	    orientation: initialOrientation,
 	    endTransform: Cesium.Matrix4.IDENTITY
+	});	
+
+	var mainEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
+
+	$( "#viewshed" ).click(function() {
+		getviewshed();
 	});	
 
 
