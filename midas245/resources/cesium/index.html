@@ -7,6 +7,8 @@
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="Cesium/Cesium.js"></script>
     <script type="text/javascript" src="viewshed.js"></script>
+    <script type="text/javascript" src="testdraw.js"></script>
+    <script type="text/javascript" src="drawhelper/DrawHelper.js"></script>
     <style>
         html, body, #cesiumContainer {
             width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;background-color: #000000;
@@ -17,11 +19,14 @@
 <body>
 <div id="cesiumContainer"></div>
 
+<div id="logging"></div>
+
 <div id='toolbar' class="param-container tool-bar" style="position: absolute;top: 10px;left: 5px;">
     <button type="button" id="chooseView" class="button black">Choose view</button>
     <button type="button" id="addPoint" class="button black">Add point</button>
     <button type="button" id="clear" class="button black">Clear</button>
     <button type="button" id="viewshed" class="button black">ViewShed3D</button>
+    <button type="button" id="testdraw" class="button black">Test Draw</button>
 </div>
 
 
@@ -47,7 +52,7 @@
 	});
 		
 	var viewer = new Cesium.Viewer('cesiumContainer',{
-		terrainProvider : terrainProvider,
+		//terrainProvider : terrainProvider,
 		timeline: false,
 		animation: false,
 		baseLayerPicker: false,
@@ -102,6 +107,9 @@
 		getviewshed();
 	});	
 
+	$( "#testdraw" ).click(function() {
+		testDraw();
+	});	
 
 </script>
 </body>
