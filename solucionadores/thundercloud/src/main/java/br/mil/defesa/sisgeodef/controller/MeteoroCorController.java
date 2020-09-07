@@ -43,12 +43,6 @@ public class MeteoroCorController {
 
 	private String doRequestGet( String url ) {
 		
-		// ***************  SEMPRE IGNORA PROXY  *****************
-		// Retirar isso assim que possivel
-		useProxy = false;
-		// *******************************************************
-		
-		
 		String uri = "http://www.redemet.aer.mil.br/api/consulta_automatica/index.php?" + url;
 		System.out.println( uri );
 		String responseBody = "";
