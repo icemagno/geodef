@@ -16,8 +16,6 @@ cp /srv/osmfile/brazil-latest.osm.pbf /srv/graphhopper/
 docker run --name graphhopper --hostname=graphhopper  \
 -v /etc/localtime:/etc/localtime:ro \
 -v /srv/graphhopper/:/data/ \
--p 36305:8989 \
--p 36307:8990 \
 -d sisgeodef/graphhopper:1.0 -Dgraphhopper.datareader.file=/data/brazil-latest.osm.pbf -jar *.jar server /data/config.yml
 
 docker network connect sisgeodef graphhopper
