@@ -119,6 +119,10 @@ function startMap() {
 	
 	viewer = new Cesium.Viewer('cesiumContainer',{
 		terrainProvider : terrainProvider,
+		scene3DOnly : true,
+		
+		//sceneMode : Cesium.SceneMode.SCENE2D,
+		
 		timeline: false,
 		animation: false,
 		baseLayerPicker: false,
@@ -130,13 +134,13 @@ function startMap() {
 		sceneModePicker : false,
 		selectionIndicator : false,
 		navigationHelpButton : false,
-		requestRenderMode : true,
+		//requestRenderMode : true,
 	    imageryProvider: baseOsmProvider,
-	    scene3DOnly : true,
-	    shouldAnimate : true,
-        contextOptions: {
-            requestWebgl2: true
-        },	    
+	    
+	    //shouldAnimate : true,
+        //contextOptions: {
+        //	requestWebgl2: true
+        //},	    
 	});
 	
 	
@@ -146,32 +150,31 @@ function startMap() {
 		enableCompassOuterRing : true
 	});
 	
+
 	
 	camera = viewer.camera;
 	scene = viewer.scene;
-	scene.scene3DOnly = true;
 	
-	imageryLayers = scene.imageryLayers;
-
 	scene.highDynamicRange = false;
 	scene.globe.enableLighting = false;
 	scene.globe.baseColor = Cesium.Color.WHITE;
 	scene.screenSpaceCameraController.enableLook = false;
-	scene.screenSpaceCameraController.enableCollisionDetection = false;
+	scene.screenSpaceCameraController.enableCollisionDetection = true;
 	scene.screenSpaceCameraController.inertiaZoom = 0.8;
 	scene.screenSpaceCameraController.inertiaTranslate = 0.8;
 	scene.globe.maximumScreenSpaceError = 1;
 	scene.globe.depthTestAgainstTerrain = true;
-	scene.globe.tileCacheSize = 250;
+	//scene.globe.tileCacheSize = 250;
 	scene.pickTranslucentDepth = true;
 	scene.useDepthPicking = true;
-
-	
 	scene.skyBox.show = false;
 	scene.sun.show = false;
-	scene.bloomEffect.show = true;
-	scene.bloomEffect.threshold = 0.1;
-	scene.bloomEffect.bloomIntensity = 0.3;		
+	//scene.bloomEffect.show = true;
+	//scene.bloomEffect.threshold = 0.1;
+	//scene.bloomEffect.bloomIntensity = 0.3;		
+
+	imageryLayers = scene.imageryLayers;
+	
 	
 	// drawOperationArea( homeLocation );
 	goToOperationArea( homeLocation );

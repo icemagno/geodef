@@ -851,7 +851,7 @@ function loadRoute( geoJsonRoute, data, canGoTo ) {
 
 		//if( canGoTo ) viewer.zoomTo( routeResultLines[ routeResultLines.length -1 ].line );
 		
-		console.log('TESTE: Follow Route : Sensor de exposição na rota.')
+		console.log('TESTE: Follow Route : Sensor de exposição na rota DESATIVADO.')
 		// Esta funcao esta no arquivo flightcontrol.js 
 		// followRoute( lastCoordinates );
 
