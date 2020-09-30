@@ -145,7 +145,6 @@ caches:
     link_single_color_images: true
     concurrent_tile_creators: 4
     format: image/png
-    
   rapideye_cache:
     grids: [geodetic]
     sources: [rapideye_wms]

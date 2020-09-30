@@ -12,35 +12,99 @@
 seeds:
   seedcarta23100:
     caches: [carta_23100_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 17
   seedcarta23000:
     caches: [carta_23000_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 17
   seedcarta22900:
     caches: [carta_22900_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 17
   osm_seamaps:
     caches: [osm_seamaps_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 17
   rapideye:
     caches: [rapideye_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 14
   bdgexcartas:
     caches: [bdgexcartas_cache]
+    coverages: [brasil]
+    levels:
+      to: 17
+  seedapolo_mma_cache:
+    caches: [apolo_mma_cache]
+    coverages: [brasil]
+    levels:
+      to: 15
+  seedsisclaten_01_cache:
+    caches: [sisclaten_01_cache]
+    coverages: [brasil]
+    levels:
+      to: 15
+  seedapolo_dnit_cache:
+    caches: [apolo_dnit_cache]
+    coverages: [brasil]
+    levels:
+      to: 15
+  seedapolo_linhas_cache:
+    caches: [apolo_linhas_cache]
+    coverages: [brasil]
+    levels:
+      to: 15
+  seedapolo_usinas_cache:
+    caches: [apolo_usinas_cache]
+    coverages: [brasil]
+    levels:
+      to: 15
+  seedapolo_amazonia_cache:
+    caches: [apolo_amazonia_cache]
+    coverages: [brasil]
+    levels:
+      to: 15
+  seedapolo_orgmil_cache:
+    caches: [apolo_orgmil_cache]
+    coverages: [brasil]
+    levels:
+      to: 17
+  seedcarta1501:
+    caches: [carta_1501_cache]
     coverages: [prototipo]
     levels:
       to: 17
-      
+  seedcarta1550:
+    caches: [carta_1550_cache]
+    coverages: [prototipo]
+    levels:
+      to: 17
+  seedica1:
+    caches: [ica_h2_cache]
+    coverages: [prototipo]
+    levels:
+      to: 17
+  seedica2:
+    caches: [ica_l2_cache]
+    coverages: [prototipo]
+    levels:
+      to: 17
+  seedica3:
+    caches: [ica_bh_cache]
+    coverages: [prototipo]
+    levels:
+      to: 17
+  seedica4:
+    caches: [ica_macae_cache]
+    coverages: [prototipo]
+    levels:
+      to: 17              
       
 coverages:
   brasil:
