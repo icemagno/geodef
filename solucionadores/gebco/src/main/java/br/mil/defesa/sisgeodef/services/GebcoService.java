@@ -31,70 +31,77 @@ public class GebcoService {
 	private Boolean useProxy; 	
 	
 	private Logger logger = LoggerFactory.getLogger(GebcoService.class);
-	private int currentFeature = 0;
+	private int count = 2000;
+	private int startIndex = 0;
 	private boolean working = false;
 	
 	@Scheduled(cron = "0/7 * * * * *") 
 	public void doImport() {
 		if (!working) {
 			working = true;
-			currentFeature++;
-			String featureToImport = "gebco_poly_2014." + currentFeature;
-			String feature = getFeature(featureToImport);
-			insert( feature );
+			String features = getFeatures();
+			insert( features );
 		}
 	}
 	
 	
 	private ClientHttpRequestFactory getClientHttpRequestFactory() {
-	    int timeout = 15000;
+		int timeout = 50000 * 60 * 60;
 	    HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
 	    clientHttpRequestFactory.setConnectTimeout(timeout);
 	    return clientHttpRequestFactory;
 	}	
 
 	
-	private void insert( String feature ) {
+	private void insert( String fc ) {
 		try {
-			JSONObject collection = new JSONObject( feature );
+			JSONObject collection = new JSONObject( fc );
 			JSONArray features = collection.getJSONArray("features");
-			JSONObject ft = features.getJSONObject(0);
-			String id = ft.getString("id");
-			JSONObject geometry = ft.getJSONObject("geometry");
-			JSONObject properties = ft.getJSONObject("properties");
-			JSONArray coordinates = geometry.getJSONArray("coordinates");
+			int length = features.length();
 			
-			String coord = coordinates.getJSONArray(0).toString().replace("],[", ")*(").replace(","," ").replace(")*(", ",").replace("[[[", "(((").replace("]]]", ")))"); 
+			for( int x=0; x<length; x++ ) {
+				JSONObject ft = features.getJSONObject( x );
+				String id = ft.getString("id");
+				JSONObject geometry = ft.getJSONObject("geometry");
+				JSONObject properties = ft.getJSONObject("properties");
+				Integer objectid = properties.getInt("objectid");
+				Integer gridcode = properties.getInt("gridcode");
+				Long shape_leng = properties.getLong("shape_leng");
+				Long shape_area = properties.getLong("shape_area");
+				
+				String geomTextFromJson = geometry.toString();
+				
+				String sql = "INSERT INTO bat (id,featureid,the_geom,objectid,gridcode,shape_length,shape_area) VALUES (" +
+						objectid + ", '" + id + "', ST_GeomFromGeoJSON('"+geomTextFromJson+"')," +
+					    objectid + "," + gridcode + "," + shape_leng + "," + shape_area + ");";
+
+				
+				jdbcTemplate.update( sql );
+				
+			}
 			
-			Integer objectid = properties.getInt("objectid");
-			Integer gridcode = properties.getInt("gridcode");
-			Long shape_leng = properties.getLong("shape_leng");
-			Long shape_area = properties.getLong("shape_area");
-			
-			String sql = "INSERT INTO bat (id,featureid,the_geom,objectid,gridcode,shape_length,shape_area) VALUES (" +
-				    currentFeature + ", '" + id + "', ST_GeomFromText('MULTIPOLYGON"+coord+"',4326)," +
-				    objectid + "," + gridcode + "," + shape_leng + "," + shape_area + ");";
-	
-			System.out.println( sql );
-			jdbcTemplate.update( sql );
-			
+			startIndex = startIndex + count;
 			working = false;
+			
 		} catch ( Exception e ) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public String getFeature( String featureId ) {
+	public String getFeatures() {
 		
 		String sourceUrl = "http://osm.franken.de:8080/geoserver/gebco/ows?service=wfs"
 				+ "&version=2.0.0"
 				+ "&request=GetFeature"
 				+ "&typeName=gebco:gebco_poly_2014"
 				+ "&outputFormat=application/json"
-				+ "&featureID=";
+				+ "&count=" + count
+				+ "&startIndex=";
 		
-		String uri = sourceUrl +  featureId;
+		// http://osm.franken.de:8080/geoserver/gebco/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=gebco:gebco_poly_2014&count=2&startIndex=2&outputFormat=application%2Fjson
+		
+		String uri = sourceUrl +  startIndex;
 
 		String responseBody = "[]";
 		

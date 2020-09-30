@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import br.mil.defesa.sisgeodef.services.GebcoService;
 
 @RestController
-public class SistramController {
+public class BatController {
 	
 	@Autowired
 	private GebcoService gebcoService;
 	
 	@RequestMapping(value = "/getfeature", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody String getFeature( ) {
-		return  gebcoService.getFeature("gebco_poly_2014.1" );
+		return  gebcoService.getFeatures();
 	}
 
 

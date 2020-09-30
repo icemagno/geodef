@@ -40,7 +40,7 @@ public class AuthService {
 	private int proxyPort;	
 	
 	public HttpComponentsClientHttpRequestFactory getFactory() {
-		int timeout = 1000 * 60 * 60;
+		int timeout = 50000 * 60 * 60;
 		
 		System.out.println("Usando proxy " + proxyHost );
 
