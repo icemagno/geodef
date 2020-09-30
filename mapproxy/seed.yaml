@@ -77,32 +77,32 @@ seeds:
       to: 17
   seedcarta1501:
     caches: [carta_1501_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 17
   seedcarta1550:
     caches: [carta_1550_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 17
   seedica1:
     caches: [ica_h2_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 17
   seedica2:
     caches: [ica_l2_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 17
   seedica3:
     caches: [ica_bh_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 17
   seedica4:
     caches: [ica_macae_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 17              
       
