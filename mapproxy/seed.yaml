@@ -109,7 +109,7 @@ seeds:
 coverages:
   brasil:
     # west, south, east, north
-    bbox: [-45.0,-24.0,-40.0,-20.0]
+    bbox: [-74.62,-34.67,-11.51,6.32]
     srs: 'EPSG:4326'
   prototipo:
     bbox: [-45,-24,-40,-20]
