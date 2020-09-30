@@ -12,37 +12,37 @@
 seeds:
   seedapolo_mma_cache:
     caches: [apolo_mma_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 15
   seedsisclaten_01_cache:
     caches: [sisclaten_01_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 15
   seedapolo_dnit_cache:
     caches: [osm_seamaps_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 15
   seedapolo_linhas_cache:
     caches: [rapideye_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 15
   seedapolo_usinas_cache:
     caches: [bdgexcartas_cache]
-    coverages: [prototipo]
+    coverages: [brasil]
     levels:
       to: 15
   seedapolo_amazonia_cache:
-    caches: [osm_cache]
-    coverages: [prototipo]
+    caches: [apolo_amazonia_cache]
+    coverages: [brasil]
     levels:
       to: 15
   seedapolo_orgmil_cache:
-    caches: [osm_cache]
-    coverages: [prototipo]
+    caches: [apolo_orgmil_cache]
+    coverages: [brasil]
     levels:
       to: 17
       
