@@ -1,5 +1,7 @@
 package br.mil.defesa.sisgeodef.services;
 
+import java.math.BigDecimal;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -34,10 +36,12 @@ public class GebcoService {
 	private int count = 2000;
 	private int startIndex = 0;
 	private boolean working = false;
+	private long total = 0;
+	private boolean stop = false;
 	
 	@Scheduled(cron = "0/7 * * * * *") 
 	public void doImport() {
-		if (!working) {
+		if (!working && !stop ) {
 			working = true;
 			String features = getFeatures();
 			insert( features );
@@ -58,6 +62,16 @@ public class GebcoService {
 			JSONObject collection = new JSONObject( fc );
 			JSONArray features = collection.getJSONArray("features");
 			int length = features.length();
+			total = total + length;
+			
+			if( length == 0 ) {
+				stop = true;
+				logger.info("Requisição retornou 0. Processei um total de " + total + "registros.");
+			} else {
+				logger.info("Processei mais " + length + " registros. Total: " + total );
+			}
+			
+			
 			
 			for( int x=0; x<length; x++ ) {
 				JSONObject ft = features.getJSONObject( x );
@@ -66,8 +80,8 @@ public class GebcoService {
 				JSONObject properties = ft.getJSONObject("properties");
 				Integer objectid = properties.getInt("objectid");
 				Integer gridcode = properties.getInt("gridcode");
-				Long shape_leng = properties.getLong("shape_leng");
-				Long shape_area = properties.getLong("shape_area");
+				float shape_leng = BigDecimal.valueOf( properties.getDouble("shape_leng") ).floatValue();
+				float shape_area = BigDecimal.valueOf( properties.getDouble("shape_area") ).floatValue();
 				
 				String geomTextFromJson = geometry.toString();
 				

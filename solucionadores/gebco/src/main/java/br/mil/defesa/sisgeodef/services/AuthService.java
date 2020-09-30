@@ -42,9 +42,6 @@ public class AuthService {
 	public HttpComponentsClientHttpRequestFactory getFactory() {
 		int timeout = 50000 * 60 * 60;
 		
-		System.out.println("Usando proxy " + proxyHost );
-
-		
 		RequestConfig requestConfig = RequestConfig.custom()
 		        .setConnectTimeout( timeout )
 		        .setConnectionRequestTimeout( timeout )
