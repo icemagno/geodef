@@ -1,10 +1,11 @@
-package br.mil.defesa.sisgeodef.service;
+package br.mil.defesa.sisgeodef.services;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -21,6 +22,13 @@ public class GebcoService {
 
 	@Autowired
     JdbcTemplate jdbcTemplate;		
+	
+    @Autowired
+    private AuthService authService;
+
+
+	@Value("${proxy.useProxy}")
+	private Boolean useProxy; 	
 	
 	private Logger logger = LoggerFactory.getLogger(GebcoService.class);
 	private int currentFeature = 0;
@@ -89,7 +97,14 @@ public class GebcoService {
 		String uri = sourceUrl +  featureId;
 
 		String responseBody = "[]";
-		RestTemplate restTemplate = new RestTemplate( getClientHttpRequestFactory() );
+		
+		RestTemplate restTemplate;
+		if( useProxy ) {
+			restTemplate = new RestTemplate( authService.getFactory() );
+		} else {
+			restTemplate = new RestTemplate( getClientHttpRequestFactory() );
+		}		
+		
 		try {
 			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
 			responseBody = result.getBody().toString();

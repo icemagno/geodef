@@ -1,4 +1,4 @@
-create table if exists bat( 
+create table bat( 
 	id integer, 
 	featureid character varying(50), 
 	the_geom Geometry, 
