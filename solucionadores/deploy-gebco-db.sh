@@ -24,3 +24,4 @@ docker network connect sisgeodef gebco-db
 sleep 10
 
 docker exec gebco-db psql "host='localhost' dbname='gebco' user='postgres' password='admin'"  -a -f /data/table.sql
+docker exec gebco-db pg_restore "host='localhost' dbname='gebco' user='postgres' password='admin'"  /data/geohash-backup.tar
