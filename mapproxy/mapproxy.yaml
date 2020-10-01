@@ -127,6 +127,9 @@ layers:
           - -30.0
           - -35.0
         default: -0.0
+  - name: batimetria
+    title: GEBCO Batimetria
+    sources: [batimetria_cache]
     
 caches:
   osm_seamaps_cache:
@@ -257,6 +260,14 @@ caches:
   apolo_orgmil_cache:
     grids: [geodetic]
     sources: [apolo_orgmil_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  batimetria_cache:
+    grids: [geodetic]
+    sources: [batimetria_wms]
     link_single_color_images: true
     concurrent_tile_creators: 4
     format: custom_format
@@ -434,8 +445,12 @@ sources:
       transparent: true
       styles: linevec/rainbow
     forward_req_params: ['time', 'elevation']  
+  batimetria_wms:
+    type: wms
+    req:
+      url: https://www.gebco.net/data_and_products/gebco_web_services/2019/mapserv/
+      layers: GEBCO_2019_GRID
 
-      
 grids:
   webmercator:
     base: GLOBAL_WEBMERCATOR
