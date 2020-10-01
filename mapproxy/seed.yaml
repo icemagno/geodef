@@ -35,6 +35,11 @@ seeds:
     coverages: [brasil]
     levels:
       to: 14
+  batimetria:
+    caches: [batimetria_cache]
+    coverages: [brasil]
+    levels:
+      to: 14
   bdgexcartas:
     caches: [bdgexcartas_cache]
     coverages: [brasil]
