@@ -765,5 +765,21 @@ function populateLayerPanelAsTesting(){
 		}
 	});
 
+/*
+$(function() {
+    $( "#sortable" ).sortable({
+        update: function(event, ui) { 
+            console.log('update: '+ui.item.index())
+        },
+        start: function(event, ui) { 
+            console.log('start: ' + ui.item.index())
+        }
+    });
+    $( "#sortable" ).disableSelection();
+});
+
+If you want the start index to be available to you in the update, then you'll need to set it like this:$(ui.item).data('startindex', ui.item.index()) and then access it with $(ui.item).data().startindex
+
+*/
 	
 }
