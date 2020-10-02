@@ -409,67 +409,18 @@ function bindInterfaceElements() {
 	// *********************************************************************************************************
 	// *********************************************************************************************************
 	
-	jQuery("#showComponentsBar").click( function(){
-		jQuery("#layerContainer").toggle();
-		hideRouteDir()
-	});
-
 	attitude = jQuery.flightIndicator('#attitude', 'attitude', {roll:50, pitch:-20, size:100, showBox : true});
 	heading = jQuery.flightIndicator('#heading', 'heading', {heading:150, size:100, showBox:true});
 	altimeter = jQuery.flightIndicator('#altimeter', 'altimeter', {size:100, showBox:true});	
 	
-	var viewportHeight= jQuery(window).height() - 100;
+	var viewportHeight= jQuery(".main-sidebar").height() - 170;
     
+	jQuery('#activeLayerContainer').css({'height': viewportHeight });
 	jQuery('#activeLayerContainer').slimScroll({
-        height: '390px',
+        height: viewportHeight - 10 + 'px',
         wheelStep : 10,
     });
 	
-	jQuery('#routesContainer').slimScroll({
-		height: '390px',
-		wheelStep : 10,
-	});	
-
-	jQuery('#cartoTreeContainer').slimScroll({
-		height: '390px',
-		wheelStep : 10,
-	});	
-	
-    jQuery('#routeDetailContainer').slimScroll({
-        height: '490px',
-        wheelStep : 10,
-    });
-
-    jQuery('#avisosDetailContainer').slimScroll({
-        height: '290px',
-        wheelStep : 10,
-    });
-
-    jQuery('#measureResultsContainer').slimScroll({
-        height: '390px',
-        wheelStep : 10,
-    });
-    jQuery('#drawedObjectsContainer').slimScroll({
-    	height: '390px',
-    	wheelStep : 10,
-    });
-    jQuery('#exportedProductsContainer').slimScroll({
-    	height: '390px',
-    	wheelStep : 10,
-    });
-    jQuery('#viewshedResultsContainer').slimScroll({
-    	height: '390px',
-    	wheelStep : 10,
-    });
-    jQuery('#exportedProductsContainer').slimScroll({
-    	height: '390px',
-    	wheelStep : 10,
-    });
-    jQuery('#diversosContainer').slimScroll({
-    	height: '390px',
-    	wheelStep : 10,
-    });
-
     
     // MACETES - ESCONDER ELEMENTOS "DESNECESSARIOS"
     jQuery(".cesium-viewer-bottom").hide();
@@ -614,12 +565,14 @@ jQuery(function () {
 });
 
 function applyMargins() {
+	/*
 	var totalHeight= jQuery(window).height();
 	var contentHeight= totalHeight - 150;
 	jQuery(".content-wrapper").css({"height": contentHeight});
 	jQuery(".content-wrapper").css({"min-height": contentHeight});
 	jQuery(".control-sidebar-subheading").css({"font-size": "15px"});
 	jQuery(".form-group p").css({"font-size": "14px"});
+	*/
 }
 
 function addCameraChangeListener() {
@@ -761,22 +714,21 @@ function populateLayerPanelAsTesting(){
 	    var theScale = "1:50.000";
 	    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
 		var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
-		'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>Camada EDGV-DEFESA</b>' +
-		'<a title="Apagar Camada" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
+		'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>Camada EDGV-DEFESA</b></td></tr>'; 
 		
-		'<a title="Para cima das outras" style="margin-right: 10px;" href="#" onClick="layerToUp(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-up"></i></a>' + 
-		'<a title="Para baixo das outras" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-down"></i></a>' + 
 		
-		'<a title="Exportar Para PDF" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-file-pdf-o"></i></a>' + 
-		'</td></tr>'; 
 		
-		table = table + '<tr><td colspan="3" class="layerTable"><b>' + layerAlias + '</b></td></tr>';
-		table = table + '<tr><td colspan="2" class="layerTable">' + tipoCarto + '</td><td class="layerTable" style="text-align:right" >'+theScale+'</td></tr>';
-	
-		table = table + '<tr><td colspan="3" style="padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">'; 
+		table = table + '<tr><td style="padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">'; 
 		table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" ' +
 			'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
-		table = table + '</b></td></tr>';
+		table = table + '</td><td colspan="2">' + 
+		'<a title="Apagar Camada" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
+		'<a title="Para cima das outras" style="margin-right: 10px;" href="#" onClick="layerToUp(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-up"></i></a>' + 
+		'<a title="Para baixo das outras" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-down"></i></a>' + 
+		'<a title="Exportar Para PDF" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-file-pdf-o"></i></a>' + 
+		'</td></tr>';
+		
+		
 		
 		table = table + '</table></div>';
 		

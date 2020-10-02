@@ -43,6 +43,26 @@
 		transform: translate(-340px, 0);
 	}
 	
+	.main-footer table{
+		width: 100%;
+    	margin: 0px;
+    	padding:0px;
+    	padding-left: 2px;	
+    	padding-right: 2px;	
+	}
+	.main-footer table td{
+		border-bottom: 1px solid #cacaca;
+	}
+	
+	.slider.slider-horizontal .slider-tick, .slider.slider-horizontal .slider-handle {
+	    margin-left: -10px;
+	    margin-top: -3px;
+	}	
+	.slider-handle {
+	    width: 10px;
+	    height: 16px;	
+	}
+		
 </style>
 
 
@@ -171,7 +191,12 @@
 
 		 
 	    <!-- Main Footer -->
-		<footer class="main-footer"></footer>	
+		<footer class="main-footer" style="height:44px;padding: 0px 10px 0px 10px;">
+			<table style="width:100%;">
+				<tr><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td></tr>
+				<tr><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td></tr>
+			</table>
+		</footer>	
 		
 	</div>
 	<!-- ./wrapper -->
