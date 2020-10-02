@@ -9,7 +9,7 @@ function loadCores( ) {
 	cores.push( {"cm":"VM","color": Cesium.Color.RED } );
 	
 	
-	var url = "/cor/getcolors?mock=false";
+	var url = "/cor/getcolors";
 	$.ajax({
 		url: url,
 		type: "GET", 
@@ -149,6 +149,7 @@ function putCoresAerodromosToMainPanel() {
 function prepareData( obj ){
 	var aerodromoData = [];
 	var lastIcao = "";
+	
 	for( x=0; x< obj.length; x++ ) {
 		var data = obj[x];
 		var metar = data.metar;
@@ -163,6 +164,9 @@ function prepareData( obj ){
 		lastIcao = icao;
 		aerodromoData.push( {"dia":dia,"hora":hora,"minuto":minuto,"icao":lastIcao,"metar": data} );
 	}
+	
+	console.log( aerodromos );
+	
 	loadAerodromos();
 }
 

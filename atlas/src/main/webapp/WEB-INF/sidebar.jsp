@@ -1,65 +1,43 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page pageEncoding="UTF-8" %>
-<text class="content">
-
-      <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" id="search-text" class="form-control" placeholder="Buscar Camadas...">
-          <span class="input-group-btn">
-              <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-            </span>
-        </div>
-      </form>
-      <!-- /.search form -->
 
 
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MENU PRINCIPAL</li>
-        <li class="treeview">
+<aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+        <!-- search form -->
+        <form method="get" class="sidebar-form" id="sidebar-form" style="">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Digite os dados de busca" id="search-input">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+
+		<div class="panel" style="height:30px">
+			<button style="text-align: left;width:85%;float:left" type="button" class="btn btn-primary btn">
+				<i style="font-size: 18px;" class="fa fa-plus-circle"></i> &nbsp; Adicionar Camada
+			</button>
+			<button style="float:right; width:14%" type="button" class="btn btn-primary btn">
+				<i style="font-size: 18px;" class="fa fa-upload"></i>
+			</button>
+		</div>
+
 		
-          <a href="${pageContext.servletContext.contextPath}/">
-            <i class="fa fa-flash"></i><span>Solucionadores</span>
-            <span id="solucion-count" class="pull-right-container">
-            </span>
-          </a>
-		  
-          <ul class="treeview-menu" id="solucion-menu">
-          </ul>
-          
-          
-        </li>
-        
-        <li>
-          <a href="${pageContext.servletContext.contextPath}/">
-            <i class="fa fa-th"></i><span>Metadados</span>
-          </a>
-        </li>		
+		<div class="panel">
+			<button style="text-align: left;" type="button" class="btn btn-block btn-primary btn">
+				<i class="fa fa-map-o"></i> &nbsp; Camadas Ativas / Cenário
+			</button>
+			<div id="activeLayerContainer"  style="padding: 4px; height: 400px" class="box-body"></div>
+		</div>
 
-        <li>
-          <a href="home">
-            <i class="fa fa-heartbeat"></i><span>Estatísticas do Sistema</span>
-          </a>
-        </li>
-<security:authorize access="hasRole('ROLE_ADMIN')">
-        <li class="header">ADMINISTRAÇÃO</li>
-	        <li>
-	          <a href="${pageContext.servletContext.contextPath}/users">
-	            <i class="fa fa-users"></i><span>Usuários</span>
-	          </a>
-	        </li>
-	        <li>
-	          <a href="${pageContext.servletContext.contextPath}/">
-	            <i class="fa fa-plug"></i><span>Importadores</span>
-	          </a>
-	        </li>
-	        <li>
-	          <a href="${pageContext.servletContext.contextPath}/">
-	            <i class="fa fa-cogs"></i><span>Configuração do Portal</span>
-	          </a>
-	        </li>
-</security:authorize>	        
-	                
-		</ul>
-</text>		
+
+    </section>
+    <!-- /.sidebar -->
+</aside>

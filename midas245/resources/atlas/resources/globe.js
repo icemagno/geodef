@@ -212,6 +212,7 @@ function startMap() {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 	
+	populateLayerPanelAsTesting();
 	
 	/*  Maldito CORS !!
 	var imageryProvider = new Cesium.SingleTileImageryProvider({
@@ -614,9 +615,7 @@ jQuery(function () {
 
 function applyMargins() {
 	var totalHeight= jQuery(window).height();
-	var viewportHeight= totalHeight - 100;
-	var contentHeight= totalHeight - 50;
-	var tabContentHeight= contentHeight - 200;
+	var contentHeight= totalHeight - 150;
 	jQuery(".content-wrapper").css({"height": contentHeight});
 	jQuery(".content-wrapper").css({"min-height": contentHeight});
 	jQuery(".control-sidebar-subheading").css({"font-size": "15px"});
@@ -752,4 +751,57 @@ function bindRouteRightClick() {
 }
 
 
+function populateLayerPanelAsTesting(){
+	
+    for( x=0; x < 5; x++ ){
+    	
+	    var uuid = "layer" + x;
+	    var layerAlias = "ssss";
+	    var tipoCarto = "CAF";
+	    var theScale = "1:50.000";
+	    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
+		var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
+		'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>Camada EDGV-DEFESA</b>' +
+		'<a title="Apagar Camada" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
+		
+		'<a title="Para cima das outras" style="margin-right: 10px;" href="#" onClick="layerToUp(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-up"></i></a>' + 
+		'<a title="Para baixo das outras" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-down"></i></a>' + 
+		
+		'<a title="Exportar Para PDF" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-file-pdf-o"></i></a>' + 
+		'</td></tr>'; 
+		
+		table = table + '<tr><td colspan="3" class="layerTable"><b>' + layerAlias + '</b></td></tr>';
+		table = table + '<tr><td colspan="2" class="layerTable">' + tipoCarto + '</td><td class="layerTable" style="text-align:right" >'+theScale+'</td></tr>';
+	
+		table = table + '<tr><td colspan="3" style="padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">'; 
+		table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" ' +
+			'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
+		table = table + '</b></td></tr>';
+		
+		table = table + '</table></div>';
+		
+		var layerText = '<div class="sortable" id="'+uuid+'" style="background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
+		table + '</div></div>';
+		
+		
+		$("#activeLayerContainer").append( layerText );
+		
+		$("#SL_"+uuid).slider({});
+		$("#SL_"+uuid).on("slide", function(slideEvt) {
+			var valu = slideEvt.value / 100;
+			//
+		});	
+		
 
+		$("#activeLayerContainer").sortable({
+			update: function( event, ui ) {
+				console.log( ui );
+			}
+		});
+		
+		
+	}
+    
+	
+	
+}

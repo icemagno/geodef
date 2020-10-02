@@ -6,6 +6,9 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="${midasLocation}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+<script src="${midasLocation}/bower_components/jquery-ui/jquery-ui.min.js"></script>
+
+
 <!-- PACE -->
 <!-- 
 <script data-pace-options='{ "document": false }' src="${midasLocation}/bower_components/PACE/pace.min.js"></script>
@@ -30,9 +33,6 @@
 
 <!-- TOAST JQUERY -->
 <script type="text/javascript" src="/resources/js/jquery.toast.min.js"></script>
-
-<!-- Bootstrap slider -->
-<script src="${midasLocation}/plugins/bootstrap-slider/bootstrap-slider.js"></script>
 
 <!-- FLOT CHARTS -->
 <script src="${midasLocation}/bower_components/Flot/jquery.flot.js"></script>
@@ -64,9 +64,13 @@
 <script src="/resources/particles/particles.min.js"></script>
 
 
+<!-- Bootstrap slider -->
+<script src="${midasLocation}/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+
 
 <script type="text/javascript" src="/resources/js/jquery.awesome-cursor.min.js"></script>
 
-	<script src="${midasLocation}/atlas/resources/sockjs.min.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/stomp.min.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/script.js" type="text/javascript"></script>
+<script src="${midasLocation}/atlas/resources/sockjs.min.js" type="text/javascript"></script>
+<script src="${midasLocation}/atlas/resources/stomp.min.js" type="text/javascript"></script>
+<script src="${midasLocation}/atlas/resources/script.js" type="text/javascript"></script>
+

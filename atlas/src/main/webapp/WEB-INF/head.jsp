@@ -21,8 +21,8 @@
 	        apply the skin class to the body tag so the changes take effect. -->
 	        
 	        
-	  <link rel="stylesheet" href="${midasLocation}/dist/css/skins/skin-blue.min.css">
-	  <!-- <link rel="stylesheet" href="${midasLocation}/dist/css/skins/skin-black-light.min.css"> -->
+	  <!-- <link rel="stylesheet" href="${midasLocation}/dist/css/skins/skin-blue.min.css">  -->
+	  <link rel="stylesheet" href="${midasLocation}/dist/css/skins/skin-black-light.min.css">
 	  
 	  <!-- SLIDER -->
 	  <link rel="stylesheet" href="${midasLocation}/plugins/bootstrap-slider/slider.css">
@@ -39,6 +39,9 @@
 	  
 	  <link rel="stylesheet" href="${midasLocation}/sweetalert2.min.css">
 	  
+	  <!-- 
+	  <link rel="stylesheet" href="${midasLocation}/bower_components/jquery-ui/themesui-lightness/jquery-ui.min.css">
+	   -->
 	   
 	  <!-- iCheck for checkboxes and radio inputs -->
 	  <link rel="stylesheet" href="${midasLocation}/plugins/iCheck/all.css">	  
