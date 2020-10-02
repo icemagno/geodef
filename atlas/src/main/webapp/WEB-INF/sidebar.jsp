@@ -20,7 +20,7 @@
         </form>
         <!-- /.search form -->
 
-		<div class="panel" style="height:30px">
+		<div class="panel leftpaneltitle">
 			<button style="text-align: left;width:85%;float:left" type="button" class="btn btn-primary btn">
 				<i style="font-size: 18px;" class="fa fa-plus-circle"></i> &nbsp; Adicionar Camada
 			</button>
@@ -30,11 +30,11 @@
 		</div>
 
 		
-		<div class="panel">
+		<div class="panel leftpaneltitle">
 			<button style="text-align: left;" type="button" class="btn btn-block btn-primary btn">
 				<i class="fa fa-map-o"></i> &nbsp; Camadas Ativas / Cenário
 			</button>
-			<div id="activeLayerContainer"  style="padding: 4px; height: 400px" class="box-body"></div>
+			<div id="activeLayerContainer"  style="padding: 4px; height: 400px; background-color:#f9fafc" class="box-body"></div>
 		</div>
 
 

@@ -99,7 +99,14 @@ public class MainController extends BasicController {
 		model.addAttribute( "user", getLoggedUser(  session ) );
 		return "index";
     }	
-	
+
+    @GetMapping({"/new"})
+    public String indexNew(Model model, HttpSession session, Principal principal ) {
+		model.addAttribute( "midasLocation", getMidasLocation() );
+		model.addAttribute( "user", getLoggedUser(  session ) );
+		return "index-new";
+    }	    
+    
     @GetMapping({"/testmail"})
     public @ResponseBody String testMail( @RequestParam("target") String target ) {
     	try {
