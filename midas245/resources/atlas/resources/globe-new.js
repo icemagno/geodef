@@ -98,8 +98,6 @@ function startMap() {
 		isSct : false
 	});
 	
-	
-	
 	var baseOsmProvider = "";
 	if( mainConfiguration.useExternalOsm ){
 		fireToast( 'warning', 'Atenção', 'Você está usando o OpenStreetMap Online.', '000' );
@@ -122,10 +120,8 @@ function startMap() {
 	
 	viewer = new Cesium.Viewer('cesiumContainer',{
 		terrainProvider : terrainProvider,
-		//scene3DOnly : true,
-		
 		sceneMode : sceneMapMode,
-		
+		mapMode2D: Cesium.MapMode2D.ROTATE,
 		timeline: false,
 		animation: false,
 		baseLayerPicker: false,
@@ -145,19 +141,9 @@ function startMap() {
         //	requestWebgl2: true
         //},	    
 	});
-	
-	
-	viewer.extend( Cesium.viewerCesiumNavigationMixin, {
-		enableCompass : true,
-		enableZoomControls : true,
-		enableCompassOuterRing : true
-	});
-	
-
-	
+	viewer.extend( Cesium.viewerCesiumNavigationMixin, {});
 	camera = viewer.camera;
 	scene = viewer.scene;
-	
 	scene.highDynamicRange = false;
 	scene.globe.enableLighting = false;
 	scene.globe.baseColor = Cesium.Color.WHITE;
@@ -177,7 +163,6 @@ function startMap() {
 	//scene.bloomEffect.bloomIntensity = 0.3;		
 
 	imageryLayers = scene.imageryLayers;
-	
 	
 	// drawOperationArea( homeLocation );
 	goToOperationArea( homeLocation );
@@ -204,6 +189,18 @@ function startMap() {
 		}
 		
 	});
+	
+	
+	var measureWidget = new Cesium.Measure({
+		container : 'cesiumContainer',
+		scene : scene,
+		units : new Cesium.MeasureUnits({
+		distanceUnits : Cesium.DistanceUnits.METERS,
+		areaUnits : Cesium.AreaUnits.SQUARE_METERS,
+		volumeUnits : Cesium.VolumeUnits.CUBIC_FEET,
+		angleUnits : Cesium.AngleUnits.DEGREES,
+		slopeUnits : Cesium.AngleUnits.GRADE})
+	});	
 	
 	
 	// Conecta o WebSocket
@@ -426,6 +423,7 @@ function bindInterfaceElements() {
 	
     
     // MACETES - ESCONDER ELEMENTOS "DESNECESSARIOS"
+	
     jQuery(".cesium-viewer-bottom").hide();
     jQuery(".cesium-viewer-navigationContainer").hide();
     jQuery(".navigation-controls").hide();
@@ -434,6 +432,7 @@ function bindInterfaceElements() {
     jQuery(".distance-legend-label").css( {"font-size": "11px", "font-weight":"bold",  "line-height" : 0, "color" : "white", "font-family": "Consolas"} );
     jQuery(".distance-legend-scale-bar").css( {"height": "9px", "top" : 10, "border-color" : "white"} );
     jQuery.fn.awesomeCursor.defaults.color = 'white';
+	
 };
 
 
@@ -465,6 +464,13 @@ jQuery(function () {
 	};	
 	
 	jQuery(window).on("resize", applyMargins);
+	
+	$("#mainLayerSlider").slider({});
+	$("#mainLayerSlider").on("slide", function(slideEvt) {
+		var valu = slideEvt.value / 100;
+		console.log(valu);
+	});	    
+	
 	
     jQuery.ajax({
 		url:"/config", 
@@ -608,7 +614,7 @@ function updateCamera() {
     jQuery("#mapHeading").text( 'Y: ' + headingV.toFixed(0) + "\xB0 " );
     jQuery("#mapAttRoll").text( 'Z: ' + rollV.toFixed(0) + "\xB0 " );
     jQuery("#mapAttPitch").text( 'X: ' + pitchV.toFixed(0) + "\xB0 " );
-    jQuery("#mapAltitude").text( 'Cam: ' + altitudeV.toFixed(0) + "m" );
+    jQuery("#mapAltitude").text( altitudeV.toFixed(0) + "m" );
     
 }
 
@@ -619,16 +625,11 @@ function updatePanelFooter( position ) {
 
 	mapPointerLatitude = latitudeString.slice(-15);
 	mapPointerLongitude = longitudeString.slice(-15);
-	var tempHeight = cartographic.height;
-	if( tempHeight < 0 ) tempHeight = 0; 
-	mapPointerHeight = tempHeight.toFixed(2);
 
 	var coordHDMS = convertDMS(mapPointerLatitude,mapPointerLongitude);
-
 	jQuery( document ).ready(function( jQuery ) {
 		jQuery("#mapLat").text( mapPointerLatitude );
 		jQuery("#mapLon").text( mapPointerLongitude );    	    
-		jQuery("#mapHei").text( 'Ter: ' + mapPointerHeight + 'm' );    	    
 		jQuery("#mapUtm").text( latLonToUTM(mapPointerLongitude, mapPointerLatitude  ) );    	    
 		jQuery("#mapHdmsLat").text( coordHDMS.lat + " " + coordHDMS.latCard );
 		jQuery("#mapHdmsLon").text( coordHDMS.lon + " " + coordHDMS.lonCard );
@@ -636,6 +637,16 @@ function updatePanelFooter( position ) {
 		var geohash = Geohash.encode( mapPointerLatitude, mapPointerLongitude, 8 );
 		jQuery("#mapGeohash").text( geohash );
 	});
+
+	var positions = [ cartographic ];
+	var promise = Cesium.sampleTerrain(terrainProvider, 11, positions);
+	Cesium.when(promise, function( updatedPositions ) {
+		var tempHeight = cartographic.height;
+		if( tempHeight < 0 ) tempHeight = 0; 
+		mapPointerHeight = tempHeight.toFixed(2);
+		jQuery("#mapHei").text( mapPointerHeight + 'm' );    	    
+	});	
+	
 	
 }
 
@@ -643,9 +654,9 @@ function updatePanelFooter( position ) {
 function getMapMousePosition( movement ) {
 
 	if ( mapStyle === '2D' ) {
-        var cartesian = viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
-        if (cartesian) {
-        	return cartesian;
+        var position = viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
+        if (position) {
+        	return position;
         } 
 	}
 	
@@ -662,7 +673,11 @@ function getMapMousePosition( movement ) {
 function addMouseHoverListener() {
 	mainEventHandler.setInputAction( function(movement) {
 		var position = getMapMousePosition( movement );
-		if ( position ) updatePanelFooter( position );
+		try {
+			if ( position ) updatePanelFooter( position );
+		} catch ( err ) {
+			// ignore
+		}
 	}, Cesium.ScreenSpaceEventType.MOUSE_MOVE );
 };
 

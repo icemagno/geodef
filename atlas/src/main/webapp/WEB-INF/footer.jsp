@@ -25,7 +25,7 @@
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
-			<td id="#mapGeohash"></td>
+			<td id="mapGeohash"></td>
 			<td id="mapAltitude"></td>
 			<td id="mapLon"></td>
 			<td id="mapHdmsLon"></td>

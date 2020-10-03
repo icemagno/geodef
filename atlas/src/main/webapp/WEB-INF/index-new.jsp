@@ -39,9 +39,14 @@
 		padding:2px;
 		margin-top: 7px; 
 		margin-bottom: 0px;
-		margin-right: 7px;
 		width: 47px;
     	height: 36px;		
+	}
+	
+	.basemapimg{
+		border:1px solid #cacaca;
+		border-radius:2px;
+	    margin: 3px;
 	}
 	
 	.sidebar-toggle:hover {
@@ -206,7 +211,14 @@
 
 	<!-- Javascript que so faz sentido para o mapa  -->
 	<script src="/resources/Cesium/Cesium.js" type="text/javascript"></script>
+	<script src="/resources/js/cesium-measure.umd.min.js"></script>
+	
+	<!-- 
+	<script src="${midasLocation}/atlas/resources/scalebar/amd.min.js" type="text/javascript"></script>
+	-->
 	<script src="${midasLocation}/atlas/resources/scalebar/viewerCesiumNavigationMixin.min.js" type="text/javascript"></script>
+	
+	
 	<script src="${midasLocation}/atlas/resources/globe-new.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/convertions.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/layers.js" type="text/javascript"></script>

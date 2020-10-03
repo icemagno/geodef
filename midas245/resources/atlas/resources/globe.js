@@ -482,8 +482,7 @@ jQuery(function () {
 			bindInterfaceElements();
 			applyMargins();
 			startCartoTree();
-			
-			
+
 			// So para testes. Dispara apos 3seg
 			setTimeout(function(){ 
 				//console.log('Nenhum teste sendo executado.');

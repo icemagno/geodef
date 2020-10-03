@@ -134,6 +134,12 @@ function bindToolBarButtons() {
     jQuery("#toolGuia").click( function(){
     	window.open("/resources/img/fastguide/index.html");
     });
+	
+	
+    jQuery("#toolFullScreen").click( function(){
+    	var elem = document.getElementById("cesiumContainer");
+		openFullscreen( elem );
+    });
     
     jQuery("#toolSolucionadores").click( function(){
     	var wasVisible = isVisible('BAR_SOLUCOES');
