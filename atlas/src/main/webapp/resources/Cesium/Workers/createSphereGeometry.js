@@ -1,7 +1,7 @@
 /**
- * Cesium - https://github.com/AnalyticalGraphicsInc/cesium
+ * Cesium - https://github.com/CesiumGS/cesium
  *
- * Copyright 2011-2017 Cesium Contributors
+ * Copyright 2011-2020 Cesium Contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,121 +18,130 @@
  * Columbus View (Pat. Pend.)
  *
  * Portions licensed separately.
- * See https://github.com/AnalyticalGraphicsInc/cesium/blob/master/LICENSE.md for full licensing details.
+ * See https://github.com/CesiumGS/cesium/blob/master/LICENSE.md for full licensing details.
  */
-define(['./when-a55a8a4c', './Check-bc1d37d9', './Math-edfe2d1c', './Cartesian2-52d9479f', './BoundingSphere-ab31357a', './RuntimeError-7c184ac0', './WebGLConstants-4c11ee5f', './ComponentDatatype-919a7463', './GeometryAttribute-133f0436', './PrimitiveType-97893bc7', './FeatureDetection-bac17d71', './Transforms-93a668f1', './GeometryAttributes-1c7ce91d', './IndexDatatype-18a8cae6', './GeometryOffsetAttribute-c9accdb9', './VertexFormat-7f136973', './EllipsoidGeometry-fc998027'], function (when, Check, _Math, Cartesian2, BoundingSphere, RuntimeError, WebGLConstants, ComponentDatatype, GeometryAttribute, PrimitiveType, FeatureDetection, Transforms, GeometryAttributes, IndexDatatype, GeometryOffsetAttribute, VertexFormat, EllipsoidGeometry) { 'use strict';
 
-    /**
-         * A description of a sphere centered at the origin.
-         *
-         * @alias SphereGeometry
-         * @constructor
-         *
-         * @param {Object} [options] Object with the following properties:
-         * @param {Number} [options.radius=1.0] The radius of the sphere.
-         * @param {Number} [options.stackPartitions=64] The number of times to partition the ellipsoid into stacks.
-         * @param {Number} [options.slicePartitions=64] The number of times to partition the ellipsoid into radial slices.
-         * @param {VertexFormat} [options.vertexFormat=VertexFormat.DEFAULT] The vertex attributes to be computed.
-         *
-         * @exception {DeveloperError} options.slicePartitions cannot be less than three.
-         * @exception {DeveloperError} options.stackPartitions cannot be less than three.
-         *
-         * @see SphereGeometry#createGeometry
-         *
-         * @example
-         * var sphere = new Cesium.SphereGeometry({
-         *   radius : 100.0,
-         *   vertexFormat : Cesium.VertexFormat.POSITION_ONLY
-         * });
-         * var geometry = Cesium.SphereGeometry.createGeometry(sphere);
-         */
-        function SphereGeometry(options) {
-            var radius = when.defaultValue(options.radius, 1.0);
-            var radii = new Cartesian2.Cartesian3(radius, radius, radius);
-            var ellipsoidOptions = {
-                    radii: radii,
-                    stackPartitions: options.stackPartitions,
-                    slicePartitions: options.slicePartitions,
-                    vertexFormat: options.vertexFormat
-            };
+define(['./when-54c2dc71', './Check-6c0211bc', './Math-850675ea', './Cartesian2-ea28baad', './Transforms-2e98bea0', './RuntimeError-2109023a', './WebGLConstants-76bb35d1', './ComponentDatatype-a26dd044', './GeometryAttribute-90c5fe10', './GeometryAttributes-4fcfcf40', './IndexDatatype-66029622', './GeometryOffsetAttribute-d746452d', './VertexFormat-4d8b817a', './EllipsoidGeometry-06edcc69'], function (when, Check, _Math, Cartesian2, Transforms, RuntimeError, WebGLConstants, ComponentDatatype, GeometryAttribute, GeometryAttributes, IndexDatatype, GeometryOffsetAttribute, VertexFormat, EllipsoidGeometry) { 'use strict';
 
-            this._ellipsoidGeometry = new EllipsoidGeometry.EllipsoidGeometry(ellipsoidOptions);
-            this._workerName = 'createSphereGeometry';
-        }
+  /**
+   * A description of a sphere centered at the origin.
+   *
+   * @alias SphereGeometry
+   * @constructor
+   *
+   * @param {Object} [options] Object with the following properties:
+   * @param {Number} [options.radius=1.0] The radius of the sphere.
+   * @param {Number} [options.stackPartitions=64] The number of times to partition the ellipsoid into stacks.
+   * @param {Number} [options.slicePartitions=64] The number of times to partition the ellipsoid into radial slices.
+   * @param {VertexFormat} [options.vertexFormat=VertexFormat.DEFAULT] The vertex attributes to be computed.
+   *
+   * @exception {DeveloperError} options.slicePartitions cannot be less than three.
+   * @exception {DeveloperError} options.stackPartitions cannot be less than three.
+   *
+   * @see SphereGeometry#createGeometry
+   *
+   * @example
+   * var sphere = new Cesium.SphereGeometry({
+   *   radius : 100.0,
+   *   vertexFormat : Cesium.VertexFormat.POSITION_ONLY
+   * });
+   * var geometry = Cesium.SphereGeometry.createGeometry(sphere);
+   */
+  function SphereGeometry(options) {
+    var radius = when.defaultValue(options.radius, 1.0);
+    var radii = new Cartesian2.Cartesian3(radius, radius, radius);
+    var ellipsoidOptions = {
+      radii: radii,
+      stackPartitions: options.stackPartitions,
+      slicePartitions: options.slicePartitions,
+      vertexFormat: options.vertexFormat,
+    };
 
-        /**
-         * The number of elements used to pack the object into an array.
-         * @type {Number}
-         */
-        SphereGeometry.packedLength = EllipsoidGeometry.EllipsoidGeometry.packedLength;
+    this._ellipsoidGeometry = new EllipsoidGeometry.EllipsoidGeometry(ellipsoidOptions);
+    this._workerName = "createSphereGeometry";
+  }
 
-        /**
-         * Stores the provided instance into the provided array.
-         *
-         * @param {SphereGeometry} value The value to pack.
-         * @param {Number[]} array The array to pack into.
-         * @param {Number} [startingIndex=0] The index into the array at which to start packing the elements.
-         *
-         * @returns {Number[]} The array that was packed into
-         */
-        SphereGeometry.pack = function(value, array, startingIndex) {
-            //>>includeStart('debug', pragmas.debug);
-            Check.Check.typeOf.object('value', value);
-            //>>includeEnd('debug');
+  /**
+   * The number of elements used to pack the object into an array.
+   * @type {Number}
+   */
+  SphereGeometry.packedLength = EllipsoidGeometry.EllipsoidGeometry.packedLength;
 
-            return EllipsoidGeometry.EllipsoidGeometry.pack(value._ellipsoidGeometry, array, startingIndex);
-        };
+  /**
+   * Stores the provided instance into the provided array.
+   *
+   * @param {SphereGeometry} value The value to pack.
+   * @param {Number[]} array The array to pack into.
+   * @param {Number} [startingIndex=0] The index into the array at which to start packing the elements.
+   *
+   * @returns {Number[]} The array that was packed into
+   */
+  SphereGeometry.pack = function (value, array, startingIndex) {
+    //>>includeStart('debug', pragmas.debug);
+    Check.Check.typeOf.object("value", value);
+    //>>includeEnd('debug');
 
-        var scratchEllipsoidGeometry = new EllipsoidGeometry.EllipsoidGeometry();
-        var scratchOptions = {
-            radius : undefined,
-            radii : new Cartesian2.Cartesian3(),
-            vertexFormat : new VertexFormat.VertexFormat(),
-            stackPartitions : undefined,
-            slicePartitions : undefined
-        };
+    return EllipsoidGeometry.EllipsoidGeometry.pack(value._ellipsoidGeometry, array, startingIndex);
+  };
 
-        /**
-         * Retrieves an instance from a packed array.
-         *
-         * @param {Number[]} array The packed array.
-         * @param {Number} [startingIndex=0] The starting index of the element to be unpacked.
-         * @param {SphereGeometry} [result] The object into which to store the result.
-         * @returns {SphereGeometry} The modified result parameter or a new SphereGeometry instance if one was not provided.
-         */
-        SphereGeometry.unpack = function(array, startingIndex, result) {
-            var ellipsoidGeometry = EllipsoidGeometry.EllipsoidGeometry.unpack(array, startingIndex, scratchEllipsoidGeometry);
-            scratchOptions.vertexFormat = VertexFormat.VertexFormat.clone(ellipsoidGeometry._vertexFormat, scratchOptions.vertexFormat);
-            scratchOptions.stackPartitions = ellipsoidGeometry._stackPartitions;
-            scratchOptions.slicePartitions = ellipsoidGeometry._slicePartitions;
+  var scratchEllipsoidGeometry = new EllipsoidGeometry.EllipsoidGeometry();
+  var scratchOptions = {
+    radius: undefined,
+    radii: new Cartesian2.Cartesian3(),
+    vertexFormat: new VertexFormat.VertexFormat(),
+    stackPartitions: undefined,
+    slicePartitions: undefined,
+  };
 
-            if (!when.defined(result)) {
-                scratchOptions.radius = ellipsoidGeometry._radii.x;
-                return new SphereGeometry(scratchOptions);
-            }
+  /**
+   * Retrieves an instance from a packed array.
+   *
+   * @param {Number[]} array The packed array.
+   * @param {Number} [startingIndex=0] The starting index of the element to be unpacked.
+   * @param {SphereGeometry} [result] The object into which to store the result.
+   * @returns {SphereGeometry} The modified result parameter or a new SphereGeometry instance if one was not provided.
+   */
+  SphereGeometry.unpack = function (array, startingIndex, result) {
+    var ellipsoidGeometry = EllipsoidGeometry.EllipsoidGeometry.unpack(
+      array,
+      startingIndex,
+      scratchEllipsoidGeometry
+    );
+    scratchOptions.vertexFormat = VertexFormat.VertexFormat.clone(
+      ellipsoidGeometry._vertexFormat,
+      scratchOptions.vertexFormat
+    );
+    scratchOptions.stackPartitions = ellipsoidGeometry._stackPartitions;
+    scratchOptions.slicePartitions = ellipsoidGeometry._slicePartitions;
 
-            Cartesian2.Cartesian3.clone(ellipsoidGeometry._radii, scratchOptions.radii);
-            result._ellipsoidGeometry = new EllipsoidGeometry.EllipsoidGeometry(scratchOptions);
-            return result;
-        };
-
-        /**
-         * Computes the geometric representation of a sphere, including its vertices, indices, and a bounding sphere.
-         *
-         * @param {SphereGeometry} sphereGeometry A description of the sphere.
-         * @returns {Geometry} The computed vertices and indices.
-         */
-        SphereGeometry.createGeometry = function(sphereGeometry) {
-            return EllipsoidGeometry.EllipsoidGeometry.createGeometry(sphereGeometry._ellipsoidGeometry);
-        };
-
-    function createSphereGeometry(sphereGeometry, offset) {
-        if (when.defined(offset)) {
-            sphereGeometry = SphereGeometry.unpack(sphereGeometry, offset);
-        }
-        return SphereGeometry.createGeometry(sphereGeometry);
+    if (!when.defined(result)) {
+      scratchOptions.radius = ellipsoidGeometry._radii.x;
+      return new SphereGeometry(scratchOptions);
     }
 
-    return createSphereGeometry;
+    Cartesian2.Cartesian3.clone(ellipsoidGeometry._radii, scratchOptions.radii);
+    result._ellipsoidGeometry = new EllipsoidGeometry.EllipsoidGeometry(scratchOptions);
+    return result;
+  };
+
+  /**
+   * Computes the geometric representation of a sphere, including its vertices, indices, and a bounding sphere.
+   *
+   * @param {SphereGeometry} sphereGeometry A description of the sphere.
+   * @returns {Geometry|undefined} The computed vertices and indices.
+   */
+  SphereGeometry.createGeometry = function (sphereGeometry) {
+    return EllipsoidGeometry.EllipsoidGeometry.createGeometry(sphereGeometry._ellipsoidGeometry);
+  };
+
+  function createSphereGeometry(sphereGeometry, offset) {
+    if (when.defined(offset)) {
+      sphereGeometry = SphereGeometry.unpack(sphereGeometry, offset);
+    }
+    return SphereGeometry.createGeometry(sphereGeometry);
+  }
+
+  return createSphereGeometry;
 
 });
+//# sourceMappingURL=createSphereGeometry.js.map

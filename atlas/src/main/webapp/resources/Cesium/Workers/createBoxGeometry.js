@@ -1,7 +1,7 @@
 /**
- * Cesium - https://github.com/AnalyticalGraphicsInc/cesium
+ * Cesium - https://github.com/CesiumGS/cesium
  *
- * Copyright 2011-2017 Cesium Contributors
+ * Copyright 2011-2020 Cesium Contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,17 +18,19 @@
  * Columbus View (Pat. Pend.)
  *
  * Portions licensed separately.
- * See https://github.com/AnalyticalGraphicsInc/cesium/blob/master/LICENSE.md for full licensing details.
+ * See https://github.com/CesiumGS/cesium/blob/master/LICENSE.md for full licensing details.
  */
-define(['./when-a55a8a4c', './Check-bc1d37d9', './Math-edfe2d1c', './Cartesian2-52d9479f', './BoundingSphere-ab31357a', './RuntimeError-7c184ac0', './WebGLConstants-4c11ee5f', './ComponentDatatype-919a7463', './GeometryAttribute-133f0436', './PrimitiveType-97893bc7', './FeatureDetection-bac17d71', './Transforms-93a668f1', './GeometryAttributes-1c7ce91d', './GeometryOffsetAttribute-c9accdb9', './VertexFormat-7f136973', './BoxGeometry-dbda3a8e'], function (when, Check, _Math, Cartesian2, BoundingSphere, RuntimeError, WebGLConstants, ComponentDatatype, GeometryAttribute, PrimitiveType, FeatureDetection, Transforms, GeometryAttributes, GeometryOffsetAttribute, VertexFormat, BoxGeometry) { 'use strict';
 
-    function createBoxGeometry(boxGeometry, offset) {
-        if (when.defined(offset)) {
-            boxGeometry = BoxGeometry.BoxGeometry.unpack(boxGeometry, offset);
-        }
-        return BoxGeometry.BoxGeometry.createGeometry(boxGeometry);
+define(['./when-54c2dc71', './Check-6c0211bc', './Math-850675ea', './Cartesian2-ea28baad', './Transforms-2e98bea0', './RuntimeError-2109023a', './WebGLConstants-76bb35d1', './ComponentDatatype-a26dd044', './GeometryAttribute-90c5fe10', './GeometryAttributes-4fcfcf40', './GeometryOffsetAttribute-d746452d', './VertexFormat-4d8b817a', './BoxGeometry-096c137d'], function (when, Check, _Math, Cartesian2, Transforms, RuntimeError, WebGLConstants, ComponentDatatype, GeometryAttribute, GeometryAttributes, GeometryOffsetAttribute, VertexFormat, BoxGeometry) { 'use strict';
+
+  function createBoxGeometry(boxGeometry, offset) {
+    if (when.defined(offset)) {
+      boxGeometry = BoxGeometry.BoxGeometry.unpack(boxGeometry, offset);
     }
+    return BoxGeometry.BoxGeometry.createGeometry(boxGeometry);
+  }
 
-    return createBoxGeometry;
+  return createBoxGeometry;
 
 });
+//# sourceMappingURL=createBoxGeometry.js.map

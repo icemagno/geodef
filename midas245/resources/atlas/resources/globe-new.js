@@ -101,18 +101,26 @@ function startMap() {
 	var baseOsmProvider = "";
 	if( mainConfiguration.useExternalOsm ){
 		fireToast( 'warning', 'Atenção', 'Você está usando o OpenStreetMap Online.', '000' );
+		
+		/*
 		baseOsmProvider = new Cesium.createOpenStreetMapImageryProvider({
 			url : 'https://a.tile.openstreetmap.org/'
 		});
+		*/
+		
+		baseOsmProvider = new Cesium.OpenStreetMapImageryProvider({
+		    url : 'https://a.tile.openstreetmap.org/'
+		});		
+		
+		
 	} else {
 		fireToast( 'info', 'OpenStreetMap', 'Você está usando o OpenStreetMap em ' + osmTileServer , '000' );
 		baseOsmProvider = new Cesium.UrlTemplateImageryProvider({
 			url : osmTileServer + 'tile/{z}/{x}/{y}.png',
 			credit : 'Ministério da Defesa - SisGeoDef',
 			maximumLevel : 25,
-			hasAlphaChannel : false,
-			enablePickFeatures : false
-		});
+			hasAlphaChannel : false
+	});
 	}	
 		
 	var sceneMapMode = Cesium.SceneMode.SCENE2D;
@@ -190,19 +198,6 @@ function startMap() {
 		
 	});
 	
-	
-	var measureWidget = new Cesium.Measure({
-		container : 'cesiumContainer',
-		scene : scene,
-		units : new Cesium.MeasureUnits({
-		distanceUnits : Cesium.DistanceUnits.METERS,
-		areaUnits : Cesium.AreaUnits.SQUARE_METERS,
-		volumeUnits : Cesium.VolumeUnits.CUBIC_FEET,
-		angleUnits : Cesium.AngleUnits.DEGREES,
-		slopeUnits : Cesium.AngleUnits.GRADE})
-	});	
-	
-	
 	// Conecta o WebSocket
 	connect();
 	
@@ -212,6 +207,7 @@ function startMap() {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 	
+	drawToolsStart( viewer );
 	populateLayerPanelAsTesting();
 	
 	/*  Maldito CORS !!
@@ -653,6 +649,10 @@ function updatePanelFooter( position ) {
 
 function getMapMousePosition( movement ) {
 
+	var pickedObject = scene.pick( movement.endPosition );
+	console.log( pickedObject );
+
+	
 	if ( mapStyle === '2D' ) {
         var position = viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
         if (position) {

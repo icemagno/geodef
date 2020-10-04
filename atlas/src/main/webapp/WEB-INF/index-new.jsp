@@ -183,13 +183,15 @@
 			<section style="padding: 0px;" class="content container-fluid">
 
 				<div class="row">
+					<div id="toolbar"></div>
+					<div id="logging"></div>
+				
 					<div class="fullWindow" id="cesiumContainer">
 						<div style="position: absolute; z-index: 999; right: 80px; bottom: 80px;" id="rosaVentos">
 							<img src="/resources/img/compassmap.png" style="height: 120px; opacity: 0.6;">
 						</div>
 					</div>
 				</div>
-
 			</section>
 			<!-- /.content -->
 		</div>
@@ -211,7 +213,7 @@
 
 	<!-- Javascript que so faz sentido para o mapa  -->
 	<script src="/resources/Cesium/Cesium.js" type="text/javascript"></script>
-	<script src="/resources/js/cesium-measure.umd.min.js"></script>
+	<script src="${midasLocation}/atlas/resources/drawhelper/drawhelper.js"></script>
 	
 	<script src="${midasLocation}/atlas/resources/scalebar/viewerCesiumNavigationMixin.min.js" type="text/javascript"></script>
 	
@@ -249,6 +251,9 @@
 	
 	<script src="${midasLocation}/atlas/resources/metocprevisao.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/geohash.js" type="text/javascript"></script>
+
+	<script src="${midasLocation}/atlas/resources/drawfeatures-new.js" type="text/javascript"></script>
+
 	
 	<!-- 	
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoBuildingsProvider.js" type="text/javascript"></script>

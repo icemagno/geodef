@@ -100,9 +100,17 @@ function startMap() {
 	var baseOsmProvider = "";
 	if( mainConfiguration.useExternalOsm ){
 		fireToast( 'warning', 'Atenção', 'Você está usando o OpenStreetMap Online.', '000' );
+		
+		/*
 		baseOsmProvider = new Cesium.createOpenStreetMapImageryProvider({
 			url : 'https://a.tile.openstreetmap.org/'
 		});
+		*/
+		
+		baseOsmProvider = new Cesium.OpenStreetMapImageryProvider({
+		    url : 'https://a.tile.openstreetmap.org/'
+		});		
+		
 	} else {
 		fireToast( 'info', 'OpenStreetMap', 'Você está usando o OpenStreetMap em ' + osmTileServer , '000' );
 		baseOsmProvider = new Cesium.UrlTemplateImageryProvider({
