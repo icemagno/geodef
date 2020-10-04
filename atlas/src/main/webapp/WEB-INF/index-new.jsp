@@ -213,9 +213,6 @@
 	<script src="/resources/Cesium/Cesium.js" type="text/javascript"></script>
 	<script src="/resources/js/cesium-measure.umd.min.js"></script>
 	
-	<!-- 
-	<script src="${midasLocation}/atlas/resources/scalebar/amd.min.js" type="text/javascript"></script>
-	-->
 	<script src="${midasLocation}/atlas/resources/scalebar/viewerCesiumNavigationMixin.min.js" type="text/javascript"></script>
 	
 	
