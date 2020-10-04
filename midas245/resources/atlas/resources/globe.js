@@ -90,13 +90,11 @@ function goToOperationArea( operationArea ) {
 
 function startMap() {
 	
-	
 	terrainProvider = new Cesium.CesiumTerrainProvider({
 		url : olimpo,
 		requestVertexNormals : true,
 		isSct : false
 	});
-	
 	
 	
 	var baseOsmProvider = "";
@@ -121,9 +119,9 @@ function startMap() {
 	
 	viewer = new Cesium.Viewer('cesiumContainer',{
 		terrainProvider : terrainProvider,
-		//scene3DOnly : true,
+		scene3DOnly : true,
 		
-		sceneMode : Cesium.SceneMode.SCENE2D,
+		//sceneMode : Cesium.SceneMode.SCENE2D,
 		
 		timeline: false,
 		animation: false,
@@ -214,7 +212,6 @@ function startMap() {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 	
-	populateLayerPanelAsTesting();
 	
 	/*  Maldito CORS !!
 	var imageryProvider = new Cesium.SingleTileImageryProvider({
@@ -411,18 +408,67 @@ function bindInterfaceElements() {
 	// *********************************************************************************************************
 	// *********************************************************************************************************
 	
+	jQuery("#showComponentsBar").click( function(){
+		jQuery("#layerContainer").toggle();
+		hideRouteDir()
+	});
+
 	attitude = jQuery.flightIndicator('#attitude', 'attitude', {roll:50, pitch:-20, size:100, showBox : true});
 	heading = jQuery.flightIndicator('#heading', 'heading', {heading:150, size:100, showBox:true});
 	altimeter = jQuery.flightIndicator('#altimeter', 'altimeter', {size:100, showBox:true});	
 	
-	var viewportHeight= jQuery(".main-sidebar").height() - 170;
+	var viewportHeight= jQuery(window).height() - 100;
     
-	jQuery('#activeLayerContainer').css({'height': viewportHeight });
 	jQuery('#activeLayerContainer').slimScroll({
-        height: viewportHeight - 10 + 'px',
+        height: '390px',
         wheelStep : 10,
     });
 	
+	jQuery('#routesContainer').slimScroll({
+		height: '390px',
+		wheelStep : 10,
+	});	
+
+	jQuery('#cartoTreeContainer').slimScroll({
+		height: '390px',
+		wheelStep : 10,
+	});	
+	
+    jQuery('#routeDetailContainer').slimScroll({
+        height: '490px',
+        wheelStep : 10,
+    });
+
+    jQuery('#avisosDetailContainer').slimScroll({
+        height: '290px',
+        wheelStep : 10,
+    });
+
+    jQuery('#measureResultsContainer').slimScroll({
+        height: '390px',
+        wheelStep : 10,
+    });
+    jQuery('#drawedObjectsContainer').slimScroll({
+    	height: '390px',
+    	wheelStep : 10,
+    });
+    jQuery('#exportedProductsContainer').slimScroll({
+    	height: '390px',
+    	wheelStep : 10,
+    });
+    jQuery('#viewshedResultsContainer').slimScroll({
+    	height: '390px',
+    	wheelStep : 10,
+    });
+    jQuery('#exportedProductsContainer').slimScroll({
+    	height: '390px',
+    	wheelStep : 10,
+    });
+    jQuery('#diversosContainer').slimScroll({
+    	height: '390px',
+    	wheelStep : 10,
+    });
+
     
     // MACETES - ESCONDER ELEMENTOS "DESNECESSARIOS"
     jQuery(".cesium-viewer-bottom").hide();
@@ -482,7 +528,8 @@ jQuery(function () {
 			bindInterfaceElements();
 			applyMargins();
 			startCartoTree();
-
+			
+			
 			// So para testes. Dispara apos 3seg
 			setTimeout(function(){ 
 				//console.log('Nenhum teste sendo executado.');
@@ -566,14 +613,14 @@ jQuery(function () {
 });
 
 function applyMargins() {
-	/*
 	var totalHeight= jQuery(window).height();
-	var contentHeight= totalHeight - 150;
+	var viewportHeight= totalHeight - 100;
+	var contentHeight= totalHeight - 50;
+	var tabContentHeight= contentHeight - 200;
 	jQuery(".content-wrapper").css({"height": contentHeight});
 	jQuery(".content-wrapper").css({"min-height": contentHeight});
 	jQuery(".control-sidebar-subheading").css({"font-size": "15px"});
 	jQuery(".form-group p").css({"font-size": "14px"});
-	*/
 }
 
 function addCameraChangeListener() {
@@ -706,79 +753,3 @@ function bindRouteRightClick() {
 
 
 
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-
-function getALayerCard( uuid, layerAlias, defaultImage  ){
-	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
-	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b></td></tr>'; 
-	table = table + '<tr><td colspan="2" style="width: 60%;">'; 
-	table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" ' +
-		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
-	table = table + '</td><td >' + 
-	'<a title="RF-XXX" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
-	'<a title="RF-YYY" style="margin-right: 10px;" href="#" onClick="layerToUp(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-floppy-o"></i></a>' + 
-	'<a title="RF-ZZZ" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-gear"></i></a>' + 
-	'<a title="RF-WWW" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
-	'</td></tr>';
-	table = table + '</table></div>';
-	var layerText = '<div class="sortable" id="'+uuid+'" style="background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
-	table + '</div></div>';
-	return layerText;
-}
-
-
-function getALayerGroup( uuid, groupName, defaultImage ){
-	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
-	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+groupName+'</b></td></tr>'; 
-	table = table + '<tr><td colspan="3" id="GRPCNT_'+uuid+'"></td></tr>';
-	table = table + '</table></div>';
-	var layerText = '<div class="sortable" id="'+uuid+'" style="background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
-	table + '</div></div>';
-	return layerText;
-}
-
-
-function populateLayerPanelAsTesting(){
-    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
-	
-    for( x=0; x < 5; x++ ){
-	    var uuid = "layer" + x;
-	    var layerAlias = "[ CAMADA ]";
-	    
-	    var layerText = getALayerCard( uuid, layerAlias, defaultImage );
-		$("#activeLayerContainer").append( layerText );
-		
-		$("#SL_"+uuid).slider({});
-		$("#SL_"+uuid).on("slide", function(slideEvt) {
-			var valu = slideEvt.value / 100;
-			//
-		});	
-	}
-	$("#activeLayerContainer").sortable({
-		update: function( event, ui ) {
-			console.log( ui );
-		}
-	});
-
-/*
-$(function() {
-    $( "#sortable" ).sortable({
-        update: function(event, ui) { 
-            console.log('update: '+ui.item.index())
-        },
-        start: function(event, ui) { 
-            console.log('start: ' + ui.item.index())
-        }
-    });
-    $( "#sortable" ).disableSelection();
-});
-
-If you want the start index to be available to you in the update, then you'll need to set it like this:$(ui.item).data('startindex', ui.item.index()) and then access it with $(ui.item).data().startindex
-
-*/
-	
-}
