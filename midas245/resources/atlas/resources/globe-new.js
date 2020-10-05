@@ -90,7 +90,7 @@ function goToOperationArea( operationArea ) {
 
 function startMap() {
 	
-	mapStyle = '2D';
+	mapStyle = '3D';
 	
 	terrainProvider = new Cesium.CesiumTerrainProvider({
 		url : olimpo,
@@ -209,7 +209,7 @@ function doSomeSandBoxTests(){
 	
 	drawToolsStart( viewer );
 	populateLayerPanelAsTesting();
-	
+
 	/*  Maldito CORS !!
 	var imageryProvider = new Cesium.SingleTileImageryProvider({
 	    url : "https://mapas.inmet.gov.br/BR.gif",
@@ -649,10 +649,6 @@ function updatePanelFooter( position ) {
 
 function getMapMousePosition( movement ) {
 
-	var pickedObject = scene.pick( movement.endPosition );
-	console.log( pickedObject );
-
-	
 	if ( mapStyle === '2D' ) {
         var position = viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
         if (position) {
@@ -672,12 +668,14 @@ function getMapMousePosition( movement ) {
 
 function addMouseHoverListener() {
 	mainEventHandler.setInputAction( function(movement) {
+		
 		var position = getMapMousePosition( movement );
 		try {
 			if ( position ) updatePanelFooter( position );
 		} catch ( err ) {
 			// ignore
 		}
+		
 	}, Cesium.ScreenSpaceEventType.MOUSE_MOVE );
 };
 

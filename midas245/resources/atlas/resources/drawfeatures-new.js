@@ -65,11 +65,14 @@ function drawToolsStart( cesiumWidget ){
         toolbar.addListener('extentCreated', function(event) {
             var extent = event.extent;
             loggingMessage('Extent created (N: ' + extent.north.toFixed(3) + ', E: ' + extent.east.toFixed(3) + ', S: ' + extent.south.toFixed(3) + ', W: ' + extent.west.toFixed(3) + ')');
-            var extentPrimitive = new DrawHelper.ExtentPrimitive({
+            
+			var extentPrimitive = new DrawHelper.ExtentPrimitive({
                 extent: extent,
                 material: Cesium.Material.fromType(Cesium.Material.StripeType)
             });
-            scene.primitives.add(extentPrimitive);
+			
+            var thePrimitive = scene.groundPrimitives.add(extentPrimitive);
+			
             extentPrimitive.setEditable();
             extentPrimitive.addListener('onEdited', function(event) {
                 loggingMessage('Extent edited: extent is (N: ' + event.extent.north.toFixed(3) + ', E: ' + event.extent.east.toFixed(3) + ', S: ' + event.extent.south.toFixed(3) + ', W: ' + event.extent.west.toFixed(3) + ')');

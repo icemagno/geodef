@@ -25,18 +25,22 @@ var DrawHelper = (function() {
         this.enhancePrimitives();
 
     }
-	
+		
+	/*	
 	_.prototype.getCartesian = function( position ){
 		var camera = this._camera;
-		var position = viewer.camera.pickEllipsoid(position, this.ellipsoid);
+		var position = camera.pickEllipsoid(position, this.ellipsoid);
 		return position;
 	}
+	*/
 	
+	/*
 	_.prototype.pickObject = function( position ){
-		var scene = DrawHelper._scene;
-		var pickedObject = scene.pick(position);
+		var scene = this._scene;
+		var pickedObject = scene.pick( position );
 		return pickedObject;
 	}
+	*/
 
     _.prototype.initialiseHandlers = function() {
         var scene = this._scene;
@@ -45,55 +49,84 @@ var DrawHelper = (function() {
         // scene events
         var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
         function callPrimitiveCallback(name, position) {
-            if(_self._handlersMuted == true) return;
-            
-			//var pickedObject = scene.pick(position);
-            var pickedObject = _self.pickObject(position);
 			
-            if(pickedObject && pickedObject.primitive && pickedObject.primitive[name]) {
-                pickedObject.primitive[name](position);
-            }
+            if(_self._handlersMuted == true) return;
+			var pickedObject = scene.pick(position);
+
+			console.log(name);
+			
+			if ( pickedObject.primitive instanceof Cesium.GroundPrimitive ){
+				var scond = pickedObject.primitive.geometryInstances.pickPrimitive;
+				console.log( scond );
+				console.log( scond[name] );
+				if( scond[name] ) {
+					scond[name] (position);
+				}
+				
+			} else {
+				console.log( pickedObject );
+				console.log( pickedObject.primitive[name] );
+				if( pickedObject.primitive[name] ) {
+					pickedObject.primitive[name](position);
+				}
+			
+			}				
+				
+			
+			
         }
-        handler.setInputAction(
+        
+		handler.setInputAction(
             function (movement) {
                 callPrimitiveCallback('leftClick', movement.position);
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+		
         handler.setInputAction(
             function (movement) {
                 callPrimitiveCallback('leftDoubleClick', movement.position);
-            }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+		}, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+			
         var mouseOutObject;
+		
         handler.setInputAction(
             function (movement) {
-				/*
                 if(_self._handlersMuted == true) return;
-                //var pickedObject = scene.pick(movement.endPosition);
-                var pickedObject = _self.pickObject(movement.endPosition);
 				
-				if(mouseOutObject && (!pickedObject || mouseOutObject != pickedObject.primitive)) {
+                var pickedObject = scene.pick(movement.endPosition);
+				if( !pickedObject ) return;
+				
+				var thePrimitive;
+				if ( pickedObject.primitive instanceof Cesium.GroundPrimitive ){
+					thePrimitive = pickedObject.primitive.geometryInstances.pickPrimitive;
+				} else {
+					thePrimitive = pickedObject.primitive;
+				}	
+				
+				if(mouseOutObject && (!pickedObject || mouseOutObject != thePrimitive)) {
                     !(mouseOutObject.isDestroyed && mouseOutObject.isDestroyed()) && mouseOutObject.mouseOut(movement.endPosition);
                     mouseOutObject = null;
                 }
-                if(pickedObject && pickedObject.primitive) {
-                    pickedObject = pickedObject.primitive;
-                    if(pickedObject.mouseOut) {
-                        mouseOutObject = pickedObject;
-                    }
-                    if(pickedObject.mouseMove) {
-                        pickedObject.mouseMove(movement.endPosition);
-                    }
-                }
-				*/
-            }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
-			
+				
+				if(thePrimitive.mouseOut) {
+					mouseOutObject = thePrimitive;
+				}
+				if(thePrimitive.mouseMove) {
+					thePrimitive.mouseMove(movement.endPosition);
+				}
+				
+        }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+		
         handler.setInputAction(
             function (movement) {
                 callPrimitiveCallback('leftUp', movement.position);
-            }, Cesium.ScreenSpaceEventType.LEFT_UP);
+        }, Cesium.ScreenSpaceEventType.LEFT_UP);
+			
         handler.setInputAction(
             function (movement) {
                 callPrimitiveCallback('leftDown', movement.position);
-            }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+        }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+			
     }
 
     _.prototype.setListener = function(primitive, type, callback) {
@@ -108,7 +141,6 @@ var DrawHelper = (function() {
     // shape should implement setEditMode and setHighlighted
     _.prototype.registerEditableShape = function(surface) {
         var _self = this;
-
         // handlers for interactions
         // highlight polygon when mouse is entering
         setListener(surface, 'mouseMove', function(position) {
@@ -184,7 +216,7 @@ var DrawHelper = (function() {
 
     var defaultSurfaceOptions = copyOptions(defaultShapeOptions, {
         appearance: new Cesium.EllipsoidSurfaceAppearance({
-            aboveGround : false
+            aboveGround : true
         }),
     	material : material,
         granularity: Math.PI / 180.0
@@ -200,7 +232,7 @@ var DrawHelper = (function() {
         geodesic: true,
         granularity: 10000,
         appearance: new Cesium.PolylineMaterialAppearance({
-            aboveGround : false
+            aboveGround : true
         }),
     	material : material
     });
@@ -287,18 +319,35 @@ var DrawHelper = (function() {
 
                 this._primitive = this._primitive && this._primitive.destroy();
 
-                this._primitive = new Cesium.Primitive({
-                    geometryInstances : new Cesium.GeometryInstance({
-                        geometry : geometry,
-                        id : this.id,
-                        pickPrimitive : this
-                    }),
-                    appearance : this.appearance,
-                    asynchronous : this.asynchronous
-                });
+
+				if( geometry instanceof Cesium.PolylineGeometry ) {
+					this._primitive = new Cesium.Primitive({
+						geometryInstances : new Cesium.GeometryInstance({
+							geometry : geometry,
+							pickPrimitive : this
+						}),
+						appearance : this.appearance,
+						asynchronous : this.asynchronous,
+						releaseGeometryInstances : false
+					});
+					
+				} else {
+					
+					this._primitive = new Cesium.GroundPrimitive({
+						geometryInstances : new Cesium.GeometryInstance({
+							geometry : geometry,
+							pickPrimitive : this
+						}),
+						appearance : this.appearance,
+						asynchronous : this.asynchronous,
+						releaseGeometryInstances : false
+					});
+					
+				}
 
                 this._outlinePolygon = this._outlinePolygon && this._outlinePolygon.destroy();
                 if(this.strokeColor && this.getOutlineGeometry) {
+					
                     // create the highlighting frame
                     this._outlinePolygon = new Cesium.Primitive({
                         geometryInstances : new Cesium.GeometryInstance({
@@ -309,11 +358,11 @@ var DrawHelper = (function() {
                         }),
                         appearance : new Cesium.PerInstanceColorAppearance({
                             flat : true,
+							translucent : false,
                             renderState : {
                                 depthTest : {
                                     enabled : true
                                 },
-                                lineWidth : Math.min(this.strokeWidth || 4.0 )
                             }
                         })
                     });
@@ -324,8 +373,7 @@ var DrawHelper = (function() {
             primitive.appearance.material = this.material;
             primitive.debugShowBoundingVolume = this.debugShowBoundingVolume;
             primitive.update(context, frameState, commandList);
-            this._outlinePolygon && this._outlinePolygon.update(context, frameState, commandList);
-
+			this._outlinePolygon && this._outlinePolygon.update(context, frameState, commandList);
         };
 
         _.prototype.isDestroyed = function() {
@@ -338,8 +386,9 @@ var DrawHelper = (function() {
         };
 
         _.prototype.setStrokeStyle = function(strokeColor, strokeWidth) {
+			
             if(!this.strokeColor || !this.strokeColor.equals(strokeColor) || this.strokeWidth != strokeWidth) {
-                this._createPrimitive = true;
+				this._createPrimitive = true;
                 this.strokeColor = strokeColor;
                 this.strokeWidth = strokeWidth;
             }
@@ -681,7 +730,7 @@ var DrawHelper = (function() {
     }
 
     _.BillboardGroup.prototype.createBillboard = function(position, callbacks) {
-
+		
         var billboard = this._billboards.add({
             show : true,
             position : position,
@@ -691,7 +740,8 @@ var DrawHelper = (function() {
             verticalOrigin : Cesium.VerticalOrigin.CENTER,
             scale : 1.0,
             image: this._options.iconUrl,
-            color : new Cesium.Color(1.0, 1.0, 1.0, 1.0)
+			// Cor dos pontos de edição dos elementos
+            color : Cesium.Color.AQUA
         });
 
         // if editable
@@ -709,11 +759,11 @@ var DrawHelper = (function() {
             if(callbacks.dragHandlers) {
                 var _self = this;
                 setListener(billboard, 'leftDown', function(position) {
-                    // TODO - start the drag handlers here
-                    // create handlers for mouseOut and leftUp for the billboard and a mouseMove
+					
+					// Aqui eh quando clica em um ponto da feicao
+					
                     function onDrag(position) {
-                        billboard.position = position;
-                        // find index
+						billboard.position = position;
                         for (var i = 0, I = _self._orderedBillboards.length; i < I && _self._orderedBillboards[i] != billboard; ++i);
                         callbacks.dragHandlers.onDrag && callbacks.dragHandlers.onDrag(getIndex(), position);
                     }
@@ -726,11 +776,7 @@ var DrawHelper = (function() {
                     var handler = new Cesium.ScreenSpaceEventHandler(_self._scene.canvas);
 
                     handler.setInputAction(function(movement) {
-						
-						
-                        //var cartesian = _self._scene.camera.pickEllipsoid(movement.endPosition, ellipsoid);
-                        var cartesian = _self.getCartesian(movement.endPosition);
-						
+                        var cartesian = _self._drawHelper._scene.camera.pickEllipsoid(movement.endPosition, ellipsoid);
 						if (cartesian) {
                             onDrag(cartesian);
                         } else {
@@ -1016,6 +1062,9 @@ var DrawHelper = (function() {
 
         // Now wait for start
         mouseHandler.setInputAction(function(movement) {
+			
+			// Aqui eh quando clica para plotar os pontos dos vertices durante o desenho de uma caixa
+			
             if(movement.position != null) {
                 var cartesian = scene.camera.pickEllipsoid(movement.position, ellipsoid);
                 if (cartesian) {
@@ -1079,6 +1128,9 @@ var DrawHelper = (function() {
 
         // Now wait for start
         mouseHandler.setInputAction(function(movement) {
+			
+			// Quando clica para desenha um circulo
+			
             if(movement.position != null) {
                 var cartesian = scene.camera.pickEllipsoid(movement.position, ellipsoid);
                 if (cartesian) {
@@ -1193,6 +1245,7 @@ var DrawHelper = (function() {
         	this._highlighted = highlighted;
             // highlight by creating an outline polygon matching the polygon points
             if(highlighted) {
+				
                 // make sure all other shapes are not highlighted
                 drawHelper.setHighlighted(this);
                 this._strokeColor = this.strokeColor;
@@ -1315,10 +1368,7 @@ var DrawHelper = (function() {
                         this._globeClickhandler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
                         this._globeClickhandler.setInputAction(
                             function (movement) {
-                                
-								//var pickedObject = scene.pick(movement.position);
-								var pickedObject = drawHelper.pickObject(movement.position);
-								
+								var pickedObject = scene.pick(movement.position);
                                 if(!(pickedObject && pickedObject.primitive)) {
                                     _self.setEditMode(false);
                                 }
@@ -1382,22 +1432,14 @@ var DrawHelper = (function() {
         }
 
         DrawHelper.PolygonPrimitive.prototype.setEditable = function() {
-
             var polygon = this;
             polygon.asynchronous = false;
-
             var scene = drawHelper._scene;
-
             drawHelper.registerEditableShape(polygon);
-
             polygon.setEditMode = setEditMode;
-
             polygon.setHighlighted = setHighlighted;
-
             enhanceWithListeners(polygon);
-
             polygon.setEditMode(false);
-
         }
 
         DrawHelper.ExtentPrimitive.prototype.setEditable = function() {
@@ -1413,6 +1455,7 @@ var DrawHelper = (function() {
             extent.asynchronous = false;
 
             extent.setEditMode = function(editMode) {
+				
                 // if no change
                 if(this._editMode == editMode) {
                     return;
@@ -1450,8 +1493,9 @@ var DrawHelper = (function() {
                         this._globeClickhandler.setInputAction(
                             function (movement) {
                                 
-								//var pickedObject = scene.pick(movement.position);
-                                var pickedObject = this.pickObject(movement.position);
+								var pickedObject = scene.pick(movement.position);
+								console.log('Problemas');
+								console.log( pickedObject );
 								
 								// disable edit if pickedobject is different or not an object
                                 try{if(!(pickedObject && !pickedObject.isDestroyed() && pickedObject.primitive)) {
@@ -1480,7 +1524,6 @@ var DrawHelper = (function() {
             enhanceWithListeners(extent);
 
             extent.setEditMode(false);
-
         }
 
         _.EllipsePrimitive.prototype.setEditable = function() {
@@ -1872,11 +1915,11 @@ var DrawHelper = (function() {
     }
 
     function setListener(primitive, type, callback) {
+		
         primitive[type] = callback;
     }
 
     function enhanceWithListeners(element) {
-
         element._listeners = {};
 
         element.addListener = function(name, callback) {
