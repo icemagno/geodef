@@ -49,6 +49,9 @@ var bdqueimadas = 'http://queimadas.dgi.inpe.br/queimadas/terrama2q/geoserver/wm
 
 var handler = null;
 
+
+var drawHelper = null;
+
 function updateSisgeodefAddress(){
 	osmLocal = sisgeodefHost + '/mapproxy/service/wms';
 	mapproxy = sisgeodefHost + '/mapproxy/service/wms';
@@ -90,7 +93,7 @@ function goToOperationArea( operationArea ) {
 
 function startMap() {
 	
-	mapStyle = '3D';
+	mapStyle = '2D';
 	
 	terrainProvider = new Cesium.CesiumTerrainProvider({
 		url : olimpo,
@@ -200,6 +203,28 @@ function startMap() {
 	
 	// Conecta o WebSocket
 	connect();
+	drawHelper = new DrawHelper( viewer );
+	
+	
+	  var graticule = new Graticule({
+	      	tileWidth: 512,
+	      	tileHeight: 512,
+	      	numLines: 10,
+		fontColor:  Cesium.Color.WHITE, // text color		
+		weight:  0.8, // Line width|default 0.8
+		zoomInterval: [
+		       Cesium.Math.toRadians(0.05),
+		       Cesium.Math.toRadians(0.1),
+		       Cesium.Math.toRadians(0.2),
+		       Cesium.Math.toRadians(0.5),
+		       Cesium.Math.toRadians(1.0),
+		       Cesium.Math.toRadians(2.0),
+		       Cesium.Math.toRadians(5.0),
+		       Cesium.Math.toRadians(10.0)	
+		]// Different map zoom levels show the grid interval
+	}, scene);
+	viewer.scene.imageryLayers.addImageryProvider(graticule);
+	graticule.setVisible( true );	
 	
 };
 
@@ -207,7 +232,6 @@ function startMap() {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 	
-	drawToolsStart( viewer );
 	populateLayerPanelAsTesting();
 
 	/*  Maldito CORS !!
@@ -725,7 +749,14 @@ function bindRouteRightClick() {
 
 function getALayerCard( uuid, layerAlias, defaultImage  ){
 	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
-	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b></td></tr>'; 
+	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
+	
+	
+	'<div class="box-tools pull-right">'+                           // fa-caret-right
+	'<button type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button></div>' +	
+	
+	
+	'</td></tr>'; 
 	table = table + '<tr><td colspan="2" style="width: 60%;">'; 
 	table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" ' +
 		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
@@ -736,7 +767,7 @@ function getALayerCard( uuid, layerAlias, defaultImage  ){
 	'<a title="RF-WWW" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
 	'</td></tr>';
 	table = table + '</table></div>';
-	var layerText = '<div class="sortable" id="'+uuid+'" style="background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
+	var layerText = '<div class="sortable" id="'+uuid+'" style="overflow:hidden;height:86px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
 	table + '</div></div>';
 	return layerText;
 }

@@ -1,34 +1,12 @@
-function drawToolsStart( cesiumWidget ){
-        // start the draw helper to enable shape creation and editing
-        var drawHelper = new DrawHelper(cesiumWidget);
-        var toolbar = drawHelper.addToolbar(document.getElementById("toolbar"), {
-            buttons: ['marker', 'polyline', 'polygon', 'circle', 'extent']
-        });
-        toolbar.addListener('markerCreated', function(event) {
-            loggingMessage('Marker created at ' + event.position.toString());
-            // create one common billboard collection for all billboards
-            var b = new Cesium.BillboardCollection({scene: viewer.scene});
-			b._scene = scene;
 
-            scene.primitives.add(b);
-            var billboard = b.add({
-                show : true,
-                position : event.position,
-                pixelOffset : new Cesium.Cartesian2(0, 0),
-                eyeOffset : new Cesium.Cartesian3(0.0, 0.0, 0.0),
-                horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
-                verticalOrigin : Cesium.VerticalOrigin.CENTER,
-                scale : 1.0,
-                image: './img/glyphicons_242_google_maps.png',
-                color : new Cesium.Color(1.0, 1.0, 1.0, 1.0),
-				heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
-            });
-            billboard.setEditable();
-        });
-        toolbar.addListener('polylineCreated', function(event) {
-            loggingMessage('Polyline created with ' + event.positions.length + ' points');
+
+function drawLine(){
+	drawHelper.startDrawingPolyline({
+		callback: function(positions) {
+			
+            loggingMessage('Polyline created with ' + positions.length + ' points');
             var polyline = new DrawHelper.PolylinePrimitive({
-                positions: event.positions,
+                positions: positions,
                 width: 5,
                 geodesic: true
             });
@@ -37,26 +15,20 @@ function drawToolsStart( cesiumWidget ){
             polyline.addListener('onEdited', function(event) {
                 loggingMessage('Polyline edited, ' + event.positions.length + ' points');
             });
+			
+			
+		}
+	});
+}
 
-        });
-        toolbar.addListener('polygonCreated', function(event) {
-            loggingMessage('Polygon created with ' + event.positions.length + ' points');
-            var polygon = new DrawHelper.PolygonPrimitive({
-                positions: event.positions,
-                material : Cesium.Material.fromType('Checkerboard')
-            });
-            scene.primitives.add(polygon);
-            polygon.setEditable();
-            polygon.addListener('onEdited', function(event) {
-                loggingMessage('Polygon edited, ' + event.positions.length + ' points');
-            });
+function drawCircle(){
+	drawHelper.startDrawingCircle({
+		callback: function(center, radius) {
 
-        });
-        toolbar.addListener('circleCreated', function(event) {
-            loggingMessage('Circle created: center is ' + event.center.toString() + ' and radius is ' + event.radius.toFixed(1) + ' meters');
+            loggingMessage('Circle created: center is ' + center.toString() + ' and radius is ' + radius.toFixed(1) + ' meters');
             var circle = new DrawHelper.CirclePrimitive({
-                center: event.center,
-                radius: event.radius,
+                center: center,
+                radius: radius,
                 material: Cesium.Material.fromType(Cesium.Material.RimLightingType)
             });
             scene.primitives.add(circle);
@@ -64,9 +36,17 @@ function drawToolsStart( cesiumWidget ){
             circle.addListener('onEdited', function(event) {
                 loggingMessage('Circle edited: radius is ' + event.radius.toFixed(1) + ' meters');
             });
-        });
-        toolbar.addListener('extentCreated', function(event) {
-            var extent = event.extent;
+			
+			
+		}
+	});
+}
+
+function drawBox(){
+	drawHelper.startDrawingExtent({
+		callback: function(extent) {
+			
+            var extent = extent;
             loggingMessage('Extent created (N: ' + extent.north.toFixed(3) + ', E: ' + extent.east.toFixed(3) + ', S: ' + extent.south.toFixed(3) + ', W: ' + extent.west.toFixed(3) + ')');
             
 			var extentPrimitive = new DrawHelper.ExtentPrimitive({
@@ -80,11 +60,83 @@ function drawToolsStart( cesiumWidget ){
             extentPrimitive.addListener('onEdited', function(event) {
                 loggingMessage('Extent edited: extent is (N: ' + event.extent.north.toFixed(3) + ', E: ' + event.extent.east.toFixed(3) + ', S: ' + event.extent.south.toFixed(3) + ', W: ' + event.extent.west.toFixed(3) + ')');
             });
-        });
+			
+		}
+	});
+}
 
-        var logging = document.getElementById('logging');
-        function loggingMessage(message) {
-            logging.innerHTML = message;
-        }
+function drawPoint(){
+
+	drawHelper.startDrawingMarker({
+		callback: function( position ) {
+			
+            loggingMessage('Marker created at ' + position.toString() );
+            // create one common billboard collection for all billboards
+            var b = new Cesium.BillboardCollection({scene: viewer.scene});
+			b._scene = scene;
+
+            scene.primitives.add(b);
+            var billboard = b.add({
+                show : true,
+                position : position,
+                pixelOffset : new Cesium.Cartesian2(0, 0),
+                eyeOffset : new Cesium.Cartesian3(0.0, 0.0, 0.0),
+                horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
+                verticalOrigin : Cesium.VerticalOrigin.CENTER,
+                scale : 1.0,
+                image: './img/glyphicons_242_google_maps.png',
+                color : new Cesium.Color(1.0, 1.0, 1.0, 1.0),
+				heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
+            });
+            billboard.setEditable();
+			/*
+			// Nao estah disparando o evento
+            billboard.addListener('onEdited', function(event) {
+                loggingMessage('Marker edited');
+            });
+			*/
+			
+			
+		}
+	});
+
 
 }
+
+
+function drawPolygon( draped ) {
+	if( draped ) {
+		draw2DPolygon();
+	} else {
+		draw3DPolygon();
+	}	
+}
+
+function draw3DPolygon() {
+	//
+}
+
+function draw2DPolygon() {
+	drawHelper.startDrawingPolygon({
+		
+		callback: function( positions ) {
+            var polygon = new DrawHelper.PolygonPrimitive({
+                positions: positions,
+                material : Cesium.Material.fromType('Checkerboard')
+            });
+            scene.primitives.add(polygon);
+            polygon.setEditable();
+            polygon.addListener('onEdited', function(event) {
+                loggingMessage('Polygon edited, ' + event.positions.length + ' points');
+            });
+		}
+	});
+	
+}
+
+
+function loggingMessage( message ){
+	console.log( message );
+}
+
+

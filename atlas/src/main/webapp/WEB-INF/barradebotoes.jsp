@@ -28,13 +28,15 @@
     	<img src="${midasLocation}/atlas/icons/desenho.png" class="topmnuimg">
     </a>
     <ul style="background-color: transparent; border: 0px;" class="dropdown-menu dropdown-menu-lg">
+    	<!-- 
         <li style="margin-top: 5px;">
 			<button title="Desenhar Polígono 3D" id="toolAddPolygon" type="button" class="btn btn-warning  btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/dr_3d.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
+        -->
 		<li style="margin-top: 5px;">
-			<button title="Desenhar Polígono 2D" id="toolAddPolygonSurface" type="button" class="btn btn-warning  btn-flat" style="padding: 0px;">
+			<button title="Desenhar Polígono" id="toolAddPolygonSurface" type="button" class="btn btn-warning  btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/dr_poly.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
@@ -46,6 +48,16 @@
 		<li style="margin-top: 5px;">
 			<button title="Desenhar Linha" id="toolAddLine" type="button" class="btn btn-warning  btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/dr_line.png" style="width: 35px; height: 35px;">
+			</button>
+        </li>
+		<li style="margin-top: 5px;">
+			<button title="Desenhar Retângulo" id="toolAddBox" type="button" class="btn btn-warning  btn-flat" style="padding: 0px;">
+				<img src="${midasLocation}/atlas/icons/dr_box.png" style="width: 35px; height: 35px;">
+			</button>
+        </li>
+		<li style="margin-top: 5px;">
+			<button title="Desenhar Círculo" id="toolAddCircle" type="button" class="btn btn-warning  btn-flat" style="padding: 0px;">
+				<img src="${midasLocation}/atlas/icons/dr_circle.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
     </ul>

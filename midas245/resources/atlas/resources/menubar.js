@@ -194,7 +194,7 @@ function bindToolBarButtons() {
 		var longitude = Cesium.Math.toDegrees(center.longitude);
 		var latitude = Cesium.Math.toDegrees(center.latitude);
 		viewer.camera.flyTo({
-		    destination : Cesium.Cartesian3.fromDegrees( longitude, latitude, 752872 ),
+		    destination : Cesium.Cartesian3.fromDegrees( longitude, latitude, 11293823 ),
 		    orientation : {
 		        heading : Cesium.Math.toRadians( 0.0 ),
 		        pitch : Cesium.Math.toRadians( -90.0 ),
@@ -231,6 +231,12 @@ function bindToolBarButtons() {
 	
 	jQuery("#toolAddMarker").click( function(){
 		drawMarker();
+	});
+	jQuery("#toolAddCircle").click( function(){
+		drawCircle();
+	});
+	jQuery("#toolAddBox").click( function(){
+		drawBox();
 	});
 
 	/* **************************************************
