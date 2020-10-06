@@ -651,9 +651,12 @@ var DrawHelper = (function() {
         this._options = copyOptions(options, defaultBillboard);
 
         // create one common billboard collection for all billboards
-        var b = new Cesium.BillboardCollection();
-        this._scene.primitives.add(b);
-        this._billboards = b;
+        this._billboards = new Cesium.BillboardCollection({
+			//
+		});
+		this._billboards._scene = this._scene;
+        this._scene.primitives.add( this._billboards );
+        
         // keep an ordered list of billboards
         this._orderedBillboards = [];
     }
@@ -669,7 +672,8 @@ var DrawHelper = (function() {
             verticalOrigin : Cesium.VerticalOrigin.CENTER,
             scale : 1.0,
             image: this._options.iconUrl,
-            color : new Cesium.Color(1.0, 1.0, 1.0, 1.0)
+            color : new Cesium.Color(1.0, 1.0, 1.0, 1.0),
+			heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
         });
 
         // if editable

@@ -48,32 +48,21 @@ var DrawHelper = (function() {
 		
         // scene events
         var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+		
         function callPrimitiveCallback(name, position) {
-			
             if(_self._handlersMuted == true) return;
 			var pickedObject = scene.pick(position);
-
-			console.log(name);
-			
-			if ( pickedObject.primitive instanceof Cesium.GroundPrimitive ){
-				var scond = pickedObject.primitive.geometryInstances.pickPrimitive;
-				console.log( scond );
-				console.log( scond[name] );
-				if( scond[name] ) {
-					scond[name] (position);
+			if( pickedObject ) {
+				var theObject;	
+				if ( pickedObject.primitive instanceof Cesium.GroundPrimitive  || pickedObject.primitive instanceof Cesium.GroundPolylinePrimitive ){
+					theObject = pickedObject.primitive.geometryInstances.pickPrimitive;
+				} else {
+					theObject = pickedObject.primitive;
+				}				
+				if( theObject[name] ) {
+					theObject[name](position);
 				}
-				
-			} else {
-				console.log( pickedObject );
-				console.log( pickedObject.primitive[name] );
-				if( pickedObject.primitive[name] ) {
-					pickedObject.primitive[name](position);
-				}
-			
-			}				
-				
-			
-			
+			}
         }
         
 		handler.setInputAction(
@@ -93,26 +82,29 @@ var DrawHelper = (function() {
                 if(_self._handlersMuted == true) return;
 				
                 var pickedObject = scene.pick(movement.endPosition);
-				if( !pickedObject ) return;
-				
-				var thePrimitive;
-				if ( pickedObject.primitive instanceof Cesium.GroundPrimitive ){
-					thePrimitive = pickedObject.primitive.geometryInstances.pickPrimitive;
-				} else {
-					thePrimitive = pickedObject.primitive;
-				}	
+				if( pickedObject ) {
+					
+					var thePrimitive;
+					if ( pickedObject.primitive instanceof Cesium.GroundPrimitive  || pickedObject.primitive instanceof Cesium.GroundPolylinePrimitive  ){
+						thePrimitive = pickedObject.primitive.geometryInstances.pickPrimitive;
+					} else {
+						thePrimitive = pickedObject.primitive;
+					}	
+					
+					if(thePrimitive.mouseOut) {
+						mouseOutObject = thePrimitive;
+					}					
+					
+					if(thePrimitive.mouseMove) {
+						thePrimitive.mouseMove(movement.endPosition);
+					}
+					
+				}
 				
 				if(mouseOutObject && (!pickedObject || mouseOutObject != thePrimitive)) {
                     !(mouseOutObject.isDestroyed && mouseOutObject.isDestroyed()) && mouseOutObject.mouseOut(movement.endPosition);
                     mouseOutObject = null;
                 }
-				
-				if(thePrimitive.mouseOut) {
-					mouseOutObject = thePrimitive;
-				}
-				if(thePrimitive.mouseMove) {
-					thePrimitive.mouseMove(movement.endPosition);
-				}
 				
         }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
@@ -216,7 +208,7 @@ var DrawHelper = (function() {
 
     var defaultSurfaceOptions = copyOptions(defaultShapeOptions, {
         appearance: new Cesium.EllipsoidSurfaceAppearance({
-            aboveGround : true
+            aboveGround : false
         }),
     	material : material,
         granularity: Math.PI / 180.0
@@ -321,9 +313,16 @@ var DrawHelper = (function() {
 
 
 				if( geometry instanceof Cesium.PolylineGeometry ) {
-					this._primitive = new Cesium.Primitive({
+					
+					var groundGeometry = new Cesium.GroundPolylineGeometry({
+						positions : geometry._positions,
+						width : 4.0
+					});
+					
+					
+					this._primitive = new Cesium.GroundPolylinePrimitive({
 						geometryInstances : new Cesium.GeometryInstance({
-							geometry : geometry,
+							geometry : groundGeometry,
 							pickPrimitive : this
 						}),
 						appearance : this.appearance,
@@ -715,16 +714,17 @@ var DrawHelper = (function() {
     }
 
     _.BillboardGroup = function(drawHelper, options) {
-
         this._drawHelper = drawHelper;
         this._scene = drawHelper._scene;
-
         this._options = copyOptions(options, defaultBillboard);
 
         // create one common billboard collection for all billboards
-        var b = new Cesium.BillboardCollection();
-        this._scene.primitives.add(b);
-        this._billboards = b;
+        this._billboards = new Cesium.BillboardCollection({
+			//
+		});
+		this._billboards._scene = this._scene;
+        this._scene.primitives.add( this._billboards );
+        
         // keep an ordered list of billboards
         this._orderedBillboards = [];
     }
@@ -741,7 +741,8 @@ var DrawHelper = (function() {
             scale : 1.0,
             image: this._options.iconUrl,
 			// Cor dos pontos de edição dos elementos
-            color : Cesium.Color.AQUA
+            color : Cesium.Color.RED,
+			heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
         });
 
         // if editable
@@ -758,30 +759,39 @@ var DrawHelper = (function() {
             }
             if(callbacks.dragHandlers) {
                 var _self = this;
+				
+				
+				setListener(billboard, 'leftUp', function(position) {
+					//
+				});
+				
                 setListener(billboard, 'leftDown', function(position) {
+					var handler = new Cesium.ScreenSpaceEventHandler( _self._scene.canvas );
 					
 					// Aqui eh quando clica em um ponto da feicao
-					
                     function onDrag(position) {
 						billboard.position = position;
                         for (var i = 0, I = _self._orderedBillboards.length; i < I && _self._orderedBillboards[i] != billboard; ++i);
                         callbacks.dragHandlers.onDrag && callbacks.dragHandlers.onDrag(getIndex(), position);
                     }
+					
                     function onDragEnd(position) {
-                        handler.destroy();
+						handler.destroy();
                         enableRotation(true);
                         callbacks.dragHandlers.onDragEnd && callbacks.dragHandlers.onDragEnd(getIndex(), position);
                     }
 
-                    var handler = new Cesium.ScreenSpaceEventHandler(_self._scene.canvas);
-
                     handler.setInputAction(function(movement) {
-                        var cartesian = _self._drawHelper._scene.camera.pickEllipsoid(movement.endPosition, ellipsoid);
-						if (cartesian) {
-                            onDrag(cartesian);
-                        } else {
-                            onDragEnd(cartesian);
-                        }
+						try{
+							var cartesian = _self._scene.camera.pickEllipsoid(movement.endPosition, ellipsoid);
+							if (cartesian) {
+								onDrag(cartesian);
+							} else {
+								onDragEnd(cartesian);
+							}
+						} catch ( err ) {
+							//
+						}	
                     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
                     handler.setInputAction(function(movement) {
@@ -789,7 +799,6 @@ var DrawHelper = (function() {
                     }, Cesium.ScreenSpaceEventType.LEFT_UP);
 
                     enableRotation(false);
-
                     callbacks.dragHandlers.onDragStart && callbacks.dragHandlers.onDragStart(getIndex(), _self._scene.camera.pickEllipsoid(position, ellipsoid));
                 });
             }
@@ -1174,9 +1183,9 @@ var DrawHelper = (function() {
     }
 
     _.prototype.enhancePrimitives = function() {
-
         var drawHelper = this;
-
+		var handler = null;
+		
         Cesium.Billboard.prototype.setEditable = function() {
 
             if(this._editable) {
@@ -1193,7 +1202,14 @@ var DrawHelper = (function() {
                 drawHelper._scene.screenSpaceCameraController.enableRotate = enable;
             }
 
+			setListener(billboard, 'leftUp', function(position) {
+	            handler.destroy();
+			});	
+
             setListener(billboard, 'leftDown', function(position) {
+				handler = new Cesium.ScreenSpaceEventHandler( drawHelper._scene.canvas );
+
+				
                 // TODO - start the drag handlers here
                 // create handlers for mouseOut and leftUp for the billboard and a mouseMove
                 function onDrag(position) {
@@ -1201,12 +1217,10 @@ var DrawHelper = (function() {
                     _self.executeListeners({name: 'drag', positions: position});
                 }
                 function onDragEnd(position) {
-                    handler.destroy();
+					console.log('Foi');
                     enableRotation(true);
                     _self.executeListeners({name: 'dragEnd', positions: position});
                 }
-
-                var handler = new Cesium.ScreenSpaceEventHandler(drawHelper._scene.canvas);
 
                 handler.setInputAction(function(movement) {
                     var cartesian = drawHelper._scene.camera.pickEllipsoid(movement.endPosition, ellipsoid);
@@ -1368,10 +1382,22 @@ var DrawHelper = (function() {
                         this._globeClickhandler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
                         this._globeClickhandler.setInputAction(
                             function (movement) {
+								
 								var pickedObject = scene.pick(movement.position);
-                                if(!(pickedObject && pickedObject.primitive)) {
+								var theObject;	
+
+								if( pickedObject ){
+									if ( pickedObject.primitive instanceof Cesium.GroundPrimitive || pickedObject.primitive instanceof Cesium.GroundPolylinePrimitive ){
+										theObject = pickedObject.primitive.geometryInstances.pickPrimitive;
+									} else {
+										theObject = pickedObject.primitive;
+									}	
+								}
+
+                                if( !(pickedObject && theObject ) ) {
                                     _self.setEditMode(false);
                                 }
+								
                             }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
                         // set on top of the polygon
@@ -1491,19 +1517,28 @@ var DrawHelper = (function() {
                         // add a handler for clicking in the globe
                         this._globeClickhandler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
                         this._globeClickhandler.setInputAction(
+						
                             function (movement) {
-                                
-								var pickedObject = scene.pick(movement.position);
-								console.log('Problemas');
-								console.log( pickedObject );
 								
+								var pickedObject = scene.pick(movement.position);
+								if( pickedObject ){
+									var theObject;	
+									if ( pickedObject.primitive instanceof Cesium.GroundPrimitive || pickedObject.primitive instanceof Cesium.GroundPolylinePrimitive ){
+										theObject = pickedObject.primitive.geometryInstances.pickPrimitive;
+									} else {
+										theObject = pickedObject.primitive;
+									}
+								}				
+
 								// disable edit if pickedobject is different or not an object
-                                try{if(!(pickedObject && !pickedObject.isDestroyed() && pickedObject.primitive)) {
+                                try{if(!(pickedObject && !pickedObject.isDestroyed() && theObject)) {
                                     extent.setEditMode(false);
                                 }}catch(e){
                                     extent.setEditMode(false);
                                 }
-                            }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+								
+								
+                        }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
                         // set on top of the polygon
                         markers.setOnTop();

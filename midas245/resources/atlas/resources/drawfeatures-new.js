@@ -7,7 +7,9 @@ function drawToolsStart( cesiumWidget ){
         toolbar.addListener('markerCreated', function(event) {
             loggingMessage('Marker created at ' + event.position.toString());
             // create one common billboard collection for all billboards
-            var b = new Cesium.BillboardCollection();
+            var b = new Cesium.BillboardCollection({scene: viewer.scene});
+			b._scene = scene;
+
             scene.primitives.add(b);
             var billboard = b.add({
                 show : true,
@@ -18,7 +20,8 @@ function drawToolsStart( cesiumWidget ){
                 verticalOrigin : Cesium.VerticalOrigin.CENTER,
                 scale : 1.0,
                 image: './img/glyphicons_242_google_maps.png',
-                color : new Cesium.Color(1.0, 1.0, 1.0, 1.0)
+                color : new Cesium.Color(1.0, 1.0, 1.0, 1.0),
+				heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
             });
             billboard.setEditable();
         });

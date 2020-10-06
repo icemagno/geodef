@@ -160,7 +160,7 @@ function startMap() {
 	scene.screenSpaceCameraController.inertiaZoom = 0.8;
 	scene.screenSpaceCameraController.inertiaTranslate = 0.8;
 	scene.globe.maximumScreenSpaceError = 1;
-	scene.globe.depthTestAgainstTerrain = true;
+	scene.globe.depthTestAgainstTerrain = false;
 	//scene.globe.tileCacheSize = 250;
 	scene.pickTranslucentDepth = true;
 	scene.useDepthPicking = true;
