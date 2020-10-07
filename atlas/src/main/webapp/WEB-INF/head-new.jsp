@@ -67,6 +67,6 @@
 	  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 	  <link rel="stylesheet" href="/resources/Cesium/Widgets/widgets.css">
-	  <link rel="stylesheet" href="${midasLocation}/atlas/resources/drawhelper/drawhelper.css">
+	  <link rel="stylesheet" href="/resources/drawhelper/drawhelper.css">
 	  
 	</head>

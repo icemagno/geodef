@@ -40,7 +40,6 @@ var Graticule = (function() {
 
         this._ready = true;
 
-        // 默认为十进制间隔
         this._sexagesimal = description.sexagesimal || false;
         this._numLines = description.numLines || 50;
 
@@ -166,13 +165,13 @@ var Graticule = (function() {
      _.prototype.makeLabel = function(lng, lat, text, top, color) {
 
          this._labels.add({
-             position : this._ellipsoid.cartographicToCartesian(new Cesium.Cartographic(lng, lat, 10.0)),
+             position : this._ellipsoid.cartographicToCartesian( new Cesium.Cartographic(lng, lat, 10.0) ),
              text : text,
-             font : '16px normal',//文字字体
+             font : '10px Courier New',
              fillColor : this._fontColor,
-             outlineColor : 'white',
-             style : Cesium.LabelStyle.FILL,//文字显示风格
-             pixelOffset : new Cesium.Cartesian2(5, top ? 5 : -5),
+             //outlineColor : Cesium.Color.BLACK,
+             style : Cesium.LabelStyle.FILL,
+             pixelOffset : new Cesium.Cartesian2(10, top ? 10 : -10),
              eyeOffset : Cesium.Cartesian3.ZERO,
              horizontalOrigin : Cesium.HorizontalOrigin.RIGHT,
              verticalOrigin : top ? Cesium.VerticalOrigin.BOTTOM : Cesium.VerticalOrigin.TOP,

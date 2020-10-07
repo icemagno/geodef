@@ -214,16 +214,20 @@
 	<!-- Javascript que so faz sentido para o mapa  -->
 	<script src="/resources/Cesium/Cesium.js" type="text/javascript"></script>
 	<script src="/resources/graticule/Graticule.js" type="text/javascript"></script>
+
+	<script src="${midasLocation}/atlas/resources/convertions.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/menubar.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/drawhelper/drawhelper.js"></script>
+	<script src="/resources/drawhelper/drawhelper.js"></script>
 	<script src="${midasLocation}/atlas/resources/scalebar/viewerCesiumNavigationMixin.min.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/globe-new.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/geohash.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/drawfeatures-new.js" type="text/javascript"></script>
 
+	<script src="${midasLocation}/atlas/resources/arvorecarto.js" type="text/javascript"></script>
+
+
 
 	<!-- 
-	<script src="${midasLocation}/atlas/resources/convertions.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/layers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/jsonlayers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/modal.js" type="text/javascript"></script>
@@ -240,7 +244,6 @@
 	<script src="${midasLocation}/atlas/resources/sensors.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/sistram.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/avisosradio.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/arvorecarto.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/pcn.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/climatologia.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/cormeteoro.js" type="text/javascript"></script>

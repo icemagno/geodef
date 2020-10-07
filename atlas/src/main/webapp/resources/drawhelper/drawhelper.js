@@ -684,19 +684,19 @@ var DrawHelper = (function() {
     })();
 
     var defaultBillboard = {
-        iconUrl: "./img/dragIcon.png",
+        iconUrl: "/resources/drawhelper/img/dragIcon.png",
         shiftX: 0,
         shiftY: 0
     }
 
     var dragBillboard = {
-        iconUrl: "./img/dragIcon.png",
+        iconUrl: "/resources/drawhelper/img/dragIcon.png",
         shiftX: 0,
         shiftY: 0
     }
 
     var dragHalfBillboard = {
-        iconUrl: "./img/dragIconLight.png",
+        iconUrl: "/resources/drawhelper/img/dragIconLight.png",
         shiftX: 0,
         shiftY: 0
     }
@@ -1750,12 +1750,12 @@ var DrawHelper = (function() {
             }
 
             var drawOptions = {
-                markerIcon: "./img/glyphicons_242_google_maps.png",
-                polylineIcon: "./img/glyphicons_097_vector_path_line.png",
-                polygonIcon: "./img/glyphicons_096_vector_path_polygon.png",
-                circleIcon: "./img/glyphicons_095_vector_path_circle.png",
-                extentIcon: "./img/glyphicons_094_vector_path_square.png",
-                clearIcon: "./img/glyphicons_067_cleaning.png",
+                markerIcon: "/resources/drawhelper/img/glyphicons_242_google_maps.png",
+                polylineIcon: "/resources/drawhelper/img/glyphicons_097_vector_path_line.png",
+                polygonIcon: "/resources/drawhelper/img/glyphicons_096_vector_path_polygon.png",
+                circleIcon: "/resources/drawhelper/img/glyphicons_095_vector_path_circle.png",
+                extentIcon: "/resources/drawhelper/img/glyphicons_094_vector_path_square.png",
+                clearIcon: "/resources/drawhelper/img/glyphicons_067_cleaning.png",
                 polylineDrawingOptions: defaultPolylineOptions,
                 polygonDrawingOptions: defaultPolygonOptions,
                 extentDrawingOptions: defaultExtentOptions,
@@ -1763,82 +1763,9 @@ var DrawHelper = (function() {
             };
 
             fillOptions(options, drawOptions);
-
             var _self = this;
-
-            var toolbar = document.createElement('DIV');
-            toolbar.className = "toolbar";
-            options.container.appendChild(toolbar);
-
-            function addIcon(id, url, title, callback) {
-                var div = document.createElement('DIV');
-                div.className = 'button';
-                div.title = title;
-                toolbar.appendChild(div);
-                div.onclick = callback;
-                var span = document.createElement('SPAN');
-                div.appendChild(span);
-                var image = document.createElement('IMG');
-                image.src = url;
-                span.appendChild(image);
-                return div;
-            }
-
             var scene = drawHelper._scene;
-
-/*
-            addIcon('marker', options.markerIcon, 'Click to start drawing a 2D marker', function() {
-                drawHelper.startDrawingMarker({
-                    callback: function(position) {
-                        _self.executeListeners({name: 'markerCreated', position: position});
-                    }
-                });
-            })
-
-            addIcon('polyline', options.polylineIcon, 'Click to start drawing a 2D polyline', function() {
-                drawHelper.startDrawingPolyline({
-                    callback: function(positions) {
-                        _self.executeListeners({name: 'polylineCreated', positions: positions});
-                    }
-                });
-            })
-
-            addIcon('polygon', options.polygonIcon, 'Click to start drawing a 2D polygon', function() {
-                drawHelper.startDrawingPolygon({
-                    callback: function(positions) {
-                        _self.executeListeners({name: 'polygonCreated', positions: positions});
-                    }
-                });
-            })
-
-            addIcon('extent', options.extentIcon, 'Click to start drawing an Extent', function() {
-                drawHelper.startDrawingExtent({
-                    callback: function(extent) {
-                        _self.executeListeners({name: 'extentCreated', extent: extent});
-                    }
-                });
-            })
-
-            addIcon('circle', options.circleIcon, 'Click to start drawing a Circle', function() {
-                drawHelper.startDrawingCircle({
-                    callback: function(center, radius) {
-                        _self.executeListeners({name: 'circleCreated', center: center, radius: radius});
-                    }
-                });
-            })
-
-            // add a clear button at the end
-            // add a divider first
-            var div = document.createElement('DIV');
-            div.className = 'divider';
-            toolbar.appendChild(div);
-            addIcon('clear', options.clearIcon, 'Remove all primitives', function() {
-                scene.primitives.removeAll();
-            });
-*/
-
             enhanceWithListeners(this);
-
         }
 
         return _;

@@ -227,7 +227,6 @@ function bindToolBarButtons() {
 		drawPolygon( false );
 	});
 	jQuery("#toolAddPolygonSurface").click( function(){
-		console.log('dddd');
 		drawPolygon( true );
 	});
 	

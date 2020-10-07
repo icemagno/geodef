@@ -116,8 +116,6 @@ function draw3DPolygon() {
 
 function draw2DPolygon() {
 	
-	console.log('me too');
-	
 	drawHelper.startDrawingPolygon({
 		
 		callback: function( positions ) {

@@ -93,7 +93,7 @@ function goToOperationArea( operationArea ) {
 
 function startMap() {
 	
-	mapStyle = '2D';
+	mapStyle = '3D';
 	
 	terrainProvider = new Cesium.CesiumTerrainProvider({
 		url : olimpo,
@@ -203,19 +203,20 @@ function startMap() {
 	  var graticule = new Graticule({
 	      	tileWidth: 512,
 	      	tileHeight: 512,
-	      	numLines: 10,
-		fontColor:  Cesium.Color.WHITE, // text color		
-		weight:  0.8, // Line width|default 0.8
-		zoomInterval: [
-		       Cesium.Math.toRadians(0.05),
-		       Cesium.Math.toRadians(0.1),
-		       Cesium.Math.toRadians(0.2),
-		       Cesium.Math.toRadians(0.5),
-		       Cesium.Math.toRadians(1.0),
-		       Cesium.Math.toRadians(2.0),
-		       Cesium.Math.toRadians(5.0),
-		       Cesium.Math.toRadians(10.0)	
-		]// Different map zoom levels show the grid interval
+			fontColor:  Cesium.Color.ORANGE, 
+			color :   Cesium.Color.ORANGE,
+			sexagesimal : false,
+			weight:  0.8, 
+			zoomInterval: [
+			       Cesium.Math.toRadians(0.05),
+			       Cesium.Math.toRadians(0.1),
+			       Cesium.Math.toRadians(0.2),
+			       Cesium.Math.toRadians(0.5),
+			       Cesium.Math.toRadians(1.0),
+			       Cesium.Math.toRadians(2.0),
+			       Cesium.Math.toRadians(5.0),
+			       Cesium.Math.toRadians(10.0)
+			] // Different map zoom levels show the grid interval
 	}, scene);
 	viewer.scene.imageryLayers.addImageryProvider(graticule);
 	graticule.setVisible( true );	
