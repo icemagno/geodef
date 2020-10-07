@@ -105,12 +105,6 @@ function startMap() {
 	if( mainConfiguration.useExternalOsm ){
 		fireToast( 'warning', 'Atenção', 'Você está usando o OpenStreetMap Online.', '000' );
 		
-		/*
-		baseOsmProvider = new Cesium.createOpenStreetMapImageryProvider({
-			url : 'https://a.tile.openstreetmap.org/'
-		});
-		*/
-		
 		baseOsmProvider = new Cesium.OpenStreetMapImageryProvider({
 		    url : 'https://a.tile.openstreetmap.org/'
 		});		
@@ -123,7 +117,7 @@ function startMap() {
 			credit : 'Ministério da Defesa - SisGeoDef',
 			maximumLevel : 25,
 			hasAlphaChannel : false
-	});
+		});
 	}	
 		
 	var sceneMapMode = Cesium.SceneMode.SCENE2D;
@@ -340,19 +334,7 @@ function bindInterfaceElements() {
 			deleteLayer( contourShade.layer.properties.uuid );
 		}
 	});	
-	
-	/*
-	jQuery("#sysLayercartasChm").click( function(){
-		var isChecked = jQuery("#sysLayercartasChm").prop('checked');
-		if( isChecked ) {
-			cartasCHM = addBaseSystemLayer( this.id, 'CartasCHM', mapproxy, 'cartasapolo', false, 1.0, 'png' );
-			addBasicLayerToPanel( 'Cartas Náuticas CHM', cartasCHM );
-		} else {
-			deleteLayer( cartasCHM.layer.properties.uuid );
-		}
-	});
-	*/	
-	
+
 	
 	jQuery("#sysLayerCurvas").click( function(){
 		var isChecked = jQuery("#sysLayerCurvas").prop('checked');
@@ -752,8 +734,12 @@ function getALayerCard( uuid, layerAlias, defaultImage  ){
 	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
 	
 	
-	'<div class="box-tools pull-right">'+                           // fa-caret-right
-	'<button type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button></div>' +	
+	'<div class="box-tools pull-right">'+                           
+		'<button title="Ocultar Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
+		'<button title="Exibir Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
+		'<button title="Exibir Controles" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button>'+
+		'<button title="Ocultar Controles" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-right"></i></button>'+
+	'</div>' +	
 	
 	
 	'</td></tr>'; 
@@ -806,21 +792,5 @@ function populateLayerPanelAsTesting(){
 		}
 	});
 
-/*
-$(function() {
-    $( "#sortable" ).sortable({
-        update: function(event, ui) { 
-            console.log('update: '+ui.item.index())
-        },
-        start: function(event, ui) { 
-            console.log('start: ' + ui.item.index())
-        }
-    });
-    $( "#sortable" ).disableSelection();
-});
 
-If you want the start index to be available to you in the update, then you'll need to set it like this:$(ui.item).data('startindex', ui.item.index()) and then access it with $(ui.item).data().startindex
-
-*/
-	
 }

@@ -15,6 +15,7 @@ var DrawHelper = (function() {
 
     // constructor
     function _(viewer) {
+		ellipsoid = viewer.scene.globe.ellipsoid;
         this._scene = viewer.scene;
 		this._camera = viewer.camera;
         this._tooltip = createTooltip(viewer.container);
@@ -26,21 +27,14 @@ var DrawHelper = (function() {
 
     }
 		
-	/*	
+		
 	_.prototype.getCartesian = function( position ){
 		var camera = this._camera;
 		var position = camera.pickEllipsoid(position, this.ellipsoid);
 		return position;
 	}
-	*/
 	
-	/*
-	_.prototype.pickObject = function( position ){
-		var scene = this._scene;
-		var pickedObject = scene.pick( position );
-		return pickedObject;
-	}
-	*/
+	
 
     _.prototype.initialiseHandlers = function() {
         var scene = this._scene;
@@ -111,6 +105,7 @@ var DrawHelper = (function() {
 		
         handler.setInputAction(
             function (movement) {
+				console.log( movement.position );
                 callPrimitiveCallback('leftUp', movement.position);
         }, Cesium.ScreenSpaceEventType.LEFT_UP);
 			
@@ -719,10 +714,7 @@ var DrawHelper = (function() {
         this._options = copyOptions(options, defaultBillboard);
 
         // create one common billboard collection for all billboards
-        this._billboards = new Cesium.BillboardCollection({
-			//
-		});
-		this._billboards._scene = this._scene;
+        this._billboards = new Cesium.BillboardCollection({scene: this._scene});
         this._scene.primitives.add( this._billboards );
         
         // keep an ordered list of billboards
@@ -742,7 +734,7 @@ var DrawHelper = (function() {
             image: this._options.iconUrl,
 			// Cor dos pontos de edição dos elementos
             color : Cesium.Color.RED,
-			heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
+			//heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
         });
 
         // if editable
@@ -1785,6 +1777,7 @@ var DrawHelper = (function() {
 
             var scene = drawHelper._scene;
 
+/*
             addIcon('marker', options.markerIcon, 'Click to start drawing a 2D marker', function() {
                 drawHelper.startDrawingMarker({
                     callback: function(position) {
@@ -1833,6 +1826,7 @@ var DrawHelper = (function() {
             addIcon('clear', options.clearIcon, 'Remove all primitives', function() {
                 scene.primitives.removeAll();
             });
+*/
 
             enhanceWithListeners(this);
 

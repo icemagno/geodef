@@ -67,17 +67,16 @@ function drawBox(){
 
 function drawPoint(){
 
+var billboards = scene.primitives.add(new Cesium.BillboardCollection({scene: viewer.scene}));
+
 	drawHelper.startDrawingMarker({
 		callback: function( position ) {
 			
             loggingMessage('Marker created at ' + position.toString() );
-            // create one common billboard collection for all billboards
+			
             var b = new Cesium.BillboardCollection({scene: viewer.scene});
-			b._scene = scene;
-
             scene.primitives.add(b);
             var billboard = b.add({
-                show : true,
                 position : position,
                 pixelOffset : new Cesium.Cartesian2(0, 0),
                 eyeOffset : new Cesium.Cartesian3(0.0, 0.0, 0.0),
@@ -86,25 +85,24 @@ function drawPoint(){
                 scale : 1.0,
                 image: './img/glyphicons_242_google_maps.png',
                 color : new Cesium.Color(1.0, 1.0, 1.0, 1.0),
-				heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
+				//heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
             });
             billboard.setEditable();
-			/*
+			
 			// Nao estah disparando o evento
             billboard.addListener('onEdited', function(event) {
                 loggingMessage('Marker edited');
             });
-			*/
 			
 			
 		}
 	});
 
-
 }
 
 
 function drawPolygon( draped ) {
+	console.log('is me');
 	if( draped ) {
 		draw2DPolygon();
 	} else {
@@ -117,6 +115,9 @@ function draw3DPolygon() {
 }
 
 function draw2DPolygon() {
+	
+	console.log('me too');
+	
 	drawHelper.startDrawingPolygon({
 		
 		callback: function( positions ) {

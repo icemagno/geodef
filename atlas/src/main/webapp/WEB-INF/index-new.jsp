@@ -214,12 +214,15 @@
 	<!-- Javascript que so faz sentido para o mapa  -->
 	<script src="/resources/Cesium/Cesium.js" type="text/javascript"></script>
 	<script src="/resources/graticule/Graticule.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/menubar.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/drawhelper/drawhelper.js"></script>
-	
 	<script src="${midasLocation}/atlas/resources/scalebar/viewerCesiumNavigationMixin.min.js" type="text/javascript"></script>
-	
-	
 	<script src="${midasLocation}/atlas/resources/globe-new.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/js/geohash.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/drawfeatures-new.js" type="text/javascript"></script>
+
+
+	<!-- 
 	<script src="${midasLocation}/atlas/resources/convertions.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/layers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/jsonlayers.js" type="text/javascript"></script>
@@ -228,17 +231,13 @@
 	<script src="${midasLocation}/atlas/resources/measures.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/viewshed.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/buildings3d.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/drawfeatures.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/pointcloud.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/flightcontrol.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/screenshot.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/routes.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/favelas.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/flood.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/menubar.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/sensors.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/toast.js"></script>
-
 	<script src="${midasLocation}/atlas/resources/sistram.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/avisosradio.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/arvorecarto.js" type="text/javascript"></script>
@@ -249,13 +248,9 @@
 	<script src="${midasLocation}/atlas/resources/js/anewradar.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/marinetraffic.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/windparticle.js" type="text/javascript"></script>
-	
 	<script src="${midasLocation}/atlas/resources/metocprevisao.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/js/geohash.js" type="text/javascript"></script>
+ 	-->
 
-	<script src="${midasLocation}/atlas/resources/drawfeatures-new.js" type="text/javascript"></script>
-
-	
 	<!-- 	
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoBuildingsProvider.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoPointCloudProvider.js" type="text/javascript"></script>

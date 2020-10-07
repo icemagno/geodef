@@ -31,8 +31,7 @@
 <!-- Select2 -->
 <script src="${midasLocation}/bower_components/select2/dist/js/select2.full.min.js"></script>
 
-<!-- TOAST JQUERY -->
-<script type="text/javascript" src="/resources/js/jquery.toast.min.js"></script>
+
 
 <!-- FLOT CHARTS -->
 <script src="${midasLocation}/bower_components/Flot/jquery.flot.js"></script>
@@ -44,6 +43,13 @@
 <script src="${midasLocation}/bower_components/Flot/jquery.flot.categories.js"></script>
 
 <script src="${midasLocation}/sweetalert2.min.js"></script>
+
+<!-- TOAST JQUERY -->
+<script type="text/javascript" src="/resources/js/jquery.toast.min.js"></script>
+
+<script src="${midasLocation}/atlas/resources/toast.js"></script>
+
+
 
 <!-- InputMask -->
 <script src="${midasLocation}/plugins/input-mask/jquery.inputmask.js"></script>
