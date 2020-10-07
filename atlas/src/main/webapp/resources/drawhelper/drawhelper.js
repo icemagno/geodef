@@ -20,22 +20,19 @@ var DrawHelper = (function() {
 		this._camera = viewer.camera;
         this._tooltip = createTooltip(viewer.container);
         this._surfaces = [];
-
         this.initialiseHandlers();
-
         this.enhancePrimitives();
 
+        var self = this;
+        document.addEventListener("keydown", function (e) {
+        	if ( e.which == 27 ) {
+                self.stopDrawing();
+        	}
+        }, false );
+        
     }
 		
 		
-	_.prototype.getCartesian = function( position ){
-		var camera = this._camera;
-		var position = camera.pickEllipsoid(position, this.ellipsoid);
-		return position;
-	}
-	
-	
-
     _.prototype.initialiseHandlers = function() {
         var scene = this._scene;
         var _self = this;
@@ -132,7 +129,7 @@ var DrawHelper = (function() {
         setListener(surface, 'mouseMove', function(position) {
             surface.setHighlighted(true);
             if(!surface._editMode) {
-                _self._tooltip.showAt(position, "Click to edit this shape");
+                _self._tooltip.showAt(position, "Clique para editar. Clique fora para cancelar a edição.");
             }
         });
         // hide the highlighting when mouse is leaving the polygon
@@ -742,7 +739,6 @@ var DrawHelper = (function() {
             var screenSpaceCameraController = this._scene.screenSpaceCameraController;
             function enableRotation(enable) {
 				screenSpaceCameraController.enableRotate = enable;
-
 				screenSpaceCameraController.enableTranslate = enable;
 				screenSpaceCameraController.enableZoom = enable;
 				screenSpaceCameraController.enableTilt = enable;
@@ -805,7 +801,7 @@ var DrawHelper = (function() {
             }
             if(callbacks.onClick) {
                 setListener(billboard, 'leftClick', function(position) {
-                    callbacks.onClick(getIndex());
+                    callbacks.onClick( getIndex() );
                 });
             }
             if(callbacks.tooltip) {
@@ -902,9 +898,9 @@ var DrawHelper = (function() {
             if(position != null) {
                 var cartesian = scene.camera.pickEllipsoid(position, ellipsoid);
                 if (cartesian) {
-                    tooltip.showAt(position, "<p>Click to add your marker. Position is: </p>" + getDisplayLatLngString(ellipsoid.cartesianToCartographic(cartesian)));
+                    tooltip.showAt(position, "<p>Clique para adicionar o marcador em: </p>" + getDisplayLatLngString(ellipsoid.cartesianToCartographic(cartesian)));
                 } else {
-                    tooltip.showAt(position, "<p>Click on the globe to add your marker.</p>");
+                    tooltip.showAt(position, "<p>Clique no globo para adicionar o marcador.</p>");
                 }
             }
         }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
@@ -979,7 +975,7 @@ var DrawHelper = (function() {
             var position = movement.endPosition;
             if(position != null) {
                 if(positions.length == 0) {
-                    tooltip.showAt(position, "<p>Click to add first point</p>");
+                    tooltip.showAt(position, "<p>Clique para adicionar o primeiro ponto.</p>");
                 } else {
                     var cartesian = scene.camera.pickEllipsoid(position, ellipsoid);
                     if (cartesian) {
@@ -994,7 +990,7 @@ var DrawHelper = (function() {
                         // update marker
                         markers.getBillboard(positions.length - 1).position = cartesian;
                         // show tooltip
-                        tooltip.showAt(position, "<p>Click to add new point (" + positions.length + ")</p>" + (positions.length > minPoints ? "<p>Double click to finish drawing</p>" : ""));
+                        tooltip.showAt(position, "<p>Clique para adicionar outro ponto (" + positions.length + ")<br>ESC para cancelar.<br>" + (positions.length > minPoints ? "Dois cliques para encerrar</p>" : ""));
                     }
                 }
             }
@@ -1092,13 +1088,13 @@ var DrawHelper = (function() {
             var position = movement.endPosition;
             if(position != null) {
                 if(extent == null) {
-                    tooltip.showAt(position, "<p>Click to start drawing rectangle</p>");
+                    tooltip.showAt(position, "<p>Clique para desenhar um retângulo.</p>");
                 } else {
                     var cartesian = scene.camera.pickEllipsoid(position, ellipsoid);
                     if (cartesian) {
                         var value = getExtent(firstPoint, ellipsoid.cartesianToCartographic(cartesian));
                         updateExtent(value);
-                        tooltip.showAt(position, "<p>Drag to change rectangle extent</p><p>Click again to finish drawing</p>");
+                        tooltip.showAt(position, "<p>Arraste para alterar o retângulo.<br>Clique para encerrar.<br>ESC para cancelar.</p>");
                     }
                 }
             }
@@ -1164,13 +1160,13 @@ var DrawHelper = (function() {
             var position = movement.endPosition;
             if(position != null) {
                 if(circle == null) {
-                    tooltip.showAt(position, "<p>Click to start drawing the circle</p>");
+                    tooltip.showAt(position, "<p>Clique para desenhar um círculo.</p>");
                 } else {
                     var cartesian = scene.camera.pickEllipsoid(position, ellipsoid);
                     if (cartesian) {
                         circle.setRadius(Cesium.Cartesian3.distance(circle.getCenter(), cartesian));
                         markers.updateBillboardsPositions(cartesian);
-                        tooltip.showAt(position, "<p>Move mouse to change circle radius</p><p>Click again to finish drawing</p>");
+                        tooltip.showAt(position, "<p>Mova o mouse para alterar o raio.<br>Clique novamente para encerrar.<br>ESC para cancelar.</p>");
                     }
                 }
             }
@@ -1196,16 +1192,17 @@ var DrawHelper = (function() {
 
             function enableRotation(enable) {
                 drawHelper._scene.screenSpaceCameraController.enableRotate = enable;
-				
 				drawHelper._scene.screenSpaceCameraController.enableTranslate = enable;
 				drawHelper._scene.screenSpaceCameraController.enableZoom = enable;
 				drawHelper._scene.screenSpaceCameraController.enableTilt = enable;
 				drawHelper._scene.screenSpaceCameraController.enableLook = enable;				
-				
             }
 
 			setListener(billboard, 'leftUp', function(position) {
+				// Este metodo esta substituindo o onDragEnd abaixo.
+				enableRotation(true);				
 	            handler.destroy();
+	            _self.executeListeners({name: 'onEdited', positions: position});	            
 			});	
 
             setListener(billboard, 'leftDown', function(position) {
@@ -1219,8 +1216,7 @@ var DrawHelper = (function() {
                     _self.executeListeners({name: 'drag', positions: position});
                 }
                 function onDragEnd(position) {
-                    enableRotation(true);
-                    _self.executeListeners({name: 'dragEnd', positions: position});
+                	console.log('Era para acabar aqui, mas este metodo nunca foi chamado.');
                 }
 
                 handler.setInputAction(function(movement) {
@@ -1331,7 +1327,7 @@ var DrawHelper = (function() {
                             },
                             tooltip: function() {
                                 if(_self.positions.length > 3) {
-                                    return "Double click to remove this point";
+                                    return "Clique duplo para remover este ponto";
                                 }
                             }
                         };
@@ -1374,7 +1370,7 @@ var DrawHelper = (function() {
                                 }
                             },
                             tooltip: function() {
-                                return "Drag to create a new point";
+                                return "Arraste para inserir um novo ponto";
                             }
                         };
                         editMarkers.addBillboards(halfPositions, handleEditMarkerChanges);
@@ -1510,7 +1506,7 @@ var DrawHelper = (function() {
                                 }
                             },
                             tooltip: function() {
-                                return "Drag to change the corners of this extent";
+                                return "Arraste para alterar o retângulo";
                             }
                         };
                         markers.addBillboards(getExtentCorners(extent.extent), handleMarkerChanges);
@@ -1701,7 +1697,7 @@ var DrawHelper = (function() {
                                 }
                             },
                             tooltip: function() {
-                                return "Drag to change the radius";
+                                return "Arraste para alterar o raio";
                             }
                         };
                         markers.addBillboards(getMarkerPositions(), handleMarkerChanges);
@@ -1839,9 +1835,12 @@ var DrawHelper = (function() {
     }
 
     function getDisplayLatLngString(cartographic, precision) {
-        return cartographic.longitude.toFixed(precision || 3) + ", " + cartographic.latitude.toFixed(precision || 3);
+    	var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(5);
+    	var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(5);
+        return latitudeString + ',' + longitudeString;
     }
 
+    
     function clone(from, to) {
         if (from == null || typeof from != "object") return from;
         if (from.constructor != Object && from.constructor != Array) return from;

@@ -93,7 +93,7 @@ function goToOperationArea( operationArea ) {
 
 function startMap() {
 	
-	mapStyle = '3D';
+	mapStyle = '2D';
 	
 	terrainProvider = new Cesium.CesiumTerrainProvider({
 		url : olimpo,
@@ -199,8 +199,7 @@ function startMap() {
 	connect();
 	drawHelper = new DrawHelper( viewer );
 	
-	
-	  var graticule = new Graticule({
+	var graticule = new Graticule({
 	      	tileWidth: 512,
 	      	tileHeight: 512,
 			fontColor:  Cesium.Color.ORANGE, 

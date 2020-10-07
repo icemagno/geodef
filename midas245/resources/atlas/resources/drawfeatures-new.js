@@ -83,15 +83,13 @@ var billboards = scene.primitives.add(new Cesium.BillboardCollection({scene: vie
                 horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
                 verticalOrigin : Cesium.VerticalOrigin.CENTER,
                 scale : 1.0,
-                image: './img/glyphicons_242_google_maps.png',
+                image: '/resources/drawhelper/img/glyphicons_242_google_maps.png',
                 color : new Cesium.Color(1.0, 1.0, 1.0, 1.0),
-				//heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
             });
             billboard.setEditable();
 			
-			// Nao estah disparando o evento
             billboard.addListener('onEdited', function(event) {
-                loggingMessage('Marker edited');
+                loggingMessage('Marker edited: (Cartesian2) X=' + event.positions.x  + ' Y=' + event.positions.y );
             });
 			
 			
