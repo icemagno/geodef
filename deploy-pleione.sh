@@ -15,7 +15,7 @@ docker build \
 docker run --name pleione --hostname=pleione \
 -e USERNAME=postgres \
 -e PASS=admin \
--p 36990:8080 \
+-p 36212:8080 \
 -e STABLE_EXTENSIONS=netcdf-plugin,netcdf-out-plugin,querylayer-plugin,sldservice-plugin,grib-plugin,csw-plugin,css-plugin \
 -e COMMUNITY_EXTENSIONS=gpx-plugin,mbtiles-plugin,netcdf-ghrsst-plugin,mbtiles-store-plugin,ncwms-plugin,colormap-plugin \
 -e GEOSERVER_ADMIN_PASSWORD=sisgeodef \

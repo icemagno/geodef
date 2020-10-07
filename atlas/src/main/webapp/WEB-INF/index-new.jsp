@@ -224,11 +224,12 @@
 	<script src="${midasLocation}/atlas/resources/drawfeatures-new.js" type="text/javascript"></script>
 
 	<script src="${midasLocation}/atlas/resources/arvorecarto.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/layers.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/controlsidebar.js" type="text/javascript"></script>
 
 
 
 	<!-- 
-	<script src="${midasLocation}/atlas/resources/layers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/jsonlayers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/modal.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/profilegraph.js" type="text/javascript"></script>

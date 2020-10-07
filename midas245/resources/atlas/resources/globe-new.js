@@ -441,7 +441,6 @@ function bindInterfaceElements() {
 jQuery(function () {
 	
 	// polling para tentar manter o login.
-	/*
 	setInterval( function(){ 
 	    jQuery.ajax({
 			url:"/config", 
@@ -454,7 +453,6 @@ jQuery(function () {
 		    }, 		
 	    });
 	}, 60000 );	
-	*/
 	
 	// Adiciona funcionalidade "rotate" ao JQuery
 	jQuery.fn.rotate = function(degrees) {
@@ -466,12 +464,6 @@ jQuery(function () {
 	};	
 	
 	jQuery(window).on("resize", applyMargins);
-	
-	$("#mainLayerSlider").slider({});
-	$("#mainLayerSlider").on("slide", function(slideEvt) {
-		var valu = slideEvt.value / 100;
-		console.log(valu);
-	});	    
 	
 	
     jQuery.ajax({
@@ -492,6 +484,7 @@ jQuery(function () {
 			applyMargins();
 			startCartoTree();
 			
+			initControlSideBar();
 			
 			// So para testes. Dispara apos 3seg
 			setTimeout(function(){ 

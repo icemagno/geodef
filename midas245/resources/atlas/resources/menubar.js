@@ -239,6 +239,11 @@ function bindToolBarButtons() {
 	jQuery("#toolAddBox").click( function(){
 		drawBox();
 	});
+	
+	
+	jQuery("#openCatalogBtn").click( function(){
+		alert('Menubar.js :: openCatalogBtn');
+	});
 
 	/* **************************************************
 	 *                     SOLUCIONADORES 
