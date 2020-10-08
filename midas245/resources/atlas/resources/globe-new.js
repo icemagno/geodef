@@ -44,6 +44,7 @@ var mapproxy;
 var osmLocal;
 var osmTileServer;
 var olimpo;
+var baseOsmProvider;
 
 var bdqueimadas = 'http://queimadas.dgi.inpe.br/queimadas/terrama2q/geoserver/wms';
 
@@ -52,13 +53,23 @@ var handler = null;
 
 var drawHelper = null;
 
-function updateSisgeodefAddress(){
-	osmLocal = sisgeodefHost + '/mapproxy/service/wms';
-	mapproxy = sisgeodefHost + '/mapproxy/service/wms';
-	pleione = sisgeodefHost + '/geoserver/wms';
-	efestus = sisgeodefHost + '/geoserver/wms';
-	volcano = sisgeodefHost + '/geoserver/wms';
-	olimpo = sisgeodefHost + '/olimpo/tilesets/sisgide';
+function updateSisgeodefAddress( useGateKeeper ){
+	if( useGateKeeper){
+		osmLocal = sisgeodefHost + '/mapproxy/service/wms';
+		mapproxy = sisgeodefHost + '/mapproxy/service/wms';
+		pleione = sisgeodefHost + '/geoserver/wms';
+		efestus = sisgeodefHost + '/geoserver/wms';
+		volcano = sisgeodefHost + '/geoserver/wms';
+		olimpo = sisgeodefHost + '/olimpo/tilesets/sisgide';
+	} else {
+		osmLocal = sisgeodefHost + ':36890/service/wms';
+		mapproxy = sisgeodefHost + ':36890/service/wms';
+		pleione = sisgeodefHost + ':36212/geoserver/wms';
+		efestus = sisgeodefHost + ':36212/geoserver/wms';
+		volcano = sisgeodefHost + ':36212/geoserver/wms';
+		olimpo = sisgeodefHost + ':36503/tilesets/sisgide';
+		
+	}
 }
 
 
@@ -91,9 +102,15 @@ function goToOperationArea( operationArea ) {
 }
 
 
-function startMap() {
+
+function startMap( theMapStyle ) {
 	
-	mapStyle = '2D';
+	mapStyle = theMapStyle;
+	
+	if( mapStyle == '2D'){
+		$("#analise3dMainBtn").addClass('disabled');
+	} 
+	
 	
 	terrainProvider = new Cesium.CesiumTerrainProvider({
 		url : olimpo,
@@ -101,7 +118,6 @@ function startMap() {
 		isSct : false
 	});
 	
-	var baseOsmProvider = "";
 	if( mainConfiguration.useExternalOsm ){
 		fireToast( 'warning', 'Atenção', 'Você está usando o OpenStreetMap Online.', '000' );
 		
@@ -126,7 +142,7 @@ function startMap() {
 	viewer = new Cesium.Viewer('cesiumContainer',{
 		terrainProvider : terrainProvider,
 		sceneMode : sceneMapMode,
-		mapMode2D: Cesium.MapMode2D.ROTATE,
+		// mapMode2D: Cesium.MapMode2D.ROTATE,
 		timeline: false,
 		animation: false,
 		baseLayerPicker: false,
@@ -466,15 +482,17 @@ jQuery(function () {
 	jQuery(window).on("resize", applyMargins);
 	
 	
+	var theMapStyle = getUrlParam('mapStyle','2D');
+	
     jQuery.ajax({
 		url:"/config", 
 		type: "GET", 
 		success: function( obj ) {
 			mainConfiguration = obj;
 			sisgeodefHost = obj.sisgeodefHost;
-			updateSisgeodefAddress( );
+			updateSisgeodefAddress( obj.useGateKeeper  );
 			osmTileServer = obj.osmTileServer;
-			startMap();
+			startMap( theMapStyle );
 			mainEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
 			marineTrafficEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
 			removeMouseDoubleClickListener();

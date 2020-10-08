@@ -472,7 +472,7 @@ function createImageryProvider( sourceUrl, sourceLayers, canQuery, transparency,
 		tileHeight: 256,		
 		enablePickFeatures : canQuery,
 		parameters : { 
-			transparent : true,
+			transparent : false,
 			srs	: 'EPSG:4326',
 			format : 'image/' + imageType, 
 			tiled : true 

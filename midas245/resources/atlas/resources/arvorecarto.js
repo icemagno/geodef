@@ -1,5 +1,131 @@
 var theTreeElement = null;
 
+function openCatalogBox(){
+	jQuery('#catalogTreeModal').attr('class', 'modal fade bs-example-modal-lg').attr('aria-labelledby','catalogModalLabel');
+	$('#tab_geo').html( getGeoTabContent() );
+	$('#tab_upload').html('<b>Não implementado ainda.</b>');
+	
+	jQuery('#layerContainer').slimScroll({
+        height: '450px',
+        wheelStep : 10,
+    });	
+	jQuery('#layerDetailsContainer').slimScroll({
+        height: '230px',
+        wheelStep : 10,
+    });	
+	
+	jQuery('#catalogTreeModal').modal('show');
+	
+}
+
+
+function getGeoTabContent(){
+	var content = '<div class="row">' + 
+		'<div class="col-md-6" style="border-right: 1px solid #f4f4f4;padding-right: 5px;padding-left: 0px;">' +
+			'<div id="layerContainer">' + 
+			
+				getCatalogTree() +	
+				
+			'</div>'+	
+		'</div>' +
+		'<div class="col-md-6" style="padding-right: 0px;padding-left: 5px;">' +
+			'<div style="margin-bottom: 10px;" class="box box-widget"><div class="box-body">'+
+				'<img style="width:100%" src="http://sisgeodef.defesa.mil.br:36203/atlas/map-teste.jpg">' +
+			'</div></div>' + 	
+			'<div id="layerDetailsContainer">' + 
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget magna tempor, accumsan quam at, egestas massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras semper rutrum turpis, quis convallis tortor mollis eget. Mauris consectetur commodo quam, et blandit justo dapibus nec. Vivamus euismod, dolor nec tincidunt volutpat, felis metus imperdiet velit, nec tempus leo felis euismod lorem. Donec vel aliquam eros. Etiam consequat metus id mi pulvinar, sed egestas elit efficitur. In lobortis purus vitae leo sollicitudin fermentum. Nulla quis diam eget enim ultricies gravida. Fusce iaculis fermentum volutpat. Curabitur mattis diam bibendum diam sodales, tempus rutrum neque interdum.' + 
+				'Phasellus ac euismod nisl. Vivamus tincidunt quam sed auctor rhoncus. Praesent nec massa sollicitudin, porttitor neque eu, viverra justo. Praesent libero nunc, dapibus nec diam a, mollis molestie leo. Pellentesque sem mauris, aliquet sit amet cursus sed, accumsan id ante. Duis dolor sem, rhoncus eu porttitor a, facilisis at sem. Curabitur dolor lectus, malesuada ac mattis vitae, accumsan vitae velit.' + 
+				'Suspendisse accumsan, purus nec convallis dignissim, neque purus lobortis dolor, et pulvinar erat turpis id sapien. Mauris et nisi magna. Nam eleifend metus vitae ligula vulputate tristique. Pellentesque sollicitudin vulputate nisl, eu cursus elit cursus fermentum. Etiam dui arcu, rhoncus at facilisis at, vestibulum vitae lacus. Maecenas euismod lacus odio, quis rutrum velit porttitor sed. Aenean ut orci tempus, pharetra lectus ac, placerat nunc. Etiam pulvinar et elit placerat varius. Cras sed quam eu eros malesuada pharetra quis eu augue. Pellentesque interdum consequat lacus id scelerisque. Aliquam vulputate tempor mauris sit amet tincidunt. Praesent fringilla, justo sed euismod accumsan, mauris mi bibendum magna, in bibendum erat ante eget tortor. Donec egestas pretium ullamcorper. Nam facilisis massa massa, in imperdiet turpis vehicula non.' + 
+			'</div>'+	
+		'</div>' + 
+	'</div>';
+	return content;
+}	
+
+
+function getCatalogTree(){
+
+	var content = '<div class="panel" style="margin-bottom: 0px">' +
+					'<div style="padding: 0px;" class="box-header"> '+
+						'<button style="text-align: left;" href="#tab001" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
+							'&nbsp; Imageamento'+
+						'</button>'+
+					'</div>'+
+					'<div id="tab001" class="panel-collapse collapse">'+
+						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 01</div>'+
+					'</div>'+
+				'</div>';
+
+	content = content + '<div class="panel" style="margin-bottom: 0px">' +
+					'<div style="padding: 0px;" class="box-header"> '+
+						'<button style="text-align: left;" href="#tab002" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
+							'&nbsp; Geoinformação Terrestre'+
+						'</button>'+
+					'</div>'+
+					'<div id="tab002" class="panel-collapse collapse">'+
+						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 02</div>'+
+					'</div>'+
+				'</div>';
+
+	content = content + '<div class="panel" style="margin-bottom: 0px">' +
+					'<div style="padding: 0px;" class="box-header"> '+
+						'<button style="text-align: left;" href="#tab003" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
+							'&nbsp; Geoinformação Aeronáutica'+
+						'</button>'+
+					'</div>'+
+					'<div id="tab003" class="panel-collapse collapse">'+
+						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 03</div>'+
+					'</div>'+
+				'</div>';
+
+	content = content + '<div class="panel" style="margin-bottom: 0px">' +
+					'<div style="padding: 0px;" class="box-header"> '+
+						'<button style="text-align: left;" href="#tab004" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
+							'&nbsp; Geoinformação Náutica'+
+						'</button>'+
+					'</div>'+
+					'<div id="tab004" class="panel-collapse collapse">'+
+						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 03</div>'+
+					'</div>'+
+				'</div>';
+
+	content = content + '<div class="panel" style="margin-bottom: 0px">' +
+					'<div style="padding: 0px;" class="box-header"> '+
+						'<button style="text-align: left;" href="#tab005" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
+							'&nbsp; Controle Geodésico'+
+						'</button>'+
+					'</div>'+
+					'<div id="tab005" class="panel-collapse collapse">'+
+						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 03</div>'+
+					'</div>'+
+				'</div>';
+
+	content = content + '<div class="panel" style="margin-bottom: 0px">' +
+					'<div style="padding: 0px;" class="box-header"> '+
+						'<button style="text-align: left;" href="#tab006" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
+							'&nbsp; Limites e Nomes Geográficos'+
+						'</button>'+
+					'</div>'+
+					'<div id="tab006" class="panel-collapse collapse">'+
+						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 03</div>'+
+					'</div>'+
+				'</div>';
+
+	content = content + '<div class="panel" style="margin-bottom: 0px">' +
+					'<div style="padding: 0px;" class="box-header"> '+
+						'<button style="text-align: left;" href="#tab007" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
+							'&nbsp; Geoinformação Temática'+
+						'</button>'+
+					'</div>'+
+					'<div id="tab007" class="panel-collapse collapse">'+
+						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 03</div>'+
+					'</div>'+
+				'</div>';
+
+
+
+	return content;
+}
 
 function addLayerFromTree( layerName, workspace, scale, layerAlias, server, imageType ) {
 	 addToPanelLayer( layerName, workspace, scale, layerAlias, server, imageType );

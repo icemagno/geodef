@@ -12,7 +12,7 @@
 							<div class="col-sm-6" style="padding:0px">
 								<div style="position:relative;margin: 2px;">
 									<input style="cursor:pointer;position: absolute;top:2px;right:2px" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-									<img title="OpenStreetMap"  class="img-responsive basemapimg" src="${midasLocation}/atlas/basemaps/bg_osm.jpg" alt="Photo">
+									<img title="OSM-DEFESA"  class="img-responsive basemapimg" src="${midasLocation}/atlas/basemaps/bg_osm.jpg" alt="Photo">
 								</div>
 								<div style="position:relative;margin: 2px;">
 									<input style="cursor:pointer;position: absolute;top:2px;right:2px" type="radio" name="optionsRadios" id="optionsRadios2" value="option1">
@@ -30,8 +30,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<input title="Opacidade da Camada Base" id="mainLayerSlider" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" 
+						<div  title="Opacidade da Camada Base"  class="row">
+							<input id="mainLayerSlider" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" 
 								data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">
 						</div>
 					</div>

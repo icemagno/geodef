@@ -45,6 +45,11 @@ seeds:
     coverages: [brasil]
     levels:
       to: 17
+  bdgexortoimagens:
+    caches: [bdgexortoimagens_cache]
+    coverages: [brasil]
+    levels:
+      to: 17
   seedapolo_mma_cache:
     caches: [apolo_mma_cache]
     coverages: [brasil]

@@ -86,7 +86,7 @@
 
 <div class="btn-group">
 	<!-- ANALISE 3D  -->
-    <a href="#" title="Análise 3D" class="btn btn-primary navbar-btn dropdown-toggle topmnubtn" data-toggle="dropdown">
+    <a href="#" id="analise3dMainBtn" title="Análise 3D" class="btn btn-primary navbar-btn dropdown-toggle topmnubtn" data-toggle="dropdown">
     	<img src="${midasLocation}/atlas/icons/3d.png" class="topmnuimg">
     </a>
     

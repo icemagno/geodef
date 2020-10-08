@@ -28,6 +28,7 @@ server:
 sisgeodef:
   hostAddress: http://sisgeodef.defesa.mil.br
   passwordEntropy: 40
+  useGateKeeper: true
   
 management:
   endpoints:

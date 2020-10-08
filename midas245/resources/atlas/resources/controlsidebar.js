@@ -1,12 +1,9 @@
 
 var baselayerCollection = [];
-var currentBaseLayerAlphaValue = 100;
+var currentBaseLayerAlphaValue = 1;
 
 function doChangeBaseLayer( layerName ){
 	var newProvider = baselayerCollection[ layerName ];
-	
-	console.log( newProvider );
-	
 	var layers = viewer.imageryLayers;
 	var currentProvider = layers.get(0);
 	layers.remove( currentProvider );
@@ -45,14 +42,14 @@ function initControlSideBar(){
 
 
 function populateBaseLayerCollection(){
-	baselayerCollection['mosaico'] = getProvider( mapproxy, 'bdgex', false, 1.0, 'png' );
-	baselayerCollection['rapideye'] = getProvider( mapproxy, 'rapideye', false, 1.0, 'jpeg' );
-	baselayerCollection['osm'] = viewer.imageryLayers.get(0);
-	baselayerCollection['ortoimagens'] = getProvider( volcano, 'volcano:hillshade', false, 1.0 );
+	baselayerCollection['mosaico'] = getProvider( mapproxy, 'bdgex', false, 'png' );
+	baselayerCollection['rapideye'] = getProvider( mapproxy, 'rapideye', false, 'jpeg' );
+	baselayerCollection['osm'] = baseOsmProvider;
+	baselayerCollection['ortoimagens'] = getProvider( mapproxy, 'ortoimagens', false, 'png' );
 }
 
-function getProvider(  sourceUrl, sourceLayers, canQuery, transparency, imageType ) {
+function getProvider(  sourceUrl, sourceLayers, canQuery, imageType ) {
 	if( !imageType ) imageType = 'png8';	
-	var provider = createImageryProvider( sourceUrl, sourceLayers, canQuery, transparency, imageType );
+	var provider = createImageryProvider( sourceUrl, sourceLayers, canQuery, currentBaseLayerAlphaValue, imageType );
 	return provider;
 }

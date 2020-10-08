@@ -44,8 +44,8 @@
 	}
 	
 	.basemapimg{
-		border:1px solid #cacaca;
-		border-radius:2px;
+		border:1px solid #367fa9;
+		border-radius:5px;
 	    margin: 3px;
 	}
 	
@@ -90,15 +90,34 @@
 	    width: 10px;
 	    height: 16px;	
 	}
+
+	
+	.modal {
+	  text-align: center;
+	  padding: 0!important;
+	}
+	
+	.modal:before {
+	  content: '';
+	  display: inline-block;
+	  height: 100%;
+	  vertical-align: middle;
+	  margin-right: -4px; /* Adjusts for spacing */
+	}
+	
+	.modal-dialog {
+	  display: inline-block;
+	  text-align: left;
+	  vertical-align: middle;
+	}	
 		
 </style>
 
 
 <body class="skin-black-light layout-top-nav">
 
-	<!--  VERIFICAR SE ESTE MODAL ESTÁ SENDO USADO  -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+	<!-- MODAL GENERICO || modal.js  --> 	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog ">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -112,6 +131,33 @@
 			</div>
 		</div>
 	</div>
+
+
+	<!-- MODAL DA ARVORE DE CATALOGO || ARVORECARTO.JS -->	
+	<div  class="modal fade bs-example-modal-lg" id="catalogTreeModal" tabindex="-1" role="dialog" aria-labelledby="catalogModalLabel" aria-hidden="true">
+		<div style="width:1000px" class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body" id="catalogModalBody">
+					<div class="nav-tabs-custom" style="margin-bottom:0px;box-shadow:none;border-radius:0px"> 
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab_geo" data-toggle="tab">Geoserviços</a></li>
+							<li><a href="#tab_upload" data-toggle="tab">Enviar Dados</a></li>
+						</ul>
+						<div class="tab-content" style="height: 450px;">
+							<div class="tab-pane active" id="tab_geo"></div>
+							<div class="tab-pane" id="tab_upload"></div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer" id="catalogModalFooter">
+					<button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
 	<!-- *********************************************** -->
 
 	<div class="modal modal-warning fade" id="modal-warning" tabindex="-1"
@@ -227,11 +273,11 @@
 	<script src="${midasLocation}/atlas/resources/layers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/controlsidebar.js" type="text/javascript"></script>
 
+	<script src="${midasLocation}/atlas/resources/modal.js" type="text/javascript"></script>
 
 
 	<!-- 
 	<script src="${midasLocation}/atlas/resources/jsonlayers.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/modal.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/profilegraph.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/measures.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/viewshed.js" type="text/javascript"></script>

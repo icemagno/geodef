@@ -14,7 +14,14 @@ public class ConfigModel implements Serializable {
 	private String osmTileServer;
 	private boolean useExternalOsm;
 	private UserLesserDTO user;
+	private boolean useGateKeeper; 
 	
+	public boolean isUseGateKeeper() {
+		return useGateKeeper;
+	}
+	public void setUseGateKeeper(boolean useGateKeeper) {
+		this.useGateKeeper = useGateKeeper;
+	}
 	public boolean isUseExternalOsm() {
 		return useExternalOsm;
 	}

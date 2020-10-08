@@ -100,7 +100,6 @@ var billboards = scene.primitives.add(new Cesium.BillboardCollection({scene: vie
 
 
 function drawPolygon( draped ) {
-	console.log('is me');
 	if( draped ) {
 		draw2DPolygon();
 	} else {

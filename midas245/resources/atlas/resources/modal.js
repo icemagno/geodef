@@ -1,7 +1,7 @@
 function setModalBox(title,content,footer,jQuerysize){
-	document.getElementById('modal-bodyku').innerHTML=content;
-	document.getElementById('myModalLabel').innerHTML=title;
-	document.getElementById('modal-footerq').innerHTML=footer;
+	$('#modal-bodyku').html(content);
+	$('#myModalLabel').html(title);
+	$('#modal-footerq').html(footer);
 	
 	if(jQuerysize == 'large') {
 		jQuery('#myModal').attr('class', 'modal fade bs-example-modal-lg')

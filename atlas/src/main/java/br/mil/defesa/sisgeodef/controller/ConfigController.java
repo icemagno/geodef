@@ -31,6 +31,9 @@ public class ConfigController {
 	@Value("${sisgeodef.hostAddress}")
 	private String sisgeodefHost;   
 
+	@Value("${sisgeodef.useGateKeeper}")
+	private Boolean useGateKeeper;   
+
 	@Value("${openstreetmap.wms.url}")
 	private String osmServer;   
 
@@ -52,6 +55,7 @@ public class ConfigController {
 		cm.setOsmTileServer( osmTileServer );
 		cm.setUseExternalOsm( useExternalOsm );
 		cm.setUser( getLoggedUser( session ) );
+		cm.setUseGateKeeper(useGateKeeper);
 		return cm;		
 	}		
 	

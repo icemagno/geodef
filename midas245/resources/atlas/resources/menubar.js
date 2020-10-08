@@ -240,10 +240,14 @@ function bindToolBarButtons() {
 		drawBox();
 	});
 	
-	
+	// Botoes da barra lateral esquerda.
 	jQuery("#openCatalogBtn").click( function(){
-		alert('Menubar.js :: openCatalogBtn');
+		openCatalogBox();
 	});
+	jQuery("#uploadUserDataBtn").click( function(){
+		//
+	});
+
 
 	/* **************************************************
 	 *                     SOLUCIONADORES 

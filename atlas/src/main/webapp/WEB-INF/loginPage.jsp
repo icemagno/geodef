@@ -65,7 +65,7 @@
                                        <input name="commit" value="Login" class="btn btn-block btn-success btn-sm" type="submit">
                                        <input type="hidden" class="form-control" name="error" value="">
                                     </div>
-                                    <div style="margin: 0 auto; width: 33%;"><a href="/resetpassword">[ Esqueci a Senha ]</a></div>
+                                    <div style="margin: 0 auto; width: 45%;text-align:center;"><a href="/resetpassword">[ Esqueci a Senha ]</a></div>
                                    </div> 
                                  </form>
 		                     </div>

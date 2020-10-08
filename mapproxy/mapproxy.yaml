@@ -43,6 +43,9 @@ layers:
   - name: bdgex
     title: Camada Cartas - BDGEX
     sources: [bdgexcartas_cache]
+  - name: ortoimagens
+    title: Camada Ortoimagens - BDGEX
+    sources: [bdgexortoimagens_cache]
   - name: rapideye
     title: Camada RapidEye - BDGEX
     sources: [rapideye_cache]
@@ -158,6 +161,13 @@ caches:
     concurrent_tile_creators: 4
     link_single_color_images: true
     sources: [bdgexcartas_wms]
+    format: image/png
+    transparent: true
+  bdgexortoimagens_cache:
+    grids: [geodetic]
+    concurrent_tile_creators: 4
+    link_single_color_images: true
+    sources: [bdgexortoimagens_wms]
     format: image/png
     transparent: true
   carta_22900_cache:
@@ -395,6 +405,11 @@ sources:
     req:
       url: http://bdgex.eb.mil.br/mapcache/
       layers: ctm250,ctm100,ctm50,ctm25,Multiescala_LocalidadesLimites
+  bdgexortoimagens_wms:
+    type: wms
+    req:
+      url: http://bdgex.eb.mil.br/mapcache/
+      layers: ortoimagem_scn25
   apolo_mma_wms:
     type: wms
     req:
