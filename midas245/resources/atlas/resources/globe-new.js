@@ -241,28 +241,26 @@ function startMap( theMapStyle ) {
 
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
-	
 	populateLayerPanelAsTesting();
 
-	/*  Maldito CORS !!
+	
+	/*
 	var imageryProvider = new Cesium.SingleTileImageryProvider({
-	    url : "https://mapas.inmet.gov.br/BR.gif",
+		//url : "https://mapas.inmet.gov.br/BR.gif",
+	    url : "/resources/metoc/BR.gif",
 	    rectangle : Cesium.Rectangle.fromDegrees(-95.0, -60.17, -19.8, 22.4   ) //west, south, east, north
 	});
 	
 	imageryProvider.defaultAlpha = 0.7;
-		
 	var layers = viewer.scene.imageryLayers;
 	layers.addImageryProvider( imageryProvider );	
-	*/
-	
+	 */
+
 	
 	
 	
 	// Teste de particulas de vento
 	// doWindParticles();
-	
-	
 	/*
 	var promise =  viewer.scene.addFieldLayer("/resources/data/climatologia/UTCI_APR.nc");
 	Cesium.when(promise,function(fieldLayer){
@@ -663,7 +661,7 @@ function updatePanelFooter( position ) {
 	
 }
 
-
+/*
 function getMapMousePosition( movement ) {
 
 	if ( mapStyle === '2D' ) {
@@ -682,11 +680,12 @@ function getMapMousePosition( movement ) {
 	}
 	
 }
+*/
 
 function addMouseHoverListener() {
 	mainEventHandler.setInputAction( function(movement) {
 		
-		var position = getMapMousePosition( movement );
+		var position = getMapPosition3D2D( movement.endPosition );
 		try {
 			if ( position ) updatePanelFooter( position );
 		} catch ( err ) {

@@ -2,6 +2,27 @@ var ws = null;
 var configuration = null;
 var stompClient = null;
 
+
+function getMapPosition3D2D( movement ){
+
+	if ( viewer.scene.mode == Cesium.SceneMode.SCENE2D ) {
+        var position = viewer.camera.pickEllipsoid(movement, scene.globe.ellipsoid);
+        if (position) {
+        	return position;
+        } 
+	}
+	
+	if ( viewer.scene.mode == Cesium.SceneMode.SCENE3D ) {
+		var ray = viewer.camera.getPickRay(movement);
+		var position = viewer.scene.globe.pick(ray, viewer.scene);
+		if (Cesium.defined(position)) {
+			return position;
+		} 
+	}
+	
+}
+
+
 function loadScript(url, callback){
 
     var script = document.createElement("script")

@@ -979,7 +979,7 @@ var DrawHelper = (function() {
                 } else {
                     var cartesian = scene.camera.pickEllipsoid(position, ellipsoid);
                     if (cartesian) {
-                        positions.pop();
+                    	positions.pop();
                         // make sure it is slightly different
                         cartesian.y += (1 + Math.random());
                         positions.push(cartesian);
@@ -1008,7 +1008,10 @@ var DrawHelper = (function() {
                         if(typeof options.callback == 'function') {
                             // remove overlapping ones
                             var index = positions.length - 1;
-                            options.callback(positions);
+                            // Clique duplo para finalizar acaba mandando mais duas posicoes
+                            positions.pop();  
+                            positions.pop();
+                            options.callback( positions );
                         }
                     }
                 }
