@@ -272,6 +272,7 @@
 	<script src="${midasLocation}/atlas/resources/arvorecarto.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/layers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/controlsidebar.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/profile.js" type="text/javascript"></script>
 
 	<script src="${midasLocation}/atlas/resources/modal.js" type="text/javascript"></script>
 

@@ -21,17 +21,17 @@
         <!-- /.search form -->
 
 		<div class="panel leftpaneltitle">
-			<button id="openCatalogBtn" style="text-align: left;width:85%;float:left" type="button" class="btn btn-primary btn">
+			<button id="openCatalogBtn" style="text-align: left;width:85%;float:left" type="button" class="btn btn-primary">
 				<i style="font-size: 18px;" class="fa fa-plus-circle"></i> &nbsp; Adicionar Camada
 			</button>
-			<button id="uploadUserDataBtn" style="float:right; width:14%" type="button" class="btn btn-primary btn">
+			<button id="uploadUserDataBtn" style="float:right; width:14%" type="button" class="btn btn-primary">
 				<i style="font-size: 18px;" class="fa fa-upload"></i>
 			</button>
 		</div>
 
 		
 		<div class="panel leftpaneltitle">
-			<button style="text-align: left;" type="button" class="btn btn-block btn-primary btn">
+			<button style="text-align: left;" type="button" class="btn btn-block btn-primary">
 				<i class="fa fa-map-o"></i> &nbsp; Camadas Ativas / Cenário
 			</button>
 			<div id="activeLayerContainer"  style="padding: 4px; height: 400px; background-color:#f9fafc" class="box-body"></div>

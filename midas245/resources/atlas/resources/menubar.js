@@ -239,6 +239,9 @@ function bindToolBarButtons() {
 	jQuery("#toolAddBox").click( function(){
 		drawBox();
 	});
+	jQuery("#toolPrfilElevacao").click( function(){
+		calcLineTerrainProfile();
+	});
 	
 	// Botoes da barra lateral esquerda.
 	jQuery("#openCatalogBtn").click( function(){

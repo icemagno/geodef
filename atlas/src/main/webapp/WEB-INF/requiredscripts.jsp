@@ -49,6 +49,9 @@
 
 <script src="${midasLocation}/atlas/resources/toast.js"></script>
 
+<!-- Morris.js charts -->
+<script src="${midasLocation}/bower_components/raphael/raphael.min.js"></script>
+<script src="${midasLocation}/bower_components/morris.js/morris.min.js"></script>
 
 
 <!-- InputMask -->

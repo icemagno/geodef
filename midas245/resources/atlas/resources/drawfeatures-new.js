@@ -11,17 +11,11 @@ function drawLine(){
                 geodesic: true
             });
             
-            
             scene.primitives.add(polyline);
             polyline.setEditable();
             polyline.addListener('onEdited', function(event) {
                 loggingMessage('Polyline edited, ' + event.positions.length + ' points');
             });
-            
-			
-			
-            
-            doProfile(polyline);
             
 		}
 	});
