@@ -88,10 +88,12 @@ function formatCatalogTopic( topic ){
 function getChildren( source ){
 	var result = [];
 	var totalSources = source.sources.length;
-	if ( totalSources == 0 ) return result;
+	if ( totalSources == 0 ) return null;
 	for( var z=0; z < totalSources; z++ ){
 		var ss = source.sources[z];
-		var theData = { text: ss.sourceName, nodes:[] };
+		var theImage = null;
+		if( ss.sources.length == 0 ) theImage = '/resources/img/layer.png';
+		var theData = { text: ss.sourceName, nodes:[], tags: [ ss.sources.length ], image : theImage };
 		theData.nodes = getChildren( ss );
 		result.push( theData );
 	}
@@ -106,7 +108,9 @@ function getTopicSources( topic ){
 	
 	for( var y=0; y < totalSources; y++ ){
 		var source = topic.sources[y];
-		var theData = { text: source.sourceName, nodes:[] };
+		var theImage = null;
+		if( source.sources.length == 0 ) theImage = '/resources/img/layer.png';
+		var theData = { text: source.sourceName, nodes:[], tags: [ source.sources.length ], image : theImage };
 		theData.nodes = getChildren( source );
 		if( source.parentId == null ) treeMainData.push( theData );
 		
@@ -119,7 +123,8 @@ function getTopicSources( topic ){
 			color: "#3c8dbc",
 	        expandIcon: 'glyphicon glyphicon glyphicon-folder-close',
 	        collapseIcon: 'glyphicon glyphicon glyphicon-folder-open',			
-			showTags: true,			
+			showTags: true,	
+			showImage: true,
 	        multiSelect: false,
 	        onNodeSelected: function(event, node) {
 	        	//
