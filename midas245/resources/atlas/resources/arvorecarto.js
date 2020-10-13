@@ -1,5 +1,7 @@
 var theTreeElement = null;
 
+var allSources = [];
+
 function openCatalogBox(){
 	getCatalogTopics();
 }
@@ -11,9 +13,6 @@ function getCatalogTopics(){
 		url:"/catalog/topics", 
 		type: "GET", 
 		success: function( catalogTopics ) {
-			
-			console.log( catalogTopics );
-			
 			
 			jQuery('#catalogTreeModal').attr('class', 'modal fade bs-example-modal-lg').attr('aria-labelledby','catalogModalLabel');
 			$('#tab_geo').html( getGeoTabContent( catalogTopics ) );
@@ -86,17 +85,34 @@ function formatCatalogTopic( topic ){
 }
 
 
+function getChildren( source ){
+	var result = [];
+	var totalSources = source.sources.length;
+	if ( totalSources == 0 ) return result;
+	for( var z=0; z < totalSources; z++ ){
+		var ss = source.sources[z];
+		var theData = { text: ss.sourceName, nodes:[] };
+		theData.nodes = getChildren( ss );
+		result.push( theData );
+	}
+	return result;
+}
+
+
 function getTopicSources( topic ){
 	var content = "";
 	var treeMainData = [];
 	var totalSources = topic.sources.length; 
 	
-	
 	for( var y=0; y < totalSources; y++ ){
-		var source = topic.sources[x];
-		treeMainData.push( { text: source.sourceName, nodes:[] } );
+		var source = topic.sources[y];
+		var theData = { text: source.sourceName, nodes:[] };
+		theData.nodes = getChildren( source );
+		if( source.parentId == null ) treeMainData.push( theData );
+		
 	}
 
+	
 	if( treeMainData.length > 0 ){
 		var theTreeElement = $('#sourcesTree' + topic.id).treeview({
 			data: treeMainData,
