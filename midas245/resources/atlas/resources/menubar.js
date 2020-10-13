@@ -204,6 +204,22 @@ function bindToolBarButtons() {
 		
 	});
 
+	// Barra de busca
+    $("#myPlaceBtn").click( function(){
+    	getUserLocation();
+    });
+    
+    $("#helpOnSerachBarBtn").mouseenter( function(){
+    	$("#searchBarHelpContainer").show();
+    }).mouseleave( function(){
+    	$("#searchBarHelpContainer").hide();
+    });
+    	
+    
+    
+    
+    // ==================================================
+    
     jQuery("#routeDirButton").click( function(){
     	hideRouteDir();
     });

@@ -12,16 +12,16 @@
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Digite os dados de busca" id="search-input">
                 <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-xs">
+                    <button style="cursor:pointer" type="submit" name="search" id="search-btn" class="btn btn-xs">
                         <img src="${midasLocation}/atlas/icons/lupa_preta.png" style="height: 19px;">
                     </button>
-					<button type="button" class="btn btn-xs">
+					<button style="cursor:pointer" title="Meu Lugar" id="myPlaceBtn" type="button" class="btn btn-xs">
 						<img src="${midasLocation}/atlas/icons/my_place.png" style="height: 19px;"> 
 					</button>
-					<button type="button" class="btn btn-xs">
+					<button style="cursor:pointer" title="Buscar por coordenadas" type="button" class="btn btn-xs">
 						<img src="${midasLocation}/atlas/icons/buscar_coordenadas2.png" style="height: 19px;">
 					</button>
-					<button type="button" class="btn btn-xs">
+					<button style="cursor:pointer" id="helpOnSerachBarBtn" type="button" class="btn btn-xs">
 						<img src="${midasLocation}/atlas/icons/help_preto.png" style="height: 19px;">
 					</button>
                 </span>

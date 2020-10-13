@@ -243,7 +243,6 @@ function startMap( theMapStyle ) {
 function doSomeSandBoxTests(){
 	populateLayerPanelAsTesting();
 
-	
 	/*
 	var imageryProvider = new Cesium.SingleTileImageryProvider({
 		//url : "https://mapas.inmet.gov.br/BR.gif",
@@ -498,8 +497,6 @@ jQuery(function () {
 			addCameraChangeListener();
 			bindInterfaceElements();
 			applyMargins();
-			startCartoTree();
-			
 			initControlSideBar();
 			
 			// So para testes. Dispara apos 3seg

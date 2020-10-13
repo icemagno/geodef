@@ -1,30 +1,55 @@
 var theTreeElement = null;
 
 function openCatalogBox(){
-	jQuery('#catalogTreeModal').attr('class', 'modal fade bs-example-modal-lg').attr('aria-labelledby','catalogModalLabel');
-	$('#tab_geo').html( getGeoTabContent() );
-	$('#tab_upload').html('<b>Não implementado ainda.</b>');
+	getCatalogTopics();
+}
+
+
+function getCatalogTopics(){
 	
-	jQuery('#layerContainer').slimScroll({
-        height: '450px',
-        wheelStep : 10,
-    });	
-	jQuery('#layerDetailsContainer').slimScroll({
-        height: '230px',
-        wheelStep : 10,
-    });	
-	
-	jQuery('#catalogTreeModal').modal('show');
+    jQuery.ajax({
+		url:"/catalog/topics", 
+		type: "GET", 
+		success: function( catalogTopics ) {
+			
+			jQuery('#catalogTreeModal').attr('class', 'modal fade bs-example-modal-lg').attr('aria-labelledby','catalogModalLabel');
+			$('#tab_geo').html( getGeoTabContent( catalogTopics ) );
+			$('#tab_upload').html('<b>Não implementado ainda.</b>');
+			
+			jQuery('#layerContainer').slimScroll({
+		        height: '450px',
+		        wheelStep : 10,
+		    });	
+			jQuery('#layerDetailsContainer').slimScroll({
+		        height: '230px',
+		        wheelStep : 10,
+		    });	
+			
+			jQuery('#catalogTreeModal').modal('show');
+			
+			for( x=0; x<catalogTopics.length;x++ ){
+				getTopicSources( catalogTopics[x] );
+			}
+			
+			$('.list-group-item').css({'border-radius':0});
+
+			
+		},
+	    error: function(xhr, textStatus) {
+	    	fireToast( 'error', 'Erro Crítico', 'Não foi possível receber o catálogo.', '404' );
+	    }, 		
+    });
 	
 }
 
 
-function getGeoTabContent(){
+
+function getGeoTabContent( catalogTopics ){
 	var content = '<div class="row">' + 
 		'<div class="col-md-6" style="border-right: 1px solid #f4f4f4;padding-right: 5px;padding-left: 0px;">' +
 			'<div id="layerContainer">' + 
 			
-				getCatalogTree() +	
+				getCatalogTree( catalogTopics ) +	
 				
 			'</div>'+	
 		'</div>' +
@@ -43,90 +68,72 @@ function getGeoTabContent(){
 }	
 
 
-function getCatalogTree(){
-
+function formatCatalogTopic( topic ){
 	var content = '<div class="panel" style="margin-bottom: 0px">' +
-					'<div style="padding: 0px;" class="box-header"> '+
-						'<button style="text-align: left;" href="#tab001" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
-							'&nbsp; Imageamento'+
-						'</button>'+
-					'</div>'+
-					'<div id="tab001" class="panel-collapse collapse">'+
-						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 01</div>'+
-					'</div>'+
-				'</div>';
-
-	content = content + '<div class="panel" style="margin-bottom: 0px">' +
-					'<div style="padding: 0px;" class="box-header"> '+
-						'<button style="text-align: left;" href="#tab002" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
-							'&nbsp; Geoinformação Terrestre'+
-						'</button>'+
-					'</div>'+
-					'<div id="tab002" class="panel-collapse collapse">'+
-						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 02</div>'+
-					'</div>'+
-				'</div>';
-
-	content = content + '<div class="panel" style="margin-bottom: 0px">' +
-					'<div style="padding: 0px;" class="box-header"> '+
-						'<button style="text-align: left;" href="#tab003" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
-							'&nbsp; Geoinformação Aeronáutica'+
-						'</button>'+
-					'</div>'+
-					'<div id="tab003" class="panel-collapse collapse">'+
-						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 03</div>'+
-					'</div>'+
-				'</div>';
-
-	content = content + '<div class="panel" style="margin-bottom: 0px">' +
-					'<div style="padding: 0px;" class="box-header"> '+
-						'<button style="text-align: left;" href="#tab004" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
-							'&nbsp; Geoinformação Náutica'+
-						'</button>'+
-					'</div>'+
-					'<div id="tab004" class="panel-collapse collapse">'+
-						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 03</div>'+
-					'</div>'+
-				'</div>';
-
-	content = content + '<div class="panel" style="margin-bottom: 0px">' +
-					'<div style="padding: 0px;" class="box-header"> '+
-						'<button style="text-align: left;" href="#tab005" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
-							'&nbsp; Controle Geodésico'+
-						'</button>'+
-					'</div>'+
-					'<div id="tab005" class="panel-collapse collapse">'+
-						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 03</div>'+
-					'</div>'+
-				'</div>';
-
-	content = content + '<div class="panel" style="margin-bottom: 0px">' +
-					'<div style="padding: 0px;" class="box-header"> '+
-						'<button style="text-align: left;" href="#tab006" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
-							'&nbsp; Limites e Nomes Geográficos'+
-						'</button>'+
-					'</div>'+
-					'<div id="tab006" class="panel-collapse collapse">'+
-						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 03</div>'+
-					'</div>'+
-				'</div>';
-
-	content = content + '<div class="panel" style="margin-bottom: 0px">' +
-					'<div style="padding: 0px;" class="box-header"> '+
-						'<button style="text-align: left;" href="#tab007" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
-							'&nbsp; Geoinformação Temática'+
-						'</button>'+
-					'</div>'+
-					'<div id="tab007" class="panel-collapse collapse">'+
-						'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body">CONTENT 03</div>'+
-					'</div>'+
-				'</div>';
-
-
-
+	'<div style="padding: 0px;" class="box-header"> '+
+		'<button style="text-align: left;" href="#tab002" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
+			'&nbsp; ' + topic.topicName + 
+		'</button>'+
+	'</div>'+
+	'<div id="tab002" class="panel-collapse collapse">'+
+		'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body"><div id="sourcesTree'+topic.id+'" class=""></div></div>'+
+	'</div>'+
+	'</div>';
 	return content;
 }
 
+
+function getTopicSources( topic ){
+	var content = "";
+	var treeMainData = [];
+	for( x=0; x < topic.sources.length;x++  ){
+		treeMainData.push( { text: topic.sources[x].sourceName, nodes:[] } );
+	}
+
+	if( treeMainData.length > 0 ){
+		var theTreeElement = $('#sourcesTree' + topic.id).treeview({
+			data: treeMainData,
+			color: "#3c8dbc",
+			//expandIcon: "glyphicon glyphicon-stop",
+			//collapseIcon: "glyphicon glyphicon-unchecked",
+			//nodeIcon: "glyphicon glyphicon glyphicon-folder-open",
+	        expandIcon: 'glyphicon glyphicon glyphicon-folder-close',
+	        collapseIcon: 'glyphicon glyphicon glyphicon-folder-open',			
+			showTags: true,			
+	        multiSelect: false,
+	        onNodeSelected: function(event, node) {
+	        	//
+	        },
+	        onNodeUnselected: function (event, node) {
+	        	//
+	        },
+	        onNodeCollapsed: function(event, node) {
+	        	console.log("Collapse:");
+	        	console.log( node );
+	        },
+	        onNodeExpanded: function (event, node) {
+	        	console.log("Expand:");
+	        	console.log( node );
+	        }	        
+		});
+		theTreeElement.treeview('collapseAll', {  });
+		
+	}
+}
+
+
+function getCatalogTree( catalogTopics ){
+	var content = "";
+	for( x=0; x<catalogTopics.length;x++ ){
+		content = content + formatCatalogTopic( catalogTopics[x] )
+	}
+	return content;
+}
+
+
+
+
+/*
 function addLayerFromTree( layerName, workspace, scale, layerAlias, server, imageType ) {
 	 addToPanelLayer( layerName, workspace, scale, layerAlias, server, imageType );
 }
@@ -370,6 +377,7 @@ function getTreeData( obj ){
 	
 }
 
+
 function loadCarto( ) {
 	var url = "/cartografia/tree";
 	jQuery.ajax({
@@ -398,15 +406,13 @@ function loadCarto( ) {
 			//
 		}, 		
 	});
-	
-	
 }
-
 
 function startCartoTree() {
 	loadCarto();
 	jQuery('#layerNameFinder').css({'font-size':12,'height':25});
 }
+*/
 
 
 

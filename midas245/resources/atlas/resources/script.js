@@ -3,6 +3,24 @@ var configuration = null;
 var stompClient = null;
 
 
+function getUserLocation(){
+	var options = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0 
+	};
+	navigator.geolocation.getCurrentPosition( function( pos ){
+		viewer.camera.setView({
+		    destination : Cesium.Cartesian3.fromDegrees( pos.coords.longitude, pos.coords.latitude, 45000.0)
+		});		
+		fireToast( 'info', 'Geolocalização', 'Sua posição foi obtida com precisão de ' + pos.coords.accuracy +' metros.' , '000' );
+	}, 
+	function(){
+		fireToast( 'error', 'Erro', 'Não foi possível obter sua localização.', '' );
+	}, options);
+	
+}
+
 function getMapPosition3D2D( movement ){
 
 	if ( viewer.scene.mode == Cesium.SceneMode.SCENE2D ) {

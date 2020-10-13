@@ -233,6 +233,23 @@
 					<div id="logging"></div>
 				
 					<div class="fullWindow" id="cesiumContainer">
+					
+						<div id="searchBarHelpContainer" style="display:none;position:absolute;top:2px;left:350px;z-index:999;width:380px;" class="box box-solid">
+							<div class="box-header with-border">
+								<h3 class="box-title">Formato do Texto de Busca</h3>
+							</div>
+							<div style="text-align: left;" class="box-body text-center">
+								<p><b>A procura por locais ou endereços pode ser feita de diferentes formas, digitando os dados de entrada conforme os exemplos abaixo:</b></p>
+								<p>a) Cidade e estado: Brasília, DF<br>
+								   b) Cidade e país: São Paulo, Brasil<br>
+								   c) Nome da rua: Av. Bento Gonçalves, Porto Alegre<br>
+								   d) Endereço completo: 221B, Baker Street, Londres, NW1 6XE<br>
+								   e) Código postal ou CEP: 70.450-001<br>
+								   f) Lugares em geral: hospitais em Brasília</p>	
+							</div>
+						</div>					
+					
+					
 						<div style="position: absolute; z-index: 999; right: 80px; bottom: 80px;" id="rosaVentos">
 							<img src="/resources/img/compassmap.png" style="height: 120px; opacity: 0.6;">
 						</div>
