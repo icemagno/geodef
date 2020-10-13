@@ -12,6 +12,9 @@ function getCatalogTopics(){
 		type: "GET", 
 		success: function( catalogTopics ) {
 			
+			console.log( catalogTopics );
+			
+			
 			jQuery('#catalogTreeModal').attr('class', 'modal fade bs-example-modal-lg').attr('aria-labelledby','catalogModalLabel');
 			$('#tab_geo').html( getGeoTabContent( catalogTopics ) );
 			$('#tab_upload').html('<b>Não implementado ainda.</b>');
@@ -27,12 +30,12 @@ function getCatalogTopics(){
 			
 			jQuery('#catalogTreeModal').modal('show');
 			
-			for( x=0; x<catalogTopics.length;x++ ){
+			
+			for( x=0; x < catalogTopics.length; x++ ){
 				getTopicSources( catalogTopics[x] );
 			}
-			
 			$('.list-group-item').css({'border-radius':0});
-
+			
 			
 		},
 	    error: function(xhr, textStatus) {
@@ -71,11 +74,11 @@ function getGeoTabContent( catalogTopics ){
 function formatCatalogTopic( topic ){
 	var content = '<div class="panel" style="margin-bottom: 0px">' +
 	'<div style="padding: 0px;" class="box-header"> '+
-		'<button style="text-align: left;" href="#tab002" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
+		'<button style="text-align: left;" href="#topicTab'+topic.id+'" data-toggle="collapse" data-parent="#layerContainer" type="button" class="btn btn-block btn-primary">'+
 			'&nbsp; ' + topic.topicName + 
 		'</button>'+
 	'</div>'+
-	'<div id="tab002" class="panel-collapse collapse">'+
+	'<div id="topicTab'+topic.id+'" class="panel-collapse collapse">'+
 		'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body"><div id="sourcesTree'+topic.id+'" class=""></div></div>'+
 	'</div>'+
 	'</div>';
@@ -86,17 +89,18 @@ function formatCatalogTopic( topic ){
 function getTopicSources( topic ){
 	var content = "";
 	var treeMainData = [];
-	for( x=0; x < topic.sources.length;x++  ){
-		treeMainData.push( { text: topic.sources[x].sourceName, nodes:[] } );
+	var totalSources = topic.sources.length; 
+	
+	
+	for( var y=0; y < totalSources; y++ ){
+		var source = topic.sources[x];
+		treeMainData.push( { text: source.sourceName, nodes:[] } );
 	}
 
 	if( treeMainData.length > 0 ){
 		var theTreeElement = $('#sourcesTree' + topic.id).treeview({
 			data: treeMainData,
 			color: "#3c8dbc",
-			//expandIcon: "glyphicon glyphicon-stop",
-			//collapseIcon: "glyphicon glyphicon-unchecked",
-			//nodeIcon: "glyphicon glyphicon glyphicon-folder-open",
 	        expandIcon: 'glyphicon glyphicon glyphicon-folder-close',
 	        collapseIcon: 'glyphicon glyphicon glyphicon-folder-open',			
 			showTags: true,			
@@ -119,6 +123,7 @@ function getTopicSources( topic ){
 		theTreeElement.treeview('collapseAll', {  });
 		
 	}
+	
 }
 
 
@@ -131,9 +136,15 @@ function getCatalogTree( catalogTopics ){
 }
 
 
+/***
+ * 
+ * 		OLD CODE BELOW !!!
+ * 
+ * 
+ */
 
 
-/*
+
 function addLayerFromTree( layerName, workspace, scale, layerAlias, server, imageType ) {
 	 addToPanelLayer( layerName, workspace, scale, layerAlias, server, imageType );
 }
@@ -412,7 +423,6 @@ function startCartoTree() {
 	loadCarto();
 	jQuery('#layerNameFinder').css({'font-size':12,'height':25});
 }
-*/
 
 
 
