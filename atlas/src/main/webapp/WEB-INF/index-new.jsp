@@ -7,6 +7,11 @@
 <jsp:include page="head-new.jsp" />
 
 <style>
+
+	.treeview span.image{
+		width: 17px !important;
+	}
+
 	.skin-black-light .main-header .navbar-brand {
 		border-width: 0px !important;
 	}

@@ -1,11 +1,60 @@
 var theTreeElement = null;
-
+var viewerCatalog = null;
 var allSources = [];
 
 function openCatalogBox(){
 	getCatalogTopics();
 }
 
+function startCesiumInMiniMap(){
+	
+	viewerCatalog = new Cesium.Viewer('cesiumCatalogContainer',{
+		sceneMode :  Cesium.SceneMode.SCENE2D,
+		timeline: false,
+		animation: false,
+		baseLayerPicker: false,
+		skyAtmosphere: false,
+		fullscreenButton : false,
+		geocoder : false,
+		homeButton : false,
+		infoBox : false,
+		sceneModePicker : false,
+		selectionIndicator : false,
+		navigationHelpButton : false,
+	    imageryProvider: baseOsmProvider,
+	});
+	
+	var west = -80.72;
+	var south = -37.16;
+	var east = -31.14;
+	var north = 11.79;	
+	var brasil = Cesium.Rectangle.fromDegrees(west, south, east, north);
+	var center = Cesium.Rectangle.center(brasil);
+	var initialPosition = Cesium.Cartesian3.fromRadians(center.longitude, center.latitude, 8900000);
+	var initialOrientation = new Cesium.HeadingPitchRoll.fromDegrees(0, -90, 0);
+	
+	viewerCatalog.camera.setView({
+	    destination: initialPosition,
+	    orientation: initialOrientation,
+	    endTransform: Cesium.Matrix4.IDENTITY
+	});	
+	
+	
+	var helper = new Cesium.EventHelper();
+	helper.add( viewerCatalog.scene.globe.tileLoadProgressEvent, function (event) {
+		if (event == 0) {
+			$("#catalogMapWaitingIcon").hide();
+		} else {
+			$("#catalogMapWaitingIcon").show();
+		}
+	});
+	
+    $(".cesium-viewer-bottom").hide();
+    $(".cesium-viewer-navigationContainer").hide();
+    $(".navigation-controls").hide();
+	
+	
+}
 
 function getCatalogTopics(){
 	
@@ -14,28 +63,32 @@ function getCatalogTopics(){
 		type: "GET", 
 		success: function( catalogTopics ) {
 			
-			jQuery('#catalogTreeModal').attr('class', 'modal fade bs-example-modal-lg').attr('aria-labelledby','catalogModalLabel');
+			$('#catalogTreeModal').attr('class', 'modal fade bs-example-modal-lg').attr('aria-labelledby','catalogModalLabel');
 			$('#tab_geo').html( getGeoTabContent( catalogTopics ) );
 			$('#tab_upload').html('<b>Não implementado ainda.</b>');
 			
-			jQuery('#layerContainer').slimScroll({
+			$('#layerContainer').slimScroll({
 		        height: '450px',
 		        wheelStep : 10,
 		    });	
-			jQuery('#layerDetailsContainer').slimScroll({
+			$('#layerDetailsContainer').slimScroll({
 		        height: '230px',
 		        wheelStep : 10,
 		    });	
 			
-			jQuery('#catalogTreeModal').modal('show');
-			
+			$('#catalogTreeModal').modal('show');
+			$("#catalogTreeModal").on("hidden.bs.modal", function () {
+				console.log('TRIGGERED');
+				$("#cesiumCatalogContainer").html('');
+				viewerCatalog = null;
+			});			
 			
 			for( x=0; x < catalogTopics.length; x++ ){
 				getTopicSources( catalogTopics[x] );
 			}
 			$('.list-group-item').css({'border-radius':0});
 			
-			
+			startCesiumInMiniMap();
 		},
 	    error: function(xhr, textStatus) {
 	    	fireToast( 'error', 'Erro Crítico', 'Não foi possível receber o catálogo.', '404' );
@@ -50,20 +103,13 @@ function getGeoTabContent( catalogTopics ){
 	var content = '<div class="row">' + 
 		'<div class="col-md-6" style="border-right: 1px solid #f4f4f4;padding-right: 5px;padding-left: 0px;">' +
 			'<div id="layerContainer">' + 
-			
 				getCatalogTree( catalogTopics ) +	
-				
 			'</div>'+	
 		'</div>' +
 		'<div class="col-md-6" style="padding-right: 0px;padding-left: 5px;">' +
-			'<div style="margin-bottom: 10px;" class="box box-widget"><div class="box-body">'+
-				'<img style="width:100%" src="http://sisgeodef.defesa.mil.br:36203/atlas/map-teste.jpg">' +
-			'</div></div>' + 	
-			'<div id="layerDetailsContainer">' + 
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget magna tempor, accumsan quam at, egestas massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras semper rutrum turpis, quis convallis tortor mollis eget. Mauris consectetur commodo quam, et blandit justo dapibus nec. Vivamus euismod, dolor nec tincidunt volutpat, felis metus imperdiet velit, nec tempus leo felis euismod lorem. Donec vel aliquam eros. Etiam consequat metus id mi pulvinar, sed egestas elit efficitur. In lobortis purus vitae leo sollicitudin fermentum. Nulla quis diam eget enim ultricies gravida. Fusce iaculis fermentum volutpat. Curabitur mattis diam bibendum diam sodales, tempus rutrum neque interdum.' + 
-				'Phasellus ac euismod nisl. Vivamus tincidunt quam sed auctor rhoncus. Praesent nec massa sollicitudin, porttitor neque eu, viverra justo. Praesent libero nunc, dapibus nec diam a, mollis molestie leo. Pellentesque sem mauris, aliquet sit amet cursus sed, accumsan id ante. Duis dolor sem, rhoncus eu porttitor a, facilisis at sem. Curabitur dolor lectus, malesuada ac mattis vitae, accumsan vitae velit.' + 
-				'Suspendisse accumsan, purus nec convallis dignissim, neque purus lobortis dolor, et pulvinar erat turpis id sapien. Mauris et nisi magna. Nam eleifend metus vitae ligula vulputate tristique. Pellentesque sollicitudin vulputate nisl, eu cursus elit cursus fermentum. Etiam dui arcu, rhoncus at facilisis at, vestibulum vitae lacus. Maecenas euismod lacus odio, quis rutrum velit porttitor sed. Aenean ut orci tempus, pharetra lectus ac, placerat nunc. Etiam pulvinar et elit placerat varius. Cras sed quam eu eros malesuada pharetra quis eu augue. Pellentesque interdum consequat lacus id scelerisque. Aliquam vulputate tempor mauris sit amet tincidunt. Praesent fringilla, justo sed euismod accumsan, mauris mi bibendum magna, in bibendum erat ante eget tortor. Donec egestas pretium ullamcorper. Nam facilisis massa massa, in imperdiet turpis vehicula non.' + 
-			'</div>'+	
+			'<div style="margin-bottom: 10px;" class="box box-widget"><div style="height:250px;" id="cesiumCatalogContainer" class="box-body">'+
+			'<div id="catalogMapWaitingIcon" style="display:none;width: 100%;height: 100%; position: absolute;" class="overlay"><i class="fa fa-refresh fa-spin"></i></div></div></div>' + 	
+			'<div id="layerDetailsContainer"></div>'+	
 		'</div>' + 
 	'</div>';
 	return content;
@@ -78,7 +124,7 @@ function formatCatalogTopic( topic ){
 		'</button>'+
 	'</div>'+
 	'<div id="topicTab'+topic.id+'" class="panel-collapse collapse">'+
-		'<div style="padding: 0px; border:1px solid #f4f4f4; height: 340px" class="box-body"><div id="sourcesTree'+topic.id+'" class=""></div></div>'+
+		'<div style="padding: 0px; border:1px solid #f4f4f4;" class="box-body"><div id="sourcesTree'+topic.id+'" class=""></div></div>'+
 	'</div>'+
 	'</div>';
 	return content;
@@ -93,7 +139,7 @@ function getChildren( source ){
 		var ss = source.sources[z];
 		var theImage = null;
 		if( ss.sources.length == 0 ) theImage = '/resources/img/layer.png';
-		var theData = { text: ss.sourceName, nodes:[], tags: [ ss.sources.length ], image : theImage };
+		var theData = { text: ss.sourceName, nodes:[], tags: [ ss.sources.length ], image : theImage, data : ss };
 		theData.nodes = getChildren( ss );
 		result.push( theData );
 	}
@@ -110,10 +156,9 @@ function getTopicSources( topic ){
 		var source = topic.sources[y];
 		var theImage = null;
 		if( source.sources.length == 0 ) theImage = '/resources/img/layer.png';
-		var theData = { text: source.sourceName, nodes:[], tags: [ source.sources.length ], image : theImage };
+		var theData = { text: source.sourceName, nodes:[], tags: [ source.sources.length ], image : theImage, data : source };
 		theData.nodes = getChildren( source );
 		if( source.parentId == null ) treeMainData.push( theData );
-		
 	}
 
 	
@@ -123,22 +168,26 @@ function getTopicSources( topic ){
 			color: "#3c8dbc",
 	        expandIcon: 'glyphicon glyphicon glyphicon-folder-close',
 	        collapseIcon: 'glyphicon glyphicon glyphicon-folder-open',			
-			showTags: true,	
+			showTags: false,	
 			showImage: true,
 	        multiSelect: false,
 	        onNodeSelected: function(event, node) {
-	        	//
+	        	
+	        	console.log( node.data );
+	        	
+	        	$("#layerDetailsContainer").text( node.data.description );
+	        	if( node.data.sourceAddress.length > 10 ){
+	        		previewLayer( node.data );
+	        	}
 	        },
 	        onNodeUnselected: function (event, node) {
-	        	//
+	        	$("#layerDetailsContainer").text('');
 	        },
 	        onNodeCollapsed: function(event, node) {
-	        	console.log("Collapse:");
-	        	console.log( node );
+	        	$("#layerDetailsContainer").text('');
 	        },
 	        onNodeExpanded: function (event, node) {
-	        	console.log("Expand:");
-	        	console.log( node );
+	        	$("#layerDetailsContainer").text( node.data.description );
 	        }	        
 		});
 		theTreeElement.treeview('collapseAll', {  });
@@ -147,6 +196,28 @@ function getTopicSources( topic ){
 	
 }
 
+
+function previewLayer( data ){
+	var provider = getProvider( data.sourceAddress, data.sourceLayer, false, 'png', true );
+	
+	if( provider ){
+		var layers = viewerCatalog.imageryLayers;
+		if( layers.length > 1 ){
+			layers.remove( layers.get(1) );
+		}
+		var imageryLayer = layers.addImageryProvider( provider, 1 );
+		/*
+		imageryLayer.getViewableRectangle().then(function (rectangle) {
+		    return viewerCatalog.camera.flyTo({
+		        destination: rectangle
+		    });
+		});
+		*/		
+	} else {
+		console.log('Deu merda');
+	}
+	
+}
 
 function getCatalogTree( catalogTopics ){
 	var content = "";
@@ -412,7 +483,7 @@ function getTreeData( obj ){
 
 function loadCarto( ) {
 	var url = "/cartografia/tree";
-	jQuery.ajax({
+	$.ajax({
 		url: url,
 		type: "GET", 
 		success: function( obj ) {

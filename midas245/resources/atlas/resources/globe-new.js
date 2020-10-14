@@ -190,8 +190,8 @@ function startMap( theMapStyle ) {
 	
 	imageryLayers.layerAdded.addEventListener(function (event) {
 		//console.log( "Adicionou: " + event.imageryProvider.layers );
-		//jQuery('.layerCounter').show();
-		//jQuery("#lyrCount").text( event.imageryProvider.layers );
+		//$('.layerCounter').show();
+		//$("#lyrCount").text( event.imageryProvider.layers );
 	});
 	imageryLayers.layerRemoved.addEventListener(function (event) {
 		//console.log( "Removeu: " + event.imageryProvider.layers );
@@ -201,12 +201,12 @@ function startMap( theMapStyle ) {
 	var helper = new Cesium.EventHelper();
 	helper.add( viewer.scene.globe.tileLoadProgressEvent, function (event) {
 		
-		jQuery("#lyrCount").text( event );
+		$("#lyrCount").text( event );
 		if (event == 0) {
-			jQuery('.layerCounter').hide();
-			jQuery("#lyrCount").text( "" );
+			$('.layerCounter').hide();
+			$("#lyrCount").text( "" );
 		} else {
-			jQuery('.layerCounter').show();
+			$('.layerCounter').show();
 		}
 		
 	});
@@ -298,36 +298,36 @@ function bindInterfaceElements() {
 
 	bindToolBarButtons();
 	
-	jQuery("#hudCoordenadas").click( function(){
-		jQuery("#mapLat").toggle();
-		jQuery("#mapLon").toggle();
+	$("#hudCoordenadas").click( function(){
+		$("#mapLat").toggle();
+		$("#mapLon").toggle();
 	});
-	jQuery("#hudAltitude").click( function(){
-		jQuery("#mapHei").toggle();
-		jQuery("#mapAltitude").toggle();
+	$("#hudAltitude").click( function(){
+		$("#mapHei").toggle();
+		$("#mapAltitude").toggle();
 	});
-	jQuery("#hudUtm").click( function(){
-		jQuery("#mapUtm").toggle();
+	$("#hudUtm").click( function(){
+		$("#mapUtm").toggle();
 	});
-	jQuery("#hudHdms").click( function(){
-		jQuery("#mapHdmsLat").toggle();
-		jQuery("#mapHdmsLon").toggle();
-	});
-
-	jQuery("#hudFlight").click( function(){
-		jQuery("#flightControlsContainer").toggle();
+	$("#hudHdms").click( function(){
+		$("#mapHdmsLat").toggle();
+		$("#mapHdmsLon").toggle();
 	});
 
-	jQuery("#hudRosaVentos").click( function(){
-		jQuery("#rosaVentos").toggle();
+	$("#hudFlight").click( function(){
+		$("#flightControlsContainer").toggle();
+	});
+
+	$("#hudRosaVentos").click( function(){
+		$("#rosaVentos").toggle();
 	});
 	
-	jQuery("#hudAttitude").click( function(){
-		jQuery("#instPanel").toggle();
+	$("#hudAttitude").click( function(){
+		$("#instPanel").toggle();
 	});
 
-	jQuery("#hudProfile").click( function(){
-		jQuery("#elevationProfileContainer").toggle();
+	$("#hudProfile").click( function(){
+		$("#elevationProfileContainer").toggle();
 	});
 	
 	// *********************************************************************************************************
@@ -338,8 +338,8 @@ function bindInterfaceElements() {
 	// *********************************************************************************************************
 	// *********************************************************************************************************
 	
-	jQuery("#sysLayerShades").click( function(){
-		var isChecked = jQuery("#sysLayerShades").prop('checked');
+	$("#sysLayerShades").click( function(){
+		var isChecked = $("#sysLayerShades").prop('checked');
 		if( isChecked ) {
 			contourShade = addBaseSystemLayer( this.id, 'HillShade', volcano, 'volcano:hillshade', false, 1.0 );
 			addBasicLayerToPanel( 'Sombreamento 3D', contourShade );
@@ -349,8 +349,8 @@ function bindInterfaceElements() {
 	});	
 
 	
-	jQuery("#sysLayerCurvas").click( function(){
-		var isChecked = jQuery("#sysLayerCurvas").prop('checked');
+	$("#sysLayerCurvas").click( function(){
+		var isChecked = $("#sysLayerCurvas").prop('checked');
 		if( isChecked ) {
 			contourLines = addBaseSystemLayer( this.id, 'CurvasNivel', volcano, 'volcano:contour', false, 1.0 );
 			addBasicLayerToPanel( 'Curvas de Nível NASA', contourLines );
@@ -359,8 +359,8 @@ function bindInterfaceElements() {
 		}
 	});
 	
-	jQuery("#sysLayerRapidEye").click( function(){
-		var isChecked = jQuery("#sysLayerRapidEye").prop('checked');
+	$("#sysLayerRapidEye").click( function(){
+		var isChecked = $("#sysLayerRapidEye").prop('checked');
 		if( isChecked ) {
 			rapidEyeImagery = addBaseSystemLayer( this.id, 'RapidEye', mapproxy, 'rapideye', false, 1.0, 'jpeg' );
 			addBasicLayerToPanel( 'RapidEye do BDGEX', rapidEyeImagery );
@@ -369,8 +369,8 @@ function bindInterfaceElements() {
 		}
 	});
 
-	jQuery("#sysLayerOpenSeaMap").click( function(){
-		var isChecked = jQuery("#sysLayerOpenSeaMap").prop('checked');
+	$("#sysLayerOpenSeaMap").click( function(){
+		var isChecked = $("#sysLayerOpenSeaMap").prop('checked');
 		if( isChecked ) {
 			openseamap = addBaseSystemLayer( this.id, 'OpenSeaMap', mapproxy, 'seamarks', false, 1.0, 'png' );
 			addBasicLayerToPanel( 'Elementos Náuticos OpenSeaMap', openseamap );
@@ -380,8 +380,8 @@ function bindInterfaceElements() {
 	});
 
 	
-	jQuery("#sysLayerMarineTraffic").click( function(){
-		var isChecked = jQuery("#sysLayerMarineTraffic").prop('checked');
+	$("#sysLayerMarineTraffic").click( function(){
+		var isChecked = $("#sysLayerMarineTraffic").prop('checked');
 		if( isChecked ) {
 			marinetraffic = addMarineTrafficLayer( this.id );
 			addBasicLayerToPanel( 'Marine Traffic', marinetraffic );
@@ -401,8 +401,8 @@ function bindInterfaceElements() {
 	});
 	
 	
-	jQuery("#sysLayerOSM").click( function(){
-		var isChecked = jQuery("#sysLayerOSM").prop('checked');
+	$("#sysLayerOSM").click( function(){
+		var isChecked = $("#sysLayerOSM").prop('checked');
 		if( isChecked ) {
 			imageryLayers.get(0).alpha = 1;	
 		} else {
@@ -411,8 +411,8 @@ function bindInterfaceElements() {
 	});	
 
 	// Layer basico: sempre presente
-	jQuery("#sysLayerNaturalEarth").click( function(){
-		var isChecked = jQuery("#sysLayerNaturalEarth").prop('checked');
+	$("#sysLayerNaturalEarth").click( function(){
+		var isChecked = $("#sysLayerNaturalEarth").prop('checked');
 		if( isChecked ) {
 			bdgexCartasImageryProvider = addBaseSystemLayer( this.id, 'Cartas BDGEX', mapproxy, 'bdgex', false, 1.0, 'png' );
 			addBasicLayerToPanel('Cartas BDGEX', bdgexCartasImageryProvider );
@@ -428,10 +428,10 @@ function bindInterfaceElements() {
 	heading = jQuery.flightIndicator('#heading', 'heading', {heading:150, size:100, showBox:true});
 	altimeter = jQuery.flightIndicator('#altimeter', 'altimeter', {size:100, showBox:true});	
 	
-	var viewportHeight= jQuery(".main-sidebar").height() - 170;
+	var viewportHeight= $(".main-sidebar").height() - 170;
     
-	jQuery('#activeLayerContainer').css({'height': viewportHeight });
-	jQuery('#activeLayerContainer').slimScroll({
+	$('#activeLayerContainer').css({'height': viewportHeight });
+	$('#activeLayerContainer').slimScroll({
         height: viewportHeight - 10 + 'px',
         wheelStep : 10,
     });
@@ -439,19 +439,19 @@ function bindInterfaceElements() {
     
     // MACETES - ESCONDER ELEMENTOS "DESNECESSARIOS"
 	
-    jQuery(".cesium-viewer-bottom").hide();
-    jQuery(".cesium-viewer-navigationContainer").hide();
-    jQuery(".navigation-controls").hide();
-    jQuery(".compass").hide();
-    jQuery(".distance-legend").css( {"border": "none", "background-color" : "rgb(60, 141, 188, 0.5)", "height" : 25, "bottom": 60, "right" : 61, "border-radius": 0} );
-    jQuery(".distance-legend-label").css( {"font-size": "11px", "font-weight":"bold",  "line-height" : 0, "color" : "white", "font-family": "Consolas"} );
-    jQuery(".distance-legend-scale-bar").css( {"height": "9px", "top" : 10, "border-color" : "white"} );
+    $(".cesium-viewer-bottom").hide();
+    $(".cesium-viewer-navigationContainer").hide();
+    $(".navigation-controls").hide();
+    $(".compass").hide();
+    $(".distance-legend").css( {"border": "none", "background-color" : "rgb(60, 141, 188, 0.5)", "height" : 25, "bottom": 60, "right" : 61, "border-radius": 0} );
+    $(".distance-legend-label").css( {"font-size": "11px", "font-weight":"bold",  "line-height" : 0, "color" : "white", "font-family": "Consolas"} );
+    $(".distance-legend-scale-bar").css( {"height": "9px", "top" : 10, "border-color" : "white"} );
     jQuery.fn.awesomeCursor.defaults.color = 'white';
 	
 };
 
 
-jQuery(function () {
+$(function () {
 	
 	// polling para tentar manter o login.
 	setInterval( function(){ 
@@ -469,14 +469,14 @@ jQuery(function () {
 	
 	// Adiciona funcionalidade "rotate" ao JQuery
 	jQuery.fn.rotate = function(degrees) {
-	    jQuery(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+	    $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
 	                 '-moz-transform' : 'rotate('+ degrees +'deg)',
 	                 '-ms-transform' : 'rotate('+ degrees +'deg)',
 	                 'transform' : 'rotate('+ degrees +'deg)'});
-	    return jQuery(this);
+	    return $(this);
 	};	
 	
-	jQuery(window).on("resize", applyMargins);
+	$(window).on("resize", applyMargins);
 	
 	
 	var theMapStyle = getUrlParam('mapStyle','2D');
@@ -583,12 +583,12 @@ jQuery(function () {
 
 function applyMargins() {
 	/*
-	var totalHeight= jQuery(window).height();
+	var totalHeight= $(window).height();
 	var contentHeight= totalHeight - 150;
-	jQuery(".content-wrapper").css({"height": contentHeight});
-	jQuery(".content-wrapper").css({"min-height": contentHeight});
-	jQuery(".control-sidebar-subheading").css({"font-size": "15px"});
-	jQuery(".form-group p").css({"font-size": "14px"});
+	$(".content-wrapper").css({"height": contentHeight});
+	$(".content-wrapper").css({"min-height": contentHeight});
+	$(".control-sidebar-subheading").css({"font-size": "15px"});
+	$(".form-group p").css({"font-size": "14px"});
 	*/
 }
 
@@ -617,12 +617,12 @@ function updateCamera() {
     heading.setHeading ( Cesium.Math.toDegrees( camera.heading ) );
     altimeter.setAltitude( altitudeV  );
     
-    jQuery("#compassPointer").rotate( headingV );
-    jQuery("#rosaVentos").rotate( headingV );
-    jQuery("#mapHeading").text( 'Y: ' + headingV.toFixed(0) + "\xB0 " );
-    jQuery("#mapAttRoll").text( 'Z: ' + rollV.toFixed(0) + "\xB0 " );
-    jQuery("#mapAttPitch").text( 'X: ' + pitchV.toFixed(0) + "\xB0 " );
-    jQuery("#mapAltitude").text( altitudeV.toFixed(0) + "m" );
+    $("#compassPointer").rotate( headingV );
+    $("#rosaVentos").rotate( headingV );
+    $("#mapHeading").text( 'Y: ' + headingV.toFixed(0) + "\xB0 " );
+    $("#mapAttRoll").text( 'Z: ' + rollV.toFixed(0) + "\xB0 " );
+    $("#mapAttPitch").text( 'X: ' + pitchV.toFixed(0) + "\xB0 " );
+    $("#mapAltitude").text( altitudeV.toFixed(0) + "m" );
     
 }
 
@@ -635,15 +635,15 @@ function updatePanelFooter( position ) {
 	mapPointerLongitude = longitudeString.slice(-15);
 
 	var coordHDMS = convertDMS(mapPointerLatitude,mapPointerLongitude);
-	jQuery( document ).ready(function( jQuery ) {
-		jQuery("#mapLat").text( mapPointerLatitude );
-		jQuery("#mapLon").text( mapPointerLongitude );    	    
-		jQuery("#mapUtm").text( latLonToUTM(mapPointerLongitude, mapPointerLatitude  ) );    	    
-		jQuery("#mapHdmsLat").text( coordHDMS.lat + " " + coordHDMS.latCard );
-		jQuery("#mapHdmsLon").text( coordHDMS.lon + " " + coordHDMS.lonCard );
+	$( document ).ready(function( jQuery ) {
+		$("#mapLat").text( mapPointerLatitude );
+		$("#mapLon").text( mapPointerLongitude );    	    
+		$("#mapUtm").text( latLonToUTM(mapPointerLongitude, mapPointerLatitude  ) );    	    
+		$("#mapHdmsLat").text( coordHDMS.lat + " " + coordHDMS.latCard );
+		$("#mapHdmsLon").text( coordHDMS.lon + " " + coordHDMS.lonCard );
 		
 		var geohash = Geohash.encode( mapPointerLatitude, mapPointerLongitude, 8 );
-		jQuery("#mapGeohash").text( geohash );
+		$("#mapGeohash").text( geohash );
 	});
 
 	var positions = [ cartographic ];
@@ -652,7 +652,7 @@ function updatePanelFooter( position ) {
 		var tempHeight = cartographic.height;
 		if( tempHeight < 0 ) tempHeight = 0; 
 		mapPointerHeight = tempHeight.toFixed(2);
-		jQuery("#mapHei").text( mapPointerHeight + 'm' );    	    
+		$("#mapHei").text( mapPointerHeight + 'm' );    	    
 	});	
 	
 	
@@ -700,7 +700,7 @@ function removeMouseClickListener() {
 	mainEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.RIGHT_CLICK);			
 	mainEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK);
 	mainEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
-	jQuery('.cesium-viewer').css('cursor', '');
+	$('.cesium-viewer').css('cursor', '');
 }
 
 
@@ -709,13 +709,13 @@ function bindRouteRightClick() {
 		var position = e.position;
 		routeMouseClickPosition = position;
 		
-		jQuery("#contextMenuRouteInit").css({
+		$("#contextMenuRouteInit").css({
 			top: position.y + 5, 
 			left: position.x + 5, 
 			display:'block'
 		});
 		if( startPoint ) {
-			jQuery("#btnEndRoute").removeClass( "disabled" )
+			$("#btnEndRoute").removeClass( "disabled" )
 		}
 		
 	}, Cesium.ScreenSpaceEventType.RIGHT_CLICK);

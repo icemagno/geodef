@@ -33,11 +33,11 @@ public class CatalogTopics implements Serializable {
 	
     @OneToMany(cascade= CascadeType.ALL, orphanRemoval=true, fetch = FetchType.EAGER)
     @JoinColumn(name="topic_id")
-    private List<CatalogSouce> sources;	
+    private List<CatalogSource> sources;	
 
     
     public CatalogTopics() {
-		this.sources = new ArrayList<CatalogSouce>();
+		this.sources = new ArrayList<CatalogSource>();
 	}
     
 	public Long getId() {
@@ -64,11 +64,11 @@ public class CatalogTopics implements Serializable {
 		this.description = description;
 	}
 
-	public List<CatalogSouce> getSources() {
+	public List<CatalogSource> getSources() {
 		return sources;
 	}
 
-	public void setSources(List<CatalogSouce> sources) {
+	public void setSources(List<CatalogSource> sources) {
 		this.sources = sources;
 	}	
 	

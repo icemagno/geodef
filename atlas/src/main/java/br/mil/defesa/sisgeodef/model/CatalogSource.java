@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "catalog_source")
-public class CatalogSouce implements Serializable {
+public class CatalogSource implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -37,12 +37,19 @@ public class CatalogSouce implements Serializable {
 	@Column(name = "source_name", length = 100, nullable = false)
 	private String sourceName;
 	
+	@Column(name = "source_layer", length = 100)
+	private String sourceLayer;
+
 	@Column(name = "source_address", length = 250)
 	private String sourceAddress;
 
+	@Column(name = "bbox", length = 100)
+	private String bbox;
+	
+	
     @OneToMany(cascade= CascadeType.ALL, orphanRemoval=true, fetch = FetchType.EAGER)
     @JoinColumn(name="parent_id")
-    private List<CatalogSouce> sources;	
+    private List<CatalogSource> sources;	
 	
 	public Long getId() {
 		return id;
@@ -92,13 +99,29 @@ public class CatalogSouce implements Serializable {
 		this.parentId = parentId;
 	}
 
-	public List<CatalogSouce> getSources() {
+	public List<CatalogSource> getSources() {
 		return sources;
 	}
 
-	public void setSources(List<CatalogSouce> sources) {
+	public void setSources(List<CatalogSource> sources) {
 		this.sources = sources;
 	}
+
+	public String getSourceLayer() {
+		return sourceLayer;
+	}
+
+	public void setSourceLayer(String sourceLayer) {
+		this.sourceLayer = sourceLayer;
+	}
+
+	public String getBbox() {
+		return bbox;
+	}
+
+	public void setBbox(String bbox) {
+		this.bbox = bbox;
+	}
 	
-	
+
 }

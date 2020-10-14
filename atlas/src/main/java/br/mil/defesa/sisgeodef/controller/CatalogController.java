@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.mil.defesa.sisgeodef.model.CatalogTopics;
-import br.mil.defesa.sisgeodef.repository.CatalogTopicsService;
+import br.mil.defesa.sisgeodef.repository.CatalogTopicsRepository;
+import br.mil.defesa.sisgeodef.services.CatalogImporterService;
 import br.mil.defesa.sisgeodef.services.NyxService;
 
 @RestController
@@ -19,8 +20,10 @@ import br.mil.defesa.sisgeodef.services.NyxService;
 public class CatalogController {
 	
 	@Autowired
-	private CatalogTopicsService catalogService;
+	private CatalogTopicsRepository catalogRepository;
 	
+	@Autowired
+	private CatalogImporterService catalogImporterService;
 
 	@Autowired
 	private NyxService nyxService;
@@ -34,9 +37,16 @@ public class CatalogController {
 	
 	@RequestMapping(value = "/topics", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody List<CatalogTopics> getTopics() {
-		List<CatalogTopics> topics = catalogService.findAll();
+		List<CatalogTopics> topics = catalogRepository.findAll();
 		System.out.println( topics.toString() );
 		return topics; 
 	}
 
+    @RequestMapping(value = "/importcapabilities", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public void importCapabilities( @RequestParam(value="url",required=true) String url ) {
+    	url = "http://www.geoportal.eb.mil.br/mapcache?service=wms&version=1.3.0&request=GetCapabilities";
+    	catalogImporterService.importCapabilities(6, url);
+    }
+	
+	
 }
