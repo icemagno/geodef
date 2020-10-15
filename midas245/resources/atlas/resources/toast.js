@@ -2,8 +2,8 @@ const Toast = Swal.mixin({
 	  toast: true,
 	  position: 'top-end',
 	  showConfirmButton: false,
-	  width: 270,
-	  timer: 4000,	  
+	  width: 320,
+	  timer: 7000,	  
 	  timerProgressBar: true,
 	  onOpen: (toast) => {
 	    toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -22,17 +22,15 @@ function fireToast( icon, title, text, errorCode ){
 	// Vou encaminhar para o metodo antigo,
 	// pois ele empilha os cards dos avisos sem perder o anterior.
 	
-	showToast( text, icon, title );
-	
-	/*
-	console.log( "[" + errorCode + "] " + text );
+	//showToast( text, icon, title );
+
 	Toast.fire({
 		title: title,
 		text: text,
 		icon: icon,
-		footer: '<a href="#">Mais detalhes</a>',
+		footer: 'SisGEODEF',
 	});
-	*/
+	
 
 }
 

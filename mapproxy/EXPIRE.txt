@@ -1,0 +1,1 @@
+This can be handled with mapproxy-seed. You can define cleanup tasks that will remove tiles that are older then a specific time. You can configure this for each cache and zoom level. You can even remove tiles from a specific geographic area (with coverages).

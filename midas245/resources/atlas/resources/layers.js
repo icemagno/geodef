@@ -22,7 +22,7 @@ var marinetraffic = null;
 function updateLayersOrder( event, ui ){
 	
 	var uuid = ui.item[0].id;
-	var newLayerIndex = ui.item.index() + 2;  // 0=Camada Base // 1=Grid Coordenadas // 2=> Camadas do usuário...
+	var newLayerIndex = ui.item.index() + 2;  // 0=Camada Base // 1=Grid Coordenadas // 2 > Camadas do usuário...
 	var layer = getLayerByUUID( uuid );
 	var currentLayerIndex = viewer.imageryLayers.indexOf( layer );
 	
@@ -91,13 +91,25 @@ function getLayerByUUID( uuid ){
 			return sp.layer;
 		}
 	}
+	return null;
+}
+
+function getLayerByKey( key ){
+	for( x=0; x<stackedProviders.length;x++ ) {
+		var sp = stackedProviders[x];
+		var layerKey = sp.data.sourceAddress + sp.data.sourceLayer;
+		if( layerKey === key ) {
+			return sp.layer;
+		}
+	}
+	return null;
 }
 
 
 function doHideLayer( uuid ){
 	for( x=0; x<stackedProviders.length;x++ ) {
 		var sp = stackedProviders[x];
-		if( sp.uuid === uuid ) {
+		if( sp.uuid == uuid ) {
 			sp.layer.show = false;
 		}
 	}
@@ -106,7 +118,7 @@ function doHideLayer( uuid ){
 function doSlider( uuid, value ){
 	for( x=0; x<stackedProviders.length;x++ ) {
 		var sp = stackedProviders[x];
-		if( sp.uuid === uuid ) {
+		if( sp.uuid == uuid ) {
 			sp.layer.alpha = value;
 		}
 	}
@@ -139,7 +151,7 @@ function getALayerCard( uuid, layerAlias, defaultImage  ){
 	return layerText;
 }
 
-
+/*
 function getALayerGroup( uuid, groupName, defaultImage ){
 	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
 	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+groupName+'</b></td></tr>'; 
@@ -149,12 +161,20 @@ function getALayerGroup( uuid, groupName, defaultImage ){
 	table + '</div></div>';
 	return layerText;
 }
+*/
 
 
 function addLayerCard( data ){
 	var uuid = "L-" + createUUID();
 	var theProvider = {};
 	theProvider.uuid = uuid;
+	theProvider.data = data;
+	
+	var key = data.sourceAddress + data.sourceLayer;
+	if( getLayerByKey( key ) != null ) {
+		fireToast( 'info', 'Camada Já Criada', 'A camada ' + data.sourceName + ' já está criada.' , '000' );
+		return;
+	}
 	
 	var provider = getProvider( data.sourceAddress, data.sourceLayer, false, 'png', true );
 	if( provider ){

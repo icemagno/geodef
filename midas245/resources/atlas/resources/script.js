@@ -13,7 +13,7 @@ function getUserLocation(){
 		viewer.camera.setView({
 		    destination : Cesium.Cartesian3.fromDegrees( pos.coords.longitude, pos.coords.latitude, 45000.0)
 		});		
-		fireToast( 'info', 'Geolocalização', 'Sua posição foi obtida com precisão de ' + pos.coords.accuracy +' metros.' , '000' );
+		fireToast( 'info', 'Geolocalização', 'Sua posição foi obtida com precisão de ' + pos.coords.accuracy +' metros.' , '' );
 	}, 
 	function(){
 		fireToast( 'error', 'Erro', 'Não foi possível obter sua localização.', '' );
