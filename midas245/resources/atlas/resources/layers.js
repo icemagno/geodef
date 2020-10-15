@@ -19,32 +19,90 @@ var marinetraffic = null;
 // ***************************************************************************
 // ***************************************************************************
 
+function expandCard(uuid){
+	var idX = "#expd_" + uuid;
+	var idC = "#cops_" + uuid;
+	$( idX ).hide();
+	$( idC ).show();
+	$("#" + uuid).css( 'height', 300 );
+}
+
+function collapseCard( uuid ){
+	var idX = "#expd_" + uuid;
+	var idC = "#cops_" + uuid;
+	$( idC ).hide();
+	$( idX ).show();
+	$("#" + uuid).css( 'height', 70 );
+}
+
+
+function hideLayer( uuid ){
+	var idH = "#hdlay_" + uuid;
+	var idS = "#swlay_" + uuid;
+	$( idH ).hide();
+	$( idS ).show();
+	doHideLayer( uuid );
+}
+
+function showLayer( uuid ){
+	var idH = "#hdlay_" + uuid;
+	var idS = "#swlay_" + uuid;
+	$( idS ).hide();
+	$( idH ).show();
+	doShowLayer( uuid, 1 );
+}
+
+function doShowLayer( uuid ){
+	for( x=0; x<stackedProviders.length;x++ ) {
+		var sp = stackedProviders[x];
+		if( sp.uuid === uuid ) {
+			sp.layer.show = true;
+		}
+	}
+}
+
+function doHideLayer( uuid ){
+	for( x=0; x<stackedProviders.length;x++ ) {
+		var sp = stackedProviders[x];
+		if( sp.uuid === uuid ) {
+			sp.layer.show = false;
+		}
+	}
+}
+
+function doSlider( uuid, value ){
+	for( x=0; x<stackedProviders.length;x++ ) {
+		var sp = stackedProviders[x];
+		if( sp.uuid === uuid ) {
+			sp.layer.alpha = value;
+		}
+	}
+}
+
 function getALayerCard( uuid, layerAlias, defaultImage  ){
 	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
 	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
 	
-	
 	'<div class="box-tools pull-right">'+                           
-		'<button title="Ocultar Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
-		'<button title="Exibir Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
-		'<button title="Exibir Controles" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button>'+
-		'<button title="Ocultar Controles" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-right"></i></button>'+
+		//'<button id="hdlay_'+uuid+'" onClick="hideLayer(\''+uuid+'\');" title="Ocultar Camada" type="button" style="display:none;padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
+		//'<button id="swlay_'+uuid+'" onClick="showLayer(\''+uuid+'\');" title="Exibir Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
+		'<button id="expd_'+uuid+'" onClick="expandCard(\''+uuid+'\');" title="Expandir" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-right"></i></button>'+
+		'<button id="cops_'+uuid+'"onClick="collapseCard(\''+uuid+'\');" title="Recolher" type="button" style="display:none;padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button>'+
 	'</div>' +	
-	
 	
 	'</td></tr>'; 
 	table = table + '<tr><td colspan="2" style="width: 60%;">'; 
 	table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" ' +
 		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
 	table = table + '</td><td >' + 
-	'<a title="RF-XXX" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
+	'<a title="Excluir Camada" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
 	'<a title="RF-YYY" style="margin-right: 10px;" href="#" onClick="layerToUp(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-floppy-o"></i></a>' + 
 	'<a title="RF-ZZZ" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-gear"></i></a>' + 
 	'<a title="RF-WWW" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
 	'</td></tr>';
 	table = table + '</table></div>';
 	var layerText = '<div class="sortable" id="'+uuid+'" style="overflow:hidden;height:70px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
-	table + '</div><div id="LEG_'+uuid+'"></div></div>';
+	table + '</div><div class="box-footer" id="LEG_'+uuid+'"></div></div>';
 	return layerText;
 }
 
@@ -60,60 +118,57 @@ function getALayerGroup( uuid, groupName, defaultImage ){
 }
 
 
-function addLayerCard( layerAlias ){
-    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
+function addLayerCard( data ){
 	var uuid = "L-" + createUUID();
-	var layerText = getALayerCard( uuid, layerAlias, defaultImage );
-
-	$("#activeLayerContainer").append( layerText );
-
+	var theProvider = {};
+	theProvider.uuid = uuid;
 	
+	console.log( data );
 	
-	// http://osm.franken.de:8080/geoserver/gebco/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=gebco:gebco_poly_2014
-	//LEG_'+uuid+'
-	
-	$("#SL_"+uuid).slider({});
-	$("#SL_"+uuid).on("slide", function(slideEvt) {
-		var valu = slideEvt.value / 100;
-		console.log( this.id + " " + valu );
-	});	
+	var provider = getProvider( data.sourceAddress, data.sourceLayer, false, 'png', true );
+	if( provider ){
+		theProvider.layer = viewer.imageryLayers.addImageryProvider( provider );
+		
+		var props = { 'uuid':uuid  }
+		theProvider.layer.properties = props; 
 
+		stackedProviders.push( theProvider );		
+
+		// Adiciona o Card
+	    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
+		var layerText = getALayerCard( uuid, data.sourceName, defaultImage );
+		$("#activeLayerContainer").append( layerText );
+		$("#SL_"+uuid).slider({});
+		$("#SL_"+uuid).on("slide", function(slideEvt) {
+			var valu = slideEvt.value / 100;
+			doSlider( this.id.substr(3), valu );
+		});	
+
+		// Legenda
+		var legUUID = "LEG_" + uuid;
+		var getLegendUrl = data.sourceAddress + "?service=wms&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" + data.sourceLayer;
+		$( "#" + legUUID ).html( "<img src='" + getLegendUrl + "'>" );
+		
+		$( "#" + legUUID ).slimScroll({
+	        height: '205px',
+	        wheelStep : 10,
+	    });
+		
+		$('#activeLayerContainer').slimScroll();
+	}	
 
 }
 
-
-
-
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-
-
-
-
-
 function deleteLayer( uuid ) {
-	
 	
 	for( x=0; x < stackedProviders.length;x++ ) {
 		var ll = stackedProviders[x];
 		if ( ll.uuid == uuid ) {
 			if( viewer.imageryLayers.remove( ll.layer, true ) ){
-				
-				if( ll.layer.properties.elementId ) {
-					jQuery("#" + ll.layer.properties.elementId).prop('checked',false);
-				}
-				
 				stackedProviders.splice(x, 1);
 				jQuery("#" + uuid).fadeOut(400, function(){
 					jQuery("#" + uuid).remove();
-					var count = jQuery('#activeLayerContainer').children().length;
-					if ( count === 0 ) { jQuery("#layersCounter").html( '' ); } else { jQuery("#layersCounter").html( count ); }
 				});
-				
-				
 			} else {
 				// um toast?
 			}
@@ -121,6 +176,15 @@ function deleteLayer( uuid ) {
 		}
 	}
 }
+
+
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+
+
 
 function layerToDown( uuid ) {
 	console.log("DN: " + uuid );
@@ -232,15 +296,6 @@ function addToPanelLayer( layerName, workspace, scale, layerAlias, server, image
 		doSlider( slideEvt.target.id.substr(3), valu );
 	});	
 	
-}
-
-function doSlider( uuid, value ){
-	for( x=0; x<stackedProviders.length;x++ ) {
-		var sp = stackedProviders[x];
-		if( sp.uuid === uuid ) {
-			sp.layer.alpha = value;
-		}
-	}
 }
 
 function addLayerCart( uuid, workspace, layerName, scale) {

@@ -16,8 +16,7 @@ function copyWMSURL(){
 
 function addLayerWMS(){
 	if( selectedWMSService === null ) return;
-	console.log( selectedWMSService );
-	addLayerCard( selectedWMSService.data.description );
+	addLayerCard( selectedWMSService.data );
 }
 
 function startCesiumInMiniMap(){
@@ -92,8 +91,8 @@ function getCatalogTopics(){
 			
 			$('#catalogTreeModal').modal('show');
 			$("#catalogTreeModal").on("hidden.bs.modal", function () {
-				selectedWMSService = null;
 				viewerCatalog.destroy();
+				selectedWMSService = null;
 				viewerCatalog = null;
 				$("#cesiumCatalogContainer").html('');
 			});			

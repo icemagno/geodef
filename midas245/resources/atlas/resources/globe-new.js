@@ -140,7 +140,7 @@ function startMap( theMapStyle ) {
 	if ( mapStyle === '3D' ) sceneMapMode = Cesium.SceneMode.SCENE3D;
 	
 	viewer = new Cesium.Viewer('cesiumContainer',{
-		terrainProvider : terrainProvider,
+		//terrainProvider : terrainProvider,
 		sceneMode : sceneMapMode,
 		//mapMode2D: Cesium.MapMode2D.ROTATE,
 		timeline: false,
