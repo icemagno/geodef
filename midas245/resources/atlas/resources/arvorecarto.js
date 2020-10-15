@@ -8,6 +8,7 @@ function openCatalogBox(){
 
 function copyWMSURL(){
 	  var copyText = document.getElementById("share-wms");
+	  if( copyText.value.length < 5 ) return;
 	  copyText.select();
 	  copyText.setSelectionRange(0, 99999);
 	  document.execCommand("copy");	
@@ -69,6 +70,26 @@ function startCesiumInMiniMap(){
 	
 }
 
+function searchTree(){
+	
+	
+    var pattern = $('#searchCatalogTree').val();
+    if( pattern.length === 0 ){
+    	$(".sourcesTree").treeview('clearSearch');
+    	$("#layerSearchResultContainer").hide();
+    	$("#layerContainerHolder").show();
+    } else {
+    	$("#layerSearchResultContainer").empty();
+    	
+    	$("#layerSearchResultContainer").show();
+    	$("#layerContainerHolder").hide();
+    	
+   		$("#layerSearchResultContainer").append( "<h4>Não Implementado Ainda</h4>" );	
+        
+    }    
+    
+}
+
 function getCatalogTopics(){
 	
     jQuery.ajax({
@@ -78,14 +99,13 @@ function getCatalogTopics(){
 			
 			$('#catalogTreeModal').attr('class', 'modal fade bs-example-modal-lg').attr('aria-labelledby','catalogModalLabel');
 			$('#tab_geo').html( getGeoTabContent( catalogTopics ) );
-			$('#tab_upload').html('<b>Não implementado ainda.</b>');
 			
 			$('#layerContainer').slimScroll({
-		        height: '450px',
+		        height: '550px',
 		        wheelStep : 10,
 		    });	
 			$('#layerDetailsContainer').slimScroll({
-		        height: '230px',
+		        height: '280px',
 		        wheelStep : 10,
 		    });	
 			
@@ -112,6 +132,11 @@ function getCatalogTopics(){
 				addLayerWMS();
 			});
 			
+			
+			$("#searchCatalogTree").keyup(function(){
+				searchTree();
+			});
+			
 		},
 	    error: function(xhr, textStatus) {
 	    	fireToast( 'error', 'Erro Crítico', 'Não foi possível receber o catálogo.', '404' );
@@ -123,14 +148,28 @@ function getCatalogTopics(){
 
 
 function getGeoTabContent( catalogTopics ){
-	var content = '<div class="row">' + 
-		'<div class="col-md-6" style="border-right: 1px solid #f4f4f4;padding-right: 5px;padding-left: 0px;">' +
-			'<div id="layerContainer">' + 
-				getCatalogTree( catalogTopics ) +	
-			'</div>'+	
+	var content = '<div class="row" style="margin: 0px;">' + 
+		'<div class="col-md-6" style="padding-right: 5px;padding-left: 0px;">' +
+		
+		    '<div style="margin-bottom: 0px;" class="box box-widget">'+
+		    '<div class="box-header box-header with-border">' +
+		    
+            '<div class="input-group">'+
+            '<input id="searchCatalogTree" type="text" class="form-control">'+
+            '<span class="input-group-addon"><i class="fa fa-search"></i></span>'+
+            '</div>'+
+		    
+		    '</div>'+
+		    '<div class="box-body"><div id="layerContainerHolder"><div id="layerContainer">'+
+					getCatalogTree( catalogTopics ) +	
+			'</div></div>'+
+		    '<div style="display:none" id="layerSearchResultContainer" class="box-body">hfksjdfhsdjkfhsdjkfhsd</div></div>'+
+			'</div>'+
 		'</div>' +
 		'<div class="col-md-6" style="padding-right: 0px;padding-left: 5px;">' +
-			'<div style="margin-bottom: 10px;" class="box box-widget"><div style="height:250px;" id="cesiumCatalogContainer" class="box-body">'+
+			'<div style="margin-bottom: 10px;" class="box box-widget">'+
+		    '<div class="box-header box-header with-border"><button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Fechar</button></div>'+
+		    '<div style="height:250px;" id="cesiumCatalogContainer" class="box-body">'+
 			'<div id="catalogMapWaitingIcon" style="display:none;width: 100%;height: 100%; position: absolute;" class="overlay"><i class="fa fa-refresh fa-spin"></i></div></div><div class="box-footer">' + 
 
 			'<div class="pull-left">' +
@@ -160,7 +199,7 @@ function formatCatalogTopic( topic ){
 		'</button>'+
 	'</div>'+
 	'<div id="topicTab'+topic.id+'" class="panel-collapse collapse">'+
-		'<div style="padding: 0px; border:1px solid #f4f4f4;" class="box-body"><div id="sourcesTree'+topic.id+'" class=""></div></div>'+
+		'<div style="padding: 0px;" class="box-body"><div id="sourcesTree'+topic.id+'" class="sourcesTree"></div></div>'+
 	'</div>'+
 	'</div>';
 	return content;

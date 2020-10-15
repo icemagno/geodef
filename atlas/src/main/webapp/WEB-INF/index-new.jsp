@@ -8,6 +8,10 @@
 
 <style>
 
+	.box{
+		box-shadow: none;
+	}
+
 	.treeview span.image{
 		width: 17px !important;
 	}
@@ -142,20 +146,7 @@
 	<div  class="modal fade bs-example-modal-lg" id="catalogTreeModal" tabindex="-1" role="dialog" aria-labelledby="catalogModalLabel" aria-hidden="true">
 		<div style="width:1000px" class="modal-dialog modal-lg">
 			<div class="modal-content">
-				<div class="modal-body" id="catalogModalBody">
-					<div class="nav-tabs-custom" style="margin-bottom:0px;box-shadow:none;border-radius:0px"> 
-						<ul class="nav nav-tabs">
-							<li class="active"><a href="#tab_geo" data-toggle="tab">Geoserviços</a></li>
-							<li><a href="#tab_upload" data-toggle="tab">Enviar Dados</a></li>
-						</ul>
-						<div class="tab-content" style="height: 450px;">
-							<div class="tab-pane active" id="tab_geo"></div>
-							<div class="tab-pane" id="tab_upload"></div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer" id="catalogModalFooter">
-					<button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Fechar</button>
+				<div class="modal-body" id="tab_geo">
 				</div>
 			</div>
 		</div>

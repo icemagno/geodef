@@ -38,7 +38,6 @@ public class CatalogController {
 	@RequestMapping(value = "/topics", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody List<CatalogTopics> getTopics() {
 		List<CatalogTopics> topics = catalogRepository.findAll();
-		System.out.println( topics.toString() );
 		return topics; 
 	}
 
