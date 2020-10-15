@@ -12,6 +12,88 @@ var cartasCHM = null;
 var metocLayer = null;
 var marinetraffic = null;
 
+
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+
+function getALayerCard( uuid, layerAlias, defaultImage  ){
+	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
+	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
+	
+	
+	'<div class="box-tools pull-right">'+                           
+		'<button title="Ocultar Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
+		'<button title="Exibir Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
+		'<button title="Exibir Controles" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button>'+
+		'<button title="Ocultar Controles" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-right"></i></button>'+
+	'</div>' +	
+	
+	
+	'</td></tr>'; 
+	table = table + '<tr><td colspan="2" style="width: 60%;">'; 
+	table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" ' +
+		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
+	table = table + '</td><td >' + 
+	'<a title="RF-XXX" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
+	'<a title="RF-YYY" style="margin-right: 10px;" href="#" onClick="layerToUp(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-floppy-o"></i></a>' + 
+	'<a title="RF-ZZZ" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-gear"></i></a>' + 
+	'<a title="RF-WWW" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
+	'</td></tr>';
+	table = table + '</table></div>';
+	var layerText = '<div class="sortable" id="'+uuid+'" style="overflow:hidden;height:70px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
+	table + '</div><div id="LEG_'+uuid+'"></div></div>';
+	return layerText;
+}
+
+
+function getALayerGroup( uuid, groupName, defaultImage ){
+	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
+	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+groupName+'</b></td></tr>'; 
+	table = table + '<tr><td colspan="3" id="GRPCNT_'+uuid+'"></td></tr>';
+	table = table + '</table></div>';
+	var layerText = '<div class="sortable" id="'+uuid+'" style="background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
+	table + '</div></div>';
+	return layerText;
+}
+
+
+function addLayerCard( layerAlias ){
+    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
+	var uuid = "L-" + createUUID();
+	var layerText = getALayerCard( uuid, layerAlias, defaultImage );
+
+	$("#activeLayerContainer").append( layerText );
+
+	
+	
+	// http://osm.franken.de:8080/geoserver/gebco/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=gebco:gebco_poly_2014
+	//LEG_'+uuid+'
+	
+	$("#SL_"+uuid).slider({});
+	$("#SL_"+uuid).on("slide", function(slideEvt) {
+		var valu = slideEvt.value / 100;
+		console.log( this.id + " " + valu );
+	});	
+
+
+}
+
+
+
+
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+
+
+
+
+
 function deleteLayer( uuid ) {
 	
 	

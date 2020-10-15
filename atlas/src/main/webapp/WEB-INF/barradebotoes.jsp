@@ -71,12 +71,12 @@
 
     <ul style="background-color: transparent; border: 0px;" class="dropdown-menu dropdown-menu-lg">
         <li style="margin-top: 5px;">
-			<button title="Buffer" id="toolPrfilElevacao" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
+			<button title="Buffer" id="toolBuffer" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/buffer.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
         <li style="margin-top: 5px;">
-			<button title="Gráfico de Voronoi" id="toolPrfilElevacao" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
+			<button title="Gráfico de Voronoi" id="toolVoronoi" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/voronoi.png" style="width: 35px; height: 35px;">
 			</button>
         </li>

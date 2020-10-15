@@ -1,9 +1,23 @@
 var theTreeElement = null;
 var viewerCatalog = null;
-var allSources = [];
+var selectedWMSService = null;
 
 function openCatalogBox(){
 	getCatalogTopics();
+}
+
+function copyWMSURL(){
+	  var copyText = document.getElementById("share-wms");
+	  copyText.select();
+	  copyText.setSelectionRange(0, 99999);
+	  document.execCommand("copy");	
+	  fireToast( 'info', 'Compartilhar', 'A URL do Geoserviço foi copiada para a área de transferência.' , '000' );
+}
+
+function addLayerWMS(){
+	if( selectedWMSService === null ) return;
+	console.log( selectedWMSService );
+	addLayerCard( selectedWMSService.data.description );
 }
 
 function startCesiumInMiniMap(){
@@ -78,9 +92,10 @@ function getCatalogTopics(){
 			
 			$('#catalogTreeModal').modal('show');
 			$("#catalogTreeModal").on("hidden.bs.modal", function () {
-				console.log('TRIGGERED');
-				$("#cesiumCatalogContainer").html('');
+				selectedWMSService = null;
+				viewerCatalog.destroy();
 				viewerCatalog = null;
+				$("#cesiumCatalogContainer").html('');
 			});			
 			
 			for( x=0; x < catalogTopics.length; x++ ){
@@ -89,6 +104,15 @@ function getCatalogTopics(){
 			$('.list-group-item').css({'border-radius':0});
 			
 			startCesiumInMiniMap();
+			
+			$("#wmsCopyBtn").click( function(){
+				copyWMSURL();
+			});
+			
+			$("#addLayerWMSBtn").click( function(){
+				addLayerWMS();
+			});
+			
 		},
 	    error: function(xhr, textStatus) {
 	    	fireToast( 'error', 'Erro Crítico', 'Não foi possível receber o catálogo.', '404' );
@@ -108,7 +132,20 @@ function getGeoTabContent( catalogTopics ){
 		'</div>' +
 		'<div class="col-md-6" style="padding-right: 0px;padding-left: 5px;">' +
 			'<div style="margin-bottom: 10px;" class="box box-widget"><div style="height:250px;" id="cesiumCatalogContainer" class="box-body">'+
-			'<div id="catalogMapWaitingIcon" style="display:none;width: 100%;height: 100%; position: absolute;" class="overlay"><i class="fa fa-refresh fa-spin"></i></div></div></div>' + 	
+			'<div id="catalogMapWaitingIcon" style="display:none;width: 100%;height: 100%; position: absolute;" class="overlay"><i class="fa fa-refresh fa-spin"></i></div></div><div class="box-footer">' + 
+
+			'<div class="pull-left">' +
+				'<button id="addLayerWMSBtn" style="margin-right: 5px;" type="button" title="Criar Camada" class="btn btn-default"><i class="fa fa-mail-reply-all"></i></button>' +
+			'</div>' +			
+			
+            '<div style="width:90%; margin:0px; float:right;" >' +
+            '<input style="width:90%;float:left;" type="text" class="form-control" placeholder="URL do Geoserviço" id="share-wms">' +
+            '<span class="input-group-btn">' +
+            	'<button id="wmsCopyBtn" type="button" title="Compartilhar" class="btn btn-default"><i class="fa fa-share-alt"></i></button>' +
+			'</span>'+
+            '</div>' + 
+			
+			'</div></div>' + 	
 			'<div id="layerDetailsContainer"></div>'+	
 		'</div>' + 
 	'</div>';
@@ -134,12 +171,13 @@ function formatCatalogTopic( topic ){
 function getChildren( source ){
 	var result = [];
 	var totalSources = source.sources.length;
-	if ( totalSources == 0 ) return null;
+	if ( totalSources == 0 ) return [];
 	for( var z=0; z < totalSources; z++ ){
 		var ss = source.sources[z];
-		var theImage = null;
-		if( ss.sources.length == 0 ) theImage = '/resources/img/layer.png';
-		var theData = { text: ss.sourceName, nodes:[], tags: [ ss.sources.length ], image : theImage, data : ss };
+		var theData = { text: ss.sourceName, nodes:[], tags: [ ss.sources.length ], data : ss };
+		if( ss.sourceAddress.length > 20 ) {
+			theData.image = '/resources/img/layer.png';
+		}
 		theData.nodes = getChildren( ss );
 		result.push( theData );
 	}
@@ -154,9 +192,10 @@ function getTopicSources( topic ){
 	
 	for( var y=0; y < totalSources; y++ ){
 		var source = topic.sources[y];
-		var theImage = null;
-		if( source.sources.length == 0 ) theImage = '/resources/img/layer.png';
-		var theData = { text: source.sourceName, nodes:[], tags: [ source.sources.length ], image : theImage, data : source };
+		var theData = { text: source.sourceName, nodes:[], tags: [ source.sources.length ], data : source };
+		//if( source.sourceAddress.length > 20 ){
+		//	theData.image = '/resources/img/layer.png';
+		//}
 		theData.nodes = getChildren( source );
 		if( source.parentId == null ) treeMainData.push( theData );
 	}
@@ -172,9 +211,6 @@ function getTopicSources( topic ){
 			showImage: true,
 	        multiSelect: false,
 	        onNodeSelected: function(event, node) {
-	        	
-	        	console.log( node.data );
-	        	
 	        	$("#layerDetailsContainer").text( node.data.description );
 	        	if( node.data.sourceAddress.length > 10 ){
 	        		previewLayer( node.data );
@@ -190,7 +226,8 @@ function getTopicSources( topic ){
 	        	$("#layerDetailsContainer").text( node.data.description );
 	        }	        
 		});
-		theTreeElement.treeview('collapseAll', {  });
+		
+		$('#sourcesTree' + topic.id).treeview('collapseAll', {});
 		
 	}
 	
@@ -198,23 +235,21 @@ function getTopicSources( topic ){
 
 
 function previewLayer( data ){
-	var provider = getProvider( data.sourceAddress, data.sourceLayer, false, 'png', true );
+	selectedWMSService = null;
 	
+	$("#share-wms").val( data.sourceAddress + "?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.0&&STYLES=&LAYERS=" + data.sourceLayer + 
+			"&SRS=EPSG:4326&BBOX=-180,-90,180,90&width=800&height=400&tiled=true&format=image/png&transparent=true");
+	
+	var provider = getProvider( data.sourceAddress, data.sourceLayer, false, 'png', true );
 	if( provider ){
 		var layers = viewerCatalog.imageryLayers;
 		if( layers.length > 1 ){
 			layers.remove( layers.get(1) );
 		}
 		var imageryLayer = layers.addImageryProvider( provider, 1 );
-		/*
-		imageryLayer.getViewableRectangle().then(function (rectangle) {
-		    return viewerCatalog.camera.flyTo({
-		        destination: rectangle
-		    });
-		});
-		*/		
+		selectedWMSService = { data : data, layer : imageryLayer };
 	} else {
-		console.log('Deu merda');
+		console.log('Erro ao carregar o preview da camada');
 	}
 	
 }

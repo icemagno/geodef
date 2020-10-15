@@ -142,7 +142,7 @@ function startMap( theMapStyle ) {
 	viewer = new Cesium.Viewer('cesiumContainer',{
 		terrainProvider : terrainProvider,
 		sceneMode : sceneMapMode,
-		// mapMode2D: Cesium.MapMode2D.ROTATE,
+		//mapMode2D: Cesium.MapMode2D.ROTATE,
 		timeline: false,
 		animation: false,
 		baseLayerPicker: false,
@@ -151,6 +151,7 @@ function startMap( theMapStyle ) {
 		geocoder : false,
 		homeButton : false,
 		infoBox : false,
+		skyBox : false,
 		sceneModePicker : false,
 		selectionIndicator : false,
 		navigationHelpButton : false,
@@ -177,12 +178,11 @@ function startMap( theMapStyle ) {
 	//scene.globe.tileCacheSize = 250;
 	scene.pickTranslucentDepth = true;
 	scene.useDepthPicking = true;
-	scene.skyBox.show = false;
-	scene.sun.show = false;
-	//scene.bloomEffect.show = true;
-	//scene.bloomEffect.threshold = 0.1;
-	//scene.bloomEffect.bloomIntensity = 0.3;		
 
+	var width = viewer.scene.drawingBufferWidth;
+	var height = viewer.scene.drawingBufferHeight;
+	console.log('Resolução ' + width + ' x ' + height );	
+	
 	imageryLayers = scene.imageryLayers;
 	
 	// drawOperationArea( homeLocation );
@@ -241,7 +241,6 @@ function startMap( theMapStyle ) {
 
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
-	populateLayerPanelAsTesting();
 
 	/*
 	var imageryProvider = new Cesium.SingleTileImageryProvider({
@@ -436,7 +435,15 @@ function bindInterfaceElements() {
         wheelStep : 10,
     });
 	
-    
+	
+	
+	$("#activeLayerContainer").sortable({
+		update: function( event, ui ) {
+			console.log( ui );
+		}
+	});
+	    
+	
     // MACETES - ESCONDER ELEMENTOS "DESNECESSARIOS"
 	
     $(".cesium-viewer-bottom").hide();
@@ -728,76 +735,3 @@ function bindRouteRightClick() {
 	
 }
 
-
-
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-
-function getALayerCard( uuid, layerAlias, defaultImage  ){
-	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
-	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
-	
-	
-	'<div class="box-tools pull-right">'+                           
-		'<button title="Ocultar Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
-		'<button title="Exibir Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
-		'<button title="Exibir Controles" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button>'+
-		'<button title="Ocultar Controles" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-right"></i></button>'+
-	'</div>' +	
-	
-	
-	'</td></tr>'; 
-	table = table + '<tr><td colspan="2" style="width: 60%;">'; 
-	table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" ' +
-		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
-	table = table + '</td><td >' + 
-	'<a title="RF-XXX" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
-	'<a title="RF-YYY" style="margin-right: 10px;" href="#" onClick="layerToUp(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-floppy-o"></i></a>' + 
-	'<a title="RF-ZZZ" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-gear"></i></a>' + 
-	'<a title="RF-WWW" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
-	'</td></tr>';
-	table = table + '</table></div>';
-	var layerText = '<div class="sortable" id="'+uuid+'" style="overflow:hidden;height:86px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
-	table + '</div></div>';
-	return layerText;
-}
-
-
-function getALayerGroup( uuid, groupName, defaultImage ){
-	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
-	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+groupName+'</b></td></tr>'; 
-	table = table + '<tr><td colspan="3" id="GRPCNT_'+uuid+'"></td></tr>';
-	table = table + '</table></div>';
-	var layerText = '<div class="sortable" id="'+uuid+'" style="background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
-	table + '</div></div>';
-	return layerText;
-}
-
-
-function populateLayerPanelAsTesting(){
-    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
-	
-    for( x=0; x < 5; x++ ){
-	    var uuid = "layer" + x;
-	    var layerAlias = "[ CAMADA ]";
-	    
-	    var layerText = getALayerCard( uuid, layerAlias, defaultImage );
-		$("#activeLayerContainer").append( layerText );
-		
-		$("#SL_"+uuid).slider({});
-		$("#SL_"+uuid).on("slide", function(slideEvt) {
-			var valu = slideEvt.value / 100;
-			//
-		});	
-	}
-	$("#activeLayerContainer").sortable({
-		update: function( event, ui ) {
-			console.log( ui );
-		}
-	});
-
-
-}

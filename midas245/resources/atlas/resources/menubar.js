@@ -1,22 +1,22 @@
 var visibleBar = null;
 
 function hideAllButtonBars() {
-	jQuery(".queryRowDetails").remove();
-	jQuery( "#toolBarsSubContainer .activeBtnBar" ).hide(300);
-	jQuery( "#toolBarsSubContainer .activeBtnBar" ).removeClass('activeBtnBar');	
-	jQuery( ".toolBarMenuBox" ).hide(300);
+	$(".queryRowDetails").remove();
+	$( "#toolBarsSubContainer .activeBtnBar" ).hide(300);
+	$( "#toolBarsSubContainer .activeBtnBar" ).removeClass('activeBtnBar');	
+	$( ".toolBarMenuBox" ).hide(300);
 	visibleBar = null;
 	removeMouseClickListener();
 }
 
 function hideRouteDir() {
-	jQuery("#routeContainer").hide();
+	$("#routeContainer").hide();
 }
 
 function closeQueryToolBarMenu() {
 	hideAllButtonBars();
 	removeMouseClickListener();
-	jQuery('.cesium-viewer').css('cursor', '');
+	$('.cesium-viewer').css('cursor', '');
 }
 
 function closeMetocToolBarMenu() {
@@ -41,7 +41,7 @@ function closePlataformasToolBarMenu() {
 
 function closeAvisosRadioToolBarMenu() {
 	hideAllButtonBars();
-	jQuery('#avisosContainer').hide();
+	$('#avisosContainer').hide();
 	deleteAvisos();
 }
 
@@ -54,8 +54,8 @@ function closeDrawToolBarMenu() {
 }
 
 function showButtonBar( element ) {
-	jQuery( element ).show(300);
-	jQuery( element ).addClass('activeBtnBar');
+	$( element ).show(300);
+	$( element ).addClass('activeBtnBar');
 }
 
 function isVisible( bar ) {
@@ -63,85 +63,85 @@ function isVisible( bar ) {
 }
 
 function closeSearchToolBarMenu() {
-	jQuery(".layerFoundItem").remove();
-	jQuery("#layerNameFinder").val('');	
-	jQuery("#treeview-terrestre").show();	
-	//jQuery("#treeview-nautica").show();	
-	//jQuery("#treeview-aeronautica").show();	
+	$(".layerFoundItem").remove();
+	$("#layerNameFinder").val('');	
+	$("#treeview-terrestre").show();	
+	//$("#treeview-nautica").show();	
+	//$("#treeview-aeronautica").show();	
 }
 
 function bindToolBarButtons() {
 	
-    jQuery("#showMeasureTools").click( function() {
+    $("#showMeasureTools").click( function() {
     	var wasVisible = isVisible('BAR_MEASURE');
     	hideAllButtonBars();
     	if( !wasVisible ) {
     		visibleBar = 'BAR_MEASURE';	
     		showButtonBar( "#toolBarMeasure" );
-    		jQuery("#measureMenuBox").show( 300 );
+    		$("#measureMenuBox").show( 300 );
     	}
     });
     
-    jQuery("#showToolQuery").click( function(){
+    $("#showToolQuery").click( function(){
     	var wasVisible = isVisible('BAR_QUERY');
 		hideAllButtonBars();
     	if( !wasVisible ) {
     		visibleBar = 'BAR_QUERY';	
     		queryLayer();
-       		jQuery("#queryMenuBox").show( 300 );
+       		$("#queryMenuBox").show( 300 );
     	}    	
 	});
     
     
-    jQuery("#showToolRoutes").click( function(){
+    $("#showToolRoutes").click( function(){
     	var wasVisible = isVisible('BAR_ROUTE');
 		hideAllButtonBars();
     	if( !wasVisible ) {
     		visibleBar = 'BAR_ROUTE';	
     		bindRouteRightClick();
-       		jQuery("#routeMenuBox").show( 300 );
+       		$("#routeMenuBox").show( 300 );
     	}
     });
     
-    jQuery("#show3DTools").click( function(){
+    $("#show3DTools").click( function(){
     	var wasVisible = isVisible('BAR_ANALYSIS');
     	hideAllButtonBars();
     	if( !wasVisible ) {
     		visibleBar = 'BAR_ANALYSIS';	
     		showButtonBar( "#toolBarTerrainAnalysis" );
-    		jQuery("#vsMenuBox").show(300);
+    		$("#vsMenuBox").show(300);
     	}
     });
     
-    jQuery("#showDesignTools").click( function(){
+    $("#showDesignTools").click( function(){
     	var wasVisible = isVisible('BAR_DRAW');
     	hideAllButtonBars();
     	if( !wasVisible ) {
     		visibleBar = 'BAR_DRAW';	
     		showButtonBar( "#toolBarFeatures" );
-    		jQuery("#drawMenuBox").show(300);
+    		$("#drawMenuBox").show(300);
     	}
     });
 
-    jQuery("#toolExperimental").click( function(){
+    $("#toolExperimental").click( function(){
     	showButtonBar( "#toolBarExperimental" );
     });
     
-    jQuery("#toolEdgvBook").click( function(){
+    $("#toolEdgvBook").click( function(){
     	window.open( sisgeodefHost + "/iscy/");
     });
     
-    jQuery("#toolGuia").click( function(){
+    $("#toolGuia").click( function(){
     	window.open("/resources/img/fastguide/index.html");
     });
 	
 	
-    jQuery("#toolFullScreen").click( function(){
+    $("#toolFullScreen").click( function(){
     	var elem = document.getElementById("cesiumContainer");
 		openFullscreen( elem );
     });
     
-    jQuery("#toolSolucionadores").click( function(){
+    $("#toolSolucionadores").click( function(){
     	var wasVisible = isVisible('BAR_SOLUCOES');
     	hideAllButtonBars();
     	if( !wasVisible ) {
@@ -150,7 +150,7 @@ function bindToolBarButtons() {
     	}
     });
     
-    jQuery("#toolCatalogs").click( function(){
+    $("#toolCatalogs").click( function(){
     	var wasVisible = isVisible('BAR_CATALOGS');
     	hideAllButtonBars();
     	if( !wasVisible ) {
@@ -163,7 +163,7 @@ function bindToolBarButtons() {
     
 	// *****************************************
     
-	jQuery("#toolGoTopView").click( function(){
+	$("#toolGoTopView").click( function(){
 		var currentPosition = viewer.camera.positionCartographic;
 		
         var windowPosition = new Cesium.Cartesian2(viewer.container.clientWidth / 2, viewer.container.clientHeight / 2);
@@ -189,7 +189,7 @@ function bindToolBarButtons() {
 	});
     
     
-	jQuery("#toolHome").click( function(){
+	$("#toolHome").click( function(){
 		var center = Cesium.Rectangle.center( homeLocation );
 		var longitude = Cesium.Math.toDegrees(center.longitude);
 		var latitude = Cesium.Math.toDegrees(center.latitude);
@@ -220,50 +220,59 @@ function bindToolBarButtons() {
     
     // ==================================================
     
-    jQuery("#routeDirButton").click( function(){
+    $("#routeDirButton").click( function(){
     	hideRouteDir();
     });
 
-	jQuery("#toolScreenSnapShot").click( function(){
+	$("#toolScreenSnapShot").click( function(){
 		screenShot();
 	});
 	
-	jQuery("#toolViewShed").click( function(){
+	$("#toolViewShed").click( function(){
 		viewShed();
 	});
 	
-	jQuery("#toolAddPoint").click( function(){
+	$("#toolAddPoint").click( function(){
 		drawPoint();
 	});
-	jQuery("#toolAddLine").click( function(){
+	$("#toolAddLine").click( function(){
 		drawLine();
 	});
-	jQuery("#toolAddPolygon").click( function(){
+	$("#toolAddPolygon").click( function(){
 		console.log('dddd');
 		drawPolygon( false );
 	});
-	jQuery("#toolAddPolygonSurface").click( function(){
+	$("#toolAddPolygonSurface").click( function(){
 		drawPolygon( true );
 	});
 	
-	jQuery("#toolAddMarker").click( function(){
+	$("#toolAddMarker").click( function(){
 		drawMarker();
 	});
-	jQuery("#toolAddCircle").click( function(){
+	$("#toolAddCircle").click( function(){
 		drawCircle();
 	});
-	jQuery("#toolAddBox").click( function(){
+	$("#toolAddBox").click( function(){
 		drawBox();
 	});
-	jQuery("#toolPrfilElevacao").click( function(){
+	$("#toolPrfilElevacao").click( function(){
 		calcLineTerrainProfile();
+	});
+	$("#toolVoronoi").click( function(){
+		//
+	});
+	$("#toolBuffer").click( function(){
+		//
+	});
+	$("#toolRoutes").click( function(){
+		//
 	});
 	
 	// Botoes da barra lateral esquerda.
-	jQuery("#openCatalogBtn").click( function(){
+	$("#openCatalogBtn").click( function(){
 		openCatalogBox();
 	});
-	jQuery("#uploadUserDataBtn").click( function(){
+	$("#uploadUserDataBtn").click( function(){
 		//
 	});
 
@@ -272,60 +281,60 @@ function bindToolBarButtons() {
 	 *                     SOLUCIONADORES 
 	 * **************************************************/
 
-	jQuery("#toolGtOpA").click( function(){
-		jQuery("#plataformasMenuBox").show(300);
+	$("#toolGtOpA").click( function(){
+		$("#plataformasMenuBox").show(300);
 		plataformas();
 	});	
 
 
 	/* --------------   AVISOS RADIO -------------  */
-	jQuery("#toolAvisoRadio").click( function(){
-		jQuery("#avisosRadioMenuBox").show(300);
+	$("#toolAvisoRadio").click( function(){
+		$("#avisosRadioMenuBox").show(300);
 	});	
-	jQuery("#loadAvisosRadioBtn").click( function(){
-		var sarEventsOnlyFilter = jQuery("#sarEventsOnly").prop('checked');
+	$("#loadAvisosRadioBtn").click( function(){
+		var sarEventsOnlyFilter = $("#sarEventsOnly").prop('checked');
 		avisosRadio( sarEventsOnlyFilter );
 	});	
 	
 	/* --------------   METOC --------------------  */
 	// Reverti o menu de Climatologia
-	jQuery("#loadClimatologiaBtn").click( function(){
-		//var time = jQuery("#metocLayerTimeDate").val();
+	$("#loadClimatologiaBtn").click( function(){
+		//var time = $("#metocLayerTimeDate").val();
 		loadClimato();
 	});
 	
-	jQuery("#toolMetoc").click( function(){
-		jQuery("#metocMenuBox").show(300);
+	$("#toolMetoc").click( function(){
+		$("#metocMenuBox").show(300);
 	});
 	
 	/* -------------------------------------------- */
 	
-	jQuery("#toolPCN").click( function(){
-		jQuery("#pcnMenuBox").show(300);
+	$("#toolPCN").click( function(){
+		$("#pcnMenuBox").show(300);
 	});	
 
 	
-	jQuery("#toolCOR").click( function(){
+	$("#toolCOR").click( function(){
 		loadCores( );
-		//jQuery("#pcnMenuBox").show(300);
+		//$("#pcnMenuBox").show(300);
 	});	
 	
 	/* **************************************************
 	 *                     EXPERIMENTAL 
 	 * **************************************************/
-	jQuery("#toolOSM3D").click( function(){
+	$("#toolOSM3D").click( function(){
 		getBuildings();
 	});
 	
-	jQuery("#toolFavelas").click( function(){
+	$("#toolFavelas").click( function(){
 		drawFavelas();
 	});
 	
-	jQuery("#toolNuvemPontos").click( function(){
+	$("#toolNuvemPontos").click( function(){
 		loadPC();
 	});
 
-	jQuery("#toolFlood").click( function(){
+	$("#toolFlood").click( function(){
 		startFlood();
 	});
 	
