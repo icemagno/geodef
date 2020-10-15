@@ -19,6 +19,29 @@ var marinetraffic = null;
 // ***************************************************************************
 // ***************************************************************************
 
+function updateLayersOrder( event, ui ){
+	
+	var uuid = ui.item[0].id;
+	var newLayerIndex = ui.item.index() + 2;  // 0=Camada Base // 1=Grid Coordenadas // 2=> Camadas do usuário...
+	var layer = getLayerByUUID( uuid );
+	var currentLayerIndex = viewer.imageryLayers.indexOf( layer );
+	
+	if( newLayerIndex < currentLayerIndex ){
+		var steps = currentLayerIndex - newLayerIndex;
+		for( x=0; x<steps; x++){
+			viewer.imageryLayers.lower(layer);
+		}
+	}
+	if( newLayerIndex > currentLayerIndex ){
+		var steps = newLayerIndex - currentLayerIndex;
+		for( x=0; x<steps; x++){
+			viewer.imageryLayers.raise(layer);
+		}
+	}
+	
+	var targetLayerIndex = viewer.imageryLayers.indexOf( layer );
+}
+
 function expandCard(uuid){
 	var idX = "#expd_" + uuid;
 	var idC = "#cops_" + uuid;
@@ -60,6 +83,16 @@ function doShowLayer( uuid ){
 		}
 	}
 }
+
+function getLayerByUUID( uuid ){
+	for( x=0; x<stackedProviders.length;x++ ) {
+		var sp = stackedProviders[x];
+		if( sp.uuid === uuid ) {
+			return sp.layer;
+		}
+	}
+}
+
 
 function doHideLayer( uuid ){
 	for( x=0; x<stackedProviders.length;x++ ) {
@@ -122,8 +155,6 @@ function addLayerCard( data ){
 	var uuid = "L-" + createUUID();
 	var theProvider = {};
 	theProvider.uuid = uuid;
-	
-	console.log( data );
 	
 	var provider = getProvider( data.sourceAddress, data.sourceLayer, false, 'png', true );
 	if( provider ){
