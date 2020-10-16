@@ -8,7 +8,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -28,18 +30,21 @@ public class CartografiaIndexService {
 	private Logger logger = LoggerFactory.getLogger(CartografiaIndexService.class);
 	private JSONObject tree = new JSONObject();
 	
-	
-	@Value("${ortelius.url}")
-	private String orteliusUrl;   	
-	
+    @Autowired
+    private LoadBalancerClient loadBalancer;	
+    
 	public CartografiaIndexService() {
 		this.classes = new ArrayList<IClasse>();
 	}
 	
 	private String getIndex( String fonte ) {
+		
+		ServiceInstance orteliusInstance = loadBalancer.choose("ortelius");
+		String orteliusAddress = orteliusInstance.getUri().toString(); 		
+		
 		String responseBody = "";
 		try {
-			String uri = this.orteliusUrl + "/v1/pleione/catalog?fonte=" + fonte;
+			String uri = orteliusAddress + "/v1/pleione/catalog?fonte=" + fonte;
 			RestTemplate restTemplate = new RestTemplate();
 			ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
 			responseBody = result.getBody();

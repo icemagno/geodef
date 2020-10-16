@@ -226,6 +226,13 @@ function startMap( theMapStyle ) {
 	    var bSouth = Cesium.Math.toDegrees(rect.south);
 	    var bEast = Cesium.Math.toDegrees(rect.east);
 	    var bNorth = Cesium.Math.toDegrees(rect.north);
+	    
+	    $("#vpW").text( bWest );
+	    $("#vpE").text( bEast );
+	    $("#vpN").text( bNorth );
+	    $("#vpS").text( bSouth );
+	    
+	    
 	});	
 	
 	var graticule = new Graticule({
