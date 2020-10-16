@@ -10,7 +10,7 @@ var mainEventHandler = null;
 var scene = null;
 var timeout = 6000; 
 var imageryLayers = null; 
-
+var scratchRectangle = new Cesium.Rectangle();
 var mapStyle = '3D'; // [ 3D || 2D ]
 
 var mainConfiguration = null;
@@ -218,6 +218,15 @@ function startMap( theMapStyle ) {
 	// Conecta o WebSocket
 	connect();
 	drawHelper = new DrawHelper( viewer );
+	
+	
+	viewer.clock.onTick.addEventListener(function() {
+	    var rect = viewer.camera.computeViewRectangle( viewer.scene.globe.ellipsoid, scratchRectangle );
+	    var bWest = Cesium.Math.toDegrees(rect.west);
+	    var bSouth = Cesium.Math.toDegrees(rect.south);
+	    var bEast = Cesium.Math.toDegrees(rect.east);
+	    var bNorth = Cesium.Math.toDegrees(rect.north);
+	});	
 	
 	var graticule = new Graticule({
 	      	tileWidth: 512,
