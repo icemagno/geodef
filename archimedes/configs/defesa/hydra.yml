@@ -1,0 +1,50 @@
+server:
+  error:
+    include-stacktrace: always
+    whitelabel:
+      enabled: false
+  servlet:
+   session:
+    cookie:
+     name: HYDRASSESSION
+  port: 36220
+   
+   
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+         
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+      client:
+        clientId: hydra
+        clientSecret: secret
+        accessTokenUri: http://osm.casnav.mb:36202/oauth/token
+        userAuthorizationUri: http://osm.casnav.mb:36202/oauth/authorize
+      resource:
+        userInfoUri: http://guardiao:36202/user/me
+
+  
+spring:
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false 
+    hibernate:
+      ddl-auto: validate
+  application:
+    name: hydra
+  datasource:
+    password: admin
+    username: postgres
+    url: jdbc:postgresql://osm.casnav.mb:36420/hydra?ApplicationName=Hydra
+    
+guardiao:
+  logout:
+    path: http://osm.casnav.mb:36202/exit

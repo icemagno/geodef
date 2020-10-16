@@ -1,0 +1,129 @@
+mailservice:
+  origem: magno.mabreu@gmail.com
+  templateFolder: /templates/
+
+openstreetmap:
+  database:
+    url: jdbc:postgresql://10.5.112.81:5432/osm?ApplicationName=Atlas
+    user: postgres
+    password: admin
+  wms: 
+    url: http://10.5.112.81:8080/geoserver/wms/ 
+    baseLayer: osm:OSMMapa 
+  tileserver: http://sisgeodef.defesa.mil.br:36880/
+  useExternalOsm: true
+
+terena:
+  midas:
+    location: http://sisgeodef.defesa.mil.br:36203
+
+server:
+  error:
+    include-stacktrace: always
+    whitelabel:
+      enabled: false
+  port: 36215
+
+   
+sisgeodef:
+  hostAddress: http://sisgeodef.defesa.mil.br
+  passwordEntropy: 40
+  useGateKeeper: true
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+         
+    
+eureka:
+  client:
+    serviceUrl:
+        defaultZone: http://sisgeodef.defesa.mil.br:36204/eureka
+    registerWithEureka: true
+    fetchRegistry: true
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    preferIpAddress: true
+
+ortelius:
+  url: http://sisgeodef.defesa.mil.br:36303/
+   
+mapproxy:
+  url: http://sisgeodef.defesa.mil.br:36890
+   
+nyx:
+  catalog:
+    url: http://sisgeodef.defesa.mil.br:36318/geonetwork/srv/
+    
+daedalus:
+  url: http://sisgeodef.defesa.mil.br:36002     
+        
+mapillary:
+  client:
+    id: Ymx2LVBGakp6a0xXM3hOWmw1b0pPdzo1ZjM1ZWQ5YzU0ZDE0NDZj
+  
+efestus:
+  database:
+    url: jdbc:postgresql://efestus:5432/efestus?ApplicationName=Atlas
+    user: postgres
+    password: admin 
+ 
+routeserver:
+  api:
+    url : http://sisgeodef.defesa.mil.br:36305/        
+     
+calisto:
+  sharedfolder: /srv/calisto/photos/
+  url: http://sisgeodef.defesa.mil.br:36280/
+  
+spring:
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false 
+    hibernate:
+      ddl-auto: update
+  application:
+    name: atlas
+  datasource:
+    password: admin
+    username: postgres
+    url: jdbc:postgresql://sisgeodef.defesa.mil.br:36210/atlas?ApplicationName=Atlas
+  sleuth:
+    sampler:
+      percentage: 1
+      probability: 1
+  zipkin:
+    base-url: http://zipkin:9411/
+  session:
+    store-type: jdbc
+  mail:
+    host: mail.cmabreu.com.br
+    port: 465
+    username: magno@cmabreu.com.br
+    password: Antares2#2Antares2#2
+    test-connection: true
+# Other properties
+    properties:
+      mail:
+        debug: true
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+# TLS , port 587
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true  
+# SSL, post 465
+        socketFactory:
+          port: 465
+          class: javax.net.ssl.SSLSocketFactory
+
