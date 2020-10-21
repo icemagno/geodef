@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.mil.defesa.sisgeodef.model.CatalogTopics;
 import br.mil.defesa.sisgeodef.repository.CatalogTopicsRepository;
+import br.mil.defesa.sisgeodef.services.CartografiaIndexService;
 import br.mil.defesa.sisgeodef.services.CatalogImporterService;
 import br.mil.defesa.sisgeodef.services.NyxService;
 
@@ -24,6 +25,9 @@ public class CatalogController {
 	
 	@Autowired
 	private CatalogImporterService catalogImporterService;
+	
+	@Autowired
+	private CartografiaIndexService cartografiaService;	
 
 	@Autowired
 	private NyxService nyxService;
@@ -47,5 +51,10 @@ public class CatalogController {
     	catalogImporterService.importCapabilities(6, url);
     }
 	
+    
+    @RequestMapping(value = "/importbdgex", method = RequestMethod.GET )
+    public void importBDGEXtree() {
+    	cartografiaService.importBDGEXtree();
+    }
 	
 }

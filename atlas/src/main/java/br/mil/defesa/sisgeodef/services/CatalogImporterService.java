@@ -91,8 +91,6 @@ public class CatalogImporterService {
 					latLonBoundingBox = new JSONObject("{}");
 				}
 				
-				System.out.println( layer.toString() );
-				
 				CatalogSource source = new CatalogSource();
 				source.setParentId(parentId);
 				source.setDescription( layer.getString("Abstract") );

@@ -22,7 +22,7 @@ public class CatalogSource implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "souce_id", nullable = false, updatable = false)
+	@Column(name = "source_id", nullable = false, updatable = false)
 	private Long id;
 	
 	@Column(name = "topic_id")
@@ -43,6 +43,9 @@ public class CatalogSource implements Serializable {
 	@Column(name = "source_address", length = 250)
 	private String sourceAddress;
 
+	@Column(name = "cql_filter", length = 250)
+	private String cqlFilter;
+	
 	@Column(name = "bbox", length = 100)
 	private String bbox;
 	
@@ -121,6 +124,14 @@ public class CatalogSource implements Serializable {
 
 	public void setBbox(String bbox) {
 		this.bbox = bbox;
+	}
+
+	public String getCqlFilter() {
+		return cqlFilter;
+	}
+
+	public void setCqlFilter(String cqlFilter) {
+		this.cqlFilter = cqlFilter;
 	}
 	
 

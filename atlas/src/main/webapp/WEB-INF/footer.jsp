@@ -14,8 +14,8 @@
 					<div id="lyrCount" style="width: 50px; float: left">0</div>
 				</div>
 			</td>
-			<td id="vpW">&nbsp;</td>
-			<td id="vpN">&nbsp;</td>
+			<td title = "Limite Oeste" id="vpW">&nbsp;</td>
+			<td title = "Limite Norte" id="vpN">&nbsp;</td>
 			<td id="mapUtm"></td>
 			<td id="mapHei"></td>
 			<td id="mapLat"></td>
@@ -23,8 +23,8 @@
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
-			<td id="vpS">&nbsp;</td>
-			<td id="vpE">&nbsp;</td>
+			<td title = "Limite Sul" id="vpS">&nbsp;</td>
+			<td title = "Limite Leste" id="vpE">&nbsp;</td>
 			<td id="mapGeohash"></td>
 			<td id="mapAltitude"></td>
 			<td id="mapLon"></td>

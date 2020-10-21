@@ -17,11 +17,13 @@ public class StartupAppListener implements ApplicationListener<ContextRefreshedE
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
+		/*
 		try {
 			cartografiaService.acquire();
 		} catch ( Exception e ) {
 			e.printStackTrace();
 		}
+		*/
 	}
 
 

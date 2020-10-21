@@ -275,8 +275,11 @@ function getTopicSources( topic ){
 function previewLayer( data ){
 	selectedWMSService = null;
 	
+	var cqlFilter = "";
+	if( data.cqlFilter ) cqlFilter = "&cql_filter=" + data.cqlFilter;
+	
 	$("#share-wms").val( data.sourceAddress + "?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.0&&STYLES=&LAYERS=" + data.sourceLayer + 
-			"&SRS=EPSG:4326&BBOX=-180,-90,180,90&width=800&height=400&tiled=true&format=image/png&transparent=true");
+			"&SRS=EPSG:4326&BBOX=-180,-90,180,90&width=800&height=400&tiled=true&format=image/png&transparent=true" + cqlFilter );
 	
 	var provider = getProvider( data.sourceAddress, data.sourceLayer, false, 'png', true );
 	if( provider ){
