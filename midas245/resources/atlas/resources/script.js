@@ -2,6 +2,12 @@ var ws = null;
 var configuration = null;
 var stompClient = null;
 
+function roundDown(num, precision) {
+	num = parseFloat(num);
+	if (!precision) return num.toLocaleString();
+	return (Math.floor(num / precision) * precision).toLocaleString();
+};
+
 
 function getUserLocation(){
 	var options = {

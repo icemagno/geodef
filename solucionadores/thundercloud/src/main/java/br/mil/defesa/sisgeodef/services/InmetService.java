@@ -101,7 +101,6 @@ public class InmetService {
 		return "{}";
 	}
 
-	@Cacheable("imagemGoesHora")
 	public String getGoesImageHour(String regiao, String parametro, String data, String hora) {
 		String uri = "https://apisat.inmet.gov.br/GOES/"+regiao+"/"+parametro+"/" + data+"/" + hora;
 		System.out.println( uri );

@@ -246,20 +246,20 @@
 						</div>					
 					
 
-						<div id="mainWaitPanel" class="box box-danger box-solid" style="width:210px;height:85px;position:absolute;top:10px;right:100px;z-index: 999;">
+						<div id="mainWaitPanel" class="box box-success box-solid" style="width:210px;height:85px;position:absolute;top:10px;right:100px;z-index: 999;">
 				        	<div class="box-header">
 				              <h3 class="box-title">Aguarde...</h3>
 				            </div>
 				            <div class="box-body">
 				            	<div class="overlay" style="text-align:right">
 				            		<i class="fa fa-refresh fa-spin"></i>
-									<a class="btn">Cancelar</a>
+									<a onClick="cancelWaitingOp();" class="btn">Cancelar</a>
 								</div>
 							</div>
 						</div>
 
 						<!-- INTERROGACAO -->
-						<div id="queryMenuBox" class="toolBarMenuBox" style="width:350px">
+						<div id="queryMenuBox" class="toolBarMenuBox" style="width:350px; display:none">
 							<div class="box-body">
 								<div class="table-responsive">
 									<table id="queryMenuTable" class="table" style="margin-bottom: 0px; width: 100%">

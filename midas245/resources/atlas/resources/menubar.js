@@ -9,6 +9,10 @@ function hideAllButtonBars() {
 	removeMouseClickListener();
 }
 
+function cancelWaitingOp(){
+	$("#mainWaitPanel").hide();
+}
+
 function hideRouteDir() {
 	$("#routeContainer").hide();
 }
@@ -311,9 +315,13 @@ function bindToolBarButtons() {
 		$("#pcnMenuBox").show(300);
 	});	
 
-	
 	$("#toolCOR").click( function(){
-		loadCores();
+		if( isCorMetSolutionActive ){
+			cancelCorMetocSolution();
+		} else {
+			$("#mainWaitPanel").show();
+			startCorMetSolution();
+		}		
 	});	
 	
 	/* **************************************************

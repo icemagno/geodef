@@ -116,7 +116,7 @@ public class ThundercloudService {
 		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");
 		String thundercloudAddress = thundercloudInstance.getUri().toString(); 
 			
-		String uri = thundercloudAddress + "/GOES/" + regiao + "/" + parametro + "/" + data;
+		String uri = thundercloudAddress + "/inmet/goes/" + regiao + "/" + parametro + "/" + data;
 		System.out.println( uri );
 
 		String responseBody = "[]";
@@ -220,7 +220,7 @@ public class ThundercloudService {
 	public String getGoesImageHour(String regiao, String parametro, String data, String hora) {
 		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");
 		String thundercloudAddress = thundercloudInstance.getUri().toString(); 
-		String uri = thundercloudAddress + "/GOES/" + regiao + "/" + parametro + "/" + data + "/" + hora;
+		String uri = thundercloudAddress + "/inmet/goes/" + regiao + "/" + parametro + "/" + data + "/" + hora;
 		System.out.println( uri );
 
 		String responseBody = "[]";
