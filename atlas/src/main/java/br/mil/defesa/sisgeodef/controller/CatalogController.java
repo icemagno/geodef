@@ -46,9 +46,10 @@ public class CatalogController {
 	}
 
     @RequestMapping(value = "/importcapabilities", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public void importCapabilities( @RequestParam(value="url",required=true) String url ) {
-    	url = "http://www.geoportal.eb.mil.br/mapcache?service=wms&version=1.3.0&request=GetCapabilities";
-    	catalogImporterService.importCapabilities(6, url);
+	public void importCapabilities( @RequestParam(value="url",required=true) String url,  @RequestParam(value="parent",required=true) String parentId ) {
+    	//url = "http://www.geoportal.eb.mil.br/mapcache?service=wms&version=1.3.0&request=GetCapabilities";
+    	url = "http:///geoserver.cemaden.gov.br:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities";
+    	catalogImporterService.importCapabilities( 2125, url);
     }
 	
     

@@ -59,6 +59,11 @@ public class MetocController {
 		return thundercloud.getGoesImageHour( regiao, parametro, data, hora );
 	}	
 	
-	
+
+	@RequestMapping(value = "/radares", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody String getRadares() {
+		return thundercloud.getRadares();
+	}	
+
 	
 }

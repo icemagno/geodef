@@ -88,6 +88,31 @@ public class ThundercloudService {
     }
 
     
+	public String getRadares() {
+		
+		String uri = "https://www.redemet.aer.mil.br/produtos/radares-meteorologicos/plota_radar.php";
+		System.out.println( uri );
+
+		String responseBody = "[]";
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
+			responseBody = result.getBody().toString();
+		} catch (HttpClientErrorException e) {
+		    responseBody = e.getResponseBodyAsString();
+		    String statusText = e.getStatusText();
+		    System.out.println( statusText );
+		} catch ( Exception ex) {
+			return ex.getMessage();
+		}
+		
+		System.out.println( responseBody );
+		
+		return responseBody ;
+	}
+    
+    
+    
 	public String getCorMeteorologica( ) {
 		
 		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");

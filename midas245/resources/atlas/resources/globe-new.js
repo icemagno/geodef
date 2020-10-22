@@ -266,7 +266,7 @@ function startMap( theMapStyle ) {
 
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
-	
+
 	// Teste de particulas de vento
 	// doWindParticles();
 	/*
@@ -287,7 +287,13 @@ function doSomeSandBoxTests(){
 	});
 	*/
 	
-	
+	$.ajax({
+		url: "/metoc/radares",
+		type: "GET", 
+		success: function( obj ) {
+			console.log( obj )
+		}
+	});
 	
 	
 	var testScript = getUrlParam('testscript','xxx');

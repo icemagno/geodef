@@ -45,7 +45,7 @@ function addSingleImageryLayerCard( base64PngImage, data ){
 	var currentTransparency = 1.0;
 	var theCurrentLayer = getLayerByKey( aUniqueKey );
 	if( theCurrentLayer != null ) {
-		currentTransparency = theCurrentLayer.layer.alpha;
+		//currentTransparency = theCurrentLayer.layer.alpha;
 		deleteLayer( theCurrentLayer.uuid );
 	}
 	
