@@ -246,7 +246,7 @@
 						</div>					
 					
 
-						<div id="mainWaitPanel" class="box box-success box-solid" style="width:210px;height:85px;position:absolute;top:10px;right:100px;z-index: 999;">
+						<div id="mainWaitPanel" class="box box-success box-solid" style="display:none;width:210px;height:85px;position:absolute;top:10px;right:100px;z-index: 999;">
 				        	<div class="box-header">
 				              <h3 class="box-title">Aguarde...</h3>
 				            </div>

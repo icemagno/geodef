@@ -93,8 +93,8 @@ function backInTime( horaObj ){
 		newHor--;
 		if( newHor < 0 ) newHor = 23;
 	}
-	if( newMin == 0) newMin = "00";
-	if( newHor == 0) newHor = "00";
+	if( newMin < 10) newMin = "0" + newMin;
+	if( newHor < 10) newHor = "0" + newHor;
 	return {'h':newHor, 'm':newMin};
 }
 
@@ -105,8 +105,8 @@ function horaAtual( rd ){
 	if( rd ) {
 		minuto = roundDown( minuto, 10 );
 	}
-	if( minuto == 0) minuto = "00";
-	if( hora == 0) hora = "00";
+	if( minuto < 10) minuto = "0" + minuto;
+	if( hora < 10) hora = "0" + hora;
 	return {'h':hora, 'm':minuto};
 }
 
@@ -125,11 +125,12 @@ function getGoesImages( parametro, horaObj ){
 				var data = { sourceName : obj.parametro_extenso, sourceHour: obj.hora, param: parametro};
 				addSingleImageryLayerCard( obj.base64, data );
 			} else {
-				var newHora = backInTime( horaObj ); 
-				//fireToast( 'error', 'Erro', 'Não existe imagem ' + parametro + ' disponível para às ' + hora, '' );
-				console.log( horaObj );
-				console.log( newHora );
-				getGoesImages( parametro, newHora );
+				fireToast( 'error', 'Erro', 'Não existe imagem ' + parametro + ' disponível para às ' + hora, '' );
+				// DESISTI DE ACIONAR FALLBACK. 
+				//var newHora = backInTime( horaObj ); 
+				//console.log( horaObj );
+				//console.log( newHora );
+				//getGoesImages( parametro, newHora );
 			}
 		},
 		error: function(xhr, textStatus) {
@@ -141,8 +142,8 @@ function getGoesImages( parametro, horaObj ){
 
 function loadSatelites(){
 	// Parametro = [{"sigla":"IV","nome":"Infravermelho Termal"},{"sigla":"TN","nome":"Topo das Nuvens (T ºC)"},{"sigla":"VA","nome":"Vapor d'Água"},{"sigla":"VI","nome":"Visível"},{"sigla":"VP","nome":"Vapor d'Água Realçado"}]
-	getGoesImages("VP", horaAtual( true ) );
-	getGoesImages("TN", horaAtual( true ) );
+	//getGoesImages("VP", horaAtual( true ) );
+	//getGoesImages("TN", horaAtual( true ) );
 	getGoesImages("IV", horaAtual( true ) );
 	//getGoesImages("VI", horaAtual( true ) );
 }
