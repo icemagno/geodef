@@ -19,6 +19,12 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class InmetService {
 
+	@Value("${proxy.useProxy}")
+	private boolean useProxy;		
+	
+    @Autowired
+    AuthService authService;
+    
 	@Autowired
     JdbcTemplate jdbcTemplate;		
 	
@@ -62,7 +68,16 @@ public class InmetService {
 		System.out.println( uri );
 		
 		String responseBody = "[]";
-		RestTemplate restTemplate = new RestTemplate();
+
+		
+		RestTemplate restTemplate;
+		if( useProxy ) {
+			restTemplate = new RestTemplate( authService.getFactory() );
+		} else {
+			restTemplate = new RestTemplate( );
+		}
+				
+		
 		try {
 			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
 			responseBody = result.getBody().toString();
@@ -82,7 +97,14 @@ public class InmetService {
 		System.out.println( uri );
 		
 		String responseBody = "[]";
-		RestTemplate restTemplate = new RestTemplate();
+
+		RestTemplate restTemplate;
+		if( useProxy ) {
+			restTemplate = new RestTemplate( authService.getFactory() );
+		} else {
+			restTemplate = new RestTemplate( );
+		}
+		
 		try {
 			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
 			responseBody = result.getBody().toString();
@@ -105,7 +127,15 @@ public class InmetService {
 		String uri = "https://apisat.inmet.gov.br/GOES/"+regiao+"/"+parametro+"/" + data+"/" + hora;
 		System.out.println( uri );
 		String responseBody = "[]";
-		RestTemplate restTemplate = new RestTemplate();
+
+		RestTemplate restTemplate;
+		if( useProxy ) {
+			restTemplate = new RestTemplate( authService.getFactory() );
+		} else {
+			restTemplate = new RestTemplate( );
+		}
+		
+		
 		try {
 			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
 			responseBody = result.getBody().toString();

@@ -28,7 +28,9 @@ function cancelCorMetocSolution(){
 function addSingleImageryLayerCard( base64PngImage, data ){
 	var bbox = inmetImageBBox[ data.param ];
 	
-	var aUniqueKey = data.sourceName;
+	console.log( data );
+	
+	var aUniqueKey = data.sourceAddress + data.sourceLayer;
 	
 	var provider = new Cesium.SingleTileImageryProvider({
 	    url : base64PngImage,
@@ -45,14 +47,13 @@ function addSingleImageryLayerCard( base64PngImage, data ){
 	if( theCurrentLayer != null ) {
 		currentTransparency = theCurrentLayer.layer.alpha;
 		deleteLayer( theCurrentLayer.uuid );
-		 
 	}
 	
 	if( provider ){
 		theProvider.layer = viewer.imageryLayers.addImageryProvider( provider );
 		theProvider.layer.alpha = currentTransparency;
 		
-		var props = { 'uuid':uuid  }
+		var props = { 'uuid':uuid, 'layerType' : 'INMET_IMAGE' }
 		theProvider.layer.properties = props; 
 
 		stackedProviders.push( theProvider );		
@@ -122,10 +123,11 @@ function getGoesImages( parametro, horaObj ){
 		success: function( obj ) {
 			
 			if( obj ) {
-				var data = { sourceName : obj.parametro_extenso, sourceHour: obj.hora, param: parametro};
+				var data = { sourceAddress: obj.parametro_extenso, sourceLayer: hora, sourceName : obj.parametro_extenso, sourceHour: obj.hora, param: parametro, timeRequested: hora};
 				addSingleImageryLayerCard( obj.base64, data );
 			} else {
 				fireToast( 'error', 'Erro', 'Não existe imagem ' + parametro + ' disponível para às ' + hora, '' );
+				console.log("Imagem inexistente");
 				// DESISTI DE ACIONAR FALLBACK. 
 				//var newHora = backInTime( horaObj ); 
 				//console.log( horaObj );
