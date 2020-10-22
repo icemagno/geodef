@@ -111,6 +111,29 @@ public class ThundercloudService {
 		return responseBody ;
 	}
 
+	
+	public String getGoesImage( String regiao, String parametro, String data ) {
+		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");
+		String thundercloudAddress = thundercloudInstance.getUri().toString(); 
+			
+		String uri = thundercloudAddress + "/GOES/" + regiao + "/" + parametro + "/" + data;
+		System.out.println( uri );
+
+		String responseBody = "[]";
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
+			responseBody = result.getBody().toString();
+		} catch (HttpClientErrorException e) {
+		    responseBody = e.getResponseBodyAsString();
+		    String statusText = e.getStatusText();
+		    System.out.println( statusText );
+		} catch ( Exception ex) {
+			return ex.getMessage();
+		}
+		return responseBody ;
+		
+	}
 
 	public String getEstacoes(String data) {
 		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");
@@ -191,6 +214,28 @@ public class ThundercloudService {
 			return ex.getMessage();
 		}
 		return responseBody;
+	}
+
+
+	public String getGoesImageHour(String regiao, String parametro, String data, String hora) {
+		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");
+		String thundercloudAddress = thundercloudInstance.getUri().toString(); 
+		String uri = thundercloudAddress + "/GOES/" + regiao + "/" + parametro + "/" + data + "/" + hora;
+		System.out.println( uri );
+
+		String responseBody = "[]";
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
+			responseBody = result.getBody().toString();
+		} catch (HttpClientErrorException e) {
+		    responseBody = e.getResponseBodyAsString();
+		    String statusText = e.getStatusText();
+		    System.out.println( statusText );
+		} catch ( Exception ex) {
+			return ex.getMessage();
+		}
+		return responseBody ;
 	}    
 	
 }

@@ -14,9 +14,7 @@ function hideRouteDir() {
 }
 
 function closeQueryToolBarMenu() {
-	hideAllButtonBars();
-	removeMouseClickListener();
-	$('.cesium-viewer').css('cursor', '');
+	$("#queryMenuBox").hide();
 }
 
 function closeMetocToolBarMenu() {
@@ -315,8 +313,7 @@ function bindToolBarButtons() {
 
 	
 	$("#toolCOR").click( function(){
-		loadCores( );
-		//$("#pcnMenuBox").show(300);
+		loadCores();
 	});	
 	
 	/* **************************************************

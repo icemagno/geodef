@@ -25,7 +25,12 @@ public class CatalogSource implements Serializable {
 	@Column(name = "source_id", nullable = false, updatable = false)
 	private Long id;
 	
-	@Column(name = "topic_id")
+    @OneToMany(cascade= CascadeType.ALL, orphanRemoval=true, fetch = FetchType.EAGER)
+    @JoinColumn(name="parent_id")
+    private List<CatalogSource> sources;	
+
+    
+    @Column(name = "topic_id")
 	private Integer topicId;	
 
 	@Column(name = "parent_id")
@@ -48,11 +53,6 @@ public class CatalogSource implements Serializable {
 	
 	@Column(name = "bbox", length = 100)
 	private String bbox;
-	
-	
-    @OneToMany(cascade= CascadeType.ALL, orphanRemoval=true, fetch = FetchType.EAGER)
-    @JoinColumn(name="parent_id")
-    private List<CatalogSource> sources;	
 	
 	public Long getId() {
 		return id;

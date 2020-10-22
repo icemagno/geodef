@@ -184,7 +184,7 @@ function getGeoTabContent( catalogTopics ){
             '</div>' + 
 			
 			'</div></div>' + 	
-			'<div id="layerDetailsContainer"></div>'+	
+			'<div id="layerDetailsContainer" style="margin-left:10px;margin-right:10px;"></div>'+	
 		'</div>' + 
 	'</div>';
 	return content;

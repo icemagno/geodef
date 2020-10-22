@@ -19,7 +19,7 @@ import br.mil.defesa.sisgeodef.services.CachingService;
 @EnableScheduling
 @ComponentScan("br.mil.defesa.sisgeodef")
 @EnableRabbit
-public class SolucionadorApplication {
+public class ThundercloudApplication {
 
 	@Autowired
 	CacheManager cacheManager;
@@ -28,9 +28,8 @@ public class SolucionadorApplication {
     CachingService cachingService;	
 	
 	public static void main(String[] args) {
-		SpringApplication.run(SolucionadorApplication.class, args);
+		SpringApplication.run(ThundercloudApplication.class, args);
 	}
-	
 	
 	// https://crontab.guru/examples.html
 	@Scheduled( cron = "0 0 */4 * * *" )
@@ -38,6 +37,5 @@ public class SolucionadorApplication {
 		cachingService.evictAllCaches();
 	}	
 	
-
 	
 }

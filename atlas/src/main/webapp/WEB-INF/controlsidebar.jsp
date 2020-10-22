@@ -30,7 +30,7 @@
 								</div>
 							</div>
 						</div>
-						<div  title="Opacidade da Camada Base"  class="row">
+						<div  title="Opacidade da Camada Base"  class="row" style="margin-left: -5px;">
 							<input id="mainLayerSlider" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" 
 								data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">
 						</div>

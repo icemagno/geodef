@@ -92,7 +92,7 @@ function goToOperationArea( operationArea ) {
 
 	
 	var center = Cesium.Rectangle.center(operationArea);
-	var initialPosition = Cesium.Cartesian3.fromRadians(center.longitude, center.latitude, 8900000);
+	var initialPosition = Cesium.Cartesian3.fromRadians(center.longitude, center.latitude, 11500000);
 	var initialOrientation = new Cesium.HeadingPitchRoll.fromDegrees(0, -90, 0);
 	scene.camera.setView({
 	    destination: initialPosition,
@@ -193,12 +193,12 @@ function startMap( theMapStyle ) {
 		console.log('Shown/Hidden');
 	});
 	imageryLayers.layerAdded.addEventListener(function (event) {
-		console.log( "Adicionou: " + event.imageryProvider.layers );
+		//console.log( "Adicionou: " + event.imageryProvider.layers );
 		//$('.layerCounter').show();
 		//$("#lyrCount").text( event.imageryProvider.layers );
 	});
 	imageryLayers.layerRemoved.addEventListener(function (event) {
-		console.log( "Removeu: " + event.imageryProvider.layers );
+		//console.log( "Removeu: " + event.imageryProvider.layers );
 	});	
 	
 	
@@ -222,16 +222,17 @@ function startMap( theMapStyle ) {
 	
 	viewer.clock.onTick.addEventListener(function() {
 	    var rect = viewer.camera.computeViewRectangle( viewer.scene.globe.ellipsoid, scratchRectangle );
-	    var bWest = Cesium.Math.toDegrees(rect.west);
-	    var bSouth = Cesium.Math.toDegrees(rect.south);
-	    var bEast = Cesium.Math.toDegrees(rect.east);
-	    var bNorth = Cesium.Math.toDegrees(rect.north);
-	    
-	    $("#vpW").text( bWest );
-	    $("#vpE").text( bEast );
-	    $("#vpN").text( bNorth );
-	    $("#vpS").text( bSouth );
-	    
+	    if( Cesium.defined(rect) ){
+		    var bWest = Cesium.Math.toDegrees(rect.west);
+		    var bSouth = Cesium.Math.toDegrees(rect.south);
+		    var bEast = Cesium.Math.toDegrees(rect.east);
+		    var bNorth = Cesium.Math.toDegrees(rect.north);
+		    
+		    $("#vpW").text( bWest );
+		    $("#vpE").text( bEast );
+		    $("#vpN").text( bNorth );
+		    $("#vpS").text( bSouth );
+	    }	    
 	    
 	});	
 	
@@ -266,20 +267,6 @@ function startMap( theMapStyle ) {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 
-	/*
-	var imageryProvider = new Cesium.SingleTileImageryProvider({
-		//url : "https://mapas.inmet.gov.br/BR.gif",
-	    url : "/resources/metoc/BR.gif",
-	    rectangle : Cesium.Rectangle.fromDegrees(-95.0, -60.17, -19.8, 22.4   ) //west, south, east, north
-	});
-	
-	imageryProvider.defaultAlpha = 0.7;
-	var layers = viewer.scene.imageryLayers;
-	layers.addImageryProvider( imageryProvider );	
-	 */
-
-	
-	
 	
 	// Teste de particulas de vento
 	// doWindParticles();

@@ -155,7 +155,7 @@
 			</button>
         </li>
 		<li style="margin-top: 5px;">
-			<button title="Cor Meteorológica" id="toolCOR" type="button" class="btn btn-warning  btn-flat" style="padding: 0px;">
+			<button title="Cor Meteorológica" id="toolCOR" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/cormet.png" style="width: 35px; height: 35px;">
 			</button>
         </li>

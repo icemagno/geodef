@@ -35,5 +35,16 @@ public class InmetController {
 		return inmetService.getPrevisaoMunicipio( geocode );
 	}	
 	
+	@RequestMapping(value = "/goes/{regiao}/{parametro}/{data}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody String getGoesImage(  @PathVariable("regiao") String regiao, @PathVariable("parametro") String parametro, @PathVariable("data") String data ) {
+		return inmetService.getGoesImage( regiao, parametro, data );
+	}	
+
+	@RequestMapping(value = "/goes/{regiao}/{parametro}/{data}/{hora}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody String getGoesImage(  @PathVariable("regiao") String regiao, @PathVariable("parametro") String parametro, 
+			@PathVariable("data") String data, @PathVariable("hora") String hora ) {
+		return inmetService.getGoesImageHour( regiao, parametro, data, hora );
+	}	
+	
 	
 }

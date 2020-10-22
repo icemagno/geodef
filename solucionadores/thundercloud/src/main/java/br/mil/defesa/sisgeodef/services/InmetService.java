@@ -53,12 +53,32 @@ public class InmetService {
 		
 	}
 
-
+	@Cacheable("imagemGoes")
+	public String getGoesImage( String regiao, String parametro, String data ) {
+		// Regiao = [ AS, BRA, CO, NE, N, SE, S ]
+		// Parametro = [{"sigla":"IV","nome":"Infravermelho Termal"},{"sigla":"TN","nome":"Topo das Nuvens (T ºC)"},{"sigla":"VA","nome":"Vapor d'Água"},{"sigla":"VI","nome":"Visível"},{"sigla":"VP","nome":"Vapor d'Água Realçado"}]
+		
+		String uri = "https://apisat.inmet.gov.br/GOES/"+regiao+"/"+parametro+"/" + data;
+		System.out.println( uri );
+		
+		String responseBody = "[]";
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
+			responseBody = result.getBody().toString();
+		} catch (HttpClientErrorException e) {
+		    responseBody = e.getResponseBodyAsString();
+		    String statusText = e.getStatusText();
+		    System.out.println( statusText );
+		} catch ( Exception ex) {
+			return ex.getMessage();
+		}
+		return responseBody;
+	}
+	
 	@Cacheable("previsaoMunicipio")
 	public String getPrevisaoMunicipio(String geocode) {
-		
 		String uri = "https://apiprevmet3.inmet.gov.br/previsao/" + geocode;
-
 		System.out.println( uri );
 		
 		String responseBody = "[]";
@@ -79,6 +99,25 @@ public class InmetService {
 
 	public String getestacao(String cdwmo) {
 		return "{}";
+	}
+
+	@Cacheable("imagemGoesHora")
+	public String getGoesImageHour(String regiao, String parametro, String data, String hora) {
+		String uri = "https://apisat.inmet.gov.br/GOES/"+regiao+"/"+parametro+"/" + data+"/" + hora;
+		System.out.println( uri );
+		String responseBody = "[]";
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
+			responseBody = result.getBody().toString();
+		} catch (HttpClientErrorException e) {
+		    responseBody = e.getResponseBodyAsString();
+		    String statusText = e.getStatusText();
+		    System.out.println( statusText );
+		} catch ( Exception ex) {
+			return ex.getMessage();
+		}
+		return responseBody;
 	}
 	
 }

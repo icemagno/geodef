@@ -719,6 +719,9 @@ var DrawHelper = (function() {
 
     _.BillboardGroup.prototype.createBillboard = function(position, callbacks) {
 		
+    	console.log("Novo ponto em ");
+    	console.log( position );
+    	
         var billboard = this._billboards.add({
             show : true,
             position : position,

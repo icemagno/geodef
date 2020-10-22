@@ -4,7 +4,7 @@
 }
 
 .toolBarMenuBox td{
-	font-size : 15px;
+	font-size : 12px;
 }
 
 #userTable td{
@@ -51,7 +51,7 @@
 	position: absolute; 
 	z-index: 9999;
 	top: 5px;
-	font-size: 15px;
+	font-size: 12px;
 	display:none; 
 	width:340px; 
 	height:auto;
