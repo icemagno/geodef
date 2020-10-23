@@ -264,9 +264,60 @@ function startMap( theMapStyle ) {
 };
 
 
+var windy;
+var windy2;
+var timer = null;
+
+function redraw() {
+    timer = setInterval(function () {
+    	if( windy ) windy.animate();
+    	if( windy2 ) windy2.animate();
+    }, 300);
+}
+
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 
+	
+	// Teste de particulas de vento
+	/*
+    $.ajax({
+        type: "get",
+        // url: "http://s0.cptec.inpe.br/oceano/blend/vsm/vsm_diario_glb/vsm.json",// 
+        url: "/resources/data/climatologia/glb-vsm.json", 
+        dataType: "json",
+        success: function (response) {
+            var header = response[0].header;
+            windy = new Windy(response, viewer, {
+            	color : Cesium.Color.RED
+            });
+            redraw();
+        },
+        error: function (errorMsg) {
+            alert("Erro");
+        }
+    });	
+	*/
+	
+	/*
+    $.ajax({
+        type: "get",
+        // url: "http://s0.cptec.inpe.br/oceano/blend/vsm/vsm_diario_glb/vsm.json",// 
+        url: "/resources/data/climatologia/asm-vsm.json", 
+        dataType: "json",
+        success: function (response) {
+        	console.log( response);
+            var header = response[0].header;
+            windy2 = new Windy(response, viewer, {
+            	color : Cesium.Color.BLUE
+            });
+        },
+        error: function (errorMsg) {
+            alert("Erro");
+        }
+    });	
+	*/
+	
 	// Teste de particulas de vento
 	// doWindParticles();
 	/*
@@ -286,15 +337,6 @@ function doSomeSandBoxTests(){
 		fieldLayer.NetCDFData = options;
 	});
 	*/
-	
-	$.ajax({
-		url: "/metoc/radares",
-		type: "GET", 
-		success: function( obj ) {
-			console.log( obj )
-		}
-	});
-	
 	
 	var testScript = getUrlParam('testscript','xxx');
 	if( testScript !== 'xxx'){

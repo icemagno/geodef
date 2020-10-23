@@ -18,6 +18,10 @@
 									<input style="cursor:pointer;position: absolute;top:2px;right:2px" type="radio" name="optionsRadios" id="optionsRadios2" value="option1">
 									<img title="Carta Mosaico BDGEX" class="img-responsive basemapimg" src="${midasLocation}/atlas/basemaps/bg_mosaico.jpg" alt="Photo">
 								</div>
+								<div style="position:relative;margin: 2px;">
+									<input style="cursor:pointer;position: absolute;top:2px;right:2px" type="radio" name="optionsRadios" id="optionsRadios5" value="option1">
+									<img title="GEBCO Leito Marinho" class="img-responsive basemapimg" src="${midasLocation}/atlas/basemaps/bg_gebco.jpg" alt="Photo">
+								</div>
 							</div>
 							<div class="col-sm-6" style="padding:0px">
 								<div style="position:relative;margin: 2px;">
@@ -27,6 +31,10 @@
 								<div style="position:relative;margin: 2px;">
 									<input style="cursor:pointer;position: absolute;top:2px;right:2px" type="radio" name="optionsRadios" id="optionsRadios4" value="option1">
 									<img title="Ortoimagens BDGEX" class="img-responsive basemapimg" src="${midasLocation}/atlas/basemaps/bg_bdgex_orto.jpg" alt="Photo">
+								</div>
+								<div style="position:relative;margin: 2px;">
+									<input style="cursor:pointer;position: absolute;top:2px;right:2px" type="radio" name="optionsRadios" id="optionsRadios6" value="option1">
+									<img title="Nenhuma" class="img-responsive basemapimg" src="${midasLocation}/atlas/basemaps/bg_white.jpg" alt="Photo">
 								</div>
 							</div>
 						</div>

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.mil.defesa.sisgeodef.model.CatalogTopics;
 import br.mil.defesa.sisgeodef.repository.CatalogTopicsRepository;
 import br.mil.defesa.sisgeodef.services.CartografiaIndexService;
-import br.mil.defesa.sisgeodef.services.CatalogImporterService;
+import br.mil.defesa.sisgeodef.services.CatalogService;
 import br.mil.defesa.sisgeodef.services.NyxService;
 
 @RestController
@@ -24,7 +24,7 @@ public class CatalogController {
 	private CatalogTopicsRepository catalogRepository;
 	
 	@Autowired
-	private CatalogImporterService catalogImporterService;
+	private CatalogService catalogService;
 	
 	@Autowired
 	private CartografiaIndexService cartografiaService;	
@@ -45,11 +45,17 @@ public class CatalogController {
 		return topics; 
 	}
 
+	@RequestMapping(value = "/tomapproxy", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody String exportToMapProxy( @RequestParam(value="parent",required=true) Integer parentId ) {
+		return catalogService.exportToMapProxy(parentId); 
+	}
+	
+	
     @RequestMapping(value = "/importcapabilities", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public void importCapabilities( @RequestParam(value="url",required=true) String url,  @RequestParam(value="parent",required=true) String parentId ) {
     	//url = "http://www.geoportal.eb.mil.br/mapcache?service=wms&version=1.3.0&request=GetCapabilities";
-    	url = "http:///geoserver.cemaden.gov.br:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities";
-    	catalogImporterService.importCapabilities( 2125, url);
+    	url = "http://geoserver.cemaden.gov.br:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities";
+    	catalogService.importCapabilities( 2125, url);
     }
 	
     

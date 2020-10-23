@@ -1,0 +1,629 @@
+  rapideye_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: rapideye
+
+
+  rapideye_cache:
+    grids: [geodetic]
+    sources: [rapideye_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: rapideye_cache:
+    title: Imagens RapidEye do ano de 2013.
+    sources: [rapideye_cache]
+
+
+ *************************************************** 
+
+  ram_colorimetria_50_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ram_colorimetria_50
+
+
+  ram_colorimetria_50_cache:
+    grids: [geodetic]
+    sources: [ram_colorimetria_50_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: ram_colorimetria_50_cache:
+    title: Imagens ortorretificadas de sensores orbitais ou aerotransportados (contém imagens sintéticas).
+    sources: [ram_colorimetria_50_cache]
+
+
+ *************************************************** 
+
+  ortoimagens_codeplan_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ortoimagens_codeplan
+
+
+  ortoimagens_codeplan_cache:
+    grids: [geodetic]
+    sources: [ortoimagens_codeplan_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: ortoimagens_codeplan_cache:
+    title: Ortoimagens disponibilizadas pela CODEPLAN-DF
+    sources: [ortoimagens_codeplan_cache]
+
+
+ *************************************************** 
+
+  capitais_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: capitais
+
+
+  capitais_cache:
+    grids: [geodetic]
+    sources: [capitais_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: capitais_cache:
+    title: Capitais dos estados brasileiros.
+    sources: [capitais_cache]
+
+
+ *************************************************** 
+
+  ram_colorimetria_25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ram_colorimetria_25
+
+
+  ram_colorimetria_25_cache:
+    grids: [geodetic]
+    sources: [ram_colorimetria_25_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: ram_colorimetria_25_cache:
+    title: Imagens ortorretificadas de sensores orbitais ou aerotransportados (contém imagens sintéticas).
+    sources: [ram_colorimetria_25_cache]
+
+
+ *************************************************** 
+
+  curva_nivel100_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: curva_nivel100
+
+
+  curva_nivel100_cache:
+    grids: [geodetic]
+    sources: [curva_nivel100_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: curva_nivel100_cache:
+    title: Curvas de nível do Sistema Cartográfico Nacional.
+    sources: [curva_nivel100_cache]
+
+
+ *************************************************** 
+
+  estados_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: estados
+
+
+  estados_cache:
+    grids: [geodetic]
+    sources: [estados_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: estados_cache:
+    title: Estados brasileiros. Escala 1:250.000.
+    sources: [estados_cache]
+
+
+ *************************************************** 
+
+  Multiescala_Hidrografia_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: Multiescala_Hidrografia
+
+
+  Multiescala_Hidrografia_cache:
+    grids: [geodetic]
+    sources: [Multiescala_Hidrografia_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: Multiescala_Hidrografia_cache:
+    title: Representação da hidrografia brasileira em um mosaico vetorial de cartas da maior quantidade de detalhes disponíveis no BDGEx.
+    sources: [Multiescala_Hidrografia_cache]
+
+
+ *************************************************** 
+
+  ctm100_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ctm100
+
+
+  ctm100_cache:
+    grids: [geodetic]
+    sources: [ctm100_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: ctm100_cache:
+    title: Cartas Topográficas Matriciais do Sistema Cartográfico Nacional. Escala: 1:100.000.
+    sources: [ctm100_cache]
+
+
+ *************************************************** 
+
+  curva_nivel250_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: curva_nivel250
+
+
+  curva_nivel250_cache:
+    grids: [geodetic]
+    sources: [curva_nivel250_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: curva_nivel250_cache:
+    title: Curvas de nível do Sistema Cartográfico Nacional.
+    sources: [curva_nivel250_cache]
+
+
+ *************************************************** 
+
+  censo_idoso_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: censo_idoso
+
+
+  censo_idoso_cache:
+    grids: [geodetic]
+    sources: [censo_idoso_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: censo_idoso_cache:
+    title: Pencentual, por área, e total de pessoas com amis de 60 anos por setor censitário
+    sources: [censo_idoso_cache]
+
+
+ *************************************************** 
+
+  mds250_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: mds250
+
+
+  mds250_cache:
+    grids: [geodetic]
+    sources: [mds250_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: mds250_cache:
+    title: Modelo digital de superfície oriundo da SRTM (250m).
+    sources: [mds250_cache]
+
+
+ *************************************************** 
+
+  ctm250_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ctm250
+
+
+  ctm250_cache:
+    grids: [geodetic]
+    sources: [ctm250_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: ctm250_cache:
+    title: Cartas Topográficas Matriciais do Sistema Cartográfico Nacional. Escala: 1:250.000.
+    sources: [ctm250_cache]
+
+
+ *************************************************** 
+
+  ortoimagem_scn25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ortoimagem_scn25
+
+
+  ortoimagem_scn25_cache:
+    grids: [geodetic]
+    sources: [ortoimagem_scn25_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: ortoimagem_scn25_cache:
+    title: Imagens ortorretificadas de sensores orbitais ou aerotransportados (verdadeira cor).
+    sources: [ortoimagem_scn25_cache]
+
+
+ *************************************************** 
+
+  landsat7_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: landsat7
+
+
+  landsat7_cache:
+    grids: [geodetic]
+    sources: [landsat7_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: landsat7_cache:
+    title: Imagens LandSat do ano de 2000.
+    sources: [landsat7_cache]
+
+
+ *************************************************** 
+
+  Multiescala_LocalidadesLimites_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: Multiescala_LocalidadesLimites
+
+
+  Multiescala_LocalidadesLimites_cache:
+    grids: [geodetic]
+    sources: [Multiescala_LocalidadesLimites_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: Multiescala_LocalidadesLimites_cache:
+    title: Representação das localidades e limites políticos do Brasil em um mosaico vetorial de cartas da maior quantidade de detalhes disponíveis no BDGEx.
+    sources: [Multiescala_LocalidadesLimites_cache]
+
+
+ *************************************************** 
+
+  municipios_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: municipios
+
+
+  municipios_cache:
+    grids: [geodetic]
+    sources: [municipios_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: municipios_cache:
+    title: Municipios brasileiros. Escala 1:250.000.
+    sources: [municipios_cache]
+
+
+ *************************************************** 
+
+  Multiescala_Relevo_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: Multiescala_Relevo
+
+
+  Multiescala_Relevo_cache:
+    grids: [geodetic]
+    sources: [Multiescala_Relevo_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: Multiescala_Relevo_cache:
+    title: Representação do relevo através de curvas de nível e pontos cotados altimétricos em um mosaico vetorial de cartas da maior quantidade de detalhes disponíveis no BDGEx.
+    sources: [Multiescala_Relevo_cache]
+
+
+ *************************************************** 
+
+  ram_mds_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ram_mds
+
+
+  ram_mds_cache:
+    grids: [geodetic]
+    sources: [ram_mds_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: ram_mds_cache:
+    title: Modelo digital de superfície oriundo de sensores orbitais ou aerotransportados.
+    sources: [ram_mds_cache]
+
+
+ *************************************************** 
+
+  cartaimagem50_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: cartaimagem50
+
+
+  cartaimagem50_cache:
+    grids: [geodetic]
+    sources: [cartaimagem50_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: cartaimagem50_cache:
+    title: Cartas Imagem Matriciais do Sistema Cartográfico Nacional. Escala: 1:50.000. Produtos acessórios.
+    sources: [cartaimagem50_cache]
+
+
+ *************************************************** 
+
+  cartaimagem25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: cartaimagem25
+
+
+  cartaimagem25_cache:
+    grids: [geodetic]
+    sources: [cartaimagem25_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: cartaimagem25_cache:
+    title: Cartas Imagem Matriciais do Sistema Cartográfico Nacional. Escala: 1:25.000. Produtos acessórios.
+    sources: [cartaimagem25_cache]
+
+
+ *************************************************** 
+
+  curva_nivel50_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: curva_nivel50
+
+
+  curva_nivel50_cache:
+    grids: [geodetic]
+    sources: [curva_nivel50_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: curva_nivel50_cache:
+    title: Curvas de nível do Sistema Cartográfico Nacional.
+    sources: [curva_nivel50_cache]
+
+
+ *************************************************** 
+
+  curva_nivel25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: curva_nivel25
+
+
+  curva_nivel25_cache:
+    grids: [geodetic]
+    sources: [curva_nivel25_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: curva_nivel25_cache:
+    title: Curvas de nível do Sistema Cartográfico Nacional.
+    sources: [curva_nivel25_cache]
+
+
+ *************************************************** 
+
+  censo_heatmap_pop_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: censo_heatmap_pop
+
+
+  censo_heatmap_pop_cache:
+    grids: [geodetic]
+    sources: [censo_heatmap_pop_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: censo_heatmap_pop_cache:
+    title: Mapa de calor de aglomerados de população.
+    sources: [censo_heatmap_pop_cache]
+
+
+ *************************************************** 
+
+  ctmmultiescalas_mercator_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ctmmultiescalas_mercator
+
+
+  ctmmultiescalas_mercator_cache:
+    grids: [geodetic]
+    sources: [ctmmultiescalas_mercator_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: ctmmultiescalas_mercator_cache:
+    title: Cartas Topográficas Matriciais do Sistema Cartográfico Nacional. Escalas: 1:250.000 a 1:25.000.
+    sources: [ctmmultiescalas_mercator_cache]
+
+
+ *************************************************** 
+
+  mds50_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: mds50
+
+
+  mds50_cache:
+    grids: [geodetic]
+    sources: [mds50_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: mds50_cache:
+    title: Modelo digital de superfície oriundo de sensores orbitais ou aerotransportados.
+    sources: [mds50_cache]
+
+
+ *************************************************** 
+
+  ctm50_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ctm50
+
+
+  ctm50_cache:
+    grids: [geodetic]
+    sources: [ctm50_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: ctm50_cache:
+    title: Cartas Topográficas Matriciais do Sistema Cartográfico Nacional. Escala: 1:50.000.
+    sources: [ctm50_cache]
+
+
+ *************************************************** 
+
+  ctm25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ctm25
+
+
+  ctm25_cache:
+    grids: [geodetic]
+    sources: [ctm25_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: ctm25_cache:
+    title: Cartas Topográficas Matriciais do Sistema Cartográfico Nacional. Escala: 1:25.000.
+    sources: [ctm25_cache]
+
+
+ *************************************************** 
+
+  mds25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: mds25
+
+
+  mds25_cache:
+    grids: [geodetic]
+    sources: [mds25_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: mds25_cache:
+    title: Modelo digital de superfície oriundo de sensores orbitais ou aerotransportados.
+    sources: [mds25_cache]
+
+
+ *************************************************** 
+
+  Multiescala_RodoviasFerrovias_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: Multiescala_RodoviasFerrovias
+
+
+  Multiescala_RodoviasFerrovias_cache:
+    grids: [geodetic]
+    sources: [Multiescala_RodoviasFerrovias_wms]
+    link_single_color_image: true
+    format: image/jpeg
+
+
+  - name: Multiescala_RodoviasFerrovias_cache:
+    title: Representação das vias terrestres brasileiras em um mosaico vetorial de cartas da maior quantidade de detalhes disponíveis no BDGEx.
+    sources: [Multiescala_RodoviasFerrovias_cache]
+
+
+ *************************************************** 

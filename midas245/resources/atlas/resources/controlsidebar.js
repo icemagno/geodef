@@ -7,8 +7,10 @@ function doChangeBaseLayer( layerName ){
 	var layers = viewer.imageryLayers;
 	var currentProvider = layers.get(0);
 	layers.remove( currentProvider );
-	layers.addImageryProvider( newProvider, 0 );
-	newProvider.alpha = currentBaseLayerAlphaValue;
+	if( newProvider != null ){
+		layers.addImageryProvider( newProvider, 0 );
+		newProvider.alpha = currentBaseLayerAlphaValue;
+	}
 }
 
 function initControlSideBar(){
@@ -37,6 +39,14 @@ function initControlSideBar(){
 	$("#optionsRadios4").click( function(){
 		doChangeBaseLayer('ortoimagens');
 	});
+
+	$("#optionsRadios5").click( function(){
+		doChangeBaseLayer('gebco');
+	});
+
+	$("#optionsRadios6").click( function(){
+		doChangeBaseLayer('none');
+	});
 	
 };
 
@@ -46,6 +56,8 @@ function populateBaseLayerCollection(){
 	baselayerCollection['rapideye'] = getProvider( mapproxy, 'rapideye', false, 'jpeg', false );
 	baselayerCollection['osm'] = baseOsmProvider;
 	baselayerCollection['ortoimagens'] = getProvider( mapproxy, 'ortoimagens', false, 'png', false );
+	baselayerCollection['gebco'] = getProvider( mapproxy, 'gebco', false, 'png', false );
+	baselayerCollection['none'] = null;
 }
 
 function getProvider(  sourceUrl, sourceLayers, canQuery, imageType, isTransparent ) {

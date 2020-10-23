@@ -1,0 +1,971 @@
+# -------------------------------
+# MapProxy example configuration.
+# -------------------------------
+#
+# This is a minimal MapProxy configuration.
+# See full_example.yaml and the documentation for more options.
+#
+
+# Starts the following services:
+# Demo:
+#     http://localhost:8080/demo
+# WMS:
+#     capabilities: http://localhost:8080/service?REQUEST=GetCapabilities
+# WMTS:
+#     capabilities: http://localhost:8080/wmts/1.0.0/WMTSCapabilities.xml
+#     first tile: http://localhost:8080/wmts/osm/webmercator/0/0/0.png
+# Tile service (compatible with OSM/etc.)
+#     first tile: http://localhost:8080/tiles/osm/webmercator/0/0/0.png
+# TMS:
+#     note: TMS is not compatible with OSM/Google Maps/etc.
+#     fist tile: http://localhost:8080/tms/1.0.0/osm/webmercator/0/0/0.png
+# KML:
+#     initial doc: http://localhost:8080/kml/osm/webmercator
+
+services:
+  demo:
+#  tms:
+#    use_grid_names: true
+    # origin for /tiles service
+#    origin: 'nw'
+#  kml:
+#      use_grid_names: true
+# wmts:
+  wms:
+    srs: ['EPSG:4326']
+    md:
+      title: MapProxy WMS Proxy
+      abstract: SISGIDE.
+    attribution:
+      text: 'SisGeoDef'      
+
+layers:
+  - name: bdgex
+    title: Camada Cartas - BDGEX
+    sources: [bdgexcartas_cache]
+  - name: ortoimagens
+    title: Camada Ortoimagens - BDGEX
+    sources: [bdgexortoimagens_cache]
+  - name: rapideye
+    title: Camada RapidEye - BDGEX
+    sources: [rapideye_cache]
+  - name: marine_traffic
+    title: Marine Traffic
+    sources: [ais_marine_traffic_cache]
+  - name: seamarks
+    title: OpenSeaMap Seamarks
+    sources: [osm_seamaps_cache]
+  - name: carta22900
+    title: Carta Nautica 22900
+    sources: [carta_22900_cache]
+  - name: carta1501
+    title: Carta Nautica 1501
+    sources: [carta_1501_cache]
+  - name: carta1550
+    title: Carta Nautica 1550
+    sources: [carta_1550_cache]
+  - name: carta23000
+    title: Carta Nautica 23000
+    sources: [carta_23000_cache]
+  - name: carta23100
+    title: Carta Nautica 23100
+    sources: [carta_23100_cache]
+  - name: apolomma
+    title: MMA - Unidades de Conservação Nacional
+    sources: [apolo_mma_cache]
+  - name: sisclaten01
+    title: SISCLATEN - Projetos Encerrados
+    sources: [sisclaten_01_cache]
+  - name: apolodnit
+    title: Pontes DNIT
+    sources: [apolo_dnit_cache]
+  - name: apololinhas
+    title: Linhas de Transmissão
+    sources: [apolo_linhas_cache]
+  - name: apolousinas
+    title: Usinas Energia Eletrica
+    sources: [apolo_usinas_cache]
+  - name: amazoniaazul
+    title: Amazônia Azul
+    sources: [apolo_amazonia_cache]
+  - name: apoloorgmil
+    title: Organizações Militares
+    sources: [apolo_orgmil_cache]
+  - name: icamacae
+    title: Cartas de Área Macaé
+    sources: [ica_macae_cache]
+  - name: icabh
+    title: Cartas Visuais WAC BH
+    sources: [ica_bh_cache]
+  - name: ical2
+    title: Cartas de Rotas L2
+    sources: [ica_l2_cache]
+  - name: icah2
+    title: Cartas de Rotas H2
+    sources: [ica_h2_cache]
+  - name: corrente
+    title: Corrente
+    sources: [corrente_cache]
+    dimensions:
+      time:
+        values:
+          - "2019-10-25T12:00:00.000Z"
+          - "2019-10-25T15:00:00.000Z"
+          - "2019-10-25T18:00:00.000Z"
+          - "2019-10-25T21 para 00:00.000Z"
+          - "2019-10-26T00:00:00.000Z"
+        default: "2019-11-01T09:00:00.000Z"  
+      elevation:
+        values:
+          - -0.0
+          - -2.0
+          - -4.0
+          - -6.0
+          - -8.0
+          - -10.0
+          - -12.0
+          - -15.0
+          - -20.0
+          - -25.0
+          - -30.0
+          - -35.0
+        default: -0.0
+  - name: gebco
+    title: GEBCO Batimetria
+    sources: [gebco_cache]
+  - name: ram_colorimetria_50
+    title: Imagens ortorretificadas de sensores orbitais ou aerotransportados (contém imagens sintéticas).
+    sources: [ram_colorimetria_50_cache]
+  - name: ortoimagens_codeplan
+    title: Ortoimagens disponibilizadas pela CODEPLAN-DF
+    sources: [ortoimagens_codeplan_cache]
+  - name: capitais
+    title: Capitais dos estados brasileiros.
+    sources: [capitais_cache]
+  - name: ram_colorimetria_25
+    title: Imagens ortorretificadas de sensores orbitais ou aerotransportados (contém imagens sintéticas).
+    sources: [ram_colorimetria_25_cache]
+  - name: curva_nivel100
+    title: Curvas de nível do Sistema Cartográfico Nacional.
+    sources: [curva_nivel100_cache]
+  - name: estados
+    title: Estados brasileiros. Escala 1 para 250.000.
+    sources: [estados_cache]
+  - name: Multiescala_Hidrografia
+    title: Representação da hidrografia brasileira em um mosaico vetorial de cartas da maior quantidade de detalhes disponíveis no BDGEx.
+    sources: [Multiescala_Hidrografia_cache]
+  - name: ctm100
+    title: Cartas Topográficas Matriciais do Sistema Cartográfico Nacional. Escala 1 para 100.000.
+    sources: [ctm100_cache]
+  - name: curva_nivel250
+    title: Curvas de nível do Sistema Cartográfico Nacional.
+    sources: [curva_nivel250_cache]
+  - name: censo_idoso
+    title: Pencentual, por área, e total de pessoas com amis de 60 anos por setor censitário
+    sources: [censo_idoso_cache]
+  - name: mds250
+    title: Modelo digital de superfície oriundo da SRTM (250m).
+    sources: [mds250_cache]
+  - name: ctm250
+    title: Cartas Topográficas Matriciais do Sistema Cartográfico Nacional. Escala 1 para 250.000.
+    sources: [ctm250_cache]
+  - name: ortoimagem_scn25
+    title: Imagens ortorretificadas de sensores orbitais ou aerotransportados (verdadeira cor).
+    sources: [ortoimagem_scn25_cache]
+  - name: landsat7
+    title: Imagens LandSat do ano de 2000.
+    sources: [landsat7_cache]
+  - name: Multiescala_LocalidadesLimites
+    title: Representação das localidades e limites políticos do Brasil em um mosaico vetorial de cartas da maior quantidade de detalhes disponíveis no BDGEx.
+    sources: [Multiescala_LocalidadesLimites_cache]
+  - name: municipios
+    title: Municipios brasileiros. Escala 1 para 250.000.
+    sources: [municipios_cache]
+  - name: Multiescala_Relevo
+    title: Representação do relevo através de curvas de nível e pontos cotados altimétricos em um mosaico vetorial de cartas da maior quantidade de detalhes disponíveis no BDGEx.
+    sources: [Multiescala_Relevo_cache]
+  - name: ram_mds
+    title: Modelo digital de superfície oriundo de sensores orbitais ou aerotransportados.
+    sources: [ram_mds_cache]
+  - name: cartaimagem50
+    title: Cartas Imagem Matriciais do Sistema Cartográfico Nacional. Escala 1 para 50.000. Produtos acessórios.
+    sources: [cartaimagem50_cache]
+  - name: cartaimagem25
+    title: Cartas Imagem Matriciais do Sistema Cartográfico Nacional. Escala 1 para 25.000. Produtos acessórios.
+    sources: [cartaimagem25_cache]
+  - name: curva_nivel50
+    title: Curvas de nível do Sistema Cartográfico Nacional.
+    sources: [curva_nivel50_cache]
+  - name: curva_nivel25
+    title: Curvas de nível do Sistema Cartográfico Nacional.
+    sources: [curva_nivel25_cache]
+  - name: censo_heatmap_pop
+    title: Mapa de calor de aglomerados de população.
+    sources: [censo_heatmap_pop_cache]
+  - name: ctmmultiescalas_mercator
+    title: Cartas Topográficas Matriciais do Sistema Cartográfico Nacional. Escalas 1 para 250.000 a 1 para 25.000.
+    sources: [ctmmultiescalas_mercator_cache]
+  - name: mds50
+    title: Modelo digital de superfície oriundo de sensores orbitais ou aerotransportados.
+    sources: [mds50_cache]
+  - name: ctm50
+    title: Cartas Topográficas Matriciais do Sistema Cartográfico Nacional. Escala 1 para 50.000.
+    sources: [ctm50_cache]
+  - name: ctm25
+    title: Cartas Topográficas Matriciais do Sistema Cartográfico Nacional. Escala 1 para 25.000.
+    sources: [ctm25_cache]
+  - name: mds25
+    title: Modelo digital de superfície oriundo de sensores orbitais ou aerotransportados.
+    sources: [mds25_cache]
+  - name: Multiescala_RodoviasFerrovias
+    title: Representação das vias terrestres brasileiras em um mosaico vetorial de cartas da maior quantidade de detalhes disponíveis no BDGEx.
+    sources: [Multiescala_RodoviasFerrovias_cache]    
+    
+caches:
+  osm_seamaps_cache:
+    grids: [geodetic]
+    sources: [temp_cache_seamarks]
+    transparent: true
+    request_format: image/png
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+  ais_marine_traffic_cache:
+    grids: [geodetic]
+    sources: [ais_marine_traffic]
+    disable_storage: true
+    transparent: true
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: image/png
+  rapideye_cache:
+    grids: [geodetic]
+    sources: [rapideye_wms]
+    link_single_color_images: true
+    format: image/jpeg
+  bdgexcartas_cache:
+    grids: [geodetic]
+    concurrent_tile_creators: 4
+    link_single_color_images: true
+    sources: [bdgexcartas_wms]
+    format: image/png
+    transparent: true
+  bdgexortoimagens_cache:
+    grids: [geodetic]
+    concurrent_tile_creators: 4
+    link_single_color_images: true
+    sources: [bdgexortoimagens_wms]
+    format: image/png
+    transparent: true
+  carta_22900_cache:
+    grids: [geodetic]
+    sources: [carta_22900_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  carta_1501_cache:
+    grids: [geodetic]
+    sources: [carta_1501_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  carta_1550_cache:
+    grids: [geodetic]
+    sources: [carta_1550_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  carta_23000_cache:
+    grids: [geodetic]
+    sources: [carta_23000_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  carta_23100_cache:
+    grids: [geodetic]
+    sources: [carta_23100_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  temp_cache_seamarks:
+    sources: [osm_seamarks]
+    disable_storage: true
+    grids: [GLOBAL_WEBMERCATOR]
+    transparent: true
+    request_format: image/png
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+  apolo_mma_cache:
+    grids: [geodetic]
+    sources: [apolo_mma_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  sisclaten_01_cache:
+    grids: [geodetic]
+    sources: [sisclaten_01_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  apolo_dnit_cache:
+    grids: [geodetic]
+    sources: [apolo_dnit_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  apolo_linhas_cache:
+    grids: [geodetic]
+    sources: [apolo_linhas_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  apolo_usinas_cache:
+    grids: [geodetic]
+    sources: [apolo_usinas_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  apolo_amazonia_cache:
+    grids: [geodetic]
+    sources: [apolo_amazonia_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  apolo_orgmil_cache:
+    grids: [geodetic]
+    sources: [apolo_orgmil_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  gebco_cache:
+    grids: [geodetic]
+    sources: [gebco_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ica_macae_cache:
+    grids: [geodetic]
+    sources: [ica_macae_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ica_bh_cache:
+    grids: [geodetic]
+    sources: [ica_bh_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ica_l2_cache:
+    grids: [geodetic]
+    sources: [ica_l2_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ica_h2_cache:
+    grids: [geodetic]
+    sources: [ica_h2_wms]
+    link_single_color_images: true
+    concurrent_tile_creators: 4
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  corrente_cache:
+    grids: [geodetic]
+    sources: [corrente_wms]
+    disable_storage: true
+    concurrent_tile_creators: 15
+    transparent: true
+  ram_colorimetria_50_cache:
+    grids: [geodetic]
+    sources: [ram_colorimetria_50_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ortoimagens_codeplan_cache:
+    grids: [geodetic]
+    sources: [ortoimagens_codeplan_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  capitais_cache:
+    grids: [geodetic]
+    sources: [capitais_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ram_colorimetria_25_cache:
+    grids: [geodetic]
+    sources: [ram_colorimetria_25_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  curva_nivel100_cache:
+    grids: [geodetic]
+    sources: [curva_nivel100_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  estados_cache:
+    grids: [geodetic]
+    sources: [estados_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  Multiescala_Hidrografia_cache:
+    grids: [geodetic]
+    sources: [Multiescala_Hidrografia_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ctm100_cache:
+    grids: [geodetic]
+    sources: [ctm100_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  curva_nivel250_cache:
+    grids: [geodetic]
+    sources: [curva_nivel250_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  censo_idoso_cache:
+    grids: [geodetic]
+    sources: [censo_idoso_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  mds250_cache:
+    grids: [geodetic]
+    sources: [mds250_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ctm250_cache:
+    grids: [geodetic]
+    sources: [ctm250_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ortoimagem_scn25_cache:
+    grids: [geodetic]
+    sources: [ortoimagem_scn25_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  landsat7_cache:
+    grids: [geodetic]
+    sources: [landsat7_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  Multiescala_LocalidadesLimites_cache:
+    grids: [geodetic]
+    sources: [Multiescala_LocalidadesLimites_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  municipios_cache:
+    grids: [geodetic]
+    sources: [municipios_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  Multiescala_Relevo_cache:
+    grids: [geodetic]
+    sources: [Multiescala_Relevo_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ram_mds_cache:
+    grids: [geodetic]
+    sources: [ram_mds_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  cartaimagem50_cache:
+    grids: [geodetic]
+    sources: [cartaimagem50_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  cartaimagem25_cache:
+    grids: [geodetic]
+    sources: [cartaimagem25_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  curva_nivel50_cache:
+    grids: [geodetic]
+    sources: [curva_nivel50_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  curva_nivel25_cache:
+    grids: [geodetic]
+    sources: [curva_nivel25_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  censo_heatmap_pop_cache:
+    grids: [geodetic]
+    sources: [censo_heatmap_pop_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ctmmultiescalas_mercator_cache:
+    grids: [geodetic]
+    sources: [ctmmultiescalas_mercator_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  mds50_cache:
+    grids: [geodetic]
+    sources: [mds50_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ctm50_cache:
+    grids: [geodetic]
+    sources: [ctm50_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  ctm25_cache:
+    grids: [geodetic]
+    sources: [ctm25_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  mds25_cache:
+    grids: [geodetic]
+    sources: [mds25_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+  Multiescala_RodoviasFerrovias_cache:
+    grids: [geodetic]
+    sources: [Multiescala_RodoviasFerrovias_wms]
+    link_single_color_image: true
+    format: custom_format
+    transparent: true
+    request_format: image/png
+     
+sources:
+  ais_marine_traffic:
+    type: tile
+    grid: geodetic
+    url: https://tiles.marinetraffic.com/ais_helpers/shiptilesingle.aspx?output=png&sat=1&grouping=shiptype&tile_size=512&legends=1&zoom=%(z)s&X=%(x)s&Y=%(y)s
+    transparent: true
+    request_format: image/png
+    concurrent_requests: 5
+    http:
+      client_timeout: 600 # seconds
+  osm_seamarks:
+    type: tile
+    grid: GLOBAL_WEBMERCATOR
+    url: http://t1.openseamap.org/seamark/%(z)s/%(x)s/%(y)s.png
+    transparent: true
+    request_format: image/png
+    concurrent_requests: 5
+    http:
+      client_timeout: 600 # seconds
+  carta_22900_wms:
+    type: wms
+    req:
+      url: http://172.21.81.43/osmope/cartasnauticas/wms/
+      layers: cartasnauticas:cs_cs_22900
+      transparent: true
+  ica_macae_wms:
+    type: wms
+    req:
+      url: http://www.aisweb.aer.mil.br/geoserver/wms/
+      layers: ICA:MACAE_ARC
+      transparent: true
+  ica_bh_wms:
+    type: wms
+    req:
+      url: http://www.aisweb.aer.mil.br/geoserver/wms/
+      layers: ICA:WAC_3189_BELO_HORIZONTE
+      transparent: true
+  ica_l2_wms:
+    type: wms
+    req:
+      url: http://www.aisweb.aer.mil.br/geoserver/wms/
+      layers: ICA:ENRC_L2
+      transparent: true
+  ica_h2_wms:
+    type: wms
+    req:
+      url: http://www.aisweb.aer.mil.br/geoserver/wms/
+      layers: ICA:ENRC_H2
+      transparent: true
+  carta_23000_wms:
+    type: wms
+    req:
+      url: http://172.21.81.43/osmope/cartasnauticas/wms/
+      layers: cartasnauticas:cs_cs_23000
+      transparent: true
+  carta_23100_wms:
+    type: wms
+    req:
+      url: http://172.21.81.43/osmope/cartasnauticas/wms/
+      layers: cartasnauticas:cs_cs_23100
+      transparent: true
+  carta_1501_wms:
+    type: wms
+    req:
+      url: http://172.21.81.43/osmope/cartasnauticas/wms/
+      layers: cartasnauticas:cs_cs_1501
+      transparent: true
+  carta_1550_wms:
+    type: wms
+    req:
+      url: http://172.21.81.43/osmope/cartasnauticas/wms/
+      layers: cartasnauticas:cs_cs_1550
+      transparent: true
+  rapideye_wms:
+    type: wms
+    req:
+      url: http://bdgex.eb.mil.br/mapcache/
+      layers: rapideye
+  bdgexcartas_wms:
+    type: wms
+    req:
+      url: http://bdgex.eb.mil.br/mapcache/
+      layers: ctm250,ctm100,ctm50,ctm25,Multiescala_LocalidadesLimites
+  bdgexortoimagens_wms:
+    type: wms
+    req:
+      url: http://bdgex.eb.mil.br/mapcache/
+      layers: ortoimagem_scn25
+  apolo_mma_wms:
+    type: wms
+    req:
+      url: http://10.5.115.135:8080/geoservermclm/sinamob/wms/
+      layers: view_mma_cnuc_esfera_e_grupo_manejo
+      transparent: true
+  sisclaten_01_wms:
+    type: wms
+    req:
+      url: http://10.5.115.135:8080/geoservermclm/sinamob/wms/
+      layers: view_sisclaten_projetos_encerrados
+      transparent: true
+  apolo_dnit_wms:
+    type: wms
+    req:
+      url: http://10.5.115.135:8080/geoservermclm/apolo/wms/
+      layers: view_dnit_obras_de_arte
+      transparent: true
+  apolo_linhas_wms:
+    type: wms
+    req:
+      url: http://10.5.115.135:8080/geoservermclm/apolo/wms/
+      layers: view_aneel_ons_linhas_transmissao
+      transparent: true
+  apolo_usinas_wms:
+    type: wms
+    req:
+      url: http://10.5.115.135:8080/geoservermclm/apolo/wms/
+      layers: aneel_usinas_energia
+      transparent: true
+  apolo_amazonia_wms:
+    type: wms
+    req:
+      url: http://10.5.115.135:8080/geoservermclm/apolo/wms/
+      layers: apolo:amazonia_azul
+      transparent: true
+  apolo_orgmil_wms:
+    type: wms
+    req:
+      url: http://10.5.115.135:8080/geoservermclm/apolo/wms/
+      layers: view_org_mil_hom
+      transparent: true
+  corrente_wms:
+    type: wms
+    req:
+      url: https://wms.hycom.org/thredds/wms/GLBy0.08/latest?styles=linevec/rainbow&COLORSCALERANGE=0.004%2C0.8193&NUMCOLORBANDS=253&
+      layers: sea_water_velocity
+      transparent: true
+      styles: linevec/rainbow
+    forward_req_params: ['time', 'elevation']  
+  gebco_wms:
+    type: wms
+    wms_opts:
+      legendgraphic: true
+    req:
+      url: http://osm.franken.de:8080/geoserver/gebco/wms
+      layers: GEBCO_LATEST
+  ram_colorimetria_50_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ram_colorimetria_50
+      transparent: true
+  ortoimagens_codeplan_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ortoimagens_codeplan
+      transparent: true
+  capitais_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: capitais
+      transparent: true
+  ram_colorimetria_25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ram_colorimetria_25
+      transparent: true
+  curva_nivel100_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: curva_nivel100
+      transparent: true
+  estados_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: estados
+      transparent: true
+  Multiescala_Hidrografia_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: Multiescala_Hidrografia
+      transparent: true
+  ctm100_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ctm100
+      transparent: true
+  curva_nivel250_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: curva_nivel250
+      transparent: true
+  censo_idoso_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: censo_idoso
+  mds250_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: mds250
+      transparent: true
+  ctm250_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ctm250
+      transparent: true
+  ortoimagem_scn25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ortoimagem_scn25
+      transparent: true
+  landsat7_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: landsat7
+      transparent: true
+  Multiescala_LocalidadesLimites_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: Multiescala_LocalidadesLimites
+      transparent: true
+  municipios_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: municipios
+      transparent: true
+  Multiescala_Relevo_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: Multiescala_Relevo
+      transparent: true
+  ram_mds_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ram_mds
+      transparent: true
+  cartaimagem50_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: cartaimagem50
+      transparent: true
+  cartaimagem25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: cartaimagem25
+      transparent: true
+  curva_nivel50_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: curva_nivel50
+      transparent: true
+  curva_nivel25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: curva_nivel25
+      transparent: true
+  censo_heatmap_pop_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: censo_heatmap_pop
+      transparent: true
+  ctmmultiescalas_mercator_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ctmmultiescalas_mercator
+      transparent: true
+  mds50_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: mds50
+      transparent: true
+  ctm50_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ctm50
+      transparent: true
+  ctm25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: ctm25
+      transparent: true
+  mds25_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: mds25
+      transparent: true
+  Multiescala_RodoviasFerrovias_wms:
+    type: wms
+    req:
+      url: https://bdgex.eb.mil.br/mapcache
+      layers: Multiescala_RodoviasFerrovias
+      transparent: true
+      
+grids:
+  webmercator:
+    base: GLOBAL_WEBMERCATOR
+  geodetic:
+    base: GLOBAL_GEODETIC
+
+
+  # image/transformation options
+  image:
+    # use best resampling for vector data
+    resampling_method: bicubic # nearest/bilinear
+    # stretch cached images by this factor before
+    # using the next level
+    stretch_factor: 1.15
+    # shrink cached images up to this factor before
+    # returning an empty image (for the first level)
+    max_shrink_factor: 4.0
+
+    # Enable 24bit PNG images. Defaults to true (8bit PNG)
+    paletted: false
+    formats:
+      custom_format:
+        format: image/png
+        # the custom format will be stored as 8bit PNG
+        mode: P
+        colors: 32
+        transparent: true
+        encoding_options:
+        # The algorithm used to quantize (reduce) the image colors
+          quantizer: fastoctree
+      # edit an existing format
+      image/jpeg:
+        encoding_options:
+          # jpeg quality [0-100]
+          jpeg_quality: 60
+
+
+globals:

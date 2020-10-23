@@ -10,6 +10,47 @@ function roundDown(num, precision) {
 
 
 function getUserLocation(){
+
+		$.ajax({
+			url: "https://api-ip.hotmart.com/api/ip/info",
+			type: "GET", 
+			success: function( obj ) {
+				if( obj ){
+					viewer.camera.setView({
+						destination : Cesium.Cartesian3.fromDegrees( obj.ll[1], obj.ll[0], 45000.0)
+					});		
+					fireToast( 'info', 'Geolocalização', 'Você está em ' + obj.city + ' e seu IP é ' + obj.ip , '' );
+				} else {
+					fireToast( 'error', 'Erro', 'Não foi possível obter sua localização.', '' );
+				}					
+			},
+			error: function(xhr, textStatus) {
+				fireToast( 'error', 'Erro', 'Não foi possível obter sua localização.', '' );
+			}, 
+		});	
+	
+	
+/*
+"range": [
+	3135218688,
+	3135219711
+	],
+	"country": "BR",
+	"region": "RJ",
+	"eu": "0",
+	"timezone": "America/Sao_Paulo",
+	"city": "Niterói",
+	"ll": [
+	-22.9172,
+	-43.0839
+	],
+	"metro": 0,
+	"area": 5,
+	"ip": "186.223.165.246"
+}
+*/	
+
+/*
 	var options = {
 		enableHighAccuracy: true,
 		timeout: 5000,
@@ -24,7 +65,7 @@ function getUserLocation(){
 	function(){
 		fireToast( 'error', 'Erro', 'Não foi possível obter sua localização.', '' );
 	}, options);
-	
+*/	
 }
 
 function getMapPosition3D2D( movement ){

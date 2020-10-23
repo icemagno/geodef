@@ -323,6 +323,10 @@
 
 	<script src="/resources/drawhelper/drawhelper.js"></script>
 	<script src="/resources/profilehelper/profilehelper.js"></script>
+	
+	<script src="/resources/windy/Particle.js"></script>
+	<script src="/resources/windy/WindField.js"></script>
+	<script src="${midasLocation}/atlas/resources/Windy.js"></script>
 
 	<script src="${midasLocation}/atlas/resources/cormeteoro.js" type="text/javascript"></script>
 

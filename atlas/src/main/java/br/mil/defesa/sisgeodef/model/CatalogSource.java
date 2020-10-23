@@ -48,6 +48,9 @@ public class CatalogSource implements Serializable {
 	@Column(name = "source_address", length = 250)
 	private String sourceAddress;
 
+	@Column(name = "source_logo", length = 250)
+	private String sourceLogo;
+
 	@Column(name = "cql_filter", length = 250)
 	private String cqlFilter;
 	
@@ -133,6 +136,14 @@ public class CatalogSource implements Serializable {
 	public void setCqlFilter(String cqlFilter) {
 		this.cqlFilter = cqlFilter;
 	}
-	
 
+	public String getSourceLogo() {
+		return sourceLogo;
+	}
+
+	public void setSourceLogo(String sourceLogo) {
+		this.sourceLogo = sourceLogo;
+	}
+	
+	
 }
