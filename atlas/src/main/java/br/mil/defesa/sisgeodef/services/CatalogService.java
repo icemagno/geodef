@@ -20,6 +20,7 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import br.mil.defesa.sisgeodef.dto.CatalogSourceDTO;
 import br.mil.defesa.sisgeodef.model.CatalogSource;
 import br.mil.defesa.sisgeodef.repository.CatalogSourcesRepository;
 
@@ -166,14 +167,22 @@ public class CatalogService {
 		
 	}
 
-	public List<CatalogSource> getSources(Integer parentId) {
+	public List<CatalogSourceDTO> getSources(Integer parentId) {
     	Optional<CatalogSource> sourceObj = catalogSourcesRepository.findById( parentId.longValue() );
-    	List<CatalogSource> result = new ArrayList<CatalogSource>();
+    	List<CatalogSourceDTO> result = new ArrayList<CatalogSourceDTO>();
 		if( sourceObj.isPresent() ) {
 			for( CatalogSource ss :  sourceObj.get().getSources() ) {
-				ss.getSources().clear();
-				result.add( ss );
+				result.add( new CatalogSourceDTO(ss) );
 			}
+		}
+		return result;
+	}
+
+	public List<CatalogSourceDTO> getByTopic(Integer topicId) {
+    	List<CatalogSourceDTO> result = new ArrayList<CatalogSourceDTO>();
+    	List<CatalogSource> sources = catalogSourcesRepository.findAllByTopicId( topicId );
+		for( CatalogSource ss :  sources ) {
+			result.add( new CatalogSourceDTO(ss) );
 		}
 		return result;
 	}

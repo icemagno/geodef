@@ -13,15 +13,17 @@
 	  <!-- Bootstrap 3.3.7 -->  
 	  <link rel="stylesheet" href="${midasLocation}/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
+
+	  <!-- SLIDER -->
+	  <link rel="stylesheet" href="${midasLocation}/plugins/bootstrap-slider/slider.css">
+
+
 	  <!-- TreeView -->
 	  <!-- 
 	  <link rel="stylesheet" href="/resources/css/bootstrap-treeview.min.css">
 	  -->
 	  <link rel="stylesheet" href="${midasLocation}/gijgo/css/gijgo.min.css">
 
-
-	  <!-- SLIDER -->
-	  <link rel="stylesheet" href="${midasLocation}/plugins/bootstrap-slider/slider.css">
 	  <!-- Font Awesome -->
 	  <link rel="stylesheet" href="${midasLocation}/bower_components/font-awesome/css/font-awesome.min.css">
 	  <!-- Ionicons -->

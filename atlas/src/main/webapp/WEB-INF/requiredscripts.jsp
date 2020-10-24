@@ -72,6 +72,9 @@
  -->
 <script src="${midasLocation}/gijgo/js/gijgo.min.js"></script>
  
+ <!-- Bootstrap slider -->
+<script src="${midasLocation}/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+ 
 
 <!-- Particles -->
 <script src="/resources/particles/particles.min.js"></script>

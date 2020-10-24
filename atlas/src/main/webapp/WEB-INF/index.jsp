@@ -8,6 +8,10 @@
 
 <style>
 
+	ul.gj-list-md li {
+		font-size: 12px;
+	}
+	
 	.box{
 		box-shadow: none;
 	}

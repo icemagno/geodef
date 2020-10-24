@@ -62,7 +62,8 @@ function addSingleImageryLayerCard( base64PngImage, data ){
 	    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
 		var layerText = getALayerCard( uuid, data.sourceName + " às " + data.sourceHour, defaultImage );
 		$("#activeLayerContainer").append( layerText );
-		$("#SL_"+uuid).slider({});
+		
+		$("#SL_"+uuid).bootstrapSlider({});
 		$("#SL_"+uuid).on("slide", function(slideEvt) {
 			var valu = slideEvt.value / 100;
 			doSlider( this.id.substr(3), valu );

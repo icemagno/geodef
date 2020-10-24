@@ -71,31 +71,27 @@ function startCesiumInMiniMap(){
 }
 
 function searchTree(){
-	
-	
     var pattern = $('#searchCatalogTree').val();
     if( pattern.length === 0 ){
-    	$(".sourcesTree").treeview('clearSearch');
     	$("#layerSearchResultContainer").hide();
     	$("#layerContainerHolder").show();
     } else {
     	$("#layerSearchResultContainer").empty();
-    	
     	$("#layerSearchResultContainer").show();
     	$("#layerContainerHolder").hide();
-    	
    		$("#layerSearchResultContainer").append( "<h4>Não Implementado Ainda</h4>" );	
-        
     }    
-    
 }
 
 function getCatalogTopics(){
+	
+	$("#mainWaitPanel").show();
 	
     jQuery.ajax({
 		url:"/catalog/topics", 
 		type: "GET", 
 		success: function( catalogTopics ) {
+			$("#mainWaitPanel").hide();
 			
 			$('#catalogTreeModal').attr('class', 'modal fade bs-example-modal-lg').attr('aria-labelledby','catalogModalLabel');
 			$('#tab_geo').html( getGeoTabContent( catalogTopics ) );
@@ -139,6 +135,7 @@ function getCatalogTopics(){
 			
 		},
 	    error: function(xhr, textStatus) {
+	    	$("#mainWaitPanel").hide();
 	    	fireToast( 'error', 'Erro Crítico', 'Não foi possível receber o catálogo.', '404' );
 	    }, 		
     });
@@ -160,10 +157,10 @@ function getGeoTabContent( catalogTopics ){
             '</div>'+
 		    
 		    '</div>'+
-		    '<div class="box-body"><div id="layerContainerHolder"><div id="layerContainer">'+
+		    '<div class="box-body" style="padding-left: 0px !important;padding-right: 0px !important;"><div id="layerContainerHolder"><div id="layerContainer">'+
 					getCatalogTree( catalogTopics ) +	
 			'</div></div>'+
-		    '<div style="display:none" id="layerSearchResultContainer" class="box-body"></div></div>'+
+		    '<div style="display:none;height:550px" id="layerSearchResultContainer" class="box-body"></div></div>'+
 			'</div>'+
 		'</div>' +
 		'<div class="col-md-6" style="padding-right: 0px;padding-left: 5px;">' +
@@ -210,49 +207,56 @@ function formatCatalogTopic( topic ){
 	return content;
 }
 
-
-function getChildren( node, treeView ){
-	var id = node.data.id;
-	node.nodes = [];
-	var result = [];
-	treeView.treeView().loadTree();
-	console.log( node );
-	console.log("Get children of " + node.data.id );
-	
-	
-	
-	/*
-	var totalSources = source.sources.length;
-	if ( totalSources == 0 ) return [];
-	for( var z=0; z < totalSources; z++ ){
-		var ss = source.sources[z];
-		var theData = { text: ss.sourceName, nodes:[], tags: [ ss.sources.length ], data : ss };
-		if( ss.sourceAddress.length > 20 ) {
-			theData.image = '/resources/img/layer.png';
-		}
-		theData.nodes = getChildren( ss );
-		result.push( theData );
-	}
-	*/
-	return result;
-}
-
-
 function getTopicSources( topic ){
 	var content = "";
 	var treeMainData = [];
 	var totalSources = topic.sources.length; 
-	
-	for( var y=0; y < totalSources; y++ ){
-		var source = topic.sources[y];
-		var theData = { text: source.sourceName, nodes:[], data : source };
-
-		theData.nodes.push( { text: 'Aguarde...', nodes:[], data : {} } );    
-		
-		if( source.parentId == null ) treeMainData.push( theData );
-	}
 
 	
+    var tree = $('#sourcesTree' + topic.id).tree({
+        dataSource: '/catalog/getsources/' + topic.id,
+        primaryKey: 'id',
+        lazyLoading: true,
+        imageUrlField: 'treeIcon'
+    });	
+	
+    tree.on('expand', function (e, node, id) {
+    	//
+    });
+    
+    tree.on('select', function (e, node, id) {
+    	var node = tree.getDataById( id );
+    	
+    	$("#layerDetailsContainer").text( node.data.description );
+   
+    	var logoImage = node.data.sourceLogo;
+    	$("#layerLogoImage").html('');
+    	$("#layerLogoImage").hide();
+    	if( logoImage ){
+    		var logoImg = "<img style='width:150px;height:50px;border:1px solid #ddd' src='"+ logoImage + "'>";
+    		$("#layerLogoImage").html( logoImg );
+    		$("#layerLogoImage").show();
+    	}
+    	
+    	if( node.data.sourceAddress.length > 10 ){
+    		previewLayer( node.data );
+    	}
+    	
+    });    
+    
+    tree.on('unselect', function (e, node, id) {
+    	$("#layerDetailsContainer").text('');
+    });    
+    
+    
+    tree.on('collapse', function (e, node, id) {
+    	$("#layerDetailsContainer").text('');
+    });    
+    
+    
+	/*
+
+
 	if( treeMainData.length > 0 ){
 		var theTreeElement = $('#sourcesTree' + topic.id).treeview({
 			levels: 1,
@@ -296,7 +300,7 @@ function getTopicSources( topic ){
 		theTreeElement.treeview('collapseAll', {  });
 		
 	}
-	
+	*/
 }
 
 

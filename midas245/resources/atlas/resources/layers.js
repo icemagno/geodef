@@ -189,7 +189,8 @@ function addLayerCard( data ){
 	    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
 		var layerText = getALayerCard( uuid, data.sourceName, defaultImage );
 		$("#activeLayerContainer").append( layerText );
-		$("#SL_"+uuid).slider({});
+		
+		$("#SL_"+uuid).bootstrapSlider({});
 		$("#SL_"+uuid).on("slide", function(slideEvt) {
 			var valu = slideEvt.value / 100;
 			doSlider( this.id.substr(3), valu );
@@ -341,7 +342,7 @@ function addToPanelLayer( layerName, workspace, scale, layerAlias, server, image
 	var count = jQuery('#activeLayerContainer').children().length;
 	jQuery("#layersCounter").html( count );	
 
-	jQuery("#SL_"+uuid).slider({});
+	jQuery("#SL_"+uuid).bootstrapSlider({});
 	jQuery("#SL_"+uuid).on("slide", function(slideEvt) {
 		var valu = slideEvt.value / 100;
 		doSlider( slideEvt.target.id.substr(3), valu );
@@ -937,7 +938,7 @@ function addBasicLayerToPanel( layerName, theLayer ) {
 	var count = jQuery('#activeLayerContainer').children().length;
 	jQuery("#layersCounter").html( count );	
 
-	jQuery("#SL_"+uuid).slider({});
+	jQuery("#SL_"+uuid).bootstrapSlider({});
 	jQuery("#SL_"+uuid).on("slide", function(slideEvt) {
 		var valu = slideEvt.value / 100;
 		doSlider( slideEvt.target.id.substr(3), valu );

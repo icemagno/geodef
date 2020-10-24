@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.mil.defesa.sisgeodef.model.CatalogSource;
+import br.mil.defesa.sisgeodef.dto.CatalogSourceDTO;
 import br.mil.defesa.sisgeodef.model.CatalogTopics;
 import br.mil.defesa.sisgeodef.repository.CatalogTopicsRepository;
 import br.mil.defesa.sisgeodef.services.CartografiaIndexService;
@@ -51,10 +52,22 @@ public class CatalogController {
 		return catalogService.exportToMapProxy(parentId); 
 	}
 	
+	@RequestMapping(value = "/search", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody String search( @RequestParam(value="parent",required=true) Integer parentId ) {
+		return catalogService.exportToMapProxy(parentId); 
+	}
 
-	@RequestMapping(value = "/getsources", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public @ResponseBody List<CatalogSource> getSources( @RequestParam(value="parent",required=true) Integer parentId ) {
-		return catalogService.getSources(parentId); 
+	@RequestMapping(value = "/getsources/{topicId}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody List<CatalogSourceDTO> getSources(  @PathVariable("topicId") Integer topicId, @RequestParam(value="parentId",required=false) Integer parentId ) {
+		List<CatalogSourceDTO> result = null ;
+		
+		if( parentId == null ) {
+			result = catalogService.getByTopic(topicId);
+		} else {
+			result = catalogService.getSources(parentId);
+		}
+		
+		return result; 
 	}
 	
 	

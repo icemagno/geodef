@@ -17,7 +17,7 @@ function initControlSideBar(){
 
 	populateBaseLayerCollection();
 
-	$("#mainLayerSlider").slider({});
+	$("#mainLayerSlider").bootstrapSlider({});
 	$("#mainLayerSlider").on("slide", function(slideEvt) {
 		var valu = slideEvt.value / 100;
 		viewer.imageryLayers.get(0).alpha = valu;

@@ -11,5 +11,6 @@ import br.mil.defesa.sisgeodef.model.CatalogSource;
 @Repository
 @Transactional
 public interface CatalogSourcesRepository extends JpaRepository<CatalogSource, Long> {
-	List<CatalogSource> findAllByParentId( Long parentId );
+	List<CatalogSource> findAllByParentId( Integer parentId );
+	List<CatalogSource> findAllByTopicId( Integer topicId );
 }
