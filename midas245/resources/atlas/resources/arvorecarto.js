@@ -221,7 +221,11 @@ function getTopicSources( topic ){
     });	
 	
     tree.on('expand', function (e, node, id) {
-    	//
+    	//$("#catalogMapWaitingIcon").show();
+    });
+    
+    tree.on('nodeDataBound', function (e, node, id, record) {
+    	//$("#catalogMapWaitingIcon").hide();
     });
     
     tree.on('select', function (e, node, id) {
@@ -253,55 +257,7 @@ function getTopicSources( topic ){
     	$("#layerDetailsContainer").text('');
     });    
     
-    
-	/*
-
-
-	if( treeMainData.length > 0 ){
-		var theTreeElement = $('#sourcesTree' + topic.id).treeview({
-			levels: 1,
-			data: treeMainData,
-			color: "#3c8dbc",
-	        expandIcon: 'glyphicon glyphicon glyphicon-folder-close',
-	        collapseIcon: 'glyphicon glyphicon glyphicon-folder-open',			
-			showTags: false,	
-			showImage: true,
-	        multiSelect: false,
-	        onNodeSelected: function(event, node) {
-	        	$("#layerDetailsContainer").text( node.data.description );
-	        	
-	        	var logoImage = node.data.sourceLogo;
-	        	$("#layerLogoImage").html('');
-	        	$("#layerLogoImage").hide();
-	        	if( logoImage ){
-	        		var logoImg = "<img style='width:150px;height:50px;border:1px solid #ddd' src='"+ logoImage + "'>";
-	        		$("#layerLogoImage").html( logoImg );
-	        		$("#layerLogoImage").show();
-	        	}
-	        	
-	        	
-	        	if( node.data.sourceAddress.length > 10 ){
-	        		previewLayer( node.data );
-	        	}
-	        },
-	        onNodeUnselected: function (event, node) {
-	        	$("#layerDetailsContainer").text('');
-	        },
-	        onNodeCollapsed: function(event, node) {
-	        	$("#layerDetailsContainer").text('');
-	        },
-	        onNodeExpanded: function (event, node) {
-	        	$("#layerDetailsContainer").text( node.data.description );
-	        	getChildren( node, this );
-	        }	        
-		});
-		
-		//$('#sourcesTree' + topic.id).treeview('collapseAll', {});
-		theTreeElement.treeview('collapseAll', {  });
-		
-	}
-	*/
-}
+ }
 
 
 function previewLayer( data ){
@@ -344,7 +300,7 @@ function getCatalogTree( catalogTopics ){
  */
 
 
-
+/*
 function addLayerFromTree( layerName, workspace, scale, layerAlias, server, imageType ) {
 	 addToPanelLayer( layerName, workspace, scale, layerAlias, server, imageType );
 }
@@ -619,11 +575,12 @@ function loadCarto( ) {
 	});
 }
 
+
 function startCartoTree() {
 	loadCarto();
 	jQuery('#layerNameFinder').css({'font-size':12,'height':25});
 }
 
-
+*/
 
 
