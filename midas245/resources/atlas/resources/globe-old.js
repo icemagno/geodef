@@ -10,7 +10,7 @@ var mainEventHandler = null;
 var scene = null;
 var timeout = 6000; 
 var imageryLayers = null; 
-var scratchRectangle = new Cesium.Rectangle();
+
 var mapStyle = '3D'; // [ 3D || 2D ]
 
 var mainConfiguration = null;
@@ -44,32 +44,18 @@ var mapproxy;
 var osmLocal;
 var osmTileServer;
 var olimpo;
-var baseOsmProvider;
 
 var bdqueimadas = 'http://queimadas.dgi.inpe.br/queimadas/terrama2q/geoserver/wms';
 
 var handler = null;
 
-
-var drawHelper = null;
-
-function updateSisgeodefAddress( useGateKeeper ){
-	if( useGateKeeper){
-		osmLocal = sisgeodefHost + '/mapproxy/service/wms';
-		mapproxy = sisgeodefHost + '/mapproxy/service/wms';
-		pleione = sisgeodefHost + '/geoserver/wms';
-		efestus = sisgeodefHost + '/geoserver/wms';
-		volcano = sisgeodefHost + '/geoserver/wms';
-		olimpo = sisgeodefHost + '/olimpo/tilesets/sisgide';
-	} else {
-		osmLocal = sisgeodefHost + ':36890/service/wms';
-		mapproxy = sisgeodefHost + ':36890/service/wms';
-		pleione = sisgeodefHost + ':36212/geoserver/wms';
-		efestus = sisgeodefHost + ':36212/geoserver/wms';
-		volcano = sisgeodefHost + ':36212/geoserver/wms';
-		olimpo = sisgeodefHost + ':36503/tilesets/sisgide';
-		
-	}
+function updateSisgeodefAddress(){
+	osmLocal = sisgeodefHost + '/mapproxy/service/wms';
+	mapproxy = sisgeodefHost + '/mapproxy/service/wms';
+	pleione = sisgeodefHost + '/geoserver/wms';
+	efestus = sisgeodefHost + '/geoserver/wms';
+	volcano = sisgeodefHost + '/geoserver/wms';
+	olimpo = sisgeodefHost + '/olimpo/tilesets/sisgide';
 }
 
 
@@ -92,7 +78,7 @@ function goToOperationArea( operationArea ) {
 
 	
 	var center = Cesium.Rectangle.center(operationArea);
-	var initialPosition = Cesium.Cartesian3.fromRadians(center.longitude, center.latitude, 11500000);
+	var initialPosition = Cesium.Cartesian3.fromRadians(center.longitude, center.latitude, 8900000);
 	var initialOrientation = new Cesium.HeadingPitchRoll.fromDegrees(0, -90, 0);
 	scene.camera.setView({
 	    destination: initialPosition,
@@ -102,15 +88,7 @@ function goToOperationArea( operationArea ) {
 }
 
 
-
-function startMap( theMapStyle ) {
-	
-	mapStyle = theMapStyle;
-	
-	if( mapStyle == '2D'){
-		$("#analise3dMainBtn").addClass('disabled');
-	} 
-	
+function startMap() {
 	
 	terrainProvider = new Cesium.CesiumTerrainProvider({
 		url : olimpo,
@@ -118,13 +96,20 @@ function startMap( theMapStyle ) {
 		isSct : false
 	});
 	
+	
+	var baseOsmProvider = "";
 	if( mainConfiguration.useExternalOsm ){
 		fireToast( 'warning', 'Atenção', 'Você está usando o OpenStreetMap Online.', '000' );
+		
+		/*
+		baseOsmProvider = new Cesium.createOpenStreetMapImageryProvider({
+			url : 'https://a.tile.openstreetmap.org/'
+		});
+		*/
 		
 		baseOsmProvider = new Cesium.OpenStreetMapImageryProvider({
 		    url : 'https://a.tile.openstreetmap.org/'
 		});		
-		
 		
 	} else {
 		fireToast( 'info', 'OpenStreetMap', 'Você está usando o OpenStreetMap em ' + osmTileServer , '000' );
@@ -132,7 +117,8 @@ function startMap( theMapStyle ) {
 			url : osmTileServer + 'tile/{z}/{x}/{y}.png',
 			credit : 'Ministério da Defesa - SisGeoDef',
 			maximumLevel : 25,
-			hasAlphaChannel : false
+			hasAlphaChannel : false,
+			enablePickFeatures : false
 		});
 	}	
 		
@@ -140,9 +126,11 @@ function startMap( theMapStyle ) {
 	if ( mapStyle === '3D' ) sceneMapMode = Cesium.SceneMode.SCENE3D;
 	
 	viewer = new Cesium.Viewer('cesiumContainer',{
-		//terrainProvider : terrainProvider,
-		sceneMode : sceneMapMode,
-		//mapMode2D: Cesium.MapMode2D.ROTATE,
+		terrainProvider : terrainProvider,
+		scene3DOnly : true,
+		
+		//sceneMode : Cesium.SceneMode.SCENE2D,
+		
 		timeline: false,
 		animation: false,
 		baseLayerPicker: false,
@@ -151,7 +139,6 @@ function startMap( theMapStyle ) {
 		geocoder : false,
 		homeButton : false,
 		infoBox : false,
-		skyBox : false,
 		sceneModePicker : false,
 		selectionIndicator : false,
 		navigationHelpButton : false,
@@ -163,9 +150,19 @@ function startMap( theMapStyle ) {
         //	requestWebgl2: true
         //},	    
 	});
-	viewer.extend( Cesium.viewerCesiumNavigationMixin, {});
+	
+	
+	viewer.extend( Cesium.viewerCesiumNavigationMixin, {
+		enableCompass : true,
+		enableZoomControls : true,
+		enableCompassOuterRing : true
+	});
+	
+
+	
 	camera = viewer.camera;
 	scene = viewer.scene;
+	
 	scene.highDynamicRange = false;
 	scene.globe.enableLighting = false;
 	scene.globe.baseColor = Cesium.Color.WHITE;
@@ -174,28 +171,26 @@ function startMap( theMapStyle ) {
 	scene.screenSpaceCameraController.inertiaZoom = 0.8;
 	scene.screenSpaceCameraController.inertiaTranslate = 0.8;
 	scene.globe.maximumScreenSpaceError = 1;
-	scene.globe.depthTestAgainstTerrain = false;
+	scene.globe.depthTestAgainstTerrain = true;
 	//scene.globe.tileCacheSize = 250;
 	scene.pickTranslucentDepth = true;
 	scene.useDepthPicking = true;
+	scene.skyBox.show = false;
+	scene.sun.show = false;
+	//scene.bloomEffect.show = true;
+	//scene.bloomEffect.threshold = 0.1;
+	//scene.bloomEffect.bloomIntensity = 0.3;		
 
-	var width = viewer.scene.drawingBufferWidth;
-	var height = viewer.scene.drawingBufferHeight;
-	console.log('Resolução ' + width + ' x ' + height );	
-	
 	imageryLayers = scene.imageryLayers;
+	
 	
 	// drawOperationArea( homeLocation );
 	goToOperationArea( homeLocation );
 	
-	
-	imageryLayers.layerShownOrHidden.addEventListener(function (event) {
-		console.log('Shown/Hidden');
-	});
 	imageryLayers.layerAdded.addEventListener(function (event) {
 		//console.log( "Adicionou: " + event.imageryProvider.layers );
-		//$('.layerCounter').show();
-		//$("#lyrCount").text( event.imageryProvider.layers );
+		//jQuery('.layerCounter').show();
+		//jQuery("#lyrCount").text( event.imageryProvider.layers );
 	});
 	imageryLayers.layerRemoved.addEventListener(function (event) {
 		//console.log( "Removeu: " + event.imageryProvider.layers );
@@ -205,121 +200,46 @@ function startMap( theMapStyle ) {
 	var helper = new Cesium.EventHelper();
 	helper.add( viewer.scene.globe.tileLoadProgressEvent, function (event) {
 		
-		$("#lyrCount").text( event );
+		jQuery("#lyrCount").text( event );
 		if (event == 0) {
-			$('.layerCounter').hide();
-			$("#lyrCount").text( "" );
+			jQuery('.layerCounter').hide();
+			jQuery("#lyrCount").text( "" );
 		} else {
-			$('.layerCounter').show();
+			jQuery('.layerCounter').show();
 		}
 		
 	});
 	
+	
 	// Conecta o WebSocket
 	connect();
-	drawHelper = new DrawHelper( viewer );
-	
-	
-	viewer.clock.onTick.addEventListener(function() {
-	    var rect = viewer.camera.computeViewRectangle( viewer.scene.globe.ellipsoid, scratchRectangle );
-	    if( Cesium.defined(rect) ){
-		    var bWest = Cesium.Math.toDegrees(rect.west);
-		    var bSouth = Cesium.Math.toDegrees(rect.south);
-		    var bEast = Cesium.Math.toDegrees(rect.east);
-		    var bNorth = Cesium.Math.toDegrees(rect.north);
-		    
-		    $("#vpW").text( bWest );
-		    $("#vpE").text( bEast );
-		    $("#vpN").text( bNorth );
-		    $("#vpS").text( bSouth );
-	    }	    
-	    
-	});	
-	
-	var graticule = new Graticule({
-	      	tileWidth: 512,
-	      	tileHeight: 512,
-			fontColor:  Cesium.Color.ORANGE, 
-			color :   Cesium.Color.ORANGE,
-			sexagesimal : false,
-			weight:  0.8, 
-			zoomInterval: [
-				   Cesium.Math.toRadians(0.01), 
-				   Cesium.Math.toRadians(0.02),
-			       Cesium.Math.toRadians(0.05),
-			       Cesium.Math.toRadians(0.1),
-			       Cesium.Math.toRadians(0.2),
-			       Cesium.Math.toRadians(0.5),
-			       Cesium.Math.toRadians(1.0),
-			       Cesium.Math.toRadians(2.0),
-			       Cesium.Math.toRadians(5.0),
-			       Cesium.Math.toRadians(10.0),
-			       Cesium.Math.toRadians(20.0),
-			       Cesium.Math.toRadians(50.0)
-			] // Different map zoom levels show the grid interval
-	}, scene);
-	viewer.scene.imageryLayers.addImageryProvider(graticule);
-	graticule.setVisible( true );	
 	
 };
 
 
-var windy;
-var windy2;
-var timer = null;
-
-function redraw() {
-    timer = setInterval(function () {
-    	if( windy ) windy.animate();
-    	if( windy2 ) windy2.animate();
-    }, 300);
-}
-
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
-
 	
-	// Teste de particulas de vento
-	/*
-    $.ajax({
-        type: "get",
-        // url: "http://s0.cptec.inpe.br/oceano/blend/vsm/vsm_diario_glb/vsm.json",// 
-        url: "/resources/data/climatologia/glb-vsm.json", 
-        dataType: "json",
-        success: function (response) {
-            var header = response[0].header;
-            windy = new Windy(response, viewer, {
-            	color : Cesium.Color.RED
-            });
-            redraw();
-        },
-        error: function (errorMsg) {
-            alert("Erro");
-        }
-    });	
+	
+	/*  Maldito CORS !!
+	var imageryProvider = new Cesium.SingleTileImageryProvider({
+	    url : "https://mapas.inmet.gov.br/BR.gif",
+	    rectangle : Cesium.Rectangle.fromDegrees(-95.0, -60.17, -19.8, 22.4   ) //west, south, east, north
+	});
+	
+	imageryProvider.defaultAlpha = 0.7;
+		
+	var layers = viewer.scene.imageryLayers;
+	layers.addImageryProvider( imageryProvider );	
 	*/
 	
-	/*
-    $.ajax({
-        type: "get",
-        // url: "http://s0.cptec.inpe.br/oceano/blend/vsm/vsm_diario_glb/vsm.json",// 
-        url: "/resources/data/climatologia/asm-vsm.json", 
-        dataType: "json",
-        success: function (response) {
-        	console.log( response);
-            var header = response[0].header;
-            windy2 = new Windy(response, viewer, {
-            	color : Cesium.Color.BLUE
-            });
-        },
-        error: function (errorMsg) {
-            alert("Erro");
-        }
-    });	
-	*/
+	
+	
 	
 	// Teste de particulas de vento
 	// doWindParticles();
+	
+	
 	/*
 	var promise =  viewer.scene.addFieldLayer("/resources/data/climatologia/UTCI_APR.nc");
 	Cesium.when(promise,function(fieldLayer){
@@ -338,6 +258,9 @@ function doSomeSandBoxTests(){
 	});
 	*/
 	
+	
+	
+	
 	var testScript = getUrlParam('testscript','xxx');
 	if( testScript !== 'xxx'){
 		var url = 'http://sisgeodef.defesa.mil.br:36280/scripts/'+testScript+'.js?_d=' + createUUID();
@@ -355,36 +278,36 @@ function bindInterfaceElements() {
 
 	bindToolBarButtons();
 	
-	$("#hudCoordenadas").click( function(){
-		$("#mapLat").toggle();
-		$("#mapLon").toggle();
+	jQuery("#hudCoordenadas").click( function(){
+		jQuery("#mapLat").toggle();
+		jQuery("#mapLon").toggle();
 	});
-	$("#hudAltitude").click( function(){
-		$("#mapHei").toggle();
-		$("#mapAltitude").toggle();
+	jQuery("#hudAltitude").click( function(){
+		jQuery("#mapHei").toggle();
+		jQuery("#mapAltitude").toggle();
 	});
-	$("#hudUtm").click( function(){
-		$("#mapUtm").toggle();
+	jQuery("#hudUtm").click( function(){
+		jQuery("#mapUtm").toggle();
 	});
-	$("#hudHdms").click( function(){
-		$("#mapHdmsLat").toggle();
-		$("#mapHdmsLon").toggle();
-	});
-
-	$("#hudFlight").click( function(){
-		$("#flightControlsContainer").toggle();
+	jQuery("#hudHdms").click( function(){
+		jQuery("#mapHdmsLat").toggle();
+		jQuery("#mapHdmsLon").toggle();
 	});
 
-	$("#hudRosaVentos").click( function(){
-		$("#rosaVentos").toggle();
+	jQuery("#hudFlight").click( function(){
+		jQuery("#flightControlsContainer").toggle();
+	});
+
+	jQuery("#hudRosaVentos").click( function(){
+		jQuery("#rosaVentos").toggle();
 	});
 	
-	$("#hudAttitude").click( function(){
-		$("#instPanel").toggle();
+	jQuery("#hudAttitude").click( function(){
+		jQuery("#instPanel").toggle();
 	});
 
-	$("#hudProfile").click( function(){
-		$("#elevationProfileContainer").toggle();
+	jQuery("#hudProfile").click( function(){
+		jQuery("#elevationProfileContainer").toggle();
 	});
 	
 	// *********************************************************************************************************
@@ -395,8 +318,8 @@ function bindInterfaceElements() {
 	// *********************************************************************************************************
 	// *********************************************************************************************************
 	
-	$("#sysLayerShades").click( function(){
-		var isChecked = $("#sysLayerShades").prop('checked');
+	jQuery("#sysLayerShades").click( function(){
+		var isChecked = jQuery("#sysLayerShades").prop('checked');
 		if( isChecked ) {
 			contourShade = addBaseSystemLayer( this.id, 'HillShade', volcano, 'volcano:hillshade', false, 1.0 );
 			addBasicLayerToPanel( 'Sombreamento 3D', contourShade );
@@ -404,10 +327,22 @@ function bindInterfaceElements() {
 			deleteLayer( contourShade.layer.properties.uuid );
 		}
 	});	
-
 	
-	$("#sysLayerCurvas").click( function(){
-		var isChecked = $("#sysLayerCurvas").prop('checked');
+	/*
+	jQuery("#sysLayercartasChm").click( function(){
+		var isChecked = jQuery("#sysLayercartasChm").prop('checked');
+		if( isChecked ) {
+			cartasCHM = addBaseSystemLayer( this.id, 'CartasCHM', mapproxy, 'cartasapolo', false, 1.0, 'png' );
+			addBasicLayerToPanel( 'Cartas Náuticas CHM', cartasCHM );
+		} else {
+			deleteLayer( cartasCHM.layer.properties.uuid );
+		}
+	});
+	*/	
+	
+	
+	jQuery("#sysLayerCurvas").click( function(){
+		var isChecked = jQuery("#sysLayerCurvas").prop('checked');
 		if( isChecked ) {
 			contourLines = addBaseSystemLayer( this.id, 'CurvasNivel', volcano, 'volcano:contour', false, 1.0 );
 			addBasicLayerToPanel( 'Curvas de Nível NASA', contourLines );
@@ -416,8 +351,8 @@ function bindInterfaceElements() {
 		}
 	});
 	
-	$("#sysLayerRapidEye").click( function(){
-		var isChecked = $("#sysLayerRapidEye").prop('checked');
+	jQuery("#sysLayerRapidEye").click( function(){
+		var isChecked = jQuery("#sysLayerRapidEye").prop('checked');
 		if( isChecked ) {
 			rapidEyeImagery = addBaseSystemLayer( this.id, 'RapidEye', mapproxy, 'rapideye', false, 1.0, 'jpeg' );
 			addBasicLayerToPanel( 'RapidEye do BDGEX', rapidEyeImagery );
@@ -426,8 +361,8 @@ function bindInterfaceElements() {
 		}
 	});
 
-	$("#sysLayerOpenSeaMap").click( function(){
-		var isChecked = $("#sysLayerOpenSeaMap").prop('checked');
+	jQuery("#sysLayerOpenSeaMap").click( function(){
+		var isChecked = jQuery("#sysLayerOpenSeaMap").prop('checked');
 		if( isChecked ) {
 			openseamap = addBaseSystemLayer( this.id, 'OpenSeaMap', mapproxy, 'seamarks', false, 1.0, 'png' );
 			addBasicLayerToPanel( 'Elementos Náuticos OpenSeaMap', openseamap );
@@ -437,8 +372,8 @@ function bindInterfaceElements() {
 	});
 
 	
-	$("#sysLayerMarineTraffic").click( function(){
-		var isChecked = $("#sysLayerMarineTraffic").prop('checked');
+	jQuery("#sysLayerMarineTraffic").click( function(){
+		var isChecked = jQuery("#sysLayerMarineTraffic").prop('checked');
 		if( isChecked ) {
 			marinetraffic = addMarineTrafficLayer( this.id );
 			addBasicLayerToPanel( 'Marine Traffic', marinetraffic );
@@ -458,8 +393,8 @@ function bindInterfaceElements() {
 	});
 	
 	
-	$("#sysLayerOSM").click( function(){
-		var isChecked = $("#sysLayerOSM").prop('checked');
+	jQuery("#sysLayerOSM").click( function(){
+		var isChecked = jQuery("#sysLayerOSM").prop('checked');
 		if( isChecked ) {
 			imageryLayers.get(0).alpha = 1;	
 		} else {
@@ -468,8 +403,8 @@ function bindInterfaceElements() {
 	});	
 
 	// Layer basico: sempre presente
-	$("#sysLayerNaturalEarth").click( function(){
-		var isChecked = $("#sysLayerNaturalEarth").prop('checked');
+	jQuery("#sysLayerNaturalEarth").click( function(){
+		var isChecked = jQuery("#sysLayerNaturalEarth").prop('checked');
 		if( isChecked ) {
 			bdgexCartasImageryProvider = addBaseSystemLayer( this.id, 'Cartas BDGEX', mapproxy, 'bdgex', false, 1.0, 'png' );
 			addBasicLayerToPanel('Cartas BDGEX', bdgexCartasImageryProvider );
@@ -481,50 +416,84 @@ function bindInterfaceElements() {
 	// *********************************************************************************************************
 	// *********************************************************************************************************
 	
+	jQuery("#showComponentsBar").click( function(){
+		jQuery("#layerContainer").toggle();
+		hideRouteDir()
+	});
+
 	attitude = jQuery.flightIndicator('#attitude', 'attitude', {roll:50, pitch:-20, size:100, showBox : true});
 	heading = jQuery.flightIndicator('#heading', 'heading', {heading:150, size:100, showBox:true});
 	altimeter = jQuery.flightIndicator('#altimeter', 'altimeter', {size:100, showBox:true});	
 	
-	var viewportHeight= $(".main-sidebar").height() - 170;
+	var viewportHeight= jQuery(window).height() - 100;
     
-	$('#activeLayerContainer').css({'height': viewportHeight });
-	$('#activeLayerContainer').slimScroll({
-        height: viewportHeight - 10 + 'px',
+	jQuery('#activeLayerContainer').slimScroll({
+        height: '390px',
         wheelStep : 10,
     });
 	
+	jQuery('#routesContainer').slimScroll({
+		height: '390px',
+		wheelStep : 10,
+	});	
+
+	jQuery('#cartoTreeContainer').slimScroll({
+		height: '390px',
+		wheelStep : 10,
+	});	
 	
-	
-	$("#activeLayerContainer").sortable({
-		update: function( event, ui ) {
-			updateLayersOrder( event, ui );
-		},
-        start: function (event, ui) {
-            //$(ui.item).data( "startindex", ui.item.index() );
-        },
-        stop: function (event, ui) {
-            //
-        }		
-	});
-	    
-	
+    jQuery('#routeDetailContainer').slimScroll({
+        height: '490px',
+        wheelStep : 10,
+    });
+
+    jQuery('#avisosDetailContainer').slimScroll({
+        height: '290px',
+        wheelStep : 10,
+    });
+
+    jQuery('#measureResultsContainer').slimScroll({
+        height: '390px',
+        wheelStep : 10,
+    });
+    jQuery('#drawedObjectsContainer').slimScroll({
+    	height: '390px',
+    	wheelStep : 10,
+    });
+    jQuery('#exportedProductsContainer').slimScroll({
+    	height: '390px',
+    	wheelStep : 10,
+    });
+    jQuery('#viewshedResultsContainer').slimScroll({
+    	height: '390px',
+    	wheelStep : 10,
+    });
+    jQuery('#exportedProductsContainer').slimScroll({
+    	height: '390px',
+    	wheelStep : 10,
+    });
+    jQuery('#diversosContainer').slimScroll({
+    	height: '390px',
+    	wheelStep : 10,
+    });
+
+    
     // MACETES - ESCONDER ELEMENTOS "DESNECESSARIOS"
-	
-    $(".cesium-viewer-bottom").hide();
-    $(".cesium-viewer-navigationContainer").hide();
-    $(".navigation-controls").hide();
-    $(".compass").hide();
-    $(".distance-legend").css( {"border": "none", "background-color" : "rgb(60, 141, 188, 0.5)", "height" : 25, "bottom": 60, "right" : 61, "border-radius": 0} );
-    $(".distance-legend-label").css( {"font-size": "11px", "font-weight":"bold",  "line-height" : 0, "color" : "white", "font-family": "Consolas"} );
-    $(".distance-legend-scale-bar").css( {"height": "9px", "top" : 10, "border-color" : "white"} );
+    jQuery(".cesium-viewer-bottom").hide();
+    jQuery(".cesium-viewer-navigationContainer").hide();
+    jQuery(".navigation-controls").hide();
+    jQuery(".compass").hide();
+    jQuery(".distance-legend").css( {"border": "none", "background-color" : "rgb(60, 141, 188, 0.5)", "height" : 25, "bottom": 60, "right" : 61, "border-radius": 0} );
+    jQuery(".distance-legend-label").css( {"font-size": "11px", "font-weight":"bold",  "line-height" : 0, "color" : "white", "font-family": "Consolas"} );
+    jQuery(".distance-legend-scale-bar").css( {"height": "9px", "top" : 10, "border-color" : "white"} );
     jQuery.fn.awesomeCursor.defaults.color = 'white';
-	
 };
 
 
-$(function () {
+jQuery(function () {
 	
 	// polling para tentar manter o login.
+	/*
 	setInterval( function(){ 
 	    jQuery.ajax({
 			url:"/config", 
@@ -537,20 +506,18 @@ $(function () {
 		    }, 		
 	    });
 	}, 60000 );	
+	*/
 	
 	// Adiciona funcionalidade "rotate" ao JQuery
 	jQuery.fn.rotate = function(degrees) {
-	    $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+	    jQuery(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
 	                 '-moz-transform' : 'rotate('+ degrees +'deg)',
 	                 '-ms-transform' : 'rotate('+ degrees +'deg)',
 	                 'transform' : 'rotate('+ degrees +'deg)'});
-	    return $(this);
+	    return jQuery(this);
 	};	
 	
-	$(window).on("resize", applyMargins);
-	
-	
-	var theMapStyle = getUrlParam('mapStyle','2D');
+	jQuery(window).on("resize", applyMargins);
 	
     jQuery.ajax({
 		url:"/config", 
@@ -558,9 +525,9 @@ $(function () {
 		success: function( obj ) {
 			mainConfiguration = obj;
 			sisgeodefHost = obj.sisgeodefHost;
-			updateSisgeodefAddress( obj.useGateKeeper  );
+			updateSisgeodefAddress( );
 			osmTileServer = obj.osmTileServer;
-			startMap( theMapStyle );
+			startMap();
 			mainEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
 			marineTrafficEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
 			removeMouseDoubleClickListener();
@@ -568,7 +535,8 @@ $(function () {
 			addCameraChangeListener();
 			bindInterfaceElements();
 			applyMargins();
-			initControlSideBar();
+			startCartoTree();
+			
 			
 			// So para testes. Dispara apos 3seg
 			setTimeout(function(){ 
@@ -653,14 +621,14 @@ $(function () {
 });
 
 function applyMargins() {
-	/*
-	var totalHeight= $(window).height();
-	var contentHeight= totalHeight - 150;
-	$(".content-wrapper").css({"height": contentHeight});
-	$(".content-wrapper").css({"min-height": contentHeight});
-	$(".control-sidebar-subheading").css({"font-size": "15px"});
-	$(".form-group p").css({"font-size": "14px"});
-	*/
+	var totalHeight= jQuery(window).height();
+	var viewportHeight= totalHeight - 100;
+	var contentHeight= totalHeight - 50;
+	var tabContentHeight= contentHeight - 200;
+	jQuery(".content-wrapper").css({"height": contentHeight});
+	jQuery(".content-wrapper").css({"min-height": contentHeight});
+	jQuery(".control-sidebar-subheading").css({"font-size": "15px"});
+	jQuery(".form-group p").css({"font-size": "14px"});
 }
 
 function addCameraChangeListener() {
@@ -688,12 +656,12 @@ function updateCamera() {
     heading.setHeading ( Cesium.Math.toDegrees( camera.heading ) );
     altimeter.setAltitude( altitudeV  );
     
-    $("#compassPointer").rotate( headingV );
-    $("#rosaVentos").rotate( headingV );
-    $("#mapHeading").text( 'Y: ' + headingV.toFixed(0) + "\xB0 " );
-    $("#mapAttRoll").text( 'Z: ' + rollV.toFixed(0) + "\xB0 " );
-    $("#mapAttPitch").text( 'X: ' + pitchV.toFixed(0) + "\xB0 " );
-    $("#mapAltitude").text( altitudeV.toFixed(0) + "m" );
+    jQuery("#compassPointer").rotate( headingV );
+    jQuery("#rosaVentos").rotate( headingV );
+    jQuery("#mapHeading").text( 'Y: ' + headingV.toFixed(0) + "\xB0 " );
+    jQuery("#mapAttRoll").text( 'Z: ' + rollV.toFixed(0) + "\xB0 " );
+    jQuery("#mapAttPitch").text( 'X: ' + pitchV.toFixed(0) + "\xB0 " );
+    jQuery("#mapAltitude").text( 'Cam: ' + altitudeV.toFixed(0) + "m" );
     
 }
 
@@ -704,38 +672,37 @@ function updatePanelFooter( position ) {
 
 	mapPointerLatitude = latitudeString.slice(-15);
 	mapPointerLongitude = longitudeString.slice(-15);
+	var tempHeight = cartographic.height;
+	if( tempHeight < 0 ) tempHeight = 0; 
+	mapPointerHeight = tempHeight.toFixed(2);
 
 	var coordHDMS = convertDMS(mapPointerLatitude,mapPointerLongitude);
-	$( document ).ready(function( jQuery ) {
-		$("#mapLat").text( mapPointerLatitude );
-		$("#mapLon").text( mapPointerLongitude );    	    
-		$("#mapUtm").text( latLonToUTM(mapPointerLongitude, mapPointerLatitude  ) );    	    
-		$("#mapHdmsLat").text( coordHDMS.lat + " " + coordHDMS.latCard );
-		$("#mapHdmsLon").text( coordHDMS.lon + " " + coordHDMS.lonCard );
+
+	jQuery( document ).ready(function( jQuery ) {
+		jQuery("#mapLat").text( mapPointerLatitude );
+		jQuery("#mapLon").text( mapPointerLongitude );    	    
+		jQuery("#mapHei").text( 'Ter: ' + mapPointerHeight + 'm' );    	    
+		jQuery("#mapUtm").text( latLonToUTM(mapPointerLongitude, mapPointerLatitude  ) );    	    
+		jQuery("#mapHdmsLat").text( coordHDMS.lat + " " + coordHDMS.latCard );
+		jQuery("#mapHdmsLon").text( coordHDMS.lon + " " + coordHDMS.lonCard );
+		updateProfileGraph( mapPointerHeight );
+		
 		
 		var geohash = Geohash.encode( mapPointerLatitude, mapPointerLongitude, 8 );
-		$("#mapGeohash").text( geohash );
+		jQuery("#mapGeohash").text( geohash );
+		
+		
 	});
-
-	var positions = [ cartographic ];
-	var promise = Cesium.sampleTerrain(terrainProvider, 11, positions);
-	Cesium.when(promise, function( updatedPositions ) {
-		var tempHeight = cartographic.height;
-		if( tempHeight < 0 ) tempHeight = 0; 
-		mapPointerHeight = tempHeight.toFixed(2);
-		$("#mapHei").text( mapPointerHeight + 'm' );    	    
-	});	
-	
 	
 }
 
-/*
+
 function getMapMousePosition( movement ) {
 
 	if ( mapStyle === '2D' ) {
-        var position = viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
-        if (position) {
-        	return position;
+        var cartesian = viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
+        if (cartesian) {
+        	return cartesian;
         } 
 	}
 	
@@ -748,18 +715,11 @@ function getMapMousePosition( movement ) {
 	}
 	
 }
-*/
 
 function addMouseHoverListener() {
 	mainEventHandler.setInputAction( function(movement) {
-		
-		var position = getMapPosition3D2D( movement.endPosition );
-		try {
-			if ( position ) updatePanelFooter( position );
-		} catch ( err ) {
-			// ignore
-		}
-		
+		var position = getMapMousePosition( movement );
+		if ( position ) updatePanelFooter( position );
 	}, Cesium.ScreenSpaceEventType.MOUSE_MOVE );
 };
 
@@ -771,7 +731,7 @@ function removeMouseClickListener() {
 	mainEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.RIGHT_CLICK);			
 	mainEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK);
 	mainEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
-	$('.cesium-viewer').css('cursor', '');
+	jQuery('.cesium-viewer').css('cursor', '');
 }
 
 
@@ -780,13 +740,13 @@ function bindRouteRightClick() {
 		var position = e.position;
 		routeMouseClickPosition = position;
 		
-		$("#contextMenuRouteInit").css({
+		jQuery("#contextMenuRouteInit").css({
 			top: position.y + 5, 
 			left: position.x + 5, 
 			display:'block'
 		});
 		if( startPoint ) {
-			$("#btnEndRoute").removeClass( "disabled" )
+			jQuery("#btnEndRoute").removeClass( "disabled" )
 		}
 		
 	}, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
@@ -798,4 +758,6 @@ function bindRouteRightClick() {
 	
 	
 }
+
+
 

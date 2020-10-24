@@ -165,6 +165,18 @@ public class CatalogService {
 		
 		
 	}
+
+	public List<CatalogSource> getSources(Integer parentId) {
+    	Optional<CatalogSource> sourceObj = catalogSourcesRepository.findById( parentId.longValue() );
+    	List<CatalogSource> result = new ArrayList<CatalogSource>();
+		if( sourceObj.isPresent() ) {
+			for( CatalogSource ss :  sourceObj.get().getSources() ) {
+				ss.getSources().clear();
+				result.add( ss );
+			}
+		}
+		return result;
+	}
 	
 	
 }

@@ -4,7 +4,7 @@
 <html manifest="">
 
 <!-- PAGE HEAD -->
-<jsp:include page="head-new.jsp" />
+<jsp:include page="head.jsp" />
 
 <style>
 
@@ -310,7 +310,7 @@
 	<script src="${midasLocation}/atlas/resources/menubar.js" type="text/javascript"></script>
 	
 	<script src="${midasLocation}/atlas/resources/scalebar/viewerCesiumNavigationMixin.min.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/globe-new.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/globe.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/geohash.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/drawfeatures-new.js" type="text/javascript"></script>
 

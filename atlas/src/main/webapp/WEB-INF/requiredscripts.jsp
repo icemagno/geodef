@@ -67,8 +67,11 @@
 <script type="text/javascript" src="/resources/js/jquery.flightindicators.min.js"></script>
 
 <!-- TREEVIEW -->
+<!-- 
 <script type="text/javascript" src="/resources/js/bootstrap-treeview.min.js"></script>
-
+ -->
+<script src="${midasLocation}/gijgo/js/gijgo.min.js"></script>
+ 
 
 <!-- Particles -->
 <script src="/resources/particles/particles.min.js"></script>

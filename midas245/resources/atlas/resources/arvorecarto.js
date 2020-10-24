@@ -105,7 +105,7 @@ function getCatalogTopics(){
 		        wheelStep : 10,
 		    });	
 			$('#layerDetailsContainer').slimScroll({
-		        height: '280px',
+		        height: '210px',
 		        wheelStep : 10,
 		    });	
 			
@@ -163,13 +163,18 @@ function getGeoTabContent( catalogTopics ){
 		    '<div class="box-body"><div id="layerContainerHolder"><div id="layerContainer">'+
 					getCatalogTree( catalogTopics ) +	
 			'</div></div>'+
-		    '<div style="display:none" id="layerSearchResultContainer" class="box-body">hfksjdfhsdjkfhsdjkfhsd</div></div>'+
+		    '<div style="display:none" id="layerSearchResultContainer" class="box-body"></div></div>'+
 			'</div>'+
 		'</div>' +
 		'<div class="col-md-6" style="padding-right: 0px;padding-left: 5px;">' +
-			'<div style="margin-bottom: 10px;" class="box box-widget">'+
-		    '<div class="box-header box-header with-border"><button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Fechar</button></div>'+
-		    '<div style="height:250px;" id="cesiumCatalogContainer" class="box-body">'+
+			'<div style="margin-bottom: 0px;" class="box box-widget">'+
+		    
+			'<div class="box-header box-header with-border">'+ 
+			'<div id="layerLogoImage" style="display:none;z-index:999;position:absolute;top:2px;left:0px;width:150px;height:50px;"></div>' +
+			'<button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Fechar</button></div>'+
+		    
+		    '<div style="padding: 0px !important;height:250px;border:1px solid #ddd" id="cesiumCatalogContainer" class="box-body">'+
+				
 			'<div id="catalogMapWaitingIcon" style="display:none;width: 100%;height: 100%; position: absolute;" class="overlay"><i class="fa fa-refresh fa-spin"></i></div></div><div class="box-footer">' + 
 
 			'<div class="pull-left">' +
@@ -206,8 +211,17 @@ function formatCatalogTopic( topic ){
 }
 
 
-function getChildren( source ){
+function getChildren( node, treeView ){
+	var id = node.data.id;
+	node.nodes = [];
 	var result = [];
+	treeView.treeView().loadTree();
+	console.log( node );
+	console.log("Get children of " + node.data.id );
+	
+	
+	
+	/*
 	var totalSources = source.sources.length;
 	if ( totalSources == 0 ) return [];
 	for( var z=0; z < totalSources; z++ ){
@@ -219,6 +233,7 @@ function getChildren( source ){
 		theData.nodes = getChildren( ss );
 		result.push( theData );
 	}
+	*/
 	return result;
 }
 
@@ -230,17 +245,17 @@ function getTopicSources( topic ){
 	
 	for( var y=0; y < totalSources; y++ ){
 		var source = topic.sources[y];
-		var theData = { text: source.sourceName, nodes:[], tags: [ source.sources.length ], data : source };
-		//if( source.sourceAddress.length > 20 ){
-		//	theData.image = '/resources/img/layer.png';
-		//}
-		theData.nodes = getChildren( source );
+		var theData = { text: source.sourceName, nodes:[], data : source };
+
+		theData.nodes.push( { text: 'Aguarde...', nodes:[], data : {} } );    
+		
 		if( source.parentId == null ) treeMainData.push( theData );
 	}
 
 	
 	if( treeMainData.length > 0 ){
 		var theTreeElement = $('#sourcesTree' + topic.id).treeview({
+			levels: 1,
 			data: treeMainData,
 			color: "#3c8dbc",
 	        expandIcon: 'glyphicon glyphicon glyphicon-folder-close',
@@ -250,6 +265,17 @@ function getTopicSources( topic ){
 	        multiSelect: false,
 	        onNodeSelected: function(event, node) {
 	        	$("#layerDetailsContainer").text( node.data.description );
+	        	
+	        	var logoImage = node.data.sourceLogo;
+	        	$("#layerLogoImage").html('');
+	        	$("#layerLogoImage").hide();
+	        	if( logoImage ){
+	        		var logoImg = "<img style='width:150px;height:50px;border:1px solid #ddd' src='"+ logoImage + "'>";
+	        		$("#layerLogoImage").html( logoImg );
+	        		$("#layerLogoImage").show();
+	        	}
+	        	
+	        	
 	        	if( node.data.sourceAddress.length > 10 ){
 	        		previewLayer( node.data );
 	        	}
@@ -262,10 +288,12 @@ function getTopicSources( topic ){
 	        },
 	        onNodeExpanded: function (event, node) {
 	        	$("#layerDetailsContainer").text( node.data.description );
+	        	getChildren( node, this );
 	        }	        
 		});
 		
-		$('#sourcesTree' + topic.id).treeview('collapseAll', {});
+		//$('#sourcesTree' + topic.id).treeview('collapseAll', {});
+		theTreeElement.treeview('collapseAll', {  });
 		
 	}
 	

@@ -29,7 +29,6 @@ public class CatalogSource implements Serializable {
     @JoinColumn(name="parent_id")
     private List<CatalogSource> sources;	
 
-    
     @Column(name = "topic_id")
 	private Integer topicId;	
 
@@ -50,6 +49,9 @@ public class CatalogSource implements Serializable {
 
 	@Column(name = "source_logo", length = 250)
 	private String sourceLogo;
+
+	@Column(name = "geonetwork_id", length = 250)
+	private String geoNetworkId;
 
 	@Column(name = "cql_filter", length = 250)
 	private String cqlFilter;
@@ -144,6 +146,13 @@ public class CatalogSource implements Serializable {
 	public void setSourceLogo(String sourceLogo) {
 		this.sourceLogo = sourceLogo;
 	}
-	
+
+	public String getGeoNetworkId() {
+		return geoNetworkId;
+	}
+
+	public void setGeoNetworkId(String geoNetworkId) {
+		this.geoNetworkId = geoNetworkId;
+	}
 	
 }

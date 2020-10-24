@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.mil.defesa.sisgeodef.model.CatalogSource;
 import br.mil.defesa.sisgeodef.model.CatalogTopics;
 import br.mil.defesa.sisgeodef.repository.CatalogTopicsRepository;
 import br.mil.defesa.sisgeodef.services.CartografiaIndexService;
@@ -48,6 +49,12 @@ public class CatalogController {
 	@RequestMapping(value = "/tomapproxy", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody String exportToMapProxy( @RequestParam(value="parent",required=true) Integer parentId ) {
 		return catalogService.exportToMapProxy(parentId); 
+	}
+	
+
+	@RequestMapping(value = "/getsources", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody List<CatalogSource> getSources( @RequestParam(value="parent",required=true) Integer parentId ) {
+		return catalogService.getSources(parentId); 
 	}
 	
 	
