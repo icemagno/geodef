@@ -1,9 +1,10 @@
+CREATE SEQUENCE geodata_rpr_id_seq;
+
 CREATE TABLE geodata (
     id integer NOT NULL DEFAULT nextval('geodata_rpr_id_seq'::regclass),
-    fonte character varying(50),
-    tipo character varying(50),
-    geom_json jsonb,
-    metadados jsonb,
+    user_cpf character varying(11) NOT NULL,
+	op_id character varying(100) NOT NULL,
+    geo_json jsonb,
     geom geometry,
     CONSTRAINT geodata_rpr_primarykey PRIMARY KEY (id)
 )

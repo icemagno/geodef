@@ -1,7 +1,5 @@
 package br.mil.defesa.sisgeodef.services;
 
-import java.math.BigDecimal;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -39,25 +37,18 @@ public class ImportService {
 	}	
 
 	
-	public synchronized void insert( JSONArray features ) {
+	public synchronized void insert( JSONArray features, String userCpf, String opId ) {
 		try {
 			for( int x=0; x < features.length(); x++ ) {
 				JSONObject ft = features.getJSONObject( x );
-				String id = ft.getString("id");
 				JSONObject geometry = ft.getJSONObject("geometry");
 				JSONObject properties = ft.getJSONObject("properties");
-				Integer objectid = properties.getInt("objectid");
-				Integer gridcode = properties.getInt("gridcode");
-				float shape_leng = BigDecimal.valueOf( properties.getDouble("shape_leng") ).floatValue();
-				float shape_area = BigDecimal.valueOf( properties.getDouble("shape_area") ).floatValue();
-				
 				String geomTextFromJson = geometry.toString();
 				
-				String sql = "INSERT INTO bat (id,featureid,the_geom,objectid,gridcode,shape_length,shape_area) VALUES (" +
-						objectid + ", '" + id + "', ST_GeomFromGeoJSON('"+geomTextFromJson+"')," +
-					    objectid + "," + gridcode + "," + shape_leng + "," + shape_area + ");";
+				String sql = "INSERT INTO geodata ( id, user_cpf, op_id, geo_json, the_geom ) VALUES (default,'" +
+				userCpf + "','" +opId+ "', jsonb_insert('" + properties + "'),  ST_GeomFromGeoJSON('"+geomTextFromJson+"');";
 
-				
+				System.out.println( sql  );
 				jdbcTemplate.update( sql );
 			}
 			

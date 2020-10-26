@@ -1,5 +1,7 @@
 package br.mil.defesa.sisgeodef.worker;
 
+import java.util.UUID;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -20,13 +22,20 @@ public class Worker {
 	private boolean working = false;
 	private long total = 0;
 	private boolean stop = false;
-	
-	public Worker( String url ) {
+	private String userCpf;
+	private String opId;
+
+	public Worker( String url, String userCpf, String layerName, String bn, String bs, String be, String bw ) {
+		this.userCpf = userCpf;
+		this.opId = UUID.randomUUID().toString().replace("-", "");
+		
+		String bbox = "&bbox=" + bw + "," + bs + "," + be + "," + bn;
 		
 		String source = url + "?service=wfs"
 				+ "&version=2.0.0"
 				+ "&request=GetFeature"
-				+ "&typeName=gebco:gebco_poly_2014"
+				+ "BBOX=" + bbox
+				+ "&typeName=" + layerName
 				+ "&outputFormat=application/json"
 				+ "&count=" + count
 				+ "&startIndex=";
@@ -53,20 +62,26 @@ public class Worker {
 		JSONObject collection = new JSONObject( result );
 		JSONArray features = collection.getJSONArray("features");
 		int length = features.length();
-		total = total + length;
+		this.total = this.total + length;
 		
 		if( length == 0 ) {
-			stop = true;
-			logger.info("Requisição retornou 0. Processei um total de " + total + "registros.");
+			this.stop = true;
+			logger.info(opId + ": Requisição retornou 0. Processei um total de " + total + "registros.");
 		} else {
-			logger.info("Processei mais " + length + " registros. Total: " + total );
+			importService.insert( features, userCpf, opId );
+			this.startIndex = startIndex + count;
+			logger.info(opId + ": Processei mais " + length + " registros. Total: " + total );
 		}
 		
-		importService.insert( features );
-		
-		this.startIndex = startIndex + count;
 		this.working = false;
 		
 	}
 
+	public long getTotal() {
+		return total;
+	}
+	
+	public String getOpId() {
+		return opId;
+	}
 }

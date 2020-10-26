@@ -3,24 +3,24 @@ package br.mil.defesa.sisgeodef.services;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import br.mil.defesa.sisgeodef.model.CatalogSource;
@@ -33,7 +33,10 @@ public class ProxyService {
 	private boolean useProxy;		
 	
     @Autowired
-    AuthService authService;		
+    AuthService authService;	
+    
+    @Autowired
+    private LoadBalancerClient loadBalancer;    
 	
 	@Autowired
 	private CatalogService catalogService;		
@@ -87,41 +90,45 @@ public class ProxyService {
 		return urlPath;
 	}
 
-	public String getFeature(String uuid, Integer sourceId, String bn, String bs, String be, String bw) {
-		// http://localhost:36215/proxy/getfeature?bw=3&bs=3&bn=4&be=3&sourceId=456&uuid=fdf
-		String url = "http://portal.iphan.gov.br/geoserver/CNA/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=CNA:cnigp&maxFeatures=5&outputFormat=application/json";
-		String result = "";
+	public String getFeature(String userId, Integer sourceId, String bn, String bs, String be, String bw) {
 		
-		RestTemplate restTemplate;
-		if( useProxy ) {
-			restTemplate = new RestTemplate( authService.getFactory() );
-		} else {
-			restTemplate = new RestTemplate( );
-		}		
-		
-		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
-		
-		try {
+		CatalogSource source = catalogService.getSource(sourceId);
+		if( source != null ) {
+			ServiceInstance reaperInstance = loadBalancer.choose("reaper");
+			String reaperAddress = reaperInstance.getUri().toString(); 
+			String uri = reaperAddress +  "/import";
+	
+			RestTemplate restTemplate = new RestTemplate();
+	    	
 			HttpHeaders headers = new HttpHeaders();
-		    List<MediaType> mediaTypeList = new ArrayList<MediaType>();
-		    //mediaTypeList.add( ( MediaType.APPLICATION_JSON ) );
-		    Charset utf8 = Charset.forName("UTF-8");
-		    mediaTypeList.add( new MediaType("application", "xml", utf8) );
-			headers.setAccept( mediaTypeList );
-			
-			HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-			
-	        ResponseEntity<String> resultRest = restTemplate.exchange( url, HttpMethod.GET, entity, String.class);
-			result = resultRest.getBody().toString();
-
-			System.out.println( result );
-			
-		} catch ( Exception e ) {
-			
+		    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+	
+		    MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+		    map.add("userId", userId );
+		    map.add("layer", source.getSourceLayer() );
+		    map.add("url", source.getSourceAddressOriginal() );
+		    map.add("bn", bn );
+		    map.add("bs", bs );
+		    map.add("be", be );
+		    map.add("bw", bw );
+		    HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+		    
+	        String responseBody = "[]";
+	        try {
+	        	ResponseEntity<String> result = restTemplate.postForEntity( uri, request, String.class);        
+	        	responseBody = result.getBody().toString();
+	        
+			} catch ( HttpClientErrorException e) {
+			    responseBody = e.getResponseBodyAsString();
+			    String statusText = e.getStatusText();
+			    System.out.println( statusText );
+			} catch ( Exception ex) {
+				return ex.getMessage();
+			}
+	        
+	        System.out.println(" > " + responseBody );
 		}
-		
-		return result;
-		
+		return "";
 	}
 
 }

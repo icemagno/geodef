@@ -32,9 +32,9 @@ public class CronService {
 		return false;
 	}
 	
-	public String addWork( Worker wk ) {
-		if( !exists(wk.getUrl() ) ) { 
-			this.workers.add( wk );
+	public String addWork( String url, String userCpf, String layerName, String bn, String bs, String be, String bw ) {
+		if( !exists( url ) ) {
+			this.workers.add( new Worker( url, userCpf, layerName, bn, bs, be, bw ) );
 			return "Ok";
 		} else {
 			return "Esta origem já existe";
