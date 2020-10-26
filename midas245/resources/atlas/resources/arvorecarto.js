@@ -79,7 +79,20 @@ function searchTree(){
     	$("#layerSearchResultContainer").empty();
     	$("#layerSearchResultContainer").show();
     	$("#layerContainerHolder").hide();
-   		$("#layerSearchResultContainer").append( "<h4>Não Implementado Ainda</h4>" );	
+   		
+    	
+        jQuery.ajax({
+    		url:"/catalog/find?nome=DSG&limite=5", 
+    		type: "GET", 
+    		success: function( searchResults ) {
+    			console.log( searchResults );
+    			$("#layerSearchResultContainer").append( "<h4>Não Implementado Ainda</h4>" );
+    		},
+    	    error: function(xhr, textStatus) {
+    	    }, 		
+        });
+    	
+    	
     }    
 }
 

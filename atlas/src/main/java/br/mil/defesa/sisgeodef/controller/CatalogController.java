@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.mil.defesa.sisgeodef.dto.CatalogSourceDTO;
 import br.mil.defesa.sisgeodef.model.CatalogTopics;
 import br.mil.defesa.sisgeodef.repository.CatalogTopicsRepository;
-import br.mil.defesa.sisgeodef.services.CartografiaIndexService;
 import br.mil.defesa.sisgeodef.services.CatalogService;
 import br.mil.defesa.sisgeodef.services.NyxService;
 
@@ -28,9 +27,6 @@ public class CatalogController {
 	@Autowired
 	private CatalogService catalogService;
 	
-	@Autowired
-	private CartografiaIndexService cartografiaService;	
-
 	@Autowired
 	private NyxService nyxService;
 	
@@ -57,6 +53,21 @@ public class CatalogController {
 		return catalogService.exportToMapProxy(parentId); 
 	}
 
+	
+	@RequestMapping(value = "/find", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
+	public @ResponseBody List<CatalogSourceDTO> find(  @RequestParam(value="nome",required=true) String nome, @RequestParam(value="limite",required=true) Integer limite ) {
+
+		/**
+		 * 			PRECISO TERMINAR ISSO !!!
+		 */
+		
+		List<CatalogSourceDTO> result = catalogService.getSources( 198 );
+		System.out.println( "FIND Nao implementado. Va em CatalogController e termine seu trabalho!" );
+		return result;
+		
+	}
+	
+	
 	@RequestMapping(value = "/getsources/{topicId}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody List<CatalogSourceDTO> getSources(  @PathVariable("topicId") Integer topicId, @RequestParam(value="parentId",required=false) Integer parentId ) {
 		List<CatalogSourceDTO> result = null ;
@@ -79,9 +90,5 @@ public class CatalogController {
     }
 	
     
-    @RequestMapping(value = "/importbdgex", method = RequestMethod.GET )
-    public void importBDGEXtree() {
-    	cartografiaService.importBDGEXtree();
-    }
-	
+
 }
