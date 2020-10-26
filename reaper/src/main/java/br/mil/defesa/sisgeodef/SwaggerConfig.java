@@ -32,8 +32,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
  
 		ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
  
-		apiInfoBuilder.title("SISTRAM");
-		apiInfoBuilder.description("Interface SISGEODEF - SISTRAM");
+		apiInfoBuilder.title("REAPER");
+		apiInfoBuilder.description("Módulo de Aquisição de Dados Vetoriais");
 		apiInfoBuilder.version("1.0");
 		apiInfoBuilder.termsOfServiceUrl("#");
 		apiInfoBuilder.license("Licença - Open Source");

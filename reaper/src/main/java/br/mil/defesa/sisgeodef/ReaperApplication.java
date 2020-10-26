@@ -13,7 +13,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 //@EnableJpaRepositories(basePackages = {"br.mil.defesa.sisgeodef.repository"})
 //@EntityScan( basePackages = {"br.mil.defesa.sisgeodef.model"} )
 @ComponentScan("br.mil.defesa.sisgeodef")
-public class SolucionadorApplication {
+public class ReaperApplication {
 
 
 	
@@ -22,7 +22,7 @@ public class SolucionadorApplication {
 	
 	
 	public static void main(String[] args) {
-		SpringApplication.run(SolucionadorApplication.class, args);
+		SpringApplication.run(ReaperApplication.class, args);
 	}
 	
 	public void evictAllCaches() {

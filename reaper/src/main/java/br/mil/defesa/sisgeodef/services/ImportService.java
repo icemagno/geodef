@@ -12,15 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-@EnableScheduling
-public class GebcoService {
+public class ImportService {
 
 	@Autowired
     JdbcTemplate jdbcTemplate;		
@@ -32,22 +29,7 @@ public class GebcoService {
 	@Value("${proxy.useProxy}")
 	private Boolean useProxy; 	
 	
-	private Logger logger = LoggerFactory.getLogger(GebcoService.class);
-	private int count = 2000;
-	private int startIndex = 0;
-	private boolean working = false;
-	private long total = 0;
-	private boolean stop = false;
-	
-	@Scheduled(cron = "0/7 * * * * *") 
-	public void doImport() {
-		if (!working && !stop ) {
-			working = true;
-			String features = getFeatures();
-			insert( features );
-		}
-	}
-	
+	private Logger logger = LoggerFactory.getLogger(ImportService.class);
 	
 	private ClientHttpRequestFactory getClientHttpRequestFactory() {
 		int timeout = 50000 * 60 * 60;
@@ -57,23 +39,9 @@ public class GebcoService {
 	}	
 
 	
-	private void insert( String fc ) {
+	public synchronized void insert( JSONArray features ) {
 		try {
-			JSONObject collection = new JSONObject( fc );
-			JSONArray features = collection.getJSONArray("features");
-			int length = features.length();
-			total = total + length;
-			
-			if( length == 0 ) {
-				stop = true;
-				logger.info("Requisição retornou 0. Processei um total de " + total + "registros.");
-			} else {
-				logger.info("Processei mais " + length + " registros. Total: " + total );
-			}
-			
-			
-			
-			for( int x=0; x<length; x++ ) {
+			for( int x=0; x < features.length(); x++ ) {
 				JSONObject ft = features.getJSONObject( x );
 				String id = ft.getString("id");
 				JSONObject geometry = ft.getJSONObject("geometry");
@@ -91,11 +59,7 @@ public class GebcoService {
 
 				
 				jdbcTemplate.update( sql );
-				
 			}
-			
-			startIndex = startIndex + count;
-			working = false;
 			
 		} catch ( Exception e ) {
 			e.printStackTrace();
@@ -103,20 +67,7 @@ public class GebcoService {
 		
 	}
 	
-	public String getFeatures() {
-		
-		String sourceUrl = "http://osm.franken.de:8080/geoserver/gebco/ows?service=wfs"
-				+ "&version=2.0.0"
-				+ "&request=GetFeature"
-				+ "&typeName=gebco:gebco_poly_2014"
-				+ "&outputFormat=application/json"
-				+ "&count=" + count
-				+ "&startIndex=";
-		
-		// http://osm.franken.de:8080/geoserver/gebco/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=gebco:gebco_poly_2014&count=2&startIndex=2&outputFormat=application%2Fjson
-		
-		String uri = sourceUrl +  startIndex;
-
+	public String getFeatures( String uri ) {
 		String responseBody = "[]";
 		
 		RestTemplate restTemplate;
@@ -136,6 +87,7 @@ public class GebcoService {
 		} catch ( Exception ex) {
 			return ex.getMessage();
 		}
+		
 		return responseBody;
 	}
 	
