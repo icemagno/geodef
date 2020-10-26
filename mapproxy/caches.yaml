@@ -6395,3 +6395,31 @@ caches:
     format: custom_format
     request_format: image/png
     transparent: true
+  brazilian_amazon_biome_border_cache:
+    grids: [geodetic]
+    sources: [brazilian_amazon_biome_border_wms]
+    link_single_color_image: true
+    format: custom_format
+    request_format: image/png
+    transparent: true
+  no_forest_cache:
+    grids: [geodetic]
+    sources: [no_forest_wms]
+    link_single_color_image: true
+    format: custom_format
+    request_format: image/png
+    transparent: true
+  no_forest_biome_cache:
+    grids: [geodetic]
+    sources: [no_forest_biome_wms]
+    link_single_color_image: true
+    format: custom_format
+    request_format: image/png
+    transparent: true
+  yearly_deforestation_biome_cache:
+    grids: [geodetic]
+    sources: [yearly_deforestation_biome_wms]
+    link_single_color_image: true
+    format: custom_format
+    request_format: image/png
+    transparent: true    

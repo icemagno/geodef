@@ -164,6 +164,44 @@ function getALayerGroup( uuid, groupName, defaultImage ){
 */
 
 
+function updateLegendImages(){
+	for( x=0; x<stackedProviders.length;x++ ){
+		var sp = stackedProviders[x];
+		var data = sp.data;
+		if( data ){
+			var uuid = sp.uuid;
+			
+			var imgUUID = "IMG_" + uuid;
+			
+		    var bWest = "", bSouth = "", bEast = "", bNorth = "";
+		    if( Cesium.defined( scratchRectangle ) ){
+			    var bWest = Cesium.Math.toDegrees(scratchRectangle.west);
+			    var bSouth = Cesium.Math.toDegrees(scratchRectangle.south);
+			    var bEast = Cesium.Math.toDegrees(scratchRectangle.east);
+			    var bNorth = Cesium.Math.toDegrees(scratchRectangle.north);
+		    }
+		    
+			jQuery.ajax({
+				url: "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+bWest+'&bs='+bSouth+'&be='+bEast+'&bn='+bNorth,
+				type: "GET", 
+				success: function( imagePath ) {
+					if( imagePath != '' ){
+						var n = new Date().getTime();					
+						$( "#" + imgUUID ).attr("src", imagePath + "&_" + d );
+					} else {
+						console.log('Sem legenda.');
+					}
+				}
+			});
+			
+			
+			
+			
+		}
+		
+	}
+}
+
 function addLayerCard( data ){
 	var uuid = "L-" + createUUID();
 	var theProvider = {};
@@ -182,6 +220,7 @@ function addLayerCard( data ){
 		
 		var props = { 'uuid':uuid  }
 		theProvider.layer.properties = props; 
+		theProvider.data = data;
 
 		stackedProviders.push( theProvider );		
 
@@ -198,13 +237,32 @@ function addLayerCard( data ){
 
 		// Legenda
 		var legUUID = "LEG_" + uuid;
-		var getLegendUrl = data.sourceAddress + "?service=wms&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" + data.sourceLayer;
-		$( "#" + legUUID ).html( "<img src='" + getLegendUrl + "'>" );
+		var imgUUID = "IMG_" + uuid;
 		
-		$( "#" + legUUID ).slimScroll({
-	        height: '205px',
-	        wheelStep : 10,
-	    });
+	    var bWest = "", bSouth = "", bEast = "", bNorth = "";
+	    if( Cesium.defined( scratchRectangle ) ){
+		    var bWest = Cesium.Math.toDegrees(scratchRectangle.west);
+		    var bSouth = Cesium.Math.toDegrees(scratchRectangle.south);
+		    var bEast = Cesium.Math.toDegrees(scratchRectangle.east);
+		    var bNorth = Cesium.Math.toDegrees(scratchRectangle.north);
+	    }
+	    
+		jQuery.ajax({
+			url: "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+bWest+'&bs='+bSouth+'&be='+bEast+'&bn='+bNorth,
+			type: "GET", 
+			success: function( imagePath ) {
+				if( imagePath != '' ){
+					var n = new Date().getTime();					
+					$( "#" + legUUID ).html( "<img id='"+imgUUID+"' src='" + imagePath + "&_" + d + "'>" );
+					$( "#" + legUUID ).slimScroll({
+				        height: '205px',
+				        wheelStep : 10,
+				    });
+				} else {
+					console.log('Sem legenda.');
+				}
+			}
+		});
 		
 		$('#activeLayerContainer').slimScroll();
 	}	

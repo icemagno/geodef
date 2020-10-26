@@ -49,7 +49,7 @@ public class CatalogService {
 			sbLayers.append("layers:\n");
 			for( CatalogSource child : source.getSources() ) {
 				String sourceLayer = child.getSourceLayer();
-				String sourceAddress = child.getSourceAddress();
+				String sourceAddress = child.getSourceAddressOriginal();
 				String titulo = "Migração Automática";//child.getDescription();
 				
 				sbSources.append("  " + sourceLayer + "_wms:\n" );
@@ -178,6 +178,18 @@ public class CatalogService {
 		return result;
 	}
 
+
+	
+	public CatalogSource getSource(Integer sourceId) {
+		CatalogSource result = null;
+    	Optional<CatalogSource> sourceObj = catalogSourcesRepository.findById( sourceId.longValue() );
+		if( sourceObj.isPresent() ) {
+			result = sourceObj.get();
+		}
+		return result;
+	}
+	
+	
 	public List<CatalogSourceDTO> getByTopic(Integer topicId) {
     	List<CatalogSourceDTO> result = new ArrayList<CatalogSourceDTO>();
     	List<CatalogSource> sources = catalogSourcesRepository.findAllByTopicId( topicId );

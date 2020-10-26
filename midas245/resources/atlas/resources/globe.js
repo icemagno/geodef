@@ -72,22 +72,6 @@ function updateSisgeodefAddress( useGateKeeper ){
 	}
 }
 
-
-function drawOperationArea( operationArea ) {
-	viewer.entities.add({
-	    wall : {
-	        positions : Cesium.Cartesian3.fromDegreesArrayHeights([west, south, 4000.0,
-	                                                        east, south, 4000.0,
-	                                                        east, north, 4000.0,
-	                                                        west, north, 4000.0,
-	                                                        west, south, 4000.0]),
-	        material : Cesium.Color.RED.withAlpha(0.5),
-	        outline : true
-	    }   
-	});		
-}
-
-
 function goToOperationArea( operationArea ) {
 
 	
@@ -171,9 +155,12 @@ function startMap( theMapStyle ) {
 	scene.globe.baseColor = Cesium.Color.WHITE;
 	scene.screenSpaceCameraController.enableLook = false;
 	scene.screenSpaceCameraController.enableCollisionDetection = true;
-	scene.screenSpaceCameraController.inertiaZoom = 0.8;
-	scene.screenSpaceCameraController.inertiaTranslate = 0.8;
-	scene.globe.maximumScreenSpaceError = 1;
+	
+	scene.screenSpaceCameraController.inertiaZoom = 0;
+	scene.screenSpaceCameraController.inertiaTranslate = 0;
+	scene.screenSpaceCameraController.inertiaSpin = 0;
+	
+	//scene.globe.maximumScreenSpaceError = 1;
 	scene.globe.depthTestAgainstTerrain = false;
 	//scene.globe.tileCacheSize = 250;
 	scene.pickTranslucentDepth = true;
@@ -185,12 +172,10 @@ function startMap( theMapStyle ) {
 	
 	imageryLayers = scene.imageryLayers;
 	
-	// drawOperationArea( homeLocation );
 	goToOperationArea( homeLocation );
 	
-	
 	imageryLayers.layerShownOrHidden.addEventListener(function (event) {
-		console.log('Shown/Hidden');
+		//
 	});
 	imageryLayers.layerAdded.addEventListener(function (event) {
 		//console.log( "Adicionou: " + event.imageryProvider.layers );
@@ -218,23 +203,6 @@ function startMap( theMapStyle ) {
 	// Conecta o WebSocket
 	connect();
 	drawHelper = new DrawHelper( viewer );
-	
-	
-	viewer.clock.onTick.addEventListener(function() {
-	    var rect = viewer.camera.computeViewRectangle( viewer.scene.globe.ellipsoid, scratchRectangle );
-	    if( Cesium.defined(rect) ){
-		    var bWest = Cesium.Math.toDegrees(rect.west);
-		    var bSouth = Cesium.Math.toDegrees(rect.south);
-		    var bEast = Cesium.Math.toDegrees(rect.east);
-		    var bNorth = Cesium.Math.toDegrees(rect.north);
-		    
-		    $("#vpW").text( bWest );
-		    $("#vpE").text( bEast );
-		    $("#vpN").text( bNorth );
-		    $("#vpS").text( bSouth );
-	    }	    
-	    
-	});	
 	
 	var graticule = new Graticule({
 	      	tileWidth: 512,
@@ -694,6 +662,22 @@ function updateCamera() {
     $("#mapAttRoll").text( 'Z: ' + rollV.toFixed(0) + "\xB0 " );
     $("#mapAttPitch").text( 'X: ' + pitchV.toFixed(0) + "\xB0 " );
     $("#mapAltitude").text( altitudeV.toFixed(0) + "m" );
+    
+    var rect = viewer.camera.computeViewRectangle( viewer.scene.globe.ellipsoid, scratchRectangle );
+    if( Cesium.defined(rect) ){
+	    var bWest = Cesium.Math.toDegrees(rect.west);
+	    var bSouth = Cesium.Math.toDegrees(rect.south);
+	    var bEast = Cesium.Math.toDegrees(rect.east);
+	    var bNorth = Cesium.Math.toDegrees(rect.north);
+	    
+	    $("#vpW").text( bWest );
+	    $("#vpE").text( bEast );
+	    $("#vpN").text( bNorth );
+	    $("#vpS").text( bSouth );
+    }
+    
+    // Em layers.js
+    updateLegendImages();
     
 }
 

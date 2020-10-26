@@ -7755,7 +7755,7 @@ sources:
       legendgraphic: true
       featureinfo: true
     req:
-      url: http://terrabrasilis.dpi.inpe.br/geoserver/ows
+      url: http://geoserver.cemaden.gov.br:8080/geoserver/ows
       layers: cemaden_dev:wrf-horas-96
       transparent: true      
   ucsfi_wms:
@@ -7812,4 +7812,39 @@ sources:
       url: http://mapas.mma.gov.br/i3geo/ogc.php?tema=ucsmu
       layers: ucsmu
       transparent: true
-      
+  brazilian_amazon_biome_border_wms:
+    type: wms
+    wms_opts:
+      legendgraphic: true
+      featureinfo: true
+    req:
+      url: http://terrabrasilis.dpi.inpe.br/geoserver/ows
+      layers: prodes-amz:brazilian_amazon_biome_border
+      transparent: true
+  no_forest_wms:
+    type: wms
+    wms_opts:
+      legendgraphic: true
+      featureinfo: true
+    req:
+      url: http://terrabrasilis.dpi.inpe.br/geoserver/ows
+      layers: prodes-legal-amz:no_forest
+      transparent: true
+  no_forest_biome_wms:
+    type: wms
+    wms_opts:
+      legendgraphic: true
+      featureinfo: true
+    req:
+      url: http://terrabrasilis.dpi.inpe.br/geoserver/ows
+      layers: prodes-amz:no_forest_biome
+      transparent: true
+  yearly_deforestation_biome_wms:
+    type: wms
+    wms_opts:
+      legendgraphic: true
+      featureinfo: true
+    req:
+      url: http://terrabrasilis.dpi.inpe.br/geoserver/ows
+      layers: prodes-amz:yearly_deforestation_biome
+      transparent: true      
