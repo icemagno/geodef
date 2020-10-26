@@ -172,7 +172,7 @@ function getGeoTabContent( catalogTopics ){
 		    
 		    '<div style="padding: 0px !important;height:250px;border:1px solid #ddd" id="cesiumCatalogContainer" class="box-body">'+
 				
-			'<div id="catalogMapWaitingIcon" style="display:none;width: 100%;height: 100%; position: absolute;" class="overlay"><i class="fa fa-refresh fa-spin"></i></div></div><div class="box-footer">' + 
+			'<div id="catalogMapWaitingIcon" style="display:none;width: 100%;height: 248px; position: absolute;" class="overlay"><i class="fa fa-refresh fa-spin"></i></div></div><div class="box-footer">' + 
 
 			'<div class="pull-left">' +
 				'<button id="addLayerWMSBtn" style="margin-right: 5px;" type="button" title="Criar Camada" class="btn btn-default"><i class="fa fa-mail-reply-all"></i></button>' +
@@ -221,35 +221,39 @@ function getTopicSources( topic ){
     });	
 	
     tree.on('expand', function (e, node, id) {
-    	//$("#catalogMapWaitingIcon").show();
+    	//
     });
     
     tree.on('nodeDataBound', function (e, node, id, record) {
-    	//$("#catalogMapWaitingIcon").hide();
+    	//
     });
     
     tree.on('select', function (e, node, id) {
     	var node = tree.getDataById( id );
     	
-    	$("#layerDetailsContainer").text( node.data.description );
-   
-    	var logoImage = node.data.sourceLogo;
-    	$("#layerLogoImage").html('');
-    	$("#layerLogoImage").hide();
-    	if( logoImage ){
-    		var logoImg = "<img style='width:150px;height:50px;border:1px solid #ddd' src='"+ logoImage + "'>";
-    		$("#layerLogoImage").html( logoImg );
-    		$("#layerLogoImage").show();
-    	}
-    	
-    	if( node.data.sourceAddress.length > 10 ){
-    		previewLayer( node.data );
+    	if( node.data.sourceAddress.length > 5 ){ 
+	    	$("#layerDetailsContainer").html( '<h4><b>'+ node.data.sourceName +'</b></h4><h4>Descrição:</h4><i>' + node.data.description + '</i><h4>Endereço Original:</h4><i>' + node.data.sourceAddressOriginal + '</i>' );
+	   
+	    	var logoImage = node.data.sourceLogo;
+	    	$("#layerLogoImage").html('');
+	    	$("#layerLogoImage").hide();
+	    	if( logoImage ){
+	    		var logoImg = "<img style='width:150px;height:50px;border:1px solid #ddd' src='"+ logoImage + "'>";
+	    		$("#layerLogoImage").html( logoImg );
+	    		$("#layerLogoImage").show();
+	    	}
+	    	
+	    	if( node.data.sourceAddress.length > 10 ){
+	    		previewLayer( node.data );
+	    	}
     	}
     	
     });    
     
     tree.on('unselect', function (e, node, id) {
     	$("#layerDetailsContainer").text('');
+    	$("#share-wms").val( '' );
+    	$("#layerLogoImage").hide();
     });    
     
     

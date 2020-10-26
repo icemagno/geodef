@@ -47,6 +47,9 @@ public class CatalogSource implements Serializable {
 	@Column(name = "source_address", length = 250)
 	private String sourceAddress;
 
+	@Column(name = "source_address_original", length = 250)
+	private String sourceAddressOriginal;
+
 	@Column(name = "source_logo", length = 250)
 	private String sourceLogo;
 
@@ -154,5 +157,14 @@ public class CatalogSource implements Serializable {
 	public void setGeoNetworkId(String geoNetworkId) {
 		this.geoNetworkId = geoNetworkId;
 	}
+
+	public String getSourceAddressOriginal() {
+		return sourceAddressOriginal;
+	}
+
+	public void setSourceAddressOriginal(String sourceAddressOriginal) {
+		this.sourceAddressOriginal = sourceAddressOriginal;
+	}
+	
 	
 }

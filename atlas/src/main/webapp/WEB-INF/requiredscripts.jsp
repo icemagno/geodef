@@ -70,7 +70,7 @@
 <!-- 
 <script type="text/javascript" src="/resources/js/bootstrap-treeview.min.js"></script>
  -->
-<script src="${midasLocation}/gijgo/js/gijgo.min.js"></script>
+<script src="${midasLocation}/gijgo/js/gijgo.js"></script>
  
  <!-- Bootstrap slider -->
 <script src="${midasLocation}/plugins/bootstrap-slider/bootstrap-slider.js"></script>

@@ -12255,6 +12255,7 @@ gj.tree.plugins.lazyLoading = {
 
         createDoneHandler: function ($tree, $node) {
             return function (response) {
+				$("#catalogMapWaitingIcon").hide();
                 var i, $expander, $list, data = $tree.data();
                 if (typeof (response) === 'string' && JSON) {
                     response = JSON.parse(response);
@@ -12287,6 +12288,7 @@ gj.tree.plugins.lazyLoading = {
                     if ($tree.xhr) {
                         $tree.xhr.abort();
                     }
+					$("#catalogMapWaitingIcon").show();
                     $tree.xhr = $.ajax(ajaxOptions).done(gj.tree.plugins.lazyLoading.private.createDoneHandler($tree, $node)).fail($tree.createErrorHandler());
                 }
             }
