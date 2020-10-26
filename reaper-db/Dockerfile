@@ -1,0 +1,6 @@
+FROM kartoza/postgis 
+MAINTAINER magno.mabreu@gmail.com
+
+RUN mkdir /data/
+COPY ./table.sql /data/
+COPY ./geohash-backup.tar /data/

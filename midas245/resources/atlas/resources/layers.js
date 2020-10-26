@@ -186,8 +186,8 @@ function updateLegendImages(){
 				type: "GET", 
 				success: function( imagePath ) {
 					if( imagePath != '' ){
-						var n = new Date().getTime();					
-						$( "#" + imgUUID ).attr("src", imagePath + "&_" + d );
+						console.log('Nova imagem : ' + imagePath);
+						$( "#" + imgUUID ).attr("src", imagePath );
 					} else {
 						console.log('Sem legenda.');
 					}
@@ -253,7 +253,7 @@ function addLayerCard( data ){
 			success: function( imagePath ) {
 				if( imagePath != '' ){
 					var n = new Date().getTime();					
-					$( "#" + legUUID ).html( "<img id='"+imgUUID+"' src='" + imagePath + "&_" + d + "'>" );
+					$( "#" + legUUID ).html( "<img id='"+imgUUID+"' src='" + imagePath + "'>" );
 					$( "#" + legUUID ).slimScroll({
 				        height: '205px',
 				        wheelStep : 10,

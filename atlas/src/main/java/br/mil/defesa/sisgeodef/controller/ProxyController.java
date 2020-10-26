@@ -28,6 +28,18 @@ public class ProxyController {
 			@RequestParam(value="bw",required=true ) String bw) {
 		return proxyService.getLegend( uuid, sourceId, bn, bs, be, bw );
 	}
+
+	@RequestMapping( value = "/getfeature", method = RequestMethod.GET )
+	public @ResponseBody String getFeature( @RequestParam(value="uuid",required=true ) String uuid, 
+			@RequestParam(value="sourceId",required=true ) Integer sourceId,
+			@RequestParam(value="bn",required=true ) String bn,
+			@RequestParam(value="bs",required=true ) String bs,
+			@RequestParam(value="be",required=true ) String be,
+			@RequestParam(value="bw",required=true ) String bw) {
+		return proxyService.getFeature( uuid, sourceId, bn, bs, be, bw );
+	}
+	
+	
 	
 	/*
 	@RequestMapping( value = "/capabilities", method = RequestMethod.GET )
