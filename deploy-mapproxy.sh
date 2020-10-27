@@ -13,8 +13,10 @@ yes | cp ./*.yaml /srv/mapproxy/
 
 docker run -it --name mapproxy --hostname=mapproxy \
 -v /srv/mapproxy:/mapproxy/ \
--e HTTP_PROXY="172.22.200.10:3128" \
--e HTTPS_PROXY="172.22.200.10:3128" \
+#-e HTTP_PROXY="172.22.200.10:3128" \
+#-e HTTPS_PROXY="172.22.200.10:3128" \
+-e HTTP_PROXY="http://07912470743:da030801@proxy-1dn.mb:6060/" \
+-e HTTPS_PROXY="http://07912470743:da030801@proxy-1dn.mb:6060/" \
 -d sisgeodef/mapproxy mapproxy http
 
 docker network connect apolo mapproxy
