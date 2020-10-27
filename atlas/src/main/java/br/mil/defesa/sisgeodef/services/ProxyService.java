@@ -76,6 +76,7 @@ public class ProxyService {
 				InputStream in = new URL( urlSource ).openStream() ;
 				Files.copy( in, Paths.get( target ) );
 			} catch ( Exception e ) {
+				e.printStackTrace();
 				urlPath = "";
 			}
 		} else {
