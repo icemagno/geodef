@@ -12,13 +12,6 @@ var cartasCHM = null;
 var metocLayer = null;
 var marinetraffic = null;
 
-
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-
 function updateLayersOrder( event, ui ){
 	
 	var uuid = ui.item[0].id;
@@ -84,6 +77,18 @@ function doShowLayer( uuid ){
 	}
 }
 
+
+function getLayerDataByUUID( uuid ){
+	for( x=0; x<stackedProviders.length;x++ ) {
+		var sp = stackedProviders[x];
+		if( sp.uuid === uuid ) {
+			return sp.data;
+		}
+	}
+	return null;
+}
+
+
 function getLayerByUUID( uuid ){
 	for( x=0; x<stackedProviders.length;x++ ) {
 		var sp = stackedProviders[x];
@@ -129,8 +134,8 @@ function getALayerCard( uuid, layerAlias, defaultImage  ){
 	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
 	
 	'<div class="box-tools pull-right">'+                           
-		//'<button id="hdlay_'+uuid+'" onClick="hideLayer(\''+uuid+'\');" title="Ocultar Camada" type="button" style="display:none;padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
-		//'<button id="swlay_'+uuid+'" onClick="showLayer(\''+uuid+'\');" title="Exibir Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
+		'<button id="hdlay_'+uuid+'" onClick="hideLayer(\''+uuid+'\');" title="Ocultar Camada" type="button" style="display:none;padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
+		'<button id="swlay_'+uuid+'" onClick="showLayer(\''+uuid+'\');" title="Exibir Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
 		'<button id="expd_'+uuid+'" onClick="expandCard(\''+uuid+'\');" title="Expandir" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-right"></i></button>'+
 		'<button id="cops_'+uuid+'"onClick="collapseCard(\''+uuid+'\');" title="Recolher" type="button" style="display:none;padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button>'+
 	'</div>' +	
@@ -141,7 +146,7 @@ function getALayerCard( uuid, layerAlias, defaultImage  ){
 		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
 	table = table + '</td><td >' + 
 	'<a title="Excluir Camada" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
-	'<a title="RF-YYY" style="margin-right: 10px;" href="#" onClick="layerToUp(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-floppy-o"></i></a>' + 
+	'<a title="RF-YYY" style="margin-right: 10px;" href="#" onClick="importVectors(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-floppy-o"></i></a>' + 
 	'<a title="RF-ZZZ" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-gear"></i></a>' + 
 	'<a title="RF-WWW" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
 	'</td></tr>';
@@ -162,6 +167,31 @@ function getALayerGroup( uuid, groupName, defaultImage ){
 	return layerText;
 }
 */
+
+
+function importVectors( uuid ){
+	var data = getLayerDataByUUID( uuid );
+	
+    var bWest = "", bSouth = "", bEast = "", bNorth = "";
+    if( Cesium.defined( scratchRectangle ) ){
+	    var bWest = Cesium.Math.toDegrees(scratchRectangle.west);
+	    var bSouth = Cesium.Math.toDegrees(scratchRectangle.south);
+	    var bEast = Cesium.Math.toDegrees(scratchRectangle.east);
+	    var bNorth = Cesium.Math.toDegrees(scratchRectangle.north);
+    }
+
+    var cpf = mainConfiguration.user.cpf.replace('/\./g','').replace('-','');
+    
+	jQuery.ajax({
+		url: "/proxy/getfeature?uuid=" + cpf + "&sourceId=" + data.id + '&bw='+bWest+'&bs='+bSouth+'&be='+bEast+'&bn='+bNorth,
+		type: "GET", 
+		success: function( imagePath ) {
+			//
+		}
+	});
+			
+}
+
 
 
 function updateLegendImages(){
@@ -186,7 +216,6 @@ function updateLegendImages(){
 				type: "GET", 
 				success: function( imagePath ) {
 					if( imagePath != '' ){
-						console.log('Nova imagem : ' + imagePath);
 						$( "#" + imgUUID ).attr("src", imagePath );
 					} else {
 						console.log('Sem legenda.');
@@ -265,6 +294,9 @@ function addLayerCard( data ){
 		});
 		
 		$('#activeLayerContainer').slimScroll();
+		
+		fireToast( 'info', 'Concluído', 'A camada foi adicionada ao seu projeto.' , '000' );
+
 	}	
 
 }
@@ -293,146 +325,6 @@ function deleteLayer( uuid ) {
 // ***************************************************************************
 // ***************************************************************************
 // ***************************************************************************
-
-
-
-function layerToDown( uuid ) {
-	console.log("DN: " + uuid );
-	for( x=0; x < stackedProviders.length;x++ ) {
-		var ll = stackedProviders[x];
-		if ( ll.uuid == uuid ) {
-			viewer.imageryLayers.lower( ll.layer );
-			return;
-		}
-	}
-}
-
-function layerToUp( uuid ) {
-	console.log("UP: " + uuid );
-	for( x=0; x < stackedProviders.length;x++ ) {
-		var ll = stackedProviders[x];
-		if ( ll.uuid == uuid ) {
-			viewer.imageryLayers.raise( ll.layer );
-			return;
-		}
-	}
-}
-
-function addToPanelLayer( layerName, workspace, scale, layerAlias, server, imageType ) {
-	if( !imageType ) imageType = 'png8';
-	if( !server ) server = pleione;
-	
-	var layerFullName = layerName;
-	if( workspace != '' ) layerFullName = workspace+":"+layerName;
-	
-	var uuid = createUUID(); 
-	var theProvider = {};
-	theProvider.uuid = uuid;
-	var theScale = 'Todas'
-	
-	if ( scale === 'SCALE_ALL') {
-		theProvider.layer = addLayer( layerFullName , server, layerFullName, true, 1.0, imageType ); 
-	} else {
-		var filter = "escala=" + scale;
-		theProvider.layer = addLayerWithFilter( layerFullName , pleione, layerFullName, true, 1.0, 'png8', filter );
-		theScale = '1:' + scale;
-	}
-	
-	var props = { 'scale':scale, 'layerFullName':layerFullName }
-	
-	theProvider.layer.properties = props; 
-	stackedProviders.push( theProvider );
-	
-	var imgPoint = "<img title='Pontos' style='border:1px solid #cacaca;width:19px;' src='/resources/img/points.png'>";
-	var imgLine = "<img title='Linhas' style='border:1px solid #cacaca;width:19px;' src='/resources/img/lines.png'>";
-	var imgPolygon = "<img title='Áreas' style='border:1px solid #cacaca;width:19px;' src='/resources/img/polygons.png'>";
-	var defaultImage = "<img title='Geometria Mista' style='border:1px solid #cacaca;width:19px;' src='/resources/img/unknow.png'>";
-
-	if( layerName.endsWith("_a") ) defaultImage = imgPolygon;
-	if( layerName.endsWith("_l") ) defaultImage = imgLine;
-	if( layerName.endsWith("_p") ) defaultImage = imgPoint;
-	
-	
-	var tipoCarto = "Fonte Externa";
-	var sourceName = "Externa";
-
-	if( workspace === 'odisseu' ) {
-		tipoCarto = "Cartografia Terrestre";
-		sourceName = "DSG";
-	}	
-
-	if( workspace === 'icaro' ) {
-		tipoCarto = "Cartografia Aeronáutica";
-		sourceName = "ICA";
-	}	
-
-	if( workspace === 'nautilo' ) {
-		tipoCarto = "Cartografia Náutica";
-		sourceName = "CHM";
-	}	
-	
-	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
-	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>Camada EDGV-DEFESA</b>' +
-	'<a title="Apagar Camada" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
-	
-	'<a title="Para cima das outras" style="margin-right: 10px;" href="#" onClick="layerToUp(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-up"></i></a>' + 
-	'<a title="Para baixo das outras" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-down"></i></a>' + 
-	
-	'<a title="Exportar Para PDF" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-file-pdf-o"></i></a>' + 
-	'</td></tr>'; 
-	
-	table = table + '<tr><td colspan="3" class="layerTable"><b>' + layerAlias + '</b></td></tr>';
-	table = table + '<tr><td colspan="2" class="layerTable">' + tipoCarto + '</td><td class="layerTable" style="text-align:right" >'+theScale+'</td></tr>';
-
-	table = table + '<tr><td colspan="3" style="padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">'; 
-	table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100"' +
-		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
-	table = table + '</b></td></tr>';
-	
-	table = table + '</table></div>';
-	
-	var layerText = '<div id="'+uuid+'" style="margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
-	table + '</div></div>';
-
-	jQuery("#activeLayerContainer").append( layerText );
-	jQuery("#layerContainer").show( "slow" );
-	
-	var count = jQuery('#activeLayerContainer').children().length;
-	jQuery("#layersCounter").html( count );	
-
-	jQuery("#SL_"+uuid).bootstrapSlider({});
-	jQuery("#SL_"+uuid).on("slide", function(slideEvt) {
-		var valu = slideEvt.value / 100;
-		doSlider( slideEvt.target.id.substr(3), valu );
-	});	
-	
-}
-
-function addLayerCart( uuid, workspace, layerName, scale) {
-	for( x=0; x < searchedLayersResult.length;x++ ) {
-		var ll = searchedLayersResult[x];
-		for( y=0; y < ll.layer.layers.length;y++ ) {
-			var tt = ll.layer.layers[y];
-			if( tt.layer == layerName ) {
-				
-				var layerFullName = workspace+":"+layerName;
-				var found = false;
-				// verifica se ja tem na tela
-				for( zz=0; zz < stackedProviders.length; zz++ ) {
-					var propsCheck = stackedProviders[zz].layer.properties;
-					if( (propsCheck.scale == scale) && ( propsCheck.layerFullName == layerFullName ) ) {
-						found = true;
-						break;
-					}
-				}
-				
-				if( !found ) addToPanelLayer( layerName, workspace, scale, ll.layer.nome );
-				
-				break;
-			}
-		}
-	}
-}
 
 function queryLayer() {
 
@@ -477,237 +369,6 @@ function queryLayer() {
 	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 	
 	
-}
-
-function getTrQuery( queryResult ){
-	var properties = queryResult.properties;
-	var position = queryResult.position;
-	var geomType = queryResult.data.geometry.type;
-	var metadados = JSON.parse( properties.metadados );
-	var bbox = properties.bbox;
-	var produto = JSON.parse( properties.json_produto ); 
-	var trId = createUUID();
-	var tipoCarto = "Cartografia Desconhecida";
-	var icon = "";
-	var externalMetadata = "";
-	var sourceName = produto["Fonte"];
-	
-	if( sourceName === 'DSG' ) {
-		tipoCarto = "Cartografia Terrestre";
-		externalMetadata = properties.perfil_metadados_identificador;
-		icon = "odisseu.png"
-	}	
-
-	if( sourceName === 'CENSIPAM' ) {
-		tipoCarto = "Cartografia Terrestre";
-		externalMetadata = properties.perfil_metadados_identificador;
-		icon = "censipam.png"
-	}	
-	
-	if( sourceName === 'ICA' ) {
-		tipoCarto = "Cartografia Aeronáutica";
-		icon = "icaro.png"
-	}	
-
-	if( sourceName === 'CHM' ) {
-		tipoCarto = "Cartografia Náutica";
-		icon = "nautilo.png"
-	}
-	
-	var iconImg = "<img title='" + sourceName + "' style='border:1px solid #cacaca;width:30px;' src='/resources/img/"+icon+"'>";
-	var queryData = "";
-
-	queryData = queryData + "<tr class='queryRowDetails'>" +
-	   "<td class='layerTable' style='width: 30%;'>" + iconImg + "</td>" +
-	   "<td colspan='2' style='text-align: right;' class='layerTable'>&nbsp;</td>" +
-	"</tr>";
-	
-	
-	var keys = Object.keys( produto );
-	for( xx=0; xx<keys.length;xx++ ) {
-		var key = keys[xx];
-		var value = produto[ key ];
-		queryData = queryData + "<tr class='queryRowDetails'>" +
-		   "<td class='layerTable' style='width: 30%;'><b>" + key + "</b></td>" +
-		   "<td colspan='2' style='text-align: right;' class='layerTable'>" + value + "</td>" +
-		"</tr>";
-	}
-
-	/*
-	if( externalMetadata != "" ) {
-		queryData = queryData + '<tr class="queryRowDetails"><td class="layerTable" colspan="3" class="layerTable" style="text-align: right;"><button onclick="gotoBdgex(\''+externalMetadata+'\')"  type="button" class="btn btn-block btn-primary btn-xs btn-flat">Ver Metadados</button></td></tr>';
-	}
-	*/
-	
-	var firstRowStyle = "border-top: 2px solid #3c8dbc";
-	var keys = Object.keys( metadados );
-	for( xx=0; xx<keys.length;xx++ ) {
-		var key = keys[xx];
-		var value = metadados[ key ];
-		var theRealValue = value;
-		
-		if( Array.isArray( value ) ) {
-			theRealValue = "";
-			for( vvv=0; vvv<value.length;vvv++  ) {
-				var infoIcon = '<span style="cursor:pointer;margin-left: 10px;" title="'+value[vvv].descricao+'" class="text-light-blue pull-right"><i class="fa fa-info-circle"></i></span>';
-				theRealValue = theRealValue + value[vvv].nome + infoIcon + '<br>';
-			}
-		}
-		
-		queryData = queryData + "<tr style='"+firstRowStyle+"' class='queryRowDetails'>" +
-		   "<td class='layerTable' style='width: 30%;'><b>" + key + "</b></td>" +
-		   "<td colspan='2' style='text-align: right;' class='layerTable'>" + theRealValue + "</td>" +
-		"</tr>";
-		firstRowStyle = "";
-	}
-	
-	return queryData;
-}
-
-function downloadProduct( identificador ) {
-	// https://bdgex.eb.mil.br/mediador/index.php?modulo=download&acao=baixar&identificador=2c2d1fd7-1bd1-5a4d-7bbb-fb0aeb9cabbb
-	var url = "https://bdgex.eb.mil.br/mediador/index.php?modulo=download&acao=baixar&identificador=" + identificador;
-	window.open(url,'_blankdown');
-}
-
-
-function addRow( key, value ) {
-	jQuery("#queryMenuTable").append("<tr class='queryRowDetails'>" +
-	   "<td class='layerTable' style='width: 30%;'><b>" + key + "</b></td>" +
-	   "<td colspan='2' style='text-align: right;' class='layerTable'>" + value + "</td>" +
-	"</tr>");	
-}
-
-function gotoBdgex( identificador ) {
-	// var url = "https://bdgex.eb.mil.br/mediador/index.php?modulo=metaDados&acao=formularioInformacao&uuid=" + identificador;
-	
-	//identificador = "4e879571-ffbe-d57d-2244-5866de14af59";
-	
-	console.log( "/metadado?uuid=" + identificador );
-	
-	jQuery.ajax({
-		url:"/metadado?uuid=" + identificador,
-		type: "GET", 
-		success: function( obj ) {
-	    	jQuery(".queryRowDetails").remove();
-	    	
-	    	console.log( obj );
-
-			addRow( "Organização", obj["gmd:contact"]["gmd:CI_ResponsibleParty"]["gmd:organisationName"]["gco:CharacterString"]["#text"] );
-			
-			var links = obj["gmd:distributionInfo"]["gmd:MD_Distribution"]["gmd:onLine"];
-			var urls = "";
-			if( links.length > 0  ) {
-				for( xx=0; xx < links.length; xx++ ) {
-					urls = urls + "<a href='" + links[xx]["gmd:CI_OnlineResource"]["gmd:linkage"]["gco:CharacterString"]["#text"] + "'>[Recurso]</a></br>" ;
-				}
-			}
-			addRow( "Download", urls );
-			
-			addRow( "Sistema", obj["gmd:referenceSystemInfo"]["gmd:MD_ReferenceSystem"]["gmd:referenceSystemIdentifier"]["gmd:RS_Identifier"]["gmd:code"]["gco:CharacterString"]["#text"] );
-			
-			
-			
-		},
-		error: function(xhr, textStatus) {
-			console.log('Erro');
-		}, 		
-	});
-	
-}
-
-function getTr( layer ){
-	var icon = "nk.png";
-	var nome = layer.nome;
-	var tipoCarto = "Cartografia Desconhecida";
-	var sourceName = "Origem Desconhecida";
-
-	if( layer.workspace === 'odisseu' ) {
-		tipoCarto = "Cartografia Terrestre";
-		sourceName = "Cartografia Terrestre";
-		icon = "ct.png";
-	}	
-
-	if( layer.workspace === 'icaro' ) {
-		tipoCarto = "Cartografia Aeronáutica";
-		sourceName = "Cartografia Aeronáutica";
-		icon = "ca.png";
-	}	
-
-	if( layer.workspace === 'nautilo' ) {
-		tipoCarto = "Cartografia Náutica";
-		sourceName = "Cartografia Náutica";
-		icon = "cn.png";
-	}
-
-	var imgPoint = "<img title='Pontos' style='border:1px solid #cacaca;width:19px;' src='/resources/img/points.png'>";
-	var imgLine = "<img title='Linhas' style='border:1px solid #cacaca;width:19px;' src='/resources/img/lines.png'>";
-	var imgPolygon = "<img title='Áreas' style='border:1px solid #cacaca;width:19px;' src='/resources/img/polygons.png'>";
-	var defaultImage = "<img title='Geometria Mista' style='border:1px solid #cacaca;width:19px;' src='/resources/img/unknow.png'>";
-
-	var trId = createUUID();
-	var theDiv = "<div style='height:37px;width:100%;'>" +
-	"<div style='float:left;width:35px;height:36px;'>" +
-	"<img title='" + sourceName + "' style='border:1px solid #cacaca;width:30px;' src='/resources/img/"+icon+"'>" +
-	"</div>" +
-	"<div style='float:left;width:80%'><div style='height:18px;border-bottom:1px solid #cacaca'><b>"+nome+"</b></div><div style='height:15px;'>"+tipoCarto+"</div></div>" + 
-	"</div>";
-
-	
-	var theLayerResult = {};
-	theLayerResult.uuid = trId;
-	theLayerResult.layer = layer;
-	searchedLayersResult.push( theLayerResult );
-	
-	for( xx=0; xx<layer.layers.length;xx++ ) {
-		var theLayer = layer.layers[xx];
-		var escalas = theLayer.escalas;
-		var layerName = theLayer.layer;
-
-		if( layerName.endsWith("_a") ) defaultImage = imgPolygon;
-		if( layerName.endsWith("_l") ) defaultImage = imgLine;
-		if( layerName.endsWith("_p") ) defaultImage = imgPoint;
-
-		var scaleLinks = "<a onclick='addLayerCart(\""+trId+"\",\""+layer.workspace+"\",\""+layerName+"\",\"SCALE_ALL\");' href='#'>Todas</a>";
-		for( yy=0; yy<escalas.length;yy++ ) {
-			scaleLinks = scaleLinks + " | <a onclick='addLayerCart(\""+trId+"\",\""+layer.workspace+"\",\""+layerName+"\",\""+escalas[yy]+"\");' href='#'>1:"+escalas[yy]+"</a>";
-		}
-		theDiv = theDiv + "<div style='width:100%;height:25px;border-top: 1px solid #f4f4f4;'>"+ defaultImage + "  " + scaleLinks +"</div>";
-	}
-
-	var theTr = "<tr style='margin-bottom:2px;border-bottom: 2px solid #3c8dbc;' class='layerFoundItem' id='"+ trId +"'><td id='"+ trId +"_td' colspan='2' class='layerTable'>" + theDiv + "</td></tr>";
-	return theTr;
-}
-
-function updateFoundLayerPanel( layers ) {
-	searchedLayersResult = [];
-	for( x=0; x < layers.length; x++  ) {
-		var layer = layers[x];
-		jQuery("#searchMenuTable").append( getTr(layer) );
-	}
-}
-
-function findLayerByNome( ) {
-	jQuery(".layerFoundItem").remove();
-	var nome = jQuery("#layerNameFinder").val();
-
-	if( nome === '' ) {
-		closeSearchToolBarMenu();
-		return;
-	}
-	
-	jQuery("#treeview-terrestre").hide();	
-
-	jQuery.ajax({
-		url:"/cartografia/find?limite=5&nome=" + nome,
-		type: "GET", 
-		success: function( obj ) {
-			updateFoundLayerPanel( obj );
-		},
-		error: function(xhr, textStatus) {
-			console.log('Erro');
-		}, 		
-	});
 }
 
 function createImageryProvider( sourceUrl, sourceLayers, canQuery, transparency, imageType ) {
@@ -759,14 +420,6 @@ function addLayerWithFilter( layerName, sourceUrl, sourceLayers, canQuery, trans
 	layer.name = layerName;
 	layerStack.push( layer );
 	return layer.imageryLayer;
-}
-
-function setLayerOpacity( layerName, opacity ) {
-	for ( var x=0; x < layerStack.length; x++  ) {
-		if ( layerStack[x].name == layerName ) {
-			layerStack[x].imageryLayer.alpha = opacity;
-		}
-	}
 }
 
 
@@ -961,50 +614,4 @@ function addBaseSystemLayerXYZ( elementId, layerName, url, transparency ) {
 	stackedProviders.push( theProvider );
 	return theProvider;
 }
-
-
-
-/*  *************************************************************** */
-function addBasicLayerToPanel( layerName, theLayer ) {
-	var uuid = theLayer.uuid;
-	var icon = "baselayer.png";
-	var iconImg = "<img style='border:1px solid #cacaca;width:19px;' src='/resources/img/"+icon+"'>";
-	
-	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
-	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + iconImg + '&nbsp; <b>Camada Base</b>' +
-	'<a title="Apagar Camada" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
-	'<a title="Para cima das outras" style="margin-right: 10px;" href="#" onClick="layerToUp(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-up"></i></a>' + 
-	'<a title="Para baixo das outras" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-down"></i></a>' + 
-	'</td></tr>'; 
-	
-	table = table + '<tr><td colspan="3" class="layerTable"><b>' + layerName + '</b></td></tr>';
-	table = table + '<tr><td colspan="3" class="layerTable">Camada Básica do Sistema</td></tr>';
-
-	table = table + '<tr><td colspan="3" style="padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">'; 
-	table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100"' +
-		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
-	table = table + '</b></td></tr>';
-	
-	table = table + '</table></div>';
-	
-	var layerText = '<div id="'+uuid+'" style="margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
-	table + '</div></div>';
-
-	jQuery("#activeLayerContainer").append( layerText );
-	jQuery("#layerContainer").show( "slow" );
-	
-	var count = jQuery('#activeLayerContainer').children().length;
-	jQuery("#layersCounter").html( count );	
-
-	jQuery("#SL_"+uuid).bootstrapSlider({});
-	jQuery("#SL_"+uuid).on("slide", function(slideEvt) {
-		var valu = slideEvt.value / 100;
-		doSlider( slideEvt.target.id.substr(3), valu );
-	});	
-	
-	
-}
-
-
-
 

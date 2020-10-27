@@ -30,13 +30,13 @@ public class ProxyController {
 	}
 
 	@RequestMapping( value = "/getfeature", method = RequestMethod.GET )
-	public @ResponseBody String getFeature( @RequestParam(value="uuid",required=true ) String uuid, 
+	public @ResponseBody String getFeature( @RequestParam(value="userId",required=true ) String userId, 
 			@RequestParam(value="sourceId",required=true ) Integer sourceId,
 			@RequestParam(value="bn",required=true ) String bn,
 			@RequestParam(value="bs",required=true ) String bs,
 			@RequestParam(value="be",required=true ) String be,
 			@RequestParam(value="bw",required=true ) String bw) {
-		return proxyService.getFeature( uuid, sourceId, bn, bs, be, bw );
+		return proxyService.getFeature( userId, sourceId, bn, bs, be, bw );
 	}
 	
 	

@@ -56,11 +56,8 @@ public class ProxyService {
 			if ( keys.containsKey( uuid ) ) {
 				String oldFile = keys.get( uuid );
 				new File( oldFile ).delete();
-				System.out.println("Apaguei o arquivo " + oldFile );
 				keys.replace( uuid , fileName);
-				System.out.println("Atualizei a chave para o aquivo " + fileName );
 			} else {
-				System.out.println("Criei chave para o aquivo " + fileName );
 				keys.put( uuid , fileName );
 			}			
 			
@@ -74,8 +71,6 @@ public class ProxyService {
 			String urlSource = source.getSourceAddressOriginal() + 
 					"?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" + source.getSourceLayer() + 
 					"&LEGEND_OPTIONS=layout:vertical;columns:1;hideEmptyRules:true;fontAntiAliasing:true;countMatched:true" + bbox;
-			
-			System.out.println( "GetLegend: " + urlSource );
 			
 			try {
 				InputStream in = new URL( urlSource ).openStream() ;
