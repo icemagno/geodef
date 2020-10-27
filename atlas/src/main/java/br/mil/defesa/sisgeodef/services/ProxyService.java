@@ -41,6 +41,12 @@ public class ProxyService {
 	@Autowired
 	private CatalogService catalogService;		
 	
+	@Value("${proxy.useProxy}")
+	private boolean useProxy;		
+	
+    @Autowired
+    AuthService authService;	
+	
 	public String getLegend(String uuid, Integer sourceId, String bn, String bs, String be, String bw) {
 		String fileName = UUID.randomUUID().toString().replaceAll("-", "") + ".png"; 
 		String path = "/srv/calisto/legends/";
@@ -66,6 +72,14 @@ public class ProxyService {
 			if( bn != null && !bn.equals("") ) {
 				bbox = "&bbox=" + bw + "," + bs + "," + be + "," + bn;
 			}
+			
+			RestTemplate restTemplate;
+			if( useProxy ) {
+				restTemplate = new RestTemplate( authService.getFactory() );
+			} else {
+				restTemplate = new RestTemplate( );
+			}		
+					
 			
 			// var getLegendUrl = data.sourceAddress + "?service=wms&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" + data.sourceLayer;
 			String urlSource = source.getSourceAddressOriginal() + 
