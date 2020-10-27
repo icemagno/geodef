@@ -13,6 +13,7 @@ yes | cp ./*.yaml /srv/mapproxy/
 
 docker run -it --name mapproxy --hostname=mapproxy \
 -v /srv/mapproxy:/mapproxy/ \
+-p 36890:8080 \
 -e HTTP_PROXY="http://07912470743:da030801@proxy-1dn.mb:6060/" \
 -e HTTPS_PROXY="http://07912470743:da030801@proxy-1dn.mb:6060/" \
 -d sisgeodef/mapproxy mapproxy http

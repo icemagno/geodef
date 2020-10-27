@@ -19,7 +19,7 @@ docker run --name atlas-db --hostname=atlas-db \
 
 sleep 10
 
-#docker exec -it atlas-db pg_restore -U postgres -d atlas /opt/atlas-db/atlas-27-10.tar
+#docker exec -it atlas-db pg_restore -U postgres -h localhost -W -d atlas /opt/atlas-db/atlas-27-10.tar
 
 docker network connect sisgeodef atlas-db
 docker network connect apolo atlas-db
