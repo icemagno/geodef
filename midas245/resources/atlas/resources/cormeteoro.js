@@ -27,9 +27,6 @@ function cancelCorMetocSolution(){
 
 function addSingleImageryLayerCard( base64PngImage, data ){
 	var bbox = inmetImageBBox[ data.param ];
-	
-	console.log( data );
-	
 	var aUniqueKey = data.sourceAddress + data.sourceLayer;
 	
 	var provider = new Cesium.SingleTileImageryProvider({
@@ -145,10 +142,10 @@ function getGoesImages( parametro, horaObj ){
 
 function loadSatelites(){
 	// Parametro = [{"sigla":"IV","nome":"Infravermelho Termal"},{"sigla":"TN","nome":"Topo das Nuvens (T ºC)"},{"sigla":"VA","nome":"Vapor d'Água"},{"sigla":"VI","nome":"Visível"},{"sigla":"VP","nome":"Vapor d'Água Realçado"}]
-	//getGoesImages("VP", horaAtual( true ) );
-	//getGoesImages("TN", horaAtual( true ) );
-	getGoesImages("IV", horaAtual( true ) );
-	//getGoesImages("VI", horaAtual( true ) );
+	// getGoesImages("VP", horaAtual( true ) );
+	// getGoesImages("TN", horaAtual( true ) );
+	// getGoesImages("IV", horaAtual( true ) );
+	// getGoesImages("VI", horaAtual( true ) );
 }
 
 

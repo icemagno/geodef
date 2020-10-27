@@ -178,12 +178,12 @@ function startMap( theMapStyle ) {
 		//
 	});
 	imageryLayers.layerAdded.addEventListener(function (event) {
-		//console.log( "Adicionou: " + event.imageryProvider.layers );
+		console.log( "Adicionou: " + event.imageryProvider.layers );
 		//$('.layerCounter').show();
 		//$("#lyrCount").text( event.imageryProvider.layers );
 	});
 	imageryLayers.layerRemoved.addEventListener(function (event) {
-		//console.log( "Removeu: " + event.imageryProvider.layers );
+		console.log( "Removeu: " + event.imageryProvider.layers );
 	});	
 	
 	
@@ -246,6 +246,8 @@ function redraw() {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 
+	// initCappiMonitor();
+	
 	
 	// Teste de particulas de vento
 	/*

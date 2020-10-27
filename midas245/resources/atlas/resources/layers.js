@@ -300,6 +300,33 @@ function deleteLayer( uuid ) {
 	}
 }
 
+function getProvider(  sourceUrl, sourceLayers, canQuery, imageType, isTransparent, time ) {
+	if( !imageType ) imageType = 'png8';	
+	var provider = getBaseImageryProvider( sourceUrl, sourceLayers, canQuery, currentBaseLayerAlphaValue, imageType, isTransparent, time );
+	return provider;
+}
+
+function getBaseImageryProvider( sourceUrl, sourceLayers, canQuery, transparency, imageType, isTransparent, time ) {
+
+	var imageryProvider = new Cesium.WebMapServiceImageryProvider({ 
+		url : sourceUrl, 
+		layers : sourceLayers,
+		tileWidth: 256,
+		tileHeight: 256,		
+		enablePickFeatures : canQuery,
+		parameters : { 
+			version: '1.1.0',
+			transparent : isTransparent,
+			srs	: 'EPSG:4326',
+			format : 'image/' + imageType, 
+			tiled : true,
+			time : time
+		}
+	});	
+	imageryProvider.defaultAlpha = transparency;
+	return imageryProvider;
+}
+
 
 // ***************************************************************************
 // ***************************************************************************

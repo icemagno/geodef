@@ -1340,7 +1340,6 @@ caches:
     format: custom_format
     request_format: image/png
     transparent: true
-
   cappi_almenara_3_0_cache:
     grids: [geodetic]
     sources: [cappi_almenara_3_0_wms]
@@ -3014,6 +3013,7 @@ caches:
     format: custom_format
     request_format: image/png
     transparent: true
+    disable_storage: true
   edda_1_cache:
     grids: [geodetic]
     sources: [edda_1_wms]
@@ -3021,12 +3021,14 @@ caches:
     format: custom_format
     request_format: image/png
     transparent: true
+    disable_storage: true
   edda_2_cache:
     grids: [geodetic]
     sources: [edda_2_wms]
     link_single_color_image: true
     format: custom_format
     request_format: image/png
+    disable_storage: true
     transparent: true
   edda_3_cache:
     grids: [geodetic]
@@ -3035,6 +3037,7 @@ caches:
     format: custom_format
     request_format: image/png
     transparent: true
+    disable_storage: true
   edda_4_cache:
     grids: [geodetic]
     sources: [edda_4_wms]
@@ -3042,6 +3045,7 @@ caches:
     format: custom_format
     request_format: image/png
     transparent: true
+    disable_storage: true
   estacoes_nivel_serrana_cache:
     grids: [geodetic]
     sources: [estacoes_nivel_serrana_wms]

@@ -333,6 +333,7 @@
 	<script src="${midasLocation}/atlas/resources/Windy.js"></script>
 
 	<script src="${midasLocation}/atlas/resources/cormeteoro.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/radares-cappi.js" type="text/javascript"></script>
 
 
 	<!-- 
