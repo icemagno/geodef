@@ -319,8 +319,7 @@ function getBaseImageryProvider( sourceUrl, sourceLayers, canQuery, transparency
 			transparent : isTransparent,
 			srs	: 'EPSG:4326',
 			format : 'image/' + imageType, 
-			tiled : true,
-			time : time
+			tiled : true
 		}
 	});	
 	imageryProvider.defaultAlpha = transparency;
