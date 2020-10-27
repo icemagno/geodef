@@ -61,6 +61,8 @@ public class ImportService {
 	public String getFeatures( String uri ) {
 		String responseBody = "[]";
 		
+		System.out.println( uri );
+		
 		RestTemplate restTemplate;
 		if( useProxy ) {
 			restTemplate = new RestTemplate( authService.getFactory() );

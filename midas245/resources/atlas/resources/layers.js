@@ -172,18 +172,13 @@ function getALayerGroup( uuid, groupName, defaultImage ){
 function importVectors( uuid ){
 	var data = getLayerDataByUUID( uuid );
 	
-    var bWest = "", bSouth = "", bEast = "", bNorth = "";
-    if( Cesium.defined( scratchRectangle ) ){
-	    var bWest = Cesium.Math.toDegrees(scratchRectangle.west);
-	    var bSouth = Cesium.Math.toDegrees(scratchRectangle.south);
-	    var bEast = Cesium.Math.toDegrees(scratchRectangle.east);
-	    var bNorth = Cesium.Math.toDegrees(scratchRectangle.north);
-    }
+	console.log( globalScreenViewport );
 
-    var cpf = mainConfiguration.user.cpf.replace('/\./g','').replace('-','');
+    var cpf = mainConfiguration.user.cpf;
     
 	jQuery.ajax({
-		url: "/proxy/getfeature?uuid=" + cpf + "&sourceId=" + data.id + '&bw='+bWest+'&bs='+bSouth+'&be='+bEast+'&bn='+bNorth,
+		url: "/proxy/getfeature?userId=" + cpf + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest+
+			'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth,
 		type: "GET", 
 		success: function( imagePath ) {
 			//
@@ -203,16 +198,9 @@ function updateLegendImages(){
 			
 			var imgUUID = "IMG_" + uuid;
 			
-		    var bWest = "", bSouth = "", bEast = "", bNorth = "";
-		    if( Cesium.defined( scratchRectangle ) ){
-			    var bWest = Cesium.Math.toDegrees(scratchRectangle.west);
-			    var bSouth = Cesium.Math.toDegrees(scratchRectangle.south);
-			    var bEast = Cesium.Math.toDegrees(scratchRectangle.east);
-			    var bNorth = Cesium.Math.toDegrees(scratchRectangle.north);
-		    }
-		    
 			jQuery.ajax({
-				url: "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+bWest+'&bs='+bSouth+'&be='+bEast+'&bn='+bNorth,
+				url: "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest+
+					'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth,
 				type: "GET", 
 				success: function( imagePath ) {
 					if( imagePath != '' ){
@@ -268,16 +256,9 @@ function addLayerCard( data ){
 		var legUUID = "LEG_" + uuid;
 		var imgUUID = "IMG_" + uuid;
 		
-	    var bWest = "", bSouth = "", bEast = "", bNorth = "";
-	    if( Cesium.defined( scratchRectangle ) ){
-		    var bWest = Cesium.Math.toDegrees(scratchRectangle.west);
-		    var bSouth = Cesium.Math.toDegrees(scratchRectangle.south);
-		    var bEast = Cesium.Math.toDegrees(scratchRectangle.east);
-		    var bNorth = Cesium.Math.toDegrees(scratchRectangle.north);
-	    }
-	    
 		jQuery.ajax({
-			url: "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+bWest+'&bs='+bSouth+'&be='+bEast+'&bn='+bNorth,
+			url: "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest+
+				'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth,
 			type: "GET", 
 			success: function( imagePath ) {
 				if( imagePath != '' ){

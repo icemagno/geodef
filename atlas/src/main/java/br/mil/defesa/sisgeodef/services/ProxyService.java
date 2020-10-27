@@ -86,7 +86,7 @@ public class ProxyService {
 	}
 
 	public String getFeature(String userId, Integer sourceId, String bn, String bs, String be, String bw) {
-		
+		String responseBody = "[]";		
 		CatalogSource source = catalogService.getSource(sourceId);
 		if( source != null ) {
 			ServiceInstance reaperInstance = loadBalancer.choose("reaper");
@@ -108,7 +108,6 @@ public class ProxyService {
 		    map.add("bw", bw );
 		    HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 		    
-	        String responseBody = "[]";
 	        try {
 	        	ResponseEntity<String> result = restTemplate.postForEntity( uri, request, String.class);        
 	        	responseBody = result.getBody().toString();
@@ -120,10 +119,8 @@ public class ProxyService {
 			} catch ( Exception ex) {
 				return ex.getMessage();
 			}
-	        
-	        System.out.println(" > " + responseBody );
 		}
-		return "";
+		return responseBody;
 	}
 
 }

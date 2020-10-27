@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,11 @@ public class CronService {
 	private Logger logger = LoggerFactory.getLogger(CronService.class);
 	private List<Worker> workers = new ArrayList<Worker>();
 	
+	@Autowired
+	private ImportService importService;	
+	
 	@Scheduled(cron = "0/7 * * * * *") 
 	public void doImport() {
-		logger.info("Processando " + workers.size() + " workers.");
 		for( Worker worker : workers ) {
 			worker.doImport();
 		}
@@ -33,8 +36,9 @@ public class CronService {
 	}
 	
 	public String addWork( String url, String userCpf, String layerName, String bn, String bs, String be, String bw ) {
+		logger.info("Nova tarefa para " + userCpf + " em " + url + " na camada " + layerName );
 		if( !exists( url ) ) {
-			this.workers.add( new Worker( url, userCpf, layerName, bn, bs, be, bw ) );
+			this.workers.add( new Worker( url, userCpf, layerName, bn, bs, be, bw, importService ) );
 			return "Ok";
 		} else {
 			return "Esta origem já existe";

@@ -12,7 +12,7 @@ var timeout = 6000;
 var imageryLayers = null; 
 var scratchRectangle = new Cesium.Rectangle();
 var mapStyle = '3D'; // [ 3D || 2D ]
-
+var globalScreenViewport = {};
 var mainConfiguration = null;
 
 var pickedObject = null;
@@ -664,17 +664,41 @@ function updateCamera() {
     $("#mapAltitude").text( altitudeV.toFixed(0) + "m" );
     
     var rect = viewer.camera.computeViewRectangle( viewer.scene.globe.ellipsoid, scratchRectangle );
+    var bWest = "", bSouth = "", bEast = "", bNorth = "";
+
     if( Cesium.defined(rect) ){
-	    var bWest = Cesium.Math.toDegrees(rect.west);
-	    var bSouth = Cesium.Math.toDegrees(rect.south);
-	    var bEast = Cesium.Math.toDegrees(rect.east);
-	    var bNorth = Cesium.Math.toDegrees(rect.north);
-	    
-	    $("#vpW").text( bWest );
-	    $("#vpE").text( bEast );
-	    $("#vpN").text( bNorth );
-	    $("#vpS").text( bSouth );
+	    bWest = Cesium.Math.toDegrees(rect.west);
+	    bSouth = Cesium.Math.toDegrees(rect.south);
+	    bEast = Cesium.Math.toDegrees(rect.east);
+	    bNorth = Cesium.Math.toDegrees(rect.north);
+    } else {
+		var cl2 = new Cesium.Cartesian2(0, 0);
+		var leftTop = viewer.scene.camera.pickEllipsoid(cl2, viewer.scene.globe.ellipsoid);
+			
+		var cr2 = new Cesium.Cartesian2(viewer.scene.canvas.width, viewer.scene.canvas.height);
+		var rightDown = viewer.scene.camera.pickEllipsoid(cr2, viewer.scene.globe.ellipsoid);
+		
+		leftTop = viewer.scene.globe.ellipsoid.cartesianToCartographic(leftTop);
+		rightDown = viewer.scene.globe.ellipsoid.cartesianToCartographic(rightDown);
+		
+		bWest = Cesium.Math.toDegrees(leftTop.longitude);
+		bEast = Cesium.Math.toDegrees(rightDown.longitude);
+		bNorth = Cesium.Math.toDegrees(leftTop.latitude);
+		bSouth = Cesium.Math.toDegrees(rightDown.latitude);
+		//rect = new Cesium.Rectangle(leftTop.longitude, rightDown.latitude, rightDown.longitude, leftTop.latitude);
     }
+
+    globalScreenViewport.bWest = bWest;
+    globalScreenViewport.bSouth = bSouth;
+    globalScreenViewport.bEast = bEast;
+    globalScreenViewport.bNorth = bNorth;
+    
+    $("#vpW").text( bWest );
+    $("#vpE").text( bEast );
+    $("#vpN").text( bNorth );
+    $("#vpS").text( bSouth );
+    
+    
     
     // Em layers.js
     updateLegendImages();

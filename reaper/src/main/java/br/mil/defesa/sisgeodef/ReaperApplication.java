@@ -5,13 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.Scheduled;
 
 @SpringBootApplication
 @EnableCaching
-//@EnableJpaRepositories(basePackages = {"br.mil.defesa.sisgeodef.repository"})
-//@EntityScan( basePackages = {"br.mil.defesa.sisgeodef.model"} )
+@EnableEurekaClient
 @ComponentScan("br.mil.defesa.sisgeodef")
 public class ReaperApplication {
 
