@@ -2,7 +2,7 @@ CREATE SEQUENCE geodata_rpr_id_seq;
 
 CREATE TABLE geodata (
     id integer NOT NULL DEFAULT nextval('geodata_rpr_id_seq'::regclass),
-    user_cpf character varying(11) NOT NULL,
+    user_cpf character varying(14) NOT NULL,
 	op_id character varying(100) NOT NULL,
     geo_json jsonb,
     geom geometry,

@@ -27,7 +27,7 @@ public class Worker {
 		this.importService = importService;
 		this.opId = UUID.randomUUID().toString().replace("-", "");
 		
-		String bbox = "&bbox=" + bw + "," + bs + "," + be + "," + bn;
+		String bbox = bs + "," + bw + "," + bn + "," + be;
 		
 		String source = url + "?service=wfs"
 				+ "&version=2.0.0"
@@ -39,6 +39,12 @@ public class Worker {
 				+ "&startIndex=";
 		
 		this.url = source;
+	}
+	
+	public boolean isWorking() {
+		// Nao eh pra saber se ele ta atuando no momento (working)
+		// eh pra saber se ele ja acabou ( stop = true ) 
+		return ( this.stop == false );
 	}
 	
 	public void stop() {

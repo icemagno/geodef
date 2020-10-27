@@ -45,8 +45,8 @@ public class ImportService {
 				JSONObject properties = ft.getJSONObject("properties");
 				String geomTextFromJson = geometry.toString();
 				
-				String sql = "INSERT INTO geodata ( id, user_cpf, op_id, geo_json, the_geom ) VALUES (default,'" +
-				userCpf + "','" +opId+ "', jsonb_insert('" + properties + "'),  ST_GeomFromGeoJSON('"+geomTextFromJson+"');";
+				String sql = "INSERT INTO geodata ( id, user_cpf, op_id, geo_json, geom ) VALUES (default,'" +
+				userCpf + "','" +opId+ "', '" + properties + "'::jsonb,  ST_GeomFromGeoJSON('"+geomTextFromJson+"'));";
 
 				System.out.println( sql  );
 				jdbcTemplate.update( sql );

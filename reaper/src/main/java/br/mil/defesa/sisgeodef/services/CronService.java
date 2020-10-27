@@ -23,9 +23,13 @@ public class CronService {
 	
 	@Scheduled(cron = "0/7 * * * * *") 
 	public void doImport() {
+		boolean someoneIsWorking = false;
 		for( Worker worker : workers ) {
+			if( worker.isWorking() ) someoneIsWorking = true;
 			worker.doImport();
 		}
+		// Se nao tiver ninguem ativo limpa o controle
+		if( !someoneIsWorking ) this.workers.clear();
 	}	
 	
 	private boolean exists( String url ) {
