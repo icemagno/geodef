@@ -10,7 +10,7 @@ docker build --tag=sisgeodef/atlas-db:1.0 --rm=true .
 docker run --name atlas-db --hostname=atlas-db \
 -e POSTGRES_USER=postgres \
 -e POSTGRES_PASS=admin \
--e POSTGRES_DBNAME=guardiao \
+-e POSTGRES_DBNAME=atlas \
 -e ALLOW_IP_RANGE='0.0.0.0/0' \
 -v /etc/localtime:/etc/localtime:ro \
 -e POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology \
@@ -19,7 +19,7 @@ docker run --name atlas-db --hostname=atlas-db \
 
 sleep 10
 
-docker exec -it atlas-db pg_restore -U postgres -d guardiao /opt/atlas-db/guardiao.backup
+docker exec -it atlas-db pg_restore -U postgres -d atlas /opt/atlas-db/atlas-27-10.tar
 
 docker network connect sisgeodef atlas-db
 docker network connect apolo atlas-db
