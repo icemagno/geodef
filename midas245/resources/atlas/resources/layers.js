@@ -170,12 +170,12 @@ function getALayerGroup( uuid, groupName, defaultImage ){
 
 
 function importVectors( uuid ){
-	var data = getLayerDataByUUID( uuid );
 	
-	console.log( globalScreenViewport );
-
+	console.log('Voce nao esta preparado pra isso ainda.');
+	return;
+	/*
+	var data = getLayerDataByUUID( uuid );
     var cpf = mainConfiguration.user.cpf;
-    
 	jQuery.ajax({
 		url: "/proxy/getfeature?userId=" + cpf + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest+
 			'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth,
@@ -184,7 +184,7 @@ function importVectors( uuid ){
 			//
 		}
 	});
-			
+	*/
 }
 
 

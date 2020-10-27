@@ -48,7 +48,6 @@ public class ImportService {
 				String sql = "INSERT INTO geodata ( id, user_cpf, op_id, geo_json, geom ) VALUES (default,'" +
 				userCpf + "','" +opId+ "', '" + properties + "'::jsonb,  ST_GeomFromGeoJSON('"+geomTextFromJson+"'));";
 
-				System.out.println( sql  );
 				jdbcTemplate.update( sql );
 			}
 			
