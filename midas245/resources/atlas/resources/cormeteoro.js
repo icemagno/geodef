@@ -5,6 +5,11 @@ var isCorMetSolutionActive = false;
 var corMetConJob = null;
 var loadingCorMetoc = false;
 
+var satVP = false;
+var satIV = false;
+var satTN = false;
+var satVI = false;
+
 var inmetImageBBox = [];
 inmetImageBBox["??"] = { 'w':-75.0, 's':-35.2, 'e':-29.89, 'n':10.0 };
 inmetImageBBox["TN"] = { 'w':-75.4, 's':-35.8, 'e':-31.29, 'n':7.3 };
@@ -27,7 +32,7 @@ function cancelCorMetocSolution(){
 
 function addSingleImageryLayerCard( base64PngImage, data ){
 	var bbox = inmetImageBBox[ data.param ];
-	var aUniqueKey = data.sourceAddress + data.sourceLayer;
+	var aUniqueKey = "chk" + data.param;
 	
 	var provider = new Cesium.SingleTileImageryProvider({
 	    url : base64PngImage,
@@ -115,6 +120,9 @@ function getGoesImages( parametro, horaObj ){
 	console.log("Carrregando imagem " + parametro + " das " + hora);
 	
 	var url = "/metoc/goes/BR/" + parametro + "/" + dataAtualFormatada() + "/" + hora;
+	
+	console.log( url );
+	
 	$.ajax({
 		url: url,
 		type: "GET", 
@@ -141,17 +149,39 @@ function getGoesImages( parametro, horaObj ){
 }
 
 function loadSatelites(){
-	// Parametro = [{"sigla":"IV","nome":"Infravermelho Termal"},{"sigla":"TN","nome":"Topo das Nuvens (T ºC)"},{"sigla":"VA","nome":"Vapor d'Água"},{"sigla":"VI","nome":"Visível"},{"sigla":"VP","nome":"Vapor d'Água Realçado"}]
-	// getGoesImages("VP", horaAtual( true ) );
-	// getGoesImages("TN", horaAtual( true ) );
-	// getGoesImages("IV", horaAtual( true ) );
-	// getGoesImages("VI", horaAtual( true ) );
+	var theCurrentLayer;
+	
+	if( satVP ) {
+		getGoesImages( "VP", horaAtual( true ) );
+	} else {
+		var theCurrentLayer = getLayerByKey( "chkVP" );
+	}
+	
+	if( satTN ) {
+		getGoesImages( "TN", horaAtual( true ) );
+	} else {
+		var theCurrentLayer = getLayerByKey( "chkTN" );
+	}
+	if( satIV ) {
+		getGoesImages( "IV", horaAtual( true ) );
+	} else {
+		var theCurrentLayer = getLayerByKey( "chkIV" );
+	}
+	if( satVI ) {
+		getGoesImages( "VI", horaAtual( true ) );
+	} else {
+		var theCurrentLayer = getLayerByKey( "chkVI" );
+	}
+	
+	if (theCurrentLayer) deleteLayer( theCurrentLayer.uuid );
+	
+	
 }
 
 
 function startCorMetSolution(){
-	loadCores( );
 
+	loadCores( );
 	var interv = ( 1000 * 60 ) * 5;
 	corMetConJob = setInterval( function(){
 		loadCores();
@@ -207,31 +237,81 @@ function showColorAerodromo( entity ){
 	var aerodromo = metar.airport;
 	var aerodromoName = aerodromo.icao + " (" + aerodromo.iata + ")";
 	var temp = metar.temperature;
-	var visibility = refData.metar.alpha;  
-	var teto = refData.metar.beta; 
+	
+	var alpha = refData.metar.alpha;  
+	var beta = refData.metar.beta; 
+	
+	var visibility = metar.visibility.mainVisibility;  
+	var cloud = "";
+	
 	var metarMessage = metar.message;
 	var wind = metar.wind.directionDegrees + "\xB0 (" +metar.wind.direction + ") " + metar.wind.speed + "kt ";
+
+	var theCor = refData.metar.cm;
+	var cm = theCor.corMet;
+	var teto = theCor.teto;
+	var bkColor = getMetarBkColor(cm);	
+	
+	
+	if( metar.cavok ){
+		visibility = "> 10Km";
+		teto = "> 5000ft";
+		cloud = "NSC";
+	}
+	
+	console.log( refData );
 	
 	queryData = queryData + "<tr class='queryRowDetails'>" +
 	   "<td class='layerTable'><b>Aeródromo</b></td>" +
 	   "<td style='text-align: right;' class='layerTable'>" + aerodromoName + "</td>" +
 	"</tr>";
+	
+	queryData = queryData + "<tr class='queryRowDetails'>" +
+	   "<td class='layerTable'><b>Cor Atual</b></td>" +
+	   "<td style='text-align: right;background-color:"+bkColor+"' class='layerTable'>" + cm + "</td>" +
+	"</tr>";
+	
+	
+	/*
 	queryData = queryData + "<tr class='queryRowDetails'>" +
 	   "<td class='layerTable'><b>Temperatura</b></td>" +
 	   "<td style='text-align: right;' class='layerTable'>" + temp + "\xB0</td>" +
 	"</tr>";
+	*/
 	queryData = queryData + "<tr class='queryRowDetails'>" +
 	   "<td class='layerTable'><b>Visibilidade</b></td>" +
-	   "<td style='text-align: right;' class='layerTable'>" + visibility + "m</td>" +
+	   "<td style='text-align: right;' class='layerTable'>" + visibility + "</td>" +
 	"</tr>";
 	queryData = queryData + "<tr class='queryRowDetails'>" +
 	   "<td class='layerTable'><b>Teto</b></td>" +
-	   "<td style='text-align: right;' class='layerTable'>" + teto + "m</td>" +
+	   "<td style='text-align: right;' class='layerTable'>" + teto + "</td>" +
+	"</tr>";
+
+	queryData = queryData + "<tr class='queryRowDetails'>" +
+	   "<td class='layerTable'><b>Alpha</b></td>" +
+	   "<td style='text-align: right;' class='layerTable'>" + alpha + "m</td>" +
 	"</tr>";
 	queryData = queryData + "<tr class='queryRowDetails'>" +
-	   "<td class='layerTable'><b>Vento</b></td>" +
-	   "<td style='text-align: right;' class='layerTable'>" + wind + "</td>" +
+	   "<td class='layerTable'><b>Beta</b></td>" +
+	   "<td style='text-align: right;' class='layerTable'>" + beta + "m</td>" +
 	"</tr>";
+	
+	queryData = queryData + "<tr class='queryRowDetails'>" +
+	   "<td class='layerTable'><b>Nuvem</b></td>" +
+	   "<td style='text-align: right;' class='layerTable'>" + cloud + "</td>" +
+	"</tr>";
+
+	queryData = queryData + "<tr class='queryRowDetails'>" +
+	   "<td style='text-align: left;' class='layerTable'>" +
+		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkVP' type='checkbox' class='flat-red' >Vapor d'Água Realçado</label>" +
+		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkTN' type='checkbox' class='flat-red' >Topo das Nuvens (T ºC)</label>" +
+		"</td>" +   
+	   "<td style='text-align: left;' class='layerTable'>" +
+		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkIV' type='checkbox' class='flat-red' >Inf. Termal</label>" +
+		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkVI' type='checkbox' class='flat-red' >Visível</label>" +
+	   "</td>" +
+	"</tr>";
+	
 	queryData = queryData + "<tr class='queryRowDetails' style='border-bottom: 2px solid #3c8dbc; border-top: 2px solid #3c8dbc;'>" +
 	   "<td colspan='2' class='layerTable' style='text-align:center;padding: 0px !important;'>" + metarMessage + "</td>" +
 	"</tr>";
@@ -253,7 +333,10 @@ function showColorAerodromo( entity ){
 		var dia = ('00' + theData[x].dia).slice(-2);
 		var hora = ('00' + theData[x].hora).slice(-2);
 		var minuto = ('00' + theData[x].minuto).slice(-2);
-		var cm = theData[x].metar.cm;
+		
+		var theCor = theData[x].metar.cm;
+		var cm = theCor.corMet;
+		
 		var dh = cm + "<br>" + dia + "<br>" + hora + ":" + minuto;
 		var bkColor = getMetarBkColor(cm);
 		theButton = theButton + '<button style="background-color:'+bkColor+';margin-right:3px;width: 40px;font-size: 10px;float:left" type="button" class="btn btn-primary btn-xs btn-flat">'+dh+'</button>';
@@ -266,8 +349,25 @@ function showColorAerodromo( entity ){
    	$("#queryMenuTable").append( queryData );
    	$("#queryMenuBox").show();
    	
-	
-	
+   	$("#chkVP").click( function(){
+   		satVP = this.checked;
+   		loadSatelites();
+   	});
+   	$("#chkTN").click( function(){
+   		satTN = this.checked;
+   		loadSatelites();
+   	});
+   	$("#chkIV").click( function(){
+   		satIV = this.checked;
+   		loadSatelites();
+   	});
+   	$("#chkVI").click( function(){
+   		satVI = this.checked;
+   		loadSatelites();
+   	});
+
+   	
+   	
 }
 
 function getMetarBkColor( theMetarColor ){
@@ -339,29 +439,17 @@ function bindCormetMouseClickQuery(){
 	    	if ( Cesium.defined( entity  ) && entity.name === "CORMET_AERODROMO") {
 	    		viewer._container.style.cursor = "help";
 	    		var theData = entity.properties.data.getValue();
-	    		
 	    		var topPos = movement.endPosition.y + 20 + "px";
 	    		var leftPos = movement.endPosition.x + 20 + "px";
-	    		
 	    		var theButton = "";
 	    		var maxColors = theData.length;
-	    		//if(maxColors > 4 ) maxColors = 4;
 	    		var widthPercent = (100 / maxColors);
 	    		for( var x=0; x < maxColors;x++   ) {
-	    			//var dia = ('00' + theData[x].dia).slice(-2);
-	    			//var hora = ('00' + theData[x].hora).slice(-2);
-	    			//var minuto = ('00' + theData[x].minuto).slice(-2);
-	    			var cm = theData[x].metar.cm;
-	    			//var dh = cm + "<br>" + dia + "<br>" + hora + ":" + minuto;
+	    			var cm = theData[x].metar.cm.corMet;
 	    			var dh = "&nbsp;";
 	    			var bkColor = getMetarBkColor(cm);
 	    			theButton = theButton + '<div style="width:'+widthPercent+'%;height:100%;float:left;background-color:'+bkColor+';"></div>';
-	    			//theButton = theButton + '<button style="background-color:'+bkColor+';margin-right:3px;width: 40px;font-size: 10px;float:left" type="button" class="btn btn-primary btn-xs btn-flat">'+dh+'</button>';
 	    		}
-	    		//var queryData = "<table><tr class='queryRowDetails'>" +
-	    		 //  "<td colspan='2' style='text-align:center;margin: 0 auto;' class='layerTable'>" + theButton + "</td>" +
-	    		//"</tr><table>";
-	    		
 	    		$("#corMetToolTip").html( theButton );
 	    		$("#corMetToolTip").css({'top': topPos,'left':leftPos});
 	    		$("#corMetToolTip").show();
@@ -381,7 +469,7 @@ function loadAerodromos() {
 		var data = aerodromos[ww].data;
 		var lastData = data[ data.length -1 ];
 		var metar = lastData.metar;
-		var corMet = metar.cm.toLowerCase();
+		var corMet = metar.cm.corMet.toLowerCase();
 		var aerodromo = metar.metar.airport;
 		var dataContainer = {"data":data};
 		
