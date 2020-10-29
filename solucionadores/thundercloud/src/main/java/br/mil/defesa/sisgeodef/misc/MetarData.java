@@ -18,7 +18,7 @@ SBCP	1600	500
 public class MetarData implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Metar metar;
-	private String cm;
+	private ColorData cm;
 	private Integer alpha;
 	private Integer beta;
 	
@@ -60,11 +60,11 @@ public class MetarData implements Serializable {
 		this.metar = metar;
 	}
 	
-	public String getCm() {
+	public ColorData getCm() {
 		return cm;
 	}
 	
-	public void setCm(String cm) {
+	public void setCm(ColorData cm) {
 		this.cm = cm;
 	}
 

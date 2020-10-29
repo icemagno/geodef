@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import br.mil.defesa.sisgeodef.misc.ColorData;
 import br.mil.defesa.sisgeodef.misc.ColorHelper;
 import br.mil.defesa.sisgeodef.misc.MetarData;
 import br.mil.defesa.sisgeodef.services.AuthService;
@@ -44,7 +45,7 @@ public class MeteoroCorController {
 	private String doRequestGet( String url ) {
 		
 		String uri = "http://www.redemet.aer.mil.br/api/consulta_automatica/index.php?" + url;
-		System.out.println( uri );
+
 		String responseBody = "";
 		
 		RestTemplate restTemplate;
@@ -89,7 +90,7 @@ public class MeteoroCorController {
 				Metar mm = facade.decode( ss );
 				MetarData md = new MetarData( mm );
 				metarList.add( md );
-				System.out.println( ss );
+
 			} catch ( Exception e ) {
 				System.out.println("METAR Invalido: " + ss );
 			}
@@ -186,16 +187,11 @@ public class MeteoroCorController {
 	}
 	
 	
-	private String calcColor( MetarData metarData ) {
+	private ColorData calcColor( MetarData metarData ) {
 		Metar metar = metarData.getMetar();
 		String neb = "***";
 		String weatherCondition = "***";
 		
-		
-		if( metar.isCavok() ) {
-			System.out.println("  > Retornou AZ por CAVOK.");
-			return "AZ";
-		}
 		
 		// Visibilidade
 		int visib = 0;
@@ -229,11 +225,17 @@ public class MeteoroCorController {
 				}
 			}
 		}
+		
+		if( metar.isCavok() ) {
+			System.out.println("  > Retornou AZ por CAVOK.");
+			return new ColorData( "AZ", teto );
+		}		
+		
 		return calcColor( visib, teto, metarData.getAlpha(), metarData.getBeta(), neb, weatherCondition );
 	}
 	
 	
-	private String calcColor( Integer visib, Integer teto, Integer alpha, Integer beta, String neb, String weatherCondition ) {
+	private ColorData calcColor( Integer visib, Integer teto, Integer alpha, Integer beta, String neb, String weatherCondition ) {
 		System.out.println("  > " + visib +" "+teto+" "+alpha+" "+beta+" "+neb );
 
 		String colorVisibilidade = null;
@@ -275,11 +277,8 @@ public class MeteoroCorController {
 		String finalColor = ch.pegaPior(piorCorP1, piorCorP2);
 		System.out.println("  > RESULTADO FINAL ( entre '" + piorCorP1 + "' e '" + piorCorP2 + "' ) : "  + finalColor );
 
-		return finalColor; 
+		return new ColorData( finalColor, teto ); 
 	}
-
-	
-	
 	
 	
 }
