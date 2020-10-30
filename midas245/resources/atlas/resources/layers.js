@@ -102,9 +102,9 @@ function getLayerByUUID( uuid ){
 function getLayerByKey( key ){
 	for( x=0; x<stackedProviders.length;x++ ) {
 		var sp = stackedProviders[x];
-		var layerKey = sp.data.sourceAddress + sp.data.sourceLayer;
+		var layerKey = sp.data.uniqueKey;
 		if( layerKey === key ) {
-			return sp.layer;
+			return sp;
 		}
 	}
 	return null;
@@ -231,6 +231,8 @@ function addLayerCard( data ){
 		return;
 	}
 	
+	data.uniqueKey = key;
+	
 	var provider = getProvider( data.sourceAddress, data.sourceLayer, false, 'png', true );
 	if( provider ){
 		theProvider.layer = viewer.imageryLayers.addImageryProvider( provider );
@@ -286,11 +288,15 @@ function addLayerCard( data ){
 
 }
 
+function updateCheckBox( param, enabled ){
+	$("#chk" + param ).prop( "checked", enabled );
+}
+
 function deleteLayer( uuid ) {
-	
 	for( x=0; x < stackedProviders.length;x++ ) {
 		var ll = stackedProviders[x];
 		if ( ll.uuid == uuid ) {
+			if( ll.data.param ) updateCheckBox( ll.data.param, false );  
 			if( viewer.imageryLayers.remove( ll.layer, true ) ){
 				stackedProviders.splice(x, 1);
 				jQuery("#" + uuid).fadeOut(400, function(){

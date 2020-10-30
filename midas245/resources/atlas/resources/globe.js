@@ -178,12 +178,12 @@ function startMap( theMapStyle ) {
 		//
 	});
 	imageryLayers.layerAdded.addEventListener(function (event) {
-		console.log( "Adicionou: " + event.imageryProvider.layers );
+		//console.log( "Adicionou layer.");
 		//$('.layerCounter').show();
 		//$("#lyrCount").text( event.imageryProvider.layers );
 	});
 	imageryLayers.layerRemoved.addEventListener(function (event) {
-		console.log( "Removeu: " + event.imageryProvider.layers );
+		//console.log( "Removeu layer");
 	});	
 	
 	
@@ -204,6 +204,7 @@ function startMap( theMapStyle ) {
 	connect();
 	drawHelper = new DrawHelper( viewer );
 	
+	/*
 	var graticule = new Graticule({
 	      	tileWidth: 512,
 	      	tileHeight: 512,
@@ -211,23 +212,10 @@ function startMap( theMapStyle ) {
 			color :   Cesium.Color.ORANGE,
 			sexagesimal : false,
 			weight:  0.8, 
-			zoomInterval: [
-				   Cesium.Math.toRadians(0.01), 
-				   Cesium.Math.toRadians(0.02),
-			       Cesium.Math.toRadians(0.05),
-			       Cesium.Math.toRadians(0.1),
-			       Cesium.Math.toRadians(0.2),
-			       Cesium.Math.toRadians(0.5),
-			       Cesium.Math.toRadians(1.0),
-			       Cesium.Math.toRadians(2.0),
-			       Cesium.Math.toRadians(5.0),
-			       Cesium.Math.toRadians(10.0),
-			       Cesium.Math.toRadians(20.0),
-			       Cesium.Math.toRadians(50.0)
-			] // Different map zoom levels show the grid interval
 	}, scene);
 	viewer.scene.imageryLayers.addImageryProvider(graticule);
 	graticule.setVisible( true );	
+	*/
 	
 };
 

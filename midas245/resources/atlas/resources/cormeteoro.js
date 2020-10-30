@@ -34,6 +34,8 @@ function addSingleImageryLayerCard( base64PngImage, data ){
 	var bbox = inmetImageBBox[ data.param ];
 	var aUniqueKey = "chk" + data.param;
 	
+	data.uniqueKey = aUniqueKey;
+	
 	var provider = new Cesium.SingleTileImageryProvider({
 	    url : base64PngImage,
 	    rectangle : Cesium.Rectangle.fromDegrees(bbox.w, bbox.s, bbox.e, bbox.n) //west, south, east, north
@@ -74,6 +76,8 @@ function addSingleImageryLayerCard( base64PngImage, data ){
 		var legUUID = "LEG_" + uuid;
 		$( "#" + legUUID ).html( "<img style='height: 205px;' src='" + base64PngImage + "'>" );
 		$( "#" + legUUID ).css( { 'text-align': 'center' } );
+
+		updateCheckBox( data.param, true );  
 
 	}	
 
@@ -132,55 +136,36 @@ function getGoesImages( parametro, horaObj ){
 				var data = { sourceAddress: obj.parametro_extenso, sourceLayer: hora, sourceName : obj.parametro_extenso, sourceHour: obj.hora, param: parametro, timeRequested: hora};
 				addSingleImageryLayerCard( obj.base64, data );
 			} else {
-				fireToast( 'error', 'Erro', 'Não existe imagem ' + parametro + ' disponível para às ' + hora, '' );
-				console.log("Imagem inexistente");
-				// DESISTI DE ACIONAR FALLBACK. 
-				//var newHora = backInTime( horaObj ); 
-				//console.log( horaObj );
-				//console.log( newHora );
-				//getGoesImages( parametro, newHora );
+				//fireToast( 'error', 'Erro', 'Não existe imagem ' + parametro + ' disponível para às ' + hora, '' );
+				var newHora = backInTime( horaObj ); 
+				console.log( 'Era: ' + horaObj + ' Foi para: ' + newHora );
+				getGoesImages( parametro, newHora );
 			}
 		},
 		error: function(xhr, textStatus) {
-			//
+			fireToast( 'error', 'Erro', 'Erro ao solicitar imagem de satélite.', '' );
 		}, 		
 	});
 	
 }
 
-function loadSatelites(){
-	var theCurrentLayer;
-	
-	if( satVP ) {
-		getGoesImages( "VP", horaAtual( true ) );
-	} else {
-		var theCurrentLayer = getLayerByKey( "chkVP" );
-	}
-	
-	if( satTN ) {
-		getGoesImages( "TN", horaAtual( true ) );
-	} else {
-		var theCurrentLayer = getLayerByKey( "chkTN" );
-	}
-	if( satIV ) {
-		getGoesImages( "IV", horaAtual( true ) );
-	} else {
-		var theCurrentLayer = getLayerByKey( "chkIV" );
-	}
-	if( satVI ) {
-		getGoesImages( "VI", horaAtual( true ) );
-	} else {
-		var theCurrentLayer = getLayerByKey( "chkVI" );
-	}
-	
+function removeSatelite( what ){
+	var theCurrentLayer = getLayerByKey( what );
+	console.log( theCurrentLayer );
 	if (theCurrentLayer) deleteLayer( theCurrentLayer.uuid );
-	
-	
 }
 
+function loadSatelite( what ){
+	getGoesImages( what, horaAtual( true ) );
+}
+
+function updateSatelites(){
+	$(".satChk").each( function( index ){
+		if( this.checked ) getGoesImages( this.id.slice(3), horaAtual( true ) );
+	});
+}
 
 function startCorMetSolution(){
-
 	loadCores( );
 	var interv = ( 1000 * 60 ) * 5;
 	corMetConJob = setInterval( function(){
@@ -196,7 +181,7 @@ function loadCores( ) {
 	loadingCorMetoc = true;
 	removeCores();
 	
-	loadSatelites();
+	updateSatelites();
 
 	isCorMetSolutionActive = true;
 	$("#toolCOR").removeClass("btn-warning");
@@ -303,12 +288,12 @@ function showColorAerodromo( entity ){
 
 	queryData = queryData + "<tr class='queryRowDetails'>" +
 	   "<td style='text-align: left;' class='layerTable'>" +
-		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkVP' type='checkbox' class='flat-red' >Vapor d'Água Realçado</label>" +
-		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkTN' type='checkbox' class='flat-red' >Topo das Nuvens (T ºC)</label>" +
+		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkVP' type='checkbox' class='flat-red satChk' >Vapor d'Água Realçado</label>" +
+		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkTN' type='checkbox' class='flat-red satChk' >Topo das Nuvens (T ºC)</label>" +
 		"</td>" +   
 	   "<td style='text-align: left;' class='layerTable'>" +
-		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkIV' type='checkbox' class='flat-red' >Inf. Termal</label>" +
-		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkVI' type='checkbox' class='flat-red' >Visível</label>" +
+		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkIV' type='checkbox' class='flat-red satChk' >Inf. Termal</label>" +
+		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkVI' type='checkbox' class='flat-red satChk' >Visível</label>" +
 	   "</td>" +
 	"</tr>";
 	
@@ -316,16 +301,6 @@ function showColorAerodromo( entity ){
 	   "<td colspan='2' class='layerTable' style='text-align:center;padding: 0px !important;'>" + metarMessage + "</td>" +
 	"</tr>";
 
-	/*
-	for( var tt = 0; tt < metar.clouds.length; tt++ ) {
-		queryData = queryData + "<tr class='queryRowDetails'>" +
-		   "<td class='layerTable'><b>Nuvem '"+ metar.clouds[tt].quantity +"'</b></td>" +
-		   "<td style='text-align: right;' class='layerTable'>" + metar.clouds[tt].height + "m</td>" +
-		"</tr>";
-	}
-	*/
-	
-	
 	var theButton = "";
 	var maxColors = theData.length;
 	//if(maxColors > 4 ) maxColors = 4;
@@ -351,21 +326,24 @@ function showColorAerodromo( entity ){
    	
    	$("#chkVP").click( function(){
    		satVP = this.checked;
-   		loadSatelites();
+   		if( satVP ) { loadSatelite( "VP" ); } else { removeSatelite( "chkVP" ) }  
    	});
    	$("#chkTN").click( function(){
    		satTN = this.checked;
-   		loadSatelites();
+   		if( satTN ) { loadSatelite( "TN" ); } else { removeSatelite( "chkTN" ) }  
    	});
    	$("#chkIV").click( function(){
    		satIV = this.checked;
-   		loadSatelites();
+   		if( satIV ) { loadSatelite( "IV" ); } else { removeSatelite( "chkIV" ) }  
    	});
    	$("#chkVI").click( function(){
    		satVI = this.checked;
-   		loadSatelites();
+   		if( satVI ) { loadSatelite( "VI" ); } else { removeSatelite( "chkVI" ) }  
    	});
 
+	$(".satChk").each( function( index ){
+		if( getLayerByKey( this.id ) ) $( "#"+this.id ).prop( "checked", true ); 
+	});
    	
    	
 }
