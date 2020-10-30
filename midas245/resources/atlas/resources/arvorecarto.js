@@ -1,6 +1,7 @@
 var theTreeElement = null;
 var viewerCatalog = null;
 var selectedWMSService = null;
+var searchResultCards = [];
 
 function openCatalogBox(){
 	getCatalogTopics();
@@ -73,32 +74,78 @@ function startCesiumInMiniMap(){
 function searchTree(){
     var pattern = $('#searchCatalogTree').val();
     if( pattern.length === 0 ){
+    	$("#layerSearchResultContainer").html('');
     	$("#layerSearchResultContainer").hide();
     	$("#layerContainerHolder").show();
+    	searchResultCards = [];
     } else {
-    	$("#layerSearchResultContainer").empty();
+    	$("#layerSearchResultContainer").html('');
     	$("#layerSearchResultContainer").show();
     	$("#layerContainerHolder").hide();
-   		
-    	
+    	searchResultCards = [];
         jQuery.ajax({
-    		url:"/catalog/find?nome=DSG&limite=5", 
+    		url:"/catalog/find?nome=" + pattern + "&limite=7", 
     		type: "GET", 
     		success: function( searchResults ) {
-    			console.log( searchResults );
-    			$("#layerSearchResultContainer").append( "<h4>Não Implementado Ainda</h4>" );
+    			prepareSearchResults( searchResults );
     		},
     	    error: function(xhr, textStatus) {
     	    }, 		
         });
-    	
-    	
     }    
+}
+
+function previewByCard( id ){
+	previewByNode( searchResultCards[ id ] );
+}
+
+function getSearchResultCard( result ){
+	var uuid = "SR_" + result.id;
+
+	searchResultCards[ result.id ] = result;
+	var whatToShow = result.data.description;
+	if( whatToShow.length == 0 ) whatToShow = result.data.sourceLayer;
+	if( whatToShow.length > 120 ) whatToShow = whatToShow.substring(0, 120) + '...';
+	
+	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
+	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="2" style="width: 100%;" class="layerTable">' + whatToShow + 
+	//'<br><b>'+result.data.sourceLayer+'</b>' + 
+	'</td><td style="width: 5%;">' + 
+	'<a title="Exibir" href="#" onClick="previewByCard(\''+result.id+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
+	'</td></tr>';
+	
+	table = table + '<tr><td colspan="3" class="layerTable" >'; 
+	table = table + '<i>'+result.data.sourceAddressOriginal+'</i>';
+	table = table + '</td></tr>';
+	table = table + '</table></div>';
+
+	var layerText = '<div id="'+uuid+'" style="overflow:hidden;height:70px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
+	table + '</div></div>';
+	return layerText;
+}
+
+
+function prepareSearchResults( searchResults ){
+	for( x=0; x < searchResults.length; x++  ) {
+		var result = searchResults[x];
+		$("#layerSearchResultContainer").append( getSearchResultCard( result ) );
+	}
+	
+	/*
+	$('#layerSearchResultContainer').slimScroll({
+        height: '550px',
+        wheelStep : 10,
+    });
+    */	
+
+	
 }
 
 function getCatalogTopics(){
 	
 	$("#mainWaitPanel").show();
+	
+	$("#layerSearchResultContainer").html('');
 	
     jQuery.ajax({
 		url:"/catalog/topics", 
@@ -243,24 +290,7 @@ function getTopicSources( topic ){
     
     tree.on('select', function (e, node, id) {
     	var node = tree.getDataById( id );
-    	
-    	if( node.data.sourceAddress.length > 5 ){ 
-	    	$("#layerDetailsContainer").html( '<h4><b>'+ node.data.sourceName +'</b></h4><h4>Descrição:</h4><i>' + node.data.description + '</i><h4>Endereço Original:</h4><i>' + node.data.sourceAddressOriginal + '</i>' );
-	   
-	    	var logoImage = node.data.sourceLogo;
-	    	$("#layerLogoImage").html('');
-	    	$("#layerLogoImage").hide();
-	    	if( logoImage ){
-	    		var logoImg = "<img style='width:150px;height:50px;border:1px solid #ddd' src='"+ logoImage + "'>";
-	    		$("#layerLogoImage").html( logoImg );
-	    		$("#layerLogoImage").show();
-	    	}
-	    	
-	    	if( node.data.sourceAddress.length > 10 ){
-	    		previewLayer( node.data );
-	    	}
-    	}
-    	
+    	previewByNode( node );
     });    
     
     tree.on('unselect', function (e, node, id) {
@@ -274,7 +304,27 @@ function getTopicSources( topic ){
     	$("#layerDetailsContainer").text('');
     });    
     
- }
+}
+
+function previewByNode( node ){
+	
+	if( node.data.sourceAddress.length > 5 ){ 
+    	$("#layerDetailsContainer").html( '<h4><b>'+ node.data.sourceName +'</b></h4><h4>Descrição:</h4><i>' + node.data.description + '</i><h4>Endereço Original:</h4><i>' + node.data.sourceAddressOriginal + '</i>' );
+   
+    	var logoImage = node.data.sourceLogo;
+    	$("#layerLogoImage").html('');
+    	$("#layerLogoImage").hide();
+    	if( logoImage ){
+    		var logoImg = "<img style='width:150px;height:50px;border:1px solid #ddd' src='"+ logoImage + "'>";
+    		$("#layerLogoImage").html( logoImg );
+    		$("#layerLogoImage").show();
+    	}
+    	
+    	if( node.data.sourceAddress.length > 10 ){
+    		previewLayer( node.data );
+    	}
+	}
+}
 
 
 function previewLayer( data ){

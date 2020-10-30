@@ -98,7 +98,7 @@ function startMap( theMapStyle ) {
 	
 	terrainProvider = new Cesium.CesiumTerrainProvider({
 		url : olimpo,
-		requestVertexNormals : true,
+		requestVertexNormals : false,
 		isSct : false
 	});
 	
@@ -114,7 +114,6 @@ function startMap( theMapStyle ) {
 		fireToast( 'info', 'OpenStreetMap', 'Você está usando o OpenStreetMap em ' + osmTileServer , '000' );
 		baseOsmProvider = new Cesium.UrlTemplateImageryProvider({
 			url : osmTileServer + 'tile/{z}/{x}/{y}.png',
-			credit : 'Ministério da Defesa - SisGeoDef',
 			maximumLevel : 25,
 			hasAlphaChannel : false
 		});

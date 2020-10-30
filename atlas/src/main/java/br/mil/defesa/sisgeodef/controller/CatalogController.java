@@ -57,14 +57,9 @@ public class CatalogController {
 	@RequestMapping(value = "/find", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody List<CatalogSourceDTO> find(  @RequestParam(value="nome",required=true) String nome, @RequestParam(value="limite",required=true) Integer limite ) {
 
-		/**
-		 * 			PRECISO TERMINAR ISSO !!!
-		 */
+		List<CatalogSourceDTO> result = catalogService.searchCatalog( nome, limite );
 		
-		List<CatalogSourceDTO> result = catalogService.getSources( 198 );
-		System.out.println( "FIND Nao implementado. Va em CatalogController e termine seu trabalho!" );
 		return result;
-		
 	}
 	
 	

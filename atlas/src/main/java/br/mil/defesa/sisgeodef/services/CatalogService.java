@@ -167,7 +167,17 @@ public class CatalogService {
 		
 	}
 
+	public List<CatalogSourceDTO> searchCatalog( String q, int limit ) {
+		List<CatalogSourceDTO> result = new ArrayList<CatalogSourceDTO>();
+		List<CatalogSource> sources = catalogSourcesRepository.searchCatalog(q, limit);
+		for( CatalogSource ss :  sources ) {
+			result.add( new CatalogSourceDTO(ss) );
+		}
+		return result;
+	}
+	
 	public List<CatalogSourceDTO> getSources(Integer parentId) {
+		
     	Optional<CatalogSource> sourceObj = catalogSourcesRepository.findById( parentId.longValue() );
     	List<CatalogSourceDTO> result = new ArrayList<CatalogSourceDTO>();
 		if( sourceObj.isPresent() ) {
@@ -176,6 +186,7 @@ public class CatalogService {
 			}
 		}
 		return result;
+		
 	}
 
 

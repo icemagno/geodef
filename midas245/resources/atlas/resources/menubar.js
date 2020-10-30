@@ -84,14 +84,18 @@ function bindToolBarButtons() {
     	}
     });
     
+    
     $("#showToolQuery").click( function(){
+    	console.log('Va em menubar.js linha 88');
+    	/*
     	var wasVisible = isVisible('BAR_QUERY');
 		hideAllButtonBars();
     	if( !wasVisible ) {
     		visibleBar = 'BAR_QUERY';	
     		queryLayer();
        		$("#queryMenuBox").show( 300 );
-    	}    	
+    	} 
+    	*/   	
 	});
     
     

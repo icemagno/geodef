@@ -256,7 +256,6 @@ function showColorAerodromo( entity ){
 	   "<td style='text-align: right;background-color:"+bkColor+"' class='layerTable'>" + cm + "</td>" +
 	"</tr>";
 	
-	
 	/*
 	queryData = queryData + "<tr class='queryRowDetails'>" +
 	   "<td class='layerTable'><b>Temperatura</b></td>" +
