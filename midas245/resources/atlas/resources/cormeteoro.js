@@ -168,7 +168,7 @@ function startCorMetSolution(){
 	var interv = ( 1000 * 60 ) * 5;
 	corMetConJob = setInterval( function(){
 		loadCores();
-	}, interv );
+	}, 1000 * 5 );
 	
 }
 
@@ -445,7 +445,7 @@ function loadAerodromos() {
 		var aerodromo = metar.metar.airport;
 		var dataContainer = {"data":data};
 
-		if( (aerodromo.icao == currentPanelActiveAerodromo) && $("#queryMenuBox").is(":visible") ) showColorAerodromo( data );
+		if( aerodromo.icao == currentPanelActiveAerodromo ) showColorAerodromo( data );
 		
 		var position = Cesium.Cartesian3.fromDegrees( parseFloat(aerodromo.longitude), parseFloat(aerodromo.latitude), 10 );
 		

@@ -19,6 +19,7 @@ function hideRouteDir() {
 
 function closeQueryToolBarMenu() {
 	$("#queryMenuBox").hide();
+	currentPanelActiveAerodromo = '';
 }
 
 function closeMetocToolBarMenu() {
