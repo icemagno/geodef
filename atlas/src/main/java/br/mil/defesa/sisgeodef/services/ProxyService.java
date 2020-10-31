@@ -1,8 +1,6 @@
 package br.mil.defesa.sisgeodef.services;
 
 import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -67,28 +65,28 @@ public class ProxyService {
 				bbox = "&bbox=" + bw + "," + bs + "," + be + "," + bn;
 			}
 			
-			/*
+			
 			RestTemplate restTemplate;
 			if( useProxy ) {
 				restTemplate = new RestTemplate( authService.getFactory() );
 			} else {
 				restTemplate = new RestTemplate( );
 			}
-			*/		
 					
-			
-			// var getLegendUrl = data.sourceAddress + "?service=wms&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" + data.sourceLayer;
 			String urlSource = source.getSourceAddressOriginal() + 
 					"?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" + source.getSourceLayer() + 
 					"&LEGEND_OPTIONS=layout:vertical;columns:1;hideEmptyRules:true;fontAntiAliasing:true;countMatched:true" + bbox;
 			
+			System.out.println( urlSource );
+			
 			try {
-				InputStream in = new URL( urlSource ).openStream() ;
-				Files.copy( in, Paths.get( target ) );
+				byte[] imageBytes = restTemplate.getForObject( urlSource, byte[].class );
+				Files.write(Paths.get( target ), imageBytes);			
 			} catch ( Exception e ) {
 				e.printStackTrace();
 				urlPath = "";
 			}
+			
 		} else {
 			urlPath = "";
 		}
