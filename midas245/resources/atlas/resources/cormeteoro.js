@@ -4,6 +4,7 @@ var corMetEventHandler = null;
 var isCorMetSolutionActive = false;
 var corMetConJob = null;
 var loadingCorMetoc = false;
+var currentPanelActiveAerodromo = null;
 
 var satVP = false;
 var satIV = false;
@@ -20,6 +21,7 @@ inmetImageBBox["VI"] = { 'w':-75.4, 's':-35.8, 'e':-31.29, 'n':7.3 };
 
 
 function cancelCorMetocSolution(){
+	currentPanelActiveAerodromo = "";
 	clearInterval( corMetConJob );
 	removeCores();
 	isCorMetSolutionActive = false;
@@ -121,11 +123,7 @@ function horaAtual( rd ){
 function getGoesImages( parametro, horaObj ){
 	var hora = horaObj.h + ":" + horaObj.m;
 	
-	console.log("Carrregando imagem " + parametro + " das " + hora);
-	
 	var url = "/metoc/goes/BR/" + parametro + "/" + dataAtualFormatada() + "/" + hora;
-	
-	console.log( url );
 	
 	$.ajax({
 		url: url,
@@ -214,8 +212,7 @@ function getColor( cm ){
 	return Cesium.Color.SILVER;
 }
 
-function showColorAerodromo( entity ){
-	var theData = entity.properties.data.getValue();
+function showColorAerodromo( theData ){
 	var queryData = "";
 	var refData = theData[ theData.length -1 ];
 	var metar = refData.metar.metar;
@@ -223,11 +220,13 @@ function showColorAerodromo( entity ){
 	var aerodromoName = aerodromo.icao + " (" + aerodromo.iata + ")";
 	var temp = metar.temperature;
 	
+	currentPanelActiveAerodromo = aerodromo.icao; 
+	
 	var alpha = refData.metar.alpha;  
 	var beta = refData.metar.beta; 
 	
 	var visibility = metar.visibility.mainVisibility;  
-	var cloud = "";
+	
 	
 	var metarMessage = metar.message;
 	var wind = metar.wind.directionDegrees + "\xB0 (" +metar.wind.direction + ") " + metar.wind.speed + "kt ";
@@ -235,8 +234,10 @@ function showColorAerodromo( entity ){
 	var theCor = refData.metar.cm;
 	var cm = theCor.corMet;
 	var teto = theCor.teto;
+	var cloud = theCor.nuvem;
 	var bkColor = getMetarBkColor(cm);	
 	
+	if( teto ) teto = teto + 'ft';
 	
 	if( metar.cavok ){
 		visibility = "> 10Km";
@@ -244,31 +245,9 @@ function showColorAerodromo( entity ){
 		cloud = "NSC";
 	}
 	
-	console.log( refData );
-	
 	queryData = queryData + "<tr class='queryRowDetails'>" +
 	   "<td class='layerTable'><b>Aeródromo</b></td>" +
-	   "<td style='text-align: right;' class='layerTable'>" + aerodromoName + "</td>" +
-	"</tr>";
-	
-	queryData = queryData + "<tr class='queryRowDetails'>" +
-	   "<td class='layerTable'><b>Cor Atual</b></td>" +
-	   "<td style='text-align: right;background-color:"+bkColor+"' class='layerTable'>" + cm + "</td>" +
-	"</tr>";
-	
-	/*
-	queryData = queryData + "<tr class='queryRowDetails'>" +
-	   "<td class='layerTable'><b>Temperatura</b></td>" +
-	   "<td style='text-align: right;' class='layerTable'>" + temp + "\xB0</td>" +
-	"</tr>";
-	*/
-	queryData = queryData + "<tr class='queryRowDetails'>" +
-	   "<td class='layerTable'><b>Visibilidade</b></td>" +
-	   "<td style='text-align: right;' class='layerTable'>" + visibility + "</td>" +
-	"</tr>";
-	queryData = queryData + "<tr class='queryRowDetails'>" +
-	   "<td class='layerTable'><b>Teto</b></td>" +
-	   "<td style='text-align: right;' class='layerTable'>" + teto + "</td>" +
+	   "<td style='text-align: right;background-color:"+bkColor+"' class='layerTable'>" + aerodromoName + "</td>" +
 	"</tr>";
 
 	queryData = queryData + "<tr class='queryRowDetails'>" +
@@ -277,14 +256,24 @@ function showColorAerodromo( entity ){
 	"</tr>";
 	queryData = queryData + "<tr class='queryRowDetails'>" +
 	   "<td class='layerTable'><b>Beta</b></td>" +
-	   "<td style='text-align: right;' class='layerTable'>" + beta + "m</td>" +
+	   "<td style='text-align: right;' class='layerTable'>" + beta + "ft</td>" +
+	"</tr>";
+	
+	queryData = queryData + "<tr class='queryRowDetails'>" +
+	   "<td class='layerTable'><b>Visibilidade</b></td>" +
+	   "<td id='corMetDataVisibility' style='text-align: right;' class='layerTable'>" + visibility + "</td>" +
+	"</tr>";
+
+	queryData = queryData + "<tr class='queryRowDetails'>" +
+	   "<td class='layerTable'><b>Teto</b></td>" +
+	   "<td id='corMetDataTeto' style='text-align: right;' class='layerTable'>" + teto + "</td>" +
 	"</tr>";
 	
 	queryData = queryData + "<tr class='queryRowDetails'>" +
 	   "<td class='layerTable'><b>Nuvem</b></td>" +
-	   "<td style='text-align: right;' class='layerTable'>" + cloud + "</td>" +
+	   "<td id='corMetDataCloud' style='text-align: right;' class='layerTable'>" + cloud + "</td>" +
 	"</tr>";
-
+	
 	queryData = queryData + "<tr class='queryRowDetails'>" +
 	   "<td style='text-align: left;' class='layerTable'>" +
 		   "<label><input style='margin: 0px 5px 0px 0px;' id='chkVP' type='checkbox' class='flat-red satChk' >Vapor d'Água Realçado</label>" +
@@ -297,26 +286,13 @@ function showColorAerodromo( entity ){
 	"</tr>";
 	
 	queryData = queryData + "<tr class='queryRowDetails' style='border-bottom: 2px solid #3c8dbc; border-top: 2px solid #3c8dbc;'>" +
-	   "<td colspan='2' class='layerTable' style='text-align:center;padding: 0px !important;'>" + metarMessage + "</td>" +
+	   "<td id='corMetDataMetar' colspan='2' class='layerTable' style='text-align:center;padding: 0px !important;'>" + metarMessage + "</td>" +
 	"</tr>";
 
-	var theButton = "";
-	var maxColors = theData.length;
-	//if(maxColors > 4 ) maxColors = 4;
-	for( var x=0; x < maxColors;x++   ) {
-		var dia = ('00' + theData[x].dia).slice(-2);
-		var hora = ('00' + theData[x].hora).slice(-2);
-		var minuto = ('00' + theData[x].minuto).slice(-2);
-		
-		var theCor = theData[x].metar.cm;
-		var cm = theCor.corMet;
-		
-		var dh = cm + "<br>" + dia + "<br>" + hora + ":" + minuto;
-		var bkColor = getMetarBkColor(cm);
-		theButton = theButton + '<button style="background-color:'+bkColor+';margin-right:3px;width: 40px;font-size: 10px;float:left" type="button" class="btn btn-primary btn-xs btn-flat">'+dh+'</button>';
-	}
+	var theButton = getColorCards( theData );
+	
 	queryData = queryData + "<tr class='queryRowDetails'>" +
-	   "<td colspan='2' style='text-align:center;margin: 0 auto;' class='layerTable'>" + theButton + "</td>" +
+	   "<td id='corMetDataColors' colspan='2' style='text-align:center;margin: 0 auto;' class='layerTable'>" + theButton + "</td>" +
 	"</tr>";
 	
 	$(".queryRowDetails").remove();
@@ -344,7 +320,25 @@ function showColorAerodromo( entity ){
 		if( getLayerByKey( this.id ) ) $( "#"+this.id ).prop( "checked", true ); 
 	});
    	
-   	
+   	$("#queryBoxTitle").text('Cor Meteorológica');
+}
+
+function getColorCards( theData ){
+	var theButton = "";
+	var maxColors = theData.length;
+	for( var x=0; x < maxColors;x++   ) {
+		var dia = ('00' + theData[x].dia).slice(-2);
+		var hora = ('00' + theData[x].hora).slice(-2);
+		var minuto = ('00' + theData[x].minuto).slice(-2);
+		
+		var theCor = theData[x].metar.cm;
+		var cm = theCor.corMet;
+		
+		var dh = cm + "<br>" + dia + "<br>" + hora + ":" + minuto;
+		var bkColor = getMetarBkColor(cm);
+		theButton = theButton + '<button style="background-color:'+bkColor+';margin-right:3px;width: 40px;font-size: 10px;float:left" type="button" class="btn btn-primary btn-xs btn-flat">'+dh+'</button>';
+	}
+	return theButton;
 }
 
 function getMetarBkColor( theMetarColor ){
@@ -405,7 +399,7 @@ function bindCormetMouseClickQuery(){
 		var pickedObject = viewer.scene.pick( click.position );
 	    if ( Cesium.defined( pickedObject ) ) {
 	    	var entity = pickedObject.id;
-	    	if ( entity.name === "CORMET_AERODROMO") showColorAerodromo( entity );
+	    	if ( entity.name === "CORMET_AERODROMO") showColorAerodromo( entity.properties.data.getValue() );
 	    }
 	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
@@ -443,12 +437,15 @@ function bindCormetMouseClickQuery(){
 function loadAerodromos() {
 	
 	for( var ww = 0; ww < aerodromos.length; ww++ ) {
+		
 		var data = aerodromos[ww].data;
 		var lastData = data[ data.length -1 ];
 		var metar = lastData.metar;
 		var corMet = metar.cm.corMet.toLowerCase();
 		var aerodromo = metar.metar.airport;
 		var dataContainer = {"data":data};
+
+		if( (aerodromo.icao == currentPanelActiveAerodromo) && $("#queryMenuBox").is(":visible") ) showColorAerodromo( data );
 		
 		var position = Cesium.Cartesian3.fromDegrees( parseFloat(aerodromo.longitude), parseFloat(aerodromo.latitude), 10 );
 		

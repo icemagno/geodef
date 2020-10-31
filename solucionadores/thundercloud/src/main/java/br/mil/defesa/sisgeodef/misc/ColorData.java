@@ -6,11 +6,13 @@ public class ColorData implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String corMet;
 	private Integer teto;
+	private String nuvem;
 
-	public ColorData(String corMet, Integer teto) {
+	public ColorData(String corMet, Integer teto, String nuvem ) {
 		super();
 		this.corMet = corMet;
 		this.teto = teto;
+		this.nuvem = nuvem;
 	}
 
 	public String getCorMet() {
@@ -21,5 +23,8 @@ public class ColorData implements Serializable {
 		return teto;
 	}
 
-
+	public String getNuvem() {
+		return nuvem;
+	}
+	
 }

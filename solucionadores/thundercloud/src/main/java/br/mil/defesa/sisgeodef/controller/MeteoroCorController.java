@@ -157,7 +157,16 @@ public class MeteoroCorController {
 	public @ResponseBody List<MetarData> validate(  ) {
 		List<MetarData> metarList = new ArrayList<MetarData>();
 		try {
-			metarList.add( getTest("SBRJ 221100Z 35006KT 9999 FEW020CB SCT080 25/20 Q1012") );
+			metarList.add( getTest("SBRJ 271100Z 13003KT 100V160 0500 R02/0450N R20/0550N FG VV001 13/13 Q1020") );  	// OK !
+			metarList.add( getTest("SBRJ 271100Z /////KT 0500 FG VV/// 12/12 Q1022") );									// OK !
+			metarList.add( getTest("SBRJ 271100Z 07003KT 9000 NSC 17/15 Q1006") );										// OK !
+			
+			metarList.add( getTest("SBRJ 271100Z AUTO 13003KT 070V160 8000 SCT001 OVC003 15/14 Q1021") );
+			metarList.add( getTest("SBRJ 271100Z AUTO 17007KT 6000 OVC002 15/14 Q1020") );
+			metarList.add( getTest("SBRJ 271100Z 36003KT 1000 -RA BR OVC005 16/15 Q1021") );
+
+
+			/*
 			metarList.add( getTest("SBRJ 221100Z 35006KT 9999 FEW020 SCT080 25/20 Q1012") );
 			metarList.add( getTest("SBRJ 221100Z 35006KT 9999 FEW020TCU SCT080 25/20 Q1012") );
 			metarList.add( getTest("SBRJ 221100Z 35006KT 9999 BKN020 SCT080 25/20 Q1012") );
@@ -170,7 +179,8 @@ public class MeteoroCorController {
 			metarList.add( getTest("SBRJ 231100Z 15005KT 080V190 2000 -DZ OVC005 17/15 Q1022") ); // ( VM )
 			metarList.add( getTest("SBRJ 231100Z AUTO VRB02KT 9999 FEW002 23/23 Q1011") ); // ( VM )
 			metarList.add( getTest("SBRJ 231136Z AUTO 16003KT 9999 BKN002 23/23 Q1012") ); // ( VM )
-			metarList.add( getTest("SBRJ 261800Z 08015KT CAVOK 80/20 Q1012") ); 
+			metarList.add( getTest("SBRJ 261800Z 08015KT CAVOK 80/20 Q1012") );
+			*/ 
 		} catch ( Exception e ) {
 			e.printStackTrace();
 		}
@@ -206,6 +216,8 @@ public class MeteoroCorController {
 		
 		// Teto
 		Integer teto = metar.getVerticalVisibility();
+		String nuvem = "VV";
+		
 		if ( teto == null ) {
 			// Nao tem Visibilidade vertical
 			Cloud theCloud = null;
@@ -222,20 +234,21 @@ public class MeteoroCorController {
 						}
 					}
 					teto = theCloud.getHeight();
+					nuvem = theCloud.getQuantity().name();
 				}
 			}
 		}
 		
 		if( metar.isCavok() ) {
 			System.out.println("  > Retornou AZ por CAVOK.");
-			return new ColorData( "AZ", teto );
+			return new ColorData( "AZ", teto, nuvem );
 		}		
 		
-		return calcColor( visib, teto, metarData.getAlpha(), metarData.getBeta(), neb, weatherCondition );
+		return calcColor( visib, teto, metarData.getAlpha(), metarData.getBeta(), neb, weatherCondition, nuvem );
 	}
 	
 	
-	private ColorData calcColor( Integer visib, Integer teto, Integer alpha, Integer beta, String neb, String weatherCondition ) {
+	private ColorData calcColor( Integer visib, Integer teto, Integer alpha, Integer beta, String neb, String weatherCondition, String nuvem ) {
 		System.out.println("  > " + visib +" "+teto+" "+alpha+" "+beta+" "+neb );
 
 		String colorVisibilidade = null;
@@ -277,7 +290,7 @@ public class MeteoroCorController {
 		String finalColor = ch.pegaPior(piorCorP1, piorCorP2);
 		System.out.println("  > RESULTADO FINAL ( entre '" + piorCorP1 + "' e '" + piorCorP2 + "' ) : "  + finalColor );
 
-		return new ColorData( finalColor, teto ); 
+		return new ColorData( finalColor, teto, nuvem ); 
 	}
 	
 	

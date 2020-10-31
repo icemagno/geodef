@@ -268,7 +268,7 @@
 								<div class="table-responsive">
 									<table id="queryMenuTable" class="table" style="margin-bottom: 0px; width: 100%">
 										<tr>
-											<td class="layerTable" colspan="2"><i class="fa fa-question"></i> &nbsp;<b>Ferramenta de Interrogação</b></td>
+											<td class="layerTable" colspan="2"><i class="fa fa-question"></i> &nbsp;<b><span id="queryBoxTitle">Ferramenta de Interrogação</span></b></td>
 											<td style="width: 5px; padding: 0px;">
 												<a title="Fechar" href="#" onClick="closeQueryToolBarMenu();" class="text-light-blue pull-right">
 													<i class="fa fa-close"></i>
