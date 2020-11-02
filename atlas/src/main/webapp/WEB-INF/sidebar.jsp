@@ -12,7 +12,7 @@
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Digite os dados de busca" id="search-input">
                 <span class="input-group-btn">
-                    <button style="cursor:pointer" type="submit" name="search" id="search-btn" class="btn btn-xs">
+                    <button style="cursor:pointer" type="button" name="search" id="search-btn" class="btn btn-xs disabled">
                         <img src="${midasLocation}/atlas/icons/lupa_preta.png" style="height: 19px;">
                     </button>
 					<button style="cursor:pointer" title="Meu Lugar" id="myPlaceBtn" type="button" class="btn btn-xs">

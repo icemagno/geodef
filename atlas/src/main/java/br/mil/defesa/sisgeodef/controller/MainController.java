@@ -1,13 +1,10 @@
 package br.mil.defesa.sisgeodef.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.security.Principal;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,80 +13,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.mil.defesa.sisgeodef.services.GenerateChartPDF;
+import br.mil.defesa.sisgeodef.services.ExportService;
 import br.mil.defesa.sisgeodef.services.MailService;
 
 @Controller
 public class MainController extends BasicController {
 	
-
-	@Value("${calisto.sharedfolder}")
-	private String calistofolder;   
-
-	@Value("${calisto.url}")
-	private String calistoUrl;   
-	
-	@Autowired
-	private GenerateChartPDF chartPdf;
-	
 	@Autowired
 	private MailService mailer;
 	
+	@Autowired
+	private ExportService exportService;
+	
 	@RequestMapping(value = "/saveimage", method = RequestMethod.POST)
-	public @ResponseBody String saveImage( @RequestParam("imgBase64") String imgBase64, @RequestParam("imgName") String imgName ) {
-		
-        try {
-        	if ( !calistofolder.endsWith("/") ) calistofolder = calistofolder + "/";
-        	String base64Image = imgBase64.split(",")[1];
-        	byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
-            String directory = calistofolder + imgName;
-            FileOutputStream fos = new FileOutputStream(directory);
-            fos.write( imageBytes );
-            fos.close();
-            
-            return "success ";
-        } catch( Exception e ) {
-        	e.printStackTrace();
-            return "error = " + e.getMessage();
-        }		
-		
+	public @ResponseBody String saveImage( @RequestParam("imgBase64") String imgBase64 ) {
+		return exportService.exportToPng( imgBase64 );
 	}
 	
 
 	@RequestMapping(value = "/createchart", method = RequestMethod.POST)
-	public @ResponseBody String createChart( @RequestParam("imgBase64") String imgBase64, @RequestParam("imgName") String imgName ) {
-		
-        try {
-        	if ( !calistofolder.endsWith("/") ) calistofolder = calistofolder + "/";
-        	if ( !calistoUrl.endsWith("/") ) calistoUrl = calistoUrl + "/";
-
-        	String pdfWorkFolder = "pdf/"; 
-        	
-        	String imageName = imgName + ".png";
-        	String pdfName = imgName + ".pdf";
-        	
-        	String base64Image = imgBase64.split(",")[1];
-        	byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
-            
-        	
-        	String imageFullName = calistofolder + pdfWorkFolder + imageName;
-        	new File( calistofolder + pdfWorkFolder ).mkdirs();
-        	
-        	FileOutputStream fos = new FileOutputStream( imageFullName );
-            fos.write( imageBytes );
-            fos.close();
-
-            String pdfUrl = calistoUrl + pdfWorkFolder + pdfName; 
-            String pdfFullName = calistofolder + pdfWorkFolder + pdfName; 
-            chartPdf.getChart( imageFullName, pdfFullName );
-            
-            return pdfUrl;
-            
-        } catch( Exception e ) {
-        	e.printStackTrace();
-            return "error = " + e.getMessage();
-        }		
-		
+	public @ResponseBody String createChart( @RequestParam("imgBase64") String imgBase64, @RequestParam("legends") String legends ) {
+		return exportService.exportToPdf( imgBase64, legends );
 	}
 	
 	

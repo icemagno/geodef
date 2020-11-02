@@ -9,7 +9,7 @@ public class StartupAppListener implements ApplicationListener<ContextRefreshedE
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		//
+		System.out.println("*** Você precisa apargar os arquivos de legenda antigos ***");
 	}
 
 

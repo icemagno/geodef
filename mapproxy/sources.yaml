@@ -7751,12 +7751,9 @@ sources:
       transparent: true      
   focos_ams_48h_wms:
     type: wms
-    wms_opts:
-      legendgraphic: true
-      featureinfo: true
     req:
-      url: http://geoserver.cemaden.gov.br:8080/geoserver/ows
-      layers: cemaden_dev:wrf-horas-96
+      url: http://terrabrasilis.dpi.inpe.br/geoserver/ows
+      layers: queimadas:focos_ams_48h
       transparent: true      
   ucsfi_wms:
     type: wms
@@ -7823,9 +7820,6 @@ sources:
       transparent: true
   no_forest_wms:
     type: wms
-    wms_opts:
-      legendgraphic: true
-      featureinfo: true
     req:
       url: http://terrabrasilis.dpi.inpe.br/geoserver/ows
       layers: prodes-legal-amz:no_forest

@@ -26,15 +26,13 @@ import br.mil.defesa.sisgeodef.misc.PCNParameters;
 @Service
 public class GeneratePCNPdfReport {
 	
-	@Value("${calisto.sharedfolder}")
-	private String calistoFolder;   
+	private String calistoFolder = "/srv/calisto/";
 	
 	@Value("${mapproxy.url}")
 	private String mapproxyUrl;   	// http://sisgeodef.defesa.mil.br:36890	
 	
 	public ByteArrayInputStream getPCNReport( JSONObject json, PCNParameters params ) throws Exception {
 		
-    	if ( !calistoFolder.endsWith("/") ) calistoFolder = calistoFolder + "/";
     	String imagesFolder = calistoFolder + "images/";
     	//new File( outputPdfFolder ).mkdirs();
     	

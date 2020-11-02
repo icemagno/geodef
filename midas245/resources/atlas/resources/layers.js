@@ -134,21 +134,21 @@ function getALayerCard( uuid, layerAlias, defaultImage  ){
 	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
 	
 	'<div class="box-tools pull-right">'+                           
-		'<button id="hdlay_'+uuid+'" onClick="hideLayer(\''+uuid+'\');" title="Ocultar Camada" type="button" style="display:none;padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
-		'<button id="swlay_'+uuid+'" onClick="showLayer(\''+uuid+'\');" title="Exibir Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
+		'<button id="hdlay_'+uuid+'" onClick="hideLayer(\''+uuid+'\');" title="Ocultar Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
+		'<button id="swlay_'+uuid+'" onClick="showLayer(\''+uuid+'\');" title="Exibir Camada" type="button" style="display:none;padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
 		'<button id="expd_'+uuid+'" onClick="expandCard(\''+uuid+'\');" title="Expandir" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-right"></i></button>'+
 		'<button id="cops_'+uuid+'"onClick="collapseCard(\''+uuid+'\');" title="Recolher" type="button" style="display:none;padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button>'+
 	'</div>' +	
 	
 	'</td></tr>'; 
-	table = table + '<tr><td colspan="2" style="width: 60%;">'; 
+	table = table + '<tr><td colspan="2" style="width: 100%;">'; 
 	table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" ' +
 		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
-	table = table + '</td><td >' + 
+	table = table + '</td><td style="width:7%" >' + 
 	'<a title="Excluir Camada" href="#" onClick="deleteLayer(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
-	'<a title="RF-YYY" style="margin-right: 10px;" href="#" onClick="importVectors(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-floppy-o"></i></a>' + 
-	'<a title="RF-ZZZ" style="margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-gear"></i></a>' + 
-	'<a title="RF-WWW" style="margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
+	'<a title="RF-YYY" style="display:none;margin-right: 10px;" href="#" onClick="importVectors(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-floppy-o"></i></a>' + 
+	'<a title="RF-ZZZ" style="display:none;margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-gear"></i></a>' + 
+	'<a title="RF-WWW" style="display:none;margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
 	'</td></tr>';
 	table = table + '</table></div>';
 	var layerText = '<div class="sortable" id="'+uuid+'" style="overflow:hidden;height:70px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
@@ -269,7 +269,7 @@ function addLayerCard( data ){
 			success: function( imagePath ) {
 				if( imagePath != '' ){
 					var n = new Date().getTime();					
-					$( "#" + legUUID ).html( "<img id='"+imgUUID+"' src='" + imagePath + "'>" );
+					$( "#" + legUUID ).html( "<img class='legendImage' id='"+imgUUID+"' src='" + imagePath + "'>" );
 					$( "#" + legUUID ).slimScroll({
 				        height: '205px',
 				        wheelStep : 10,

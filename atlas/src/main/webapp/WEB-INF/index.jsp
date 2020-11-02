@@ -334,6 +334,7 @@
 
 	<script src="${midasLocation}/atlas/resources/cormeteoro.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/radares-cappi.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/screenshot.js" type="text/javascript"></script>
 
 
 	<!-- 
@@ -344,7 +345,6 @@
 	<script src="${midasLocation}/atlas/resources/buildings3d.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/pointcloud.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/flightcontrol.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/screenshot.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/routes.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/favelas.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/flood.js" type="text/javascript"></script>
