@@ -42,17 +42,20 @@ public class TileController {
 		
 		File file = new File( filePath );
 		
-		//logger.info( filePath );
+		if( file.exists() ) {
 		
-	    Path path = Paths.get( file.getAbsolutePath() );
-	    ByteArrayResource resource = new ByteArrayResource( Files.readAllBytes( path ) );
-
-	    return ResponseEntity.ok()
-	            .headers(headers)
-	            .contentLength( file.length() )
-	            .contentType( MediaType.APPLICATION_OCTET_STREAM )
-	            .body( resource );		
+		    Path path = Paths.get( file.getAbsolutePath() );
+		    ByteArrayResource resource = new ByteArrayResource( Files.readAllBytes( path ) );
+	
+		    return ResponseEntity.ok()
+		            .headers(headers)
+		            .contentLength( file.length() )
+		            .contentType( MediaType.APPLICATION_OCTET_STREAM )
+		            .body( resource );		
 		
+		} else {
+			return null;
+		}
 		
 	}
 

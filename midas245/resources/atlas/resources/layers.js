@@ -3,6 +3,8 @@ var searchedLayersResult = [];
 var stackedProviders = [];
 var baseLayer = null;	
 
+var drawedEditableFeatures = [];
+
 var bdgexCartasImageryProvider = null;
 var rapidEyeImagery = null;
 var contourLines = null;
@@ -12,11 +14,19 @@ var cartasCHM = null;
 var metocLayer = null;
 var marinetraffic = null;
 
+function getFeatureById( uuid ){
+	for( var x=0; x < drawedEditableFeatures.length; x++ ) {
+		if( drawedEditableFeatures[x].uuid === uuid ) return drawedEditableFeatures[x]; 
+	}
+	return null;
+}
+
 function updateLayersOrder( event, ui ){
 	
 	var uuid = ui.item[0].id;
 	var newLayerIndex = ui.item.index() + 2;  // 0=Camada Base // 1=Grid Coordenadas // 2 > Camadas do usuário...
 	var layer = getLayerByUUID( uuid );
+	if( !layer ) return;
 	var currentLayerIndex = viewer.imageryLayers.indexOf( layer );
 	
 	if( newLayerIndex < currentLayerIndex ){
@@ -129,6 +139,85 @@ function doSlider( uuid, value ){
 	}
 }
 
+
+function getAFeatureCard( data, defaultImage ){
+	var layerAlias = "Feição " + data.type;
+	var uuid = data.uuid;
+	
+	var legendSymbol = "<div style='float: left; width:20px; height:20px; border:1px solid #d2d6de; background-color: "+data.attributes.color.css+"'>&nbsp;</div>";
+	var legendText = "<div style='margin-left: 5px;float: left; width:250px; height:20px;'>Teste de texto com legenda</div>";
+	
+	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
+	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
+	
+	'<div class="box-tools pull-right">'+                           
+		'<button id="hdlay_'+uuid+'" onClick="hideFeature(\''+uuid+'\');" title="Ocultar Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
+		'<button id="swlay_'+uuid+'" onClick="showFeature(\''+uuid+'\');" title="Exibir Camada" type="button" style="display:none;padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
+		'<button id="expd_'+uuid+'" onClick="expandCard(\''+uuid+'\');" title="Expandir" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-right"></i></button>'+
+		'<button id="cops_'+uuid+'"onClick="collapseCard(\''+uuid+'\');" title="Recolher" type="button" style="display:none;padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button>'+
+	'</div>' +	
+	
+	'</td></tr>'; 
+	table = table + '<tr><td colspan="2" style="width: 80%;">'; 
+	table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" ' +
+		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
+	table = table + '</td><td style="width:20%" >' + 
+	'<a title="Excluir Camada" href="#" onClick="deleteFeature(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
+	'<a title="Editar Camada" style="margin-right: 10px;" href="#" onClick="editFeature(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-pencil-square-o"></i></a>' + 
+	'<a title="RF-ZZZ" style="display:none;margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-gear"></i></a>' + 
+	'<a title="RF-WWW" style="display:none;margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
+	'</td></tr>';
+	table = table + '</table></div>';
+	var layerText = '<div class="sortable" id="'+uuid+'" style="overflow:hidden;height:70px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
+	table + '</div>' + 
+	'<div class="box-footer" id="LEG_'+uuid+'">'+legendSymbol+ legendText + '</div>' + 
+	'</div>';
+	return layerText;
+}
+
+function editFeature( uuid ){
+	console.log('Editar feature');
+}
+
+function deleteFeature( uuid ){
+	for( var x=0; x < drawedEditableFeatures.length; x++ ) {
+		var featureData = drawedEditableFeatures[x];
+		if( featureData.uuid === uuid ){
+			featureData.feature.setEditMode( false );
+			scene.groundPrimitives.remove( featureData.feature );
+			drawedEditableFeatures.splice(x, 1);
+			jQuery("#" + uuid).fadeOut(400, function(){
+				jQuery("#" + uuid).remove();
+			});
+			return;
+		}
+		
+	}
+}
+
+function showFeature( uuid ){
+	var featureData = getFeatureById( uuid );
+	var idH = "#hdlay_" + uuid;
+	var idS = "#swlay_" + uuid;
+	if( featureData ){
+		$( idH ).show();
+		$( idS ).hide();
+		featureData.feature.show = true;
+	}
+}
+
+function hideFeature( uuid ){
+	var featureData = getFeatureById( uuid );
+	var idH = "#hdlay_" + uuid;
+	var idS = "#swlay_" + uuid;
+	if( featureData ){
+		$( idH ).hide();
+		$( idS ).show();
+		featureData.feature.setEditMode( false );
+		featureData.feature.show = false;
+	}
+}
+
 function getALayerCard( uuid, layerAlias, defaultImage  ){
 	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
 	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
@@ -170,7 +259,7 @@ function getALayerGroup( uuid, groupName, defaultImage ){
 
 
 function importVectors( uuid ){
-	
+	// Importa para o BD os vetores do geoserver desta camada
 	console.log('Voce nao esta preparado pra isso ainda.');
 	return;
 	/*
@@ -195,9 +284,7 @@ function updateLegendImages(){
 		var data = sp.data;
 		if( data ){
 			var uuid = sp.uuid;
-			
 			var imgUUID = "IMG_" + uuid;
-			
 			jQuery.ajax({
 				url: "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest+
 					'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth,
@@ -210,14 +297,49 @@ function updateLegendImages(){
 					}
 				}
 			});
-			
-			
-			
-			
 		}
-		
 	}
 }
+
+
+
+
+
+
+function addFeatureCard( data ){
+	var uuid = data.uuid;
+	// Adiciona o Card
+    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
+
+    var layerText = getAFeatureCard( data, defaultImage );
+	
+    $("#activeLayerContainer").append( layerText );
+
+    
+	$("#SL_"+uuid).bootstrapSlider({});
+	$("#SL_"+uuid).on("slide", function(slideEvt) {
+		var valu = slideEvt.value / 100;
+		var tUuid = this.id.substr(3);
+		var featureData = getFeatureById( tUuid );
+		if( featureData ){
+			featureData.feature.setEditMode( false );
+			featureData.feature.material.uniforms.color.alpha = valu;
+		}		
+		
+	});	
+    
+    
+	fireToast( 'info', 'Concluído', 'A camada foi adicionada ao seu projeto.' , '000' );
+
+}
+
+
+
+
+
+
+
+
 
 function addLayerCard( data ){
 	var uuid = "L-" + createUUID();

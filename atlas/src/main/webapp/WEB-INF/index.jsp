@@ -310,13 +310,14 @@
 	<script src="/resources/Cesium/Cesium.js" type="text/javascript"></script>
 	<script src="/resources/graticule/Graticule.js" type="text/javascript"></script>
 
+	<script src="${midasLocation}/atlas/resources/entityexporter.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/convertions.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/menubar.js" type="text/javascript"></script>
 	
 	<script src="${midasLocation}/atlas/resources/scalebar/viewerCesiumNavigationMixin.min.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/globe.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/geohash.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/drawfeatures-new.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/drawfeatures.js" type="text/javascript"></script>
 
 	<script src="${midasLocation}/atlas/resources/arvorecarto.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/layers.js" type="text/javascript"></script>

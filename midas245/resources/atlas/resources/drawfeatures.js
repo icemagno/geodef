@@ -1,4 +1,15 @@
 
+function addFeatureToStack( feature, attributes, type ){
+	var uuid = createUUID();
+	var data = {
+		uuid : uuid,
+		attributes : attributes,
+		feature : feature,
+		type : type
+	}
+	drawedEditableFeatures.push( data );
+	addFeatureCard( data );
+}
 
 function drawLine(){
 	drawHelper.startDrawingPolyline({
@@ -25,11 +36,21 @@ function drawCircle(){
 	drawHelper.startDrawingCircle({
 		callback: function(center, radius) {
 
+            var material = new Cesium.Material.fromType("Color");
+            material.uniforms.color = Cesium.Color.fromRandom({
+                alpha: 1.0,
+            });
+            var colorData = { 
+            	rgba : material.uniforms.color.toBytes(),
+            	css : material.uniforms.color.toCssHexString()
+            };
+			
+			
             loggingMessage('Circle created: center is ' + center.toString() + ' and radius is ' + radius.toFixed(1) + ' meters');
             var circle = new DrawHelper.CirclePrimitive({
                 center: center,
                 radius: radius,
-                material: Cesium.Material.fromType(Cesium.Material.RimLightingType)
+                material: material
             });
             scene.primitives.add(circle);
             circle.setEditable();
@@ -37,7 +58,7 @@ function drawCircle(){
                 loggingMessage('Circle edited: radius is ' + event.radius.toFixed(1) + ' meters');
             });
 			
-			
+            addFeatureToStack( circle, { color : colorData }, 'CIRCLE' );
 		}
 	});
 }
@@ -45,22 +66,35 @@ function drawCircle(){
 function drawBox(){
 	drawHelper.startDrawingExtent({
 		callback: function(extent) {
-			
+
             var extent = extent;
             loggingMessage('Extent created (N: ' + extent.north.toFixed(3) + ', E: ' + extent.east.toFixed(3) + ', S: ' + extent.south.toFixed(3) + ', W: ' + extent.west.toFixed(3) + ')');
             
+            var material = new Cesium.Material.fromType("Color");
+            material.uniforms.color = Cesium.Color.fromRandom({
+                alpha: 1.0,
+            });
+            var colorData = { 
+            	rgba : material.uniforms.color.toBytes(),
+            	css : material.uniforms.color.toCssHexString()
+            };
+            
 			var extentPrimitive = new DrawHelper.ExtentPrimitive({
                 extent: extent,
-                material: Cesium.Material.fromType(Cesium.Material.StripeType)
+                material: material
             });
 			
             var thePrimitive = scene.groundPrimitives.add(extentPrimitive);
 			
+            addFeatureToStack( thePrimitive, { color : colorData }, 'BOX' );
+            
             extentPrimitive.setEditable();
             extentPrimitive.addListener('onEdited', function(event) {
                 loggingMessage('Extent edited: extent is (N: ' + event.extent.north.toFixed(3) + ', E: ' + event.extent.east.toFixed(3) + ', S: ' + event.extent.south.toFixed(3) + ', W: ' + event.extent.west.toFixed(3) + ')');
             });
-			
+            
+            console.log(extentPrimitive);
+            
 		}
 	});
 }
@@ -116,11 +150,26 @@ function draw2DPolygon() {
 	drawHelper.startDrawingPolygon({
 		
 		callback: function( positions ) {
+			
+			
+            var material = new Cesium.Material.fromType("Color");
+            material.uniforms.color = Cesium.Color.fromRandom({
+                alpha: 1.0,
+            });
+            var colorData = { 
+            	rgba : material.uniforms.color.toBytes(),
+            	css : material.uniforms.color.toCssHexString()
+            };
+			
+			
             var polygon = new DrawHelper.PolygonPrimitive({
                 positions: positions,
-                material : Cesium.Material.fromType('Checkerboard')
+                material : material
             });
-            scene.primitives.add(polygon);
+            scene.groundPrimitives.add(polygon);
+            
+            addFeatureToStack( polygon, { color : colorData }, 'POLYGON' );
+            
             polygon.setEditable();
             polygon.addListener('onEdited', function(event) {
                 loggingMessage('Polygon edited, ' + event.positions.length + ' points');
