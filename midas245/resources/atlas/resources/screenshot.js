@@ -13,7 +13,7 @@ function saveImage( data ) {
 			
 		});		
 		
-	}
+	}); 
 	
 	
 	$(".legendImage").each( function(index){

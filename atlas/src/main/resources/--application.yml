@@ -1,7 +1,7 @@
 
 mailservice:
   origem: magno.mabreu@gmail.com
-  templateFolder: c:/templates/
+  templateFolder: c:/templates/ 
 
 openstreetmap:
   database:
