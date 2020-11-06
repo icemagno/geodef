@@ -34,6 +34,7 @@ var bdgexGeoPortal = 'http://bdgex.eb.mil.br/cgi-bin/geoportal';
 var bdgexMapaIndice = 'http://www.geoportal.eb.mil.br/cgi-bin/mapaindice/';
 var bdgexTeogc = 'http://bdgex.eb.mil.br/teogc/250/terraogcmed.cgi/';
 
+var drawedFeaturesBillboards;
 
 var sisgeodefHost = 'http://sisgeodef.defesa.mil.br';
 
@@ -199,9 +200,13 @@ function startMap( theMapStyle ) {
 		
 	});
 	
+	
+	
 	// Conecta o WebSocket
 	connect();
 	drawHelper = new DrawHelper( viewer );
+	drawedFeaturesBillboards = new Cesium.BillboardCollection({scene: viewer.scene});
+	scene.groundPrimitives.add( drawedFeaturesBillboards );
 	
 	/*
 	var graticule = new Graticule({

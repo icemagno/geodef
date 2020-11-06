@@ -1,4 +1,6 @@
 
+
+
 function addFeatureToStack( feature, attributes, type ){
 	var uuid = createUUID();
 	var data = {
@@ -14,19 +16,32 @@ function addFeatureToStack( feature, attributes, type ){
 function drawLine(){
 	drawHelper.startDrawingPolyline({
 		callback: function(positions) {
+
+            var material = new Cesium.Material.fromType("Color");
+            material.uniforms.color = Cesium.Color.fromRandom({
+                alpha: 1.0,
+            });
+            var colorData = { 
+            	rgba : material.uniforms.color.toBytes(),
+            	css : material.uniforms.color.toCssHexString()
+            };
+			
 			
             loggingMessage('Polyline created with ' + positions.length + ' points');
             var polyline = new DrawHelper.PolylinePrimitive({
                 positions: positions,
                 width: 5,
-                geodesic: true
+                geodesic: true,
+                material: material
             });
             
-            scene.primitives.add(polyline);
+            scene.groundPrimitives.add(polyline);
             polyline.setEditable();
             polyline.addListener('onEdited', function(event) {
                 loggingMessage('Polyline edited, ' + event.positions.length + ' points');
             });
+            
+            addFeatureToStack( polyline, { color : colorData }, 'LINE' );
             
 		}
 	});
@@ -45,14 +60,13 @@ function drawCircle(){
             	css : material.uniforms.color.toCssHexString()
             };
 			
-			
             loggingMessage('Circle created: center is ' + center.toString() + ' and radius is ' + radius.toFixed(1) + ' meters');
             var circle = new DrawHelper.CirclePrimitive({
                 center: center,
                 radius: radius,
                 material: material
             });
-            scene.primitives.add(circle);
+            scene.groundPrimitives.add(circle);
             circle.setEditable();
             circle.addListener('onEdited', function(event) {
                 loggingMessage('Circle edited: radius is ' + event.radius.toFixed(1) + ' meters');
@@ -93,8 +107,6 @@ function drawBox(){
                 loggingMessage('Extent edited: extent is (N: ' + event.extent.north.toFixed(3) + ', E: ' + event.extent.east.toFixed(3) + ', S: ' + event.extent.south.toFixed(3) + ', W: ' + event.extent.west.toFixed(3) + ')');
             });
             
-            console.log(extentPrimitive);
-            
 		}
 	});
 }
@@ -108,20 +120,33 @@ var billboards = scene.primitives.add(new Cesium.BillboardCollection({scene: vie
 			
             loggingMessage('Marker created at ' + position.toString() );
 			
-            var b = new Cesium.BillboardCollection({scene: viewer.scene});
-            scene.primitives.add(b);
-            var billboard = b.add({
+            var material = new Cesium.Material.fromType("Color");
+            material.uniforms.color = Cesium.Color.fromRandom({
+                alpha: 1.0,
+            });            
+            var imageFile = '/resources/drawhelper/img/glyphicons_242_google_maps.png';
+            
+            var colorData = { 
+            	rgba : material.uniforms.color.toBytes(),
+            	css : material.uniforms.color.toCssHexString(),
+            	image: imageFile
+            };
+            
+            
+            var billboard = drawedFeaturesBillboards.add({
                 position : position,
                 pixelOffset : new Cesium.Cartesian2(0, 0),
                 eyeOffset : new Cesium.Cartesian3(0.0, 0.0, 0.0),
                 horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
                 verticalOrigin : Cesium.VerticalOrigin.CENTER,
                 scale : 1.0,
-                image: '/resources/drawhelper/img/glyphicons_242_google_maps.png',
-                color : new Cesium.Color(1.0, 1.0, 1.0, 1.0),
+                image: imageFile,
+                color : material.uniforms.color,
             });
             billboard.setEditable();
 			
+            addFeatureToStack( billboard, { color : colorData }, 'POINT' );
+            
             billboard.addListener('onEdited', function(event) {
                 loggingMessage('Marker edited: (Cartesian2) X=' + event.positions.x  + ' Y=' + event.positions.y );
             });

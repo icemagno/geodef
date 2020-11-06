@@ -4,6 +4,18 @@ function saveImage( data ) {
 	
 	var legendFiles = [];
 	
+	$(".feature-legend").each( function(index){
+	
+		html2canvas( this ).then(function(canvas) {
+		    
+			var dataURL = canvas.toDataURL();
+			console.log(dataURL);			
+			
+		});		
+		
+	}
+	
+	
 	$(".legendImage").each( function(index){
 		var url = this.src;
 		var filename = url.split('/').pop();

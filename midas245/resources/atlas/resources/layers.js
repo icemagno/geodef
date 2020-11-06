@@ -141,7 +141,7 @@ function doSlider( uuid, value ){
 
 
 function getAFeatureCard( data, defaultImage ){
-	var layerAlias = "Feição " + data.type;
+	var layerAlias = "Feição";
 	var uuid = data.uuid;
 	
 	var legendSymbol = "<div style='float: left; width:20px; height:20px; border:1px solid #d2d6de; background-color: "+data.attributes.color.css+"'>&nbsp;</div>";
@@ -170,7 +170,7 @@ function getAFeatureCard( data, defaultImage ){
 	table = table + '</table></div>';
 	var layerText = '<div class="sortable" id="'+uuid+'" style="overflow:hidden;height:70px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
 	table + '</div>' + 
-	'<div class="box-footer" id="LEG_'+uuid+'">'+legendSymbol+ legendText + '</div>' + 
+	'<div class="box-footer feature-legend" id="LEG_'+uuid+'">'+legendSymbol+ legendText + '</div>' + 
 	'</div>';
 	return layerText;
 }
@@ -183,8 +183,13 @@ function deleteFeature( uuid ){
 	for( var x=0; x < drawedEditableFeatures.length; x++ ) {
 		var featureData = drawedEditableFeatures[x];
 		if( featureData.uuid === uuid ){
-			featureData.feature.setEditMode( false );
-			scene.groundPrimitives.remove( featureData.feature );
+			if( featureData.type === 'POINT' ){ 
+				drawedFeaturesBillboards.remove( featureData.feature );
+			} else {
+				featureData.feature.setEditMode( false );
+				scene.groundPrimitives.remove( featureData.feature );
+			}
+			
 			drawedEditableFeatures.splice(x, 1);
 			jQuery("#" + uuid).fadeOut(400, function(){
 				jQuery("#" + uuid).remove();
@@ -213,7 +218,7 @@ function hideFeature( uuid ){
 	if( featureData ){
 		$( idH ).hide();
 		$( idS ).show();
-		featureData.feature.setEditMode( false );
+		if( featureData.type != 'POINT' ) featureData.feature.setEditMode( false );
 		featureData.feature.show = false;
 	}
 }
@@ -315,31 +320,25 @@ function addFeatureCard( data ){
 	
     $("#activeLayerContainer").append( layerText );
 
-    
 	$("#SL_"+uuid).bootstrapSlider({});
 	$("#SL_"+uuid).on("slide", function(slideEvt) {
 		var valu = slideEvt.value / 100;
 		var tUuid = this.id.substr(3);
 		var featureData = getFeatureById( tUuid );
 		if( featureData ){
-			featureData.feature.setEditMode( false );
-			featureData.feature.material.uniforms.color.alpha = valu;
+			if( featureData.type === 'POINT' ) {
+				featureData.feature.color = featureData.feature.color.withAlpha( valu );
+			} else {
+				featureData.feature.setEditMode( false );
+				featureData.feature.material.uniforms.color.alpha = valu;
+			}
+			
 		}		
 		
 	});	
     
-    
 	fireToast( 'info', 'Concluído', 'A camada foi adicionada ao seu projeto.' , '000' );
-
 }
-
-
-
-
-
-
-
-
 
 function addLayerCard( data ){
 	var uuid = "L-" + createUUID();
