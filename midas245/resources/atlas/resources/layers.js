@@ -3,6 +3,9 @@ var searchedLayersResult = [];
 var stackedProviders = [];
 var baseLayer = null;	
 
+var queryLayerEventHandler = null;
+var isQuerying = false;
+
 var drawedEditableFeatures = [];
 
 var bdgexCartasImageryProvider = null;
@@ -144,8 +147,8 @@ function getAFeatureCard( data, defaultImage ){
 	var layerAlias = "Feição";
 	var uuid = data.uuid;
 	
-	var legendSymbol = "<div style='float: left; width:20px; height:20px; border:1px solid #d2d6de; background-color: "+data.attributes.color.css+"'>&nbsp;</div>";
-	var legendText = "<div style='margin-left: 5px;float: left; width:250px; height:20px;'>Teste de texto com legenda</div>";
+	var legendSymbol = "<div style='float: left; width:15px; height:15px; border:1px solid #d2d6de; background-color: "+data.attributes.color.css+"'>&nbsp;</div>";
+	var legendText = "<div style='margin-left: 5px;float: left; width:250px; height:20px;font-size: 12px;'>Feição do usuário</div>";
 	
 	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
 	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
@@ -170,7 +173,7 @@ function getAFeatureCard( data, defaultImage ){
 	table = table + '</table></div>';
 	var layerText = '<div class="sortable" id="'+uuid+'" style="overflow:hidden;height:70px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
 	table + '</div>' + 
-	'<div class="box-footer feature-legend" id="LEG_'+uuid+'">'+legendSymbol+ legendText + '</div>' + 
+	'<div style="height: 200px;" class="box-footer feature-legend" id="LEG_'+uuid+'">'+legendSymbol + legendText + '</div>' + 
 	'</div>';
 	return layerText;
 }
@@ -191,8 +194,8 @@ function deleteFeature( uuid ){
 			}
 			
 			drawedEditableFeatures.splice(x, 1);
-			jQuery("#" + uuid).fadeOut(400, function(){
-				jQuery("#" + uuid).remove();
+			$("#" + uuid).fadeOut(400, function(){
+				$("#" + uuid).remove();
 			});
 			return;
 		}
@@ -315,11 +318,10 @@ function addFeatureCard( data ){
 	var uuid = data.uuid;
 	// Adiciona o Card
     var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
-
     var layerText = getAFeatureCard( data, defaultImage );
-	
     $("#activeLayerContainer").append( layerText );
 
+    
 	$("#SL_"+uuid).bootstrapSlider({});
 	$("#SL_"+uuid).on("slide", function(slideEvt) {
 		var valu = slideEvt.value / 100;
@@ -337,6 +339,19 @@ function addFeatureCard( data ){
 		
 	});	
     
+    var id = "LEG_"+uuid;
+	html2canvas( document.getElementById( id ), { height:'400' } ).then(function(canvas) {
+		var dataURL = canvas.toDataURL();
+		jQuery.ajax({
+			type: "POST",
+			url: "/savelegend", 
+			data: {'imgBase64': dataURL, 'id' : uuid },
+			success: function( url ) {
+				data.attributes.legendUrl = url;
+			}
+		});
+	});		
+	
 	fireToast( 'info', 'Concluído', 'A camada foi adicionada ao seu projeto.' , '000' );
 }
 
@@ -458,56 +473,70 @@ function getBaseImageryProvider( sourceUrl, sourceLayers, canQuery, transparency
 }
 
 
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-// ***************************************************************************
-
 function queryLayer() {
+	if( isQuerying ){
+		isQuerying = false;
+		queryLayerEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK);
+	} else {
+		isQuerying = true;
+	
+		queryLayerEventHandler.setInputAction( function( click ) {
 
-	mainEventHandler.setInputAction( function( click ) {
-		
-		var pickedObject = viewer.scene.pick( click.position );
-		var pickRay = viewer.camera.getPickRay( click.position );
-		var featuresPromise = viewer.imageryLayers.pickImageryLayerFeatures(pickRay, viewer.scene);
-
-		// Camadas
-		if (Cesium.defined(featuresPromise)) {
-		    Cesium.when(featuresPromise, function(features) {
-		    	if( !Cesium.defined( pickedObject ) ) { 
-			    	jQuery(".queryRowDetails").remove();
-			        for( xx=0; xx<features.length; xx++ ) {
-			        	jQuery("#queryMenuTable").append( getTrQuery( features[xx] ) );
-			        }
+			var position = getMapPosition3D2D( click.position );
+			cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic( position );
+			var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(10);
+			var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(10);    	    
+			
+			console.log( longitudeString, latitudeString );
+			
+			for( x=0; x<stackedProviders.length;x++ ) {
+				var sp = stackedProviders[x];
+				
+				jQuery.ajax({
+					url: "/proxy/getfeatureinfo?layerId=" + sp.data.id + "&lat=" + latitudeString + '&lon='+longitudeString,
+					type: "GET", 
+					success: function( imagePath ) {
+						console.log( imagePath );
+					}
+				});
+				
+				
+			}
+			
+			
+			
+			// Objetos
+			var pickedObject = viewer.scene.pick( click.position );
+		    if ( Cesium.defined( pickedObject ) ) {
+		    	var entity = pickedObject.id;
+		    	if( entity ){
+		    		console.log("QUERY ENTITY: " + entity.name );
 		    	}
-		    });
-		} else {
-		    console.log('Nenhuma camada clicada.');
-		}		
-		
-		// Objetos
-	    if ( Cesium.defined( pickedObject ) ) {
-	    	var entity = pickedObject.id;
-	    	
-	    	console.log("QUERY ENTITY: " + entity.name );
-	    	
-	    	if ( entity.name === 'ROTA_POI') showRotaPoi( entity );
-	    	if ( entity.name === 'PHOTO_HASTE') showStreetImage( entity );
-	    	//if ( entity.name === "PLATAFORMA") showPlataformaInfo( entity );
-	    	//if ( entity.name === "NAVIO_SISTRAM") showNavioInfo( entity );
-	    	if ( entity.name === "PCN_RUNWAY") showRunwayInfo( entity );
-	    	if ( entity.name === "CORMET_AERODROMO") showColorAerodromo( entity );
-	    	if ( entity.name === "MUNICIPIO_PREVISAO") showPrevisaoMunicipio( entity );
-	    	if ( entity.name === "AERODROMO_METOC") showMetarAerodromo( entity );
-	    	
-	    } else {
-	    	console.log('Nenhuma entidade clicada.');
-	    }
-	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+		    	
+		    	/*
+		    	if ( entity.name === 'ROTA_POI') showRotaPoi( entity );
+		    	if ( entity.name === 'PHOTO_HASTE') showStreetImage( entity );
+		    	if ( entity.name === "PCN_RUNWAY") showRunwayInfo( entity );
+		    	if ( entity.name === "CORMET_AERODROMO") showColorAerodromo( entity );
+		    	if ( entity.name === "MUNICIPIO_PREVISAO") showPrevisaoMunicipio( entity );
+		    	if ( entity.name === "AERODROMO_METOC") showMetarAerodromo( entity );
+		    	*/
+		    	
+		    } else {
+		    	console.log('Nenhuma entidade clicada.');
+		    }
+		}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 	
-	
+	}	
 }
+
+
+
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
+// ***************************************************************************
 
 function createImageryProvider( sourceUrl, sourceLayers, canQuery, transparency, imageType ) {
 

@@ -39,6 +39,14 @@ public class ProxyController {
 		return proxyService.getFeature( userId, sourceId, bn, bs, be, bw );
 	}
 	
+
+	@RequestMapping( value = "/getfeatureinfo", method = RequestMethod.GET )
+	public @ResponseBody String getFeatureInfo( @RequestParam(value="layerId",required=true ) Integer layerId,
+			@RequestParam(value="lat",required=true ) String lat,
+			@RequestParam(value="lon",required=true ) String lon ) {
+		return proxyService.getFeatureInfo( layerId, lat, lon );
+	}
+	
 	
 	
 	/*

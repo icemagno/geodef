@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ExportService {
 	private String calistoFolder = "/srv/calisto/";
-	private String calistoUrl = "http://sisgeodef.defesa.mil.br/calisto/photos/";
+	private String calistoUrl = "http://sisgeodef.defesa.mil.br/calisto/";
 	
 	@Autowired
 	private GenerateChartPDF chartPdf;
@@ -38,34 +38,30 @@ public class ExportService {
         	e.printStackTrace();
             return "";
         }		
-		
 	}
 	
 	public String exportToPdf( String imgBase64, String legends ) {
-		new File(calistoFolder + "pdf/").mkdirs();
+		String targetFolder = calistoFolder + "pdf/";
+		new File(targetFolder).mkdirs();
 		String imgName = UUID.randomUUID().toString().replaceAll("-", "");
 
         try {
     		JSONArray legendFiles = new JSONArray( legends );
 
-    		String pdfWorkFolder = "pdf/"; 
-        	
         	String imageName = imgName + ".png";
         	String pdfName = imgName + ".pdf";
         	
         	String base64Image = imgBase64.split(",")[1];
         	byte[] imageBytes = Base64.decodeBase64( base64Image );
             
-        	
-        	String imageFullName = calistoFolder + pdfWorkFolder + imageName;
-        	new File( calistoFolder + pdfWorkFolder ).mkdirs();
+        	String imageFullName = targetFolder + imageName;
         	
         	FileOutputStream fos = new FileOutputStream( imageFullName );
             fos.write( imageBytes );
             fos.close();
 
-            String pdfUrl = calistoUrl + pdfWorkFolder + pdfName; 
-            String pdfFullName = calistoFolder + pdfWorkFolder + pdfName; 
+            String pdfUrl = calistoUrl + "pdf/" + pdfName; 
+            String pdfFullName = targetFolder + pdfName; 
             chartPdf.getChart( imageFullName, pdfFullName, legendFiles );
             
             return pdfUrl;
@@ -76,6 +72,28 @@ public class ExportService {
         }		
 		
 		
+	}
+
+	public String saveLegend(String imgBase64, String id) {
+		String targetFolder = calistoFolder + "legends/";
+		new File(targetFolder).mkdirs();
+		String imgName = id.replaceAll("-", "") + ".png"; 
+		String imgUrl = calistoUrl + "legends/" + imgName;
+        try {
+        	String base64Image = imgBase64.split(",")[1];
+        	
+        	byte[] imageBytes = Base64.decodeBase64( base64Image );
+        	
+            String directory = targetFolder + imgName;
+            FileOutputStream fos = new FileOutputStream(directory);
+            fos.write( imageBytes );
+            fos.close();
+            
+            return imgUrl;
+        } catch( Exception e ) {
+        	e.printStackTrace();
+            return "";
+        }		
 	}
 	
 }

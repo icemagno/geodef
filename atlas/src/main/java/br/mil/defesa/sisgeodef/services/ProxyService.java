@@ -132,4 +132,45 @@ public class ProxyService {
 		return responseBody;
 	}
 
+	public String getFeatureInfo(Integer sourceId, String lat, String lon) {
+		String responseBody = "[]";
+		CatalogSource source = catalogService.getSource(sourceId);
+		if( source != null ) {
+			String url = source.getSourceAddressOriginal();
+			String bbox = lat + "," + lon + "," + lat + "," + lon;
+			String sourceUrl = url + "?service=wfs"
+					+ "&version=2.0.0"
+					+ "&request=GetFeature"
+					+ "&BBOX=" + bbox
+					+ "&typeName=" + source.getSourceLayer()
+					+ "&outputFormat=application/json"
+					+ "&count=5";
+
+			
+			System.out.println( sourceUrl );
+			
+			RestTemplate restTemplate;
+			if( useProxy ) {
+				restTemplate = new RestTemplate( authService.getFactory() );
+			} else {
+				restTemplate = new RestTemplate( );
+			}
+			
+			
+			try {
+				ResponseEntity<String> result = restTemplate.getForEntity( sourceUrl, String.class);
+				responseBody = result.getBody().toString();
+			} catch (HttpClientErrorException e) {
+				responseBody = e.getResponseBodyAsString();
+			} catch ( Exception ex) {
+				return ex.getMessage();
+			}
+			
+		}
+
+		
+		
+		return responseBody;
+	}
+
 }

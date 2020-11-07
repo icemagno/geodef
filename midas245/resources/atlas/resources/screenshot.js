@@ -1,20 +1,14 @@
 
 
-function saveImage( data ) {
+function exportToPdf( data ) {
 	
 	var legendFiles = [];
 	
 	$(".feature-legend").each( function(index){
-	
-		html2canvas( this ).then(function(canvas) {
-		    
-			var dataURL = canvas.toDataURL();
-			console.log(dataURL);			
-			
-		});		
-		
+		var url = this.id.substr(4).replaceAll('-','');
+		var filename = url.split('/').pop() + '.png';
+		legendFiles.push( filename );
 	}); 
-	
 	
 	$(".legendImage").each( function(index){
 		var url = this.src;
@@ -52,7 +46,7 @@ function screenShot() {
 		var canvas = scene.canvas;
 		
 		var dataURL = canvas.toDataURL();
-		saveImage( dataURL );	
+		exportToPdf( dataURL );	
 		
 		/*
 		canvas.toBlob(function (blob) {

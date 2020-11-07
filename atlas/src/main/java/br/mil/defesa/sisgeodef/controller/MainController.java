@@ -30,6 +30,10 @@ public class MainController extends BasicController {
 		return exportService.exportToPng( imgBase64 );
 	}
 	
+	@RequestMapping(value = "/savelegend", method = RequestMethod.POST)
+	public @ResponseBody String saveLegend( @RequestParam("imgBase64") String imgBase64,  @RequestParam("id") String id ) {
+		return exportService.saveLegend( imgBase64, id );
+	}
 
 	@RequestMapping(value = "/createchart", method = RequestMethod.POST)
 	public @ResponseBody String createChart( @RequestParam("imgBase64") String imgBase64, @RequestParam("legends") String legends ) {

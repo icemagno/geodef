@@ -221,6 +221,7 @@ function startMap( theMapStyle ) {
 	graticule.setVisible( true );	
 	*/
 	
+	
 };
 
 
@@ -525,6 +526,7 @@ $(function () {
 			startMap( theMapStyle );
 			mainEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
 			marineTrafficEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
+			queryLayerEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
 			removeMouseDoubleClickListener();
 			addMouseHoverListener();
 			addCameraChangeListener();
@@ -545,72 +547,6 @@ $(function () {
 	    }, 		
     });
 
-	
-	/***************************************************************************
-			TESTE DE ARRASTAR
-	*/
-	
-    //var pinBuilder = new Cesium.PinBuilder();
-    //var position = Cesium.Cartesian3.fromRadians(camera.positionCartographic.longitude, camera.positionCartographic.latitude);
-    /*
-    var entity = viewer.entities.add({
-        position: position,
-        billboard: {
-            image: pinBuilder.fromColor(Cesium.Color.SALMON, 48),
-            verticalOrigin: Cesium.VerticalOrigin.BOTTOM
-        }
-    });
-    */
-	
-	/*
-    var entity = null;
-	
-	var dragging = false;
-
-	mainEventHandler.setInputAction(
-	    function(click) {
-	        var pickedObject = scene.pick(click.position);
-	        if ( Cesium.defined(pickedObject) ) {
-	        	entity = pickedObject.id;
-	        	scene.screenSpaceCameraController.enableRotate = false;
-	            dragging = true;
-	        }
-	        */
-	        /*
-	        if (Cesium.defined(pickedObject) && (pickedObject.id === entity)) {
-	            entity.billboard.scale = 1.2;
-	            scene.screenSpaceCameraController.enableRotate = false;
-	        }
-	        */
-		/*
-	    },
-	    Cesium.ScreenSpaceEventType.LEFT_DOWN
-	);
-
-	mainEventHandler.setInputAction(
-	    function(movement) {
-	    	console.log( movement );
-	        if ( dragging ) {
-	        	
-	            entity.position = camera.pickEllipsoid(movement.endPosition);
-	        }
-	    },
-	    Cesium.ScreenSpaceEventType.MOUSE_MOVE
-	);
-
-	mainEventHandler.setInputAction(
-	    function() {
-	    	if ( Cesium.defined(entity) ) { 
-	        //entity.billboard.scale = 1;
-	        dragging = false;
-	        scene.screenSpaceCameraController.enableRotate = true;
-	    	}
-	    },
-	    Cesium.ScreenSpaceEventType.LEFT_UP
-	);	
-	*/
-	
-	
 	
 });
 
