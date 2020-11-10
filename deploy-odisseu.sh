@@ -17,7 +17,8 @@ docker run --name odisseu --network apolo --hostname=odisseu \
 -e CONFIG_PROFILES=default \
 -e http_proxy=http://172.22.200.10:3128 \
 -e https_proxy=http://172.22.200.10:3128 \
--e JAVA_OPTS="-Dhttp.proxyHost=172.22.200.10 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=172.22.200.10 -Dhttps.proxyPort=3128" \
+-e no_proxy="172.22.1.44,172.22.1.47" \
+-e JAVA_OPTS="-Dhttp.proxyHost=172.22.200.10 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=172.22.200.10 -Dhttps.proxyPort=3128 -Dhttp.nonProxyHosts=\"localhost|172.22.1.44|172.22.1.47\" -Dhttps.nonProxyHosts=\"localhost|172.22.1.44|172.22.1.47\"" \
 -p 36301:36301 \
 -v /srv/odisseu/files/:/download-files/ \
 -v /srv/odisseu/gdal/:/data/ \
