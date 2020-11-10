@@ -1,4 +1,4 @@
-FROM openjdk
+FROM openjdk:13-jdk-alpine
 MAINTAINER magno.mabreu@gmail.com
 ENV ftp_proxy="http://172.22.200.10:3128"
 ENV http_proxy="http://172.22.200.10:3128"
