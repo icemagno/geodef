@@ -21,8 +21,8 @@ docker run --name pleione --hostname=pleione \
 -e GEOSERVER_ADMIN_PASSWORD=sisgeodef \
 -e http_proxy=http://172.22.200.10:3128 \
 -e https_proxy=http://172.22.200.10:3128 \
--e no_proxy="172.22.1.44" \
--e JAVA_OPTS="-Dhttp.proxyHost=172.22.200.10 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=172.22.200.10 -Dhttps.proxyPort=3128 -Dhttp.nonProxyHosts=\"localhost|172.22.1.44\" -Dhttps.nonProxyHosts=\"localhost|172.22.1.44\"" \
+-e no_proxy="172.22.1.44,172.22.1.47" \
+-e JAVA_OPTS="-Dhttp.proxyHost=172.22.200.10 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=172.22.200.10 -Dhttps.proxyPort=3128 -Dhttp.nonProxyHosts=\"localhost|172.22.1.44|172.22.1.47\" -Dhttps.nonProxyHosts=\"localhost|172.22.1.44|172.22.1.47\"" \
 -v /etc/localtime:/etc/localtime:ro \
 -v /srv/pleione/:/opt/geoserver/data_dir/ \
 -d sisgeodef/pleione:1.0
