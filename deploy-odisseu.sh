@@ -15,6 +15,9 @@ docker build --tag=sisgeodef/odisseu:1.0 --rm=true .
 docker run --name odisseu --network apolo --hostname=odisseu \
 -e ARCHIMEDES_CONFIG_URI=http://archimedes:36206/ \
 -e CONFIG_PROFILES=default \
+-e http_proxy=http://172.22.200.10:3128 \
+-e https_proxy=http://172.22.200.10:3128 \
+-e JAVA_OPTS="-Dhttp.proxyHost=172.22.200.10 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=172.22.200.10 -Dhttps.proxyPort=3128" \
 -p 36301:36301 \
 -v /srv/odisseu/files/:/download-files/ \
 -v /srv/odisseu/gdal/:/data/ \
