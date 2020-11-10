@@ -2681,15 +2681,3 @@ layers:
   - name: ucsmu
     title: Migração Automática
     sources: [ucsmu_cache]
-  - name: prodes-amz:brazilian_amazon_biome_border
-    title: Migração Automática
-    sources: [brazilian_amazon_biome_border_cache]
-  - name: prodes-legal-amz:no_forest
-    title: Migração Automática
-    sources: [no_forest_cache]
-  - name: prodes-amz:no_forest_biome
-    title: Migração Automática
-    sources: [no_forest_biome_cache]
-  - name: prodes-amz:yearly_deforestation_biome
-    title: Migração Automática
-    sources: [yearly_deforestation_biome_cache]
