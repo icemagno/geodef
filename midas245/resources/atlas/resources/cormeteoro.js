@@ -168,7 +168,7 @@ function startCorMetSolution(){
 	var interv = ( 1000 * 60 ) * 5;
 	corMetConJob = setInterval( function(){
 		loadCores();
-	}, 1000 * 5 );
+	}, interv );
 	
 }
 
