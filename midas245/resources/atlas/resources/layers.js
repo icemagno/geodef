@@ -397,8 +397,6 @@ function addLayerCard( data ){
 		var urlLeg = "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest+
 				'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth;
 				
-		console.log( urlLeg );
-		
 		jQuery.ajax({
 			url: urlLeg,
 			type: "GET", 
@@ -477,9 +475,17 @@ function queryLayer() {
 	if( isQuerying ){
 		isQuerying = false;
 		queryLayerEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK);
+		viewer._container.style.cursor = "default";
+		$("#showToolQuery").addClass("btn-primary");
+		$("#showToolQuery").removeClass("btn-danger");
+		
 	} else {
 		isQuerying = true;
-	
+		viewer._container.style.cursor = "help";
+
+		$("#showToolQuery").removeClass("btn-primary");
+		$("#showToolQuery").addClass("btn-danger");
+		
 		queryLayerEventHandler.setInputAction( function( click ) {
 
 			var position = getMapPosition3D2D( click.position );
@@ -487,22 +493,20 @@ function queryLayer() {
 			var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(10);
 			var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(10);    	    
 			
-			console.log( longitudeString, latitudeString );
+			showQueryResultContainer( )
 			
 			for( x=0; x<stackedProviders.length;x++ ) {
 				var sp = stackedProviders[x];
 				
 				jQuery.ajax({
 					url: "/proxy/getfeatureinfo?layerId=" + sp.data.id + "&lat=" + latitudeString + '&lon='+longitudeString,
-					type: "GET", 
-					success: function( imagePath ) {
-						console.log( imagePath );
+					type: "GET",
+					stackedProvider : stackedProviders[x],
+					success: function( featureCollection ) {
+						showFeaturesData( JSON.parse(featureCollection), this.stackedProvider );
 					}
 				});
-				
-				
 			}
-			
 			
 			
 			// Objetos

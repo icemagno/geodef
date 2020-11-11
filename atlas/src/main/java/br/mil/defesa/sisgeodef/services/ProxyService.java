@@ -137,7 +137,16 @@ public class ProxyService {
 		CatalogSource source = catalogService.getSource(sourceId);
 		if( source != null ) {
 			String url = source.getSourceAddressOriginal();
-			String bbox = lat + "," + lon + "," + lat + "," + lon;
+			
+			double latD = Double.valueOf( lat );
+			double lonD = Double.valueOf( lon );
+			double bw = lonD - 0.01;
+			double be = lonD + 0.01;
+			double bn = latD + 0.01;
+			double bs = latD - 0.01;
+			
+			String bbox = "&bbox=" + bs + "," + bw + "," + bn + "," + be;
+			//String bbox = lat + "," + lon + "," + lat + "," + lon;
 			String sourceUrl = url + "?service=wfs"
 					+ "&version=2.0.0"
 					+ "&request=GetFeature"

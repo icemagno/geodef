@@ -326,6 +326,7 @@
 	<script src="${midasLocation}/atlas/resources/profile.js" type="text/javascript"></script>
 
 	<script src="${midasLocation}/atlas/resources/modal.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/querylayer.js" type="text/javascript"></script>
 
 	<script src="/resources/drawhelper/drawhelper.js"></script>
 	<script src="/resources/profilehelper/profilehelper.js"></script>

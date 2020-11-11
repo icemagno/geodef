@@ -309,8 +309,8 @@
 	    		        },
 	    		        emptyTable: "Nenhum Registro Encontrado",
 	    		        zeroRecords: "Nenhum Registro Encontrado",
-	    		        infoEmpty: "No entries to show",
-	    		        infoFiltered: " - filtered from _MAX_ records",
+	    		        infoEmpty: "Sem registros",
+	    		        infoFiltered: " - filtrado de _MAX_ records",
 	    		        aria: {
 	    		            paginate: {
 	    		                first:    'Primeiro',
