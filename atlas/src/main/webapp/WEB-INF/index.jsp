@@ -341,6 +341,7 @@
 
 
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoMetocRadarProvider.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/utmconvert.js" type="text/javascript"></script>
 
 
 	<!-- 

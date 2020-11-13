@@ -224,7 +224,7 @@ function startMap( theMapStyle ) {
 	
 };
 
-
+/*
 var windy;
 var windy2;
 var timer = null;
@@ -235,13 +235,21 @@ function redraw() {
     	if( windy2 ) windy2.animate();
     }, 300);
 }
-
+*/
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 
+	/*
+	var mapPointerLongitude = -81.29424905810427;
+	var mapPointerLatitude = -32.71566851242333;
+	var utmVal =  fromLatLon( mapPointerLatitude, mapPointerLongitude);
+	console.log( mapPointerLatitude + "," + mapPointerLongitude );
+	console.log( utmVal );	
+	*/
 	
+	
+	/*
 	var url = "/radar?l={l}&r={r}&t={t}&b={b}";
-
 	var buildingsProvider = new MagnoMetocRadarProvider({
 	  debugTiles : false,
 	  viewer : viewer,
@@ -256,9 +264,8 @@ function doSomeSandBoxTests(){
 		console.log( entities.length + " celulas recebidas." );
 	  }
 	});
-
 	viewer.imageryLayers.addImageryProvider( buildingsProvider );	
-	
+	*/
 	
 	
 	// initCappiMonitor();
@@ -329,9 +336,7 @@ function doSomeSandBoxTests(){
 			run();
 		});
 	}
-	console.log( 'Variaveis passadas:');
-	console.log( getUrlVars() );
-	
+
 }
 
 function bindInterfaceElements() {
@@ -666,8 +671,19 @@ function updatePanelFooter( position ) {
 	var coordHDMS = convertDMS(mapPointerLatitude,mapPointerLongitude);
 	$( document ).ready(function( jQuery ) {
 		$("#mapLat").text( mapPointerLatitude );
-		$("#mapLon").text( mapPointerLongitude );    	    
-		$("#mapUtm").text( latLonToUTM(mapPointerLongitude, mapPointerLatitude  ) );    	    
+		$("#mapLon").text( mapPointerLongitude );
+		
+		var utmVal = fromLatLon( parseFloat(mapPointerLatitude), parseFloat(mapPointerLongitude));
+		var easting = utmVal.easting + "";
+		var northing = utmVal.northing + "";
+		var eaArr = easting.split(".");
+		var noArr = northing.split(".");
+		
+		var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArray[0] + " " + noArray[0];
+		
+		$("#mapUtm").text( theUtm );    	    
+		
+		
 		$("#mapHdmsLat").text( coordHDMS.lat + " " + coordHDMS.latCard );
 		$("#mapHdmsLon").text( coordHDMS.lon + " " + coordHDMS.lonCard );
 		
