@@ -340,6 +340,9 @@
 	<script src="${midasLocation}/atlas/resources/screenshot.js" type="text/javascript"></script>
 
 
+	<script src="${midasLocation}/atlas/resources/js/providers/MagnoMetocRadarProvider.js" type="text/javascript"></script>
+
+
 	<!-- 
 	<script src="${midasLocation}/atlas/resources/jsonlayers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/profilegraph.js" type="text/javascript"></script>

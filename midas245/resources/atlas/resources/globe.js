@@ -239,9 +239,25 @@ function redraw() {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 
+	
+	var url = "/radar?l={l}&r={r}&t={t}&b={b}";
+
+	var buildingsProvider = new MagnoMetocRadarProvider({
+	  debugTiles : false,
+	  viewer : viewer,
+	  activationLevel : 17,
+	  sourceUrl : url,
+	  featuresPerTile : 200,
+	  whenFeaturesAcquired : function( entities ){
+		console.log( entities.length + " celulas recebidas." );
+	  }
+	});
+
+	viewer.imageryLayers.addImageryProvider( buildingsProvider );	
+	
+	
+	
 	// initCappiMonitor();
-	
-	
 	// Teste de particulas de vento
 	/*
     $.ajax({
