@@ -245,9 +245,13 @@ function doSomeSandBoxTests(){
 	var buildingsProvider = new MagnoMetocRadarProvider({
 	  debugTiles : false,
 	  viewer : viewer,
-	  activationLevel : 17,
+	  activationLevel : 5,
 	  sourceUrl : url,
-	  featuresPerTile : 200,
+	  featuresPerTile : 1000,
+	  rampStart : '#b9e1fa',
+	  rampEnd : '#039eff',
+	  rampCountStart : -30,
+	  rampCountEnd : 50,
 	  whenFeaturesAcquired : function( entities ){
 		console.log( entities.length + " celulas recebidas." );
 	  }
