@@ -1,4 +1,4 @@
-
+var profileGeometries = {};
 
 function showProfileCard( data ){
 	var elevationDatas = data.elevationDatas;
@@ -47,12 +47,42 @@ function showProfileCard( data ){
     $("#terrainProfileCloseBtn").click( function(){
     	$("#terrainProfileContainer").remove();	
     });
-    
+
+    $("#terrainProfileSaveBtn").click( function(){
+    	saveTerrainProfile();
+    });
+
+}
+
+function modelCallback(modelGraphics, time, externalFiles) {
+    var resource = modelGraphics.uri.getValue(time);
+    console.log( resource );
+}
+
+function saveTerrainProfile(){
+    console.log( profileGeometries );
+
+    /*
+    var entityCollection = new Cesium.EntityCollection();
+
+    Cesium.exportKml({
+        entities: entityCollection,
+        kmz: true,
+        modelCallback: modelCallback,
+    }).then(function(result) {
+        // The XML string is in result.kml
+        var externalFiles = result.externalFiles
+        for(var file in externalFiles) {
+         // file is the name of the file used in the KML document as the href
+         // externalFiles[file] is a blob with the contents of the file
+        }
+    });
+    */
 }
 
 
 function calcLineTerrainProfile(){
-	
+
 	drawHelper.startDrawingPolyline({
 		callback: function(positions) {
 			
@@ -62,7 +92,10 @@ function calcLineTerrainProfile(){
                 geodesic: true
             });	
             scene.primitives.add( polyline );
-			
+            
+            profileGeometries.line = polyline;
+            
+
             var result = doProfile( polyline, 60 ); // Numero de pontos a serem gerados na interpolacao
             var cartographics = [];
             for( x=0; x < result.length; x++ ){
@@ -102,7 +135,9 @@ function calcLineTerrainProfile(){
             		});
                     profilePoints.push( profilePoint );
             	}
-            	
+                
+                profileGeometries.points = profilePoints;
+
             	var resultData = {};
             	resultData.elevationDatas = elevationDatas;
             	resultData.profilePoints = profilePoints;
