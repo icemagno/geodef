@@ -279,6 +279,8 @@
 								</div>
 							</div>
 						</div>
+						
+						<jsp:include page="solutionboxes.jsp" />
 					
 						<div id='corMetToolTip' style='display:none;z-index: 999; position:absolute; width:100px;height:15px;border:1px solid #3c8dbc;background-color:white'></div>
 					
@@ -343,6 +345,9 @@
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoMetocRadarProvider.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/utmconvert.js" type="text/javascript"></script>
 
+	<script src="${midasLocation}/atlas/resources/sistram.js" type="text/javascript"></script>
+
+
 
 	<!-- 
 	<script src="${midasLocation}/atlas/resources/jsonlayers.js" type="text/javascript"></script>
@@ -356,7 +361,6 @@
 	<script src="${midasLocation}/atlas/resources/favelas.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/flood.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/sensors.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/sistram.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/avisosradio.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/pcn.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/climatologia.js" type="text/javascript"></script>

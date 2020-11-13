@@ -1,6 +1,8 @@
 var receivedPlataformas = [];
 var receivedNavios = [];
 var platPerimeter = null;
+var isPlataformaSolutionActive = false;
+var plataformaEventHandler = null;
 
 // http://sisgeodef.defesa.mil.br:36207/gt-ope-alpha/v1/scan?lon=-40.81010333333333&lat=-22.703833333333332&raio=10
 function scan( lat, lon, raio ) {
@@ -109,11 +111,27 @@ function scan( lat, lon, raio ) {
 	});  	
 }
 
+function cancelPlataformaSolution(){
+	plataformaEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK);
+	plataformaEventHandler = null;
+	removePlataformas();
+	isPlataformaSolutionActive = false;
+	$("#toolGtOpA").removeClass("btn-danger");
+	$("#toolGtOpA").addClass("btn-warning");
+	closePlataformasToolBarMenu();
+}
 
+function startPlataformaSolution(){
+	isPlataformaSolutionActive = true;
+	$("#toolGtOpA").removeClass("btn-warning");
+	$("#toolGtOpA").addClass("btn-danger");	
+	$("#plataformasMenuBox").show(300);
+	plataformas();
+}
 
 function plataformas() {
 	bindToQuery();
-	
+
 	// Atualmente so ignora a nova busca se ja tiver sido feita.
 	// Eh necessario uma rotina para apagar as plataformas
 	if( receivedPlataformas.length > 0 ) {
@@ -166,13 +184,6 @@ function plataformas() {
 		contentType: "application/json"
 	});  	
 }
-
-
-/*
-function showNavioSistram( entity ) {
-	console.log( entity );
-}
-*/
 
 function showNavioSistram( entity ){
 	var navio = entity.properties;
@@ -299,8 +310,8 @@ function showPlataforma( entity ) {
 }
 
 function bindToQuery() {
-	
-	mainEventHandler.setInputAction( function( click ) {
+	plataformaEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
+	plataformaEventHandler.setInputAction( function( click ) {
 		var pickedObject = viewer.scene.pick( click.position );
 		
 	    if ( Cesium.defined( pickedObject ) ) {
@@ -319,11 +330,15 @@ function removePlataformas( uuid ){
 	for( x=0; x < receivedPlataformas.length; x++  ) {
 		viewer.entities.remove( receivedPlataformas[x] );
 	}
+	
+	/*
 	jQuery("#" + uuid).fadeOut(400, function(){
 		jQuery("#" + uuid).remove();
 		var count = jQuery('#diversosContainer').children().length;
 		if ( count === 0 ) { jQuery("#diversosCounter").html( '' ); } else { jQuery("#diversosCounter").html( count ); }
 	});
+	*/
+
 	receivedPlataformas = [];
 	if ( platPerimeter ) viewer.entities.remove( platPerimeter );
 	platPerimeter = null;
@@ -334,6 +349,7 @@ function removePlataformas( uuid ){
 	receivedNavios = [];
 }
 
+/*
 function putPlataformasToMainPanel() {
 	var uuid = createUUID();
 	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
@@ -356,7 +372,7 @@ function putPlataformasToMainPanel() {
 	var count = jQuery('#diversosContainer').children().length;
 	jQuery("#diversosCounter").html( count );	
 }
-
+*/
 
 function loadPlataformas( plataformas ) {
 	if( plataformas.length === 0 ) return;
@@ -406,7 +422,7 @@ function loadPlataformas( plataformas ) {
     	
 	}
 	
-	putPlataformasToMainPanel();
+	//putPlataformasToMainPanel();
 }
 
 

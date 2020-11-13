@@ -280,8 +280,11 @@ function bindToolBarButtons() {
 	 * **************************************************/
 
 	$("#toolGtOpA").click( function(){
-		$("#plataformasMenuBox").show(300);
-		plataformas();
+		if( isPlataformaSolutionActive ){
+			cancelPlataformaSolution();
+		} else {
+			startPlataformaSolution();
+		}	
 	});	
 
 
