@@ -293,9 +293,13 @@ function updateLegendImages(){
 		if( data ){
 			var uuid = sp.uuid;
 			var imgUUID = "IMG_" + uuid;
+			var legendUrl = "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest +
+				'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth;
+			
+			console.log( legendUrl );
+
 			jQuery.ajax({
-				url: "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest+
-					'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth,
+				url: legendUrl,
 				type: "GET", 
 				success: function( imagePath ) {
 					if( imagePath != '' ){
@@ -396,7 +400,9 @@ function addLayerCard( data ){
 		
 		var urlLeg = "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest+
 				'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth;
-				
+			
+		console.log( urlLeg );		
+
 		jQuery.ajax({
 			url: urlLeg,
 			type: "GET", 
@@ -497,9 +503,12 @@ function queryLayer() {
 			
 			for( x=0; x<stackedProviders.length;x++ ) {
 				var sp = stackedProviders[x];
-				
+				var queryUrl = "/proxy/getfeatureinfo?layerId=" + sp.data.id + "&lat=" + latitudeString + '&lon='+longitudeString;
+
+				console.log( queryUrl );
+
 				jQuery.ajax({
-					url: "/proxy/getfeatureinfo?layerId=" + sp.data.id + "&lat=" + latitudeString + '&lon='+longitudeString,
+					url: queryUrl,
 					type: "GET",
 					stackedProvider : stackedProviders[x],
 					success: function( featureCollection ) {

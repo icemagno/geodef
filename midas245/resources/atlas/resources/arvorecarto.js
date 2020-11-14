@@ -235,7 +235,7 @@ function getGeoTabContent( catalogTopics ){
 			'<div id="catalogMapWaitingIcon" style="display:none;width: 100%;height: 248px; position: absolute;" class="overlay"><i class="fa fa-refresh fa-spin"></i></div></div><div class="box-footer">' + 
 
 			'<div class="pull-left">' +
-				'<button id="addLayerWMSBtn" style="margin-right: 5px;" type="button" title="Criar Camada" class="btn btn-default"><i class="fa fa-mail-reply-all"></i></button>' +
+				'<button id="addLayerWMSBtn" style="margin-right: 5px;" type="button" title="Adicionar Camada" class="btn btn-success"><i class="fa fa-check-square-o"></i></button>' +
 			'</div>' +			
 			
             '<div style="width:90%; margin:0px; float:right;" >' +

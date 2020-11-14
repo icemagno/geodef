@@ -73,7 +73,12 @@ public class ProxyService {
 				restTemplate = new RestTemplate( );
 			}
 					
-			String urlSource = source.getSourceAddressOriginal() + 
+			String sao = source.getSourceAddressOriginal();
+			if( sao.contains("http://sisgeodef.defesa.mil.br") ) {
+				sao = "http://pleione:8080/geoserver/wms";
+			}
+			
+			String urlSource = sao + 
 					"?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" + source.getSourceLayer() + 
 					"&LEGEND_OPTIONS=layout:vertical;columns:1;hideEmptyRules:true;fontAntiAliasing:true;countMatched:true" + bbox;
 			
@@ -107,10 +112,15 @@ public class ProxyService {
 			HttpHeaders headers = new HttpHeaders();
 		    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 	
+			String sao = source.getSourceAddressOriginal();
+			if( sao.contains("http://sisgeodef.defesa.mil.br") ) {
+				sao = "http://pleione:8080/geoserver/wms";
+			}
+			
 		    MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
 		    map.add("userId", userId );
 		    map.add("layer", source.getSourceLayer() );
-		    map.add("url", source.getSourceAddressOriginal() );
+		    map.add("url", sao );
 		    map.add("bn", bn );
 		    map.add("bs", bs );
 		    map.add("be", be );
@@ -136,8 +146,12 @@ public class ProxyService {
 		String responseBody = "[]";
 		CatalogSource source = catalogService.getSource(sourceId);
 		if( source != null ) {
-			String url = source.getSourceAddressOriginal();
 			
+			String url = source.getSourceAddressOriginal();
+			if( url.contains("http://sisgeodef.defesa.mil.br") ) {
+				url = "http://pleione:8080/geoserver/wms";
+			}
+
 			double latD = Double.valueOf( lat );
 			double lonD = Double.valueOf( lon );
 			double bw = lonD - 0.01;
