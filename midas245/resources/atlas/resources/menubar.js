@@ -23,7 +23,9 @@ function closeQueryToolBarMenu() {
 }
 
 function closePCNToolBarMenu() {
-	$("#toolPCN").addClass("btn-primary");
+	isPCNSolutionActive = false;
+	deleteAllRunways();
+	$("#toolPCN").addClass("btn-warning");
 	$("#toolPCN").removeClass("btn-danger");
 	hideAllButtonBars();
 }
@@ -313,9 +315,14 @@ function bindToolBarButtons() {
 	/* -------------------------------------------- */
 	
 	$("#toolPCN").click( function(){
-		$("#pcnMenuBox").show(300);
-		$("#toolPCN").removeClass("btn-primary");
-		$("#toolPCN").addClass("btn-danger");
+		if( isPCNSolutionActive ){
+			closePCNToolBarMenu();
+		} else {
+			$("#toolPCN").removeClass("btn-warning");
+			$("#toolPCN").addClass("btn-danger");
+			$("#pcnMenuBox").show(300);
+			isPCNSolutionActive = true;
+		}
 	});	
 
 	$("#toolCOR").click( function(){

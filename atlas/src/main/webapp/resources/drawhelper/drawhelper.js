@@ -14,10 +14,11 @@ var DrawHelper = (function() {
     var ellipsoid = Cesium.Ellipsoid.WGS84;
 
     // constructor
-    function _(viewer, callbackMouseOverFunction ) {
+    function _(viewer, callbackMouseOverFunction, callbackMouseLeaveFunction ) {
 		ellipsoid = viewer.scene.globe.ellipsoid;
         this._scene = viewer.scene;
         this._callbackMouseOverFunction = callbackMouseOverFunction;
+        this._callbackMouseLeaveFunction = callbackMouseLeaveFunction;
 		this._camera = viewer.camera;
         this._tooltip = createTooltip(viewer.container);
         this._surfaces = [];
@@ -76,7 +77,6 @@ var DrawHelper = (function() {
                 var pickedObject = scene.pick(movement.endPosition);
 				if( pickedObject ) {
 					if( _self._callbackMouseOverFunction ) _self._callbackMouseOverFunction( pickedObject );
-					
 					try{
 						var thePrimitive;
 						if ( pickedObject.primitive instanceof Cesium.GroundPrimitive  || pickedObject.primitive instanceof Cesium.GroundPolylinePrimitive  ){
@@ -95,6 +95,8 @@ var DrawHelper = (function() {
 					} catch ( error ){
 						//
 					}					
+				} else {
+					if( _self._callbackMouseLeaveFunction ) _self._callbackMouseLeaveFunction( );
 				}
 				
 				if(mouseOutObject && (!pickedObject || mouseOutObject != thePrimitive)) {

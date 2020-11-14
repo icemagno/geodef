@@ -211,8 +211,11 @@ function startMap( theMapStyle ) {
 	//connect();
 	
 	
-	drawHelper = new DrawHelper( viewer, function onMouseOver( object ){
-		console.log( object );
+	drawHelper = new DrawHelper( viewer, function( object ){
+		viewer._container.style.cursor = "help";
+		//console.log( object.id.properties );
+	}, function(){
+		viewer._container.style.cursor = "default";		
 	});
 	
 	

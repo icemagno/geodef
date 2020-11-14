@@ -1,5 +1,7 @@
 
 var runWaysPcn = [];
+var isPCNSolutionActive = false;
+
 
 function loadPistas( pistas, searchParameters ) {
 	
