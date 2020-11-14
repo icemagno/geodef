@@ -117,10 +117,10 @@ function calcLineTerrainProfile(){
                 name: "Perfil de Elevação",
                 polyline: {
                     positions: positions,
-                    width: 2,
+                    width: 6,
                     material: new Cesium.PolylineOutlineMaterialProperty({
                         color: Cesium.Color.ORANGE,
-                        outlineWidth: 2,
+                        outlineWidth: 1,
                         outlineColor: Cesium.Color.BLACK,
                     }),
                     clampToGround: true,

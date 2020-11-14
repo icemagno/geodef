@@ -112,6 +112,7 @@ function scan( lat, lon, raio ) {
 }
 
 function cancelPlataformaSolution(){
+	viewer._container.style.cursor = "default";
 	plataformaEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK);
 	plataformaEventHandler = null;
 	removePlataformas();
@@ -237,7 +238,7 @@ function showNavioSistram( entity ){
 	"</tr>";	
 
 	jQuery(".queryRowDetails").remove();
-   	jQuery("#queryMenuTable").append( queryData );
+   	jQuery("#plataformasMenuTable").append( queryData );
 }
 
 function showPlataformaInfo( entity ) {
@@ -272,7 +273,7 @@ function showPlataformaInfo( entity ) {
 	"</tr>";
 
 	jQuery(".queryRowDetails").remove();
-   	jQuery("#queryMenuTable").append( queryData );
+   	jQuery("#plataformasMenuTable").append( queryData );
 }
 
 function showPlataforma( entity ) {
@@ -305,7 +306,7 @@ function showPlataforma( entity ) {
 	    }
 	});
 	
-	
+	showPlataformaInfo( entity );
 	
 }
 
@@ -322,11 +323,11 @@ function bindToQuery() {
 	    	//
 	    }
 	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-	
+	viewer._container.style.cursor = "help";
 }
 
 function removePlataformas( uuid ){
-	
+	jQuery(".queryRowDetails").remove();
 	for( x=0; x < receivedPlataformas.length; x++  ) {
 		viewer.entities.remove( receivedPlataformas[x] );
 	}

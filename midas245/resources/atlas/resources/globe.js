@@ -147,6 +147,11 @@ function startMap( theMapStyle ) {
         //	requestWebgl2: true
         //},	    
 	});
+	
+	if( mapStyle == '3D'){
+		viewer.terrainProvider = terrainProvider;
+	} 	
+	
 	viewer.extend( Cesium.viewerCesiumNavigationMixin, {});
 	camera = viewer.camera;
 	scene = viewer.scene;
