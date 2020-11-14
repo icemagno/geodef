@@ -347,6 +347,8 @@
 
 	<script src="${midasLocation}/atlas/resources/sistram.js" type="text/javascript"></script>
 
+	<script src="${midasLocation}/atlas/resources/avisosradio.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/pcn.js" type="text/javascript"></script>
 
 
 	<!-- 
@@ -361,8 +363,6 @@
 	<script src="${midasLocation}/atlas/resources/favelas.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/flood.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/sensors.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/avisosradio.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/pcn.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/climatologia.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/export.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/anewradar.js" type="text/javascript"></script>
