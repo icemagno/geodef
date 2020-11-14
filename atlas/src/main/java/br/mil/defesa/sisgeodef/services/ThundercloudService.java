@@ -23,9 +23,7 @@ public class ThundercloudService {
     public String getMunicipios( String data ) {
 		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");
 		String thundercloudAddress = thundercloudInstance.getUri().toString(); 
-			
 		String uri = thundercloudAddress +  "/ibge/municipios";
-		System.out.println( uri );
 
 		RestTemplate restTemplate = new RestTemplate();
     	
