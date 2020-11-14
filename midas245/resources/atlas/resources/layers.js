@@ -401,8 +401,6 @@ function addLayerCard( data ){
 		var urlLeg = "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest+
 				'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth;
 			
-		console.log( urlLeg );		
-
 		jQuery.ajax({
 			url: urlLeg,
 			type: "GET", 
@@ -504,8 +502,6 @@ function queryLayer() {
 			for( x=0; x<stackedProviders.length;x++ ) {
 				var sp = stackedProviders[x];
 				var queryUrl = "/proxy/getfeatureinfo?layerId=" + sp.data.id + "&lat=" + latitudeString + '&lon='+longitudeString;
-
-				console.log( queryUrl );
 
 				jQuery.ajax({
 					url: queryUrl,
