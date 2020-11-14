@@ -14,9 +14,10 @@ var DrawHelper = (function() {
     var ellipsoid = Cesium.Ellipsoid.WGS84;
 
     // constructor
-    function _(viewer) {
+    function _(viewer, callbackMouseOverFunction ) {
 		ellipsoid = viewer.scene.globe.ellipsoid;
         this._scene = viewer.scene;
+        this._callbackMouseOverFunction = callbackMouseOverFunction;
 		this._camera = viewer.camera;
         this._tooltip = createTooltip(viewer.container);
         this._surfaces = [];
@@ -74,22 +75,26 @@ var DrawHelper = (function() {
 				
                 var pickedObject = scene.pick(movement.endPosition);
 				if( pickedObject ) {
+					if( _self._callbackMouseOverFunction ) _self._callbackMouseOverFunction( pickedObject );
 					
-					var thePrimitive;
-					if ( pickedObject.primitive instanceof Cesium.GroundPrimitive  || pickedObject.primitive instanceof Cesium.GroundPolylinePrimitive  ){
-						thePrimitive = pickedObject.primitive.geometryInstances.pickPrimitive;
-					} else {
-						thePrimitive = pickedObject.primitive;
-					}	
-					
-					if(thePrimitive.mouseOut) {
-						mouseOutObject = thePrimitive;
+					try{
+						var thePrimitive;
+						if ( pickedObject.primitive instanceof Cesium.GroundPrimitive  || pickedObject.primitive instanceof Cesium.GroundPolylinePrimitive  ){
+							thePrimitive = pickedObject.primitive.geometryInstances.pickPrimitive;
+						} else {
+							thePrimitive = pickedObject.primitive;
+						}	
+						
+						if(thePrimitive.mouseOut) {
+							mouseOutObject = thePrimitive;
+						}					
+						
+						if(thePrimitive.mouseMove) {
+							thePrimitive.mouseMove(movement.endPosition);
+						}
+					} catch ( error ){
+						//
 					}					
-					
-					if(thePrimitive.mouseMove) {
-						thePrimitive.mouseMove(movement.endPosition);
-					}
-					
 				}
 				
 				if(mouseOutObject && (!pickedObject || mouseOutObject != thePrimitive)) {

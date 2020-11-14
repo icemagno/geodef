@@ -211,7 +211,12 @@ function startMap( theMapStyle ) {
 	//connect();
 	
 	
-	drawHelper = new DrawHelper( viewer );
+	drawHelper = new DrawHelper( viewer, function onMouseOver( object ){
+		console.log( object );
+	});
+	
+	
+	
 	drawedFeaturesBillboards = new Cesium.BillboardCollection({scene: viewer.scene});
 	scene.groundPrimitives.add( drawedFeaturesBillboards );
 	

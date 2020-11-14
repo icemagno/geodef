@@ -520,12 +520,12 @@ function queryLayer() {
 		    	var entity = pickedObject.id;
 		    	if( entity ){
 		    		console.log("QUERY ENTITY: " + entity.name );
+					if ( entity.name === "PCN_RUNWAY") showRunwayInfo( entity );
 		    	}
 		    	
 		    	/*
 		    	if ( entity.name === 'ROTA_POI') showRotaPoi( entity );
 		    	if ( entity.name === 'PHOTO_HASTE') showStreetImage( entity );
-		    	if ( entity.name === "PCN_RUNWAY") showRunwayInfo( entity );
 		    	if ( entity.name === "CORMET_AERODROMO") showColorAerodromo( entity );
 		    	if ( entity.name === "MUNICIPIO_PREVISAO") showPrevisaoMunicipio( entity );
 		    	if ( entity.name === "AERODROMO_METOC") showMetarAerodromo( entity );

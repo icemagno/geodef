@@ -12,50 +12,54 @@ function loadPistas( pistas, searchParameters ) {
     	var entities = dataSource.entities.values;
 		var runwayColor = new Cesium.PolylineGlowMaterialProperty({ glowPower : 0.14, color : Cesium.Color.RED });			    	 
 		var quant = entities.length;
-		
+
 		for (var i = 0; i < quant; i++) {
 			var entity = entities[i];
-			var positions = entity.polyline.positions.getValue();
-			var properties = entity.properties;
 
-			var pointPosition = positions[0];
-			
-			var runWayPl = viewer.entities.add({
-				name : 'PCN_RUNWAY',
-				properties : properties,
-				polyline : {
-			    	positions : positions,
-		            material : runwayColor,			    	
-			    	clampToGround : true,
-			    	width: 20,
-			    	disableDepthTestDistance : Number.POSITIVE_INFINITY
-			    }
-			});
-			
-			
-			var runwayPoint = viewer.entities.add({
-				name : 'RUNWAY_POINT',
-			    position : pointPosition,
-			    billboard :{
-			        image : '/resources/img/pin-start.png',
-		            pixelOffset : new Cesium.Cartesian2(0, -10),
-		            scaleByDistance : new Cesium.NearFarScalar(1.5e2, 0.6, 1.5e7, 0.2),
-		            heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
-		            disableDepthTestDistance : Number.POSITIVE_INFINITY     
-		        }
-			});	
-			
-			var runWay = {};
-			runWay.uuid = createUUID();
-			runWay.polyline = runWayPl;
-			runWay.marker = runwayPoint;
-			runWay.searchParameters = searchParameters;
-			runWaysPcn.push( runWay );
-			
+			if( entity.polyline ){
+
+				var positions = entity.polyline.positions.getValue();
+				var properties = entity.properties;
+				var pointPosition = positions[0];
+				
+
+				var runWayPl = viewer.entities.add({
+					name : 'PCN_RUNWAY',
+					properties : properties,
+					polyline : {
+						positions : positions,
+						material : runwayColor,			    	
+						clampToGround : true,
+						width: 20,
+						disableDepthTestDistance : Number.POSITIVE_INFINITY
+					}
+				});
+
+				var runwayPoint = viewer.entities.add({
+					name : 'RUNWAY_POINT',
+					position : pointPosition,
+					billboard :{
+						image : '/resources/img/pin-start.png',
+						pixelOffset : new Cesium.Cartesian2(0, -10),
+						scaleByDistance : new Cesium.NearFarScalar(1.5e2, 0.6, 1.5e7, 0.2),
+						eyeOffset : new Cesium.Cartesian3(0.0, 0.0, 0.0),
+						horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
+						verticalOrigin : Cesium.VerticalOrigin.CENTER,
+						disableDepthTestDistance : Number.POSITIVE_INFINITY     
+					}
+				});	
+				
+				var runWay = {};
+				runWay.uuid = createUUID();
+				runWay.polyline = runWayPl;
+				runWay.marker = runwayPoint;
+				runWay.searchParameters = searchParameters;
+				runWaysPcn.push( runWay );
+			}
+
 		}	
 
 		if( quant > 0) addToPanelRunway( searchParameters );
-
     	
     });
 }

@@ -64,8 +64,9 @@ function scan( lat, lon, raio ) {
 					    	//stRotation : heading,
 					    	outline : true,
 					    	extrudedHeight : 100,
-					    	heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
-					    	height : 10,
+							horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
+							verticalOrigin : Cesium.VerticalOrigin.CENTER,
+							height : 10,
 					        semiMajorAxis: 200,
 					        semiMinorAxis: 200,
 			                material: new Cesium.ImageMaterialProperty({ 
@@ -78,12 +79,11 @@ function scan( lat, lon, raio ) {
 			                //style : Cesium.LabelStyle.FILL_AND_OUTLINE,
 			                fillColor : Cesium.Color.BLACK,
 			                //outlineColor : Cesium.Color.BLACK,	                
-			                font: '12px Consolas',
+			                font: '10px Consolas',
 			                //outlineWidth : 1,
 			                horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
 			                eyeOffset : new Cesium.Cartesian3(0.0, 500.0, 0.0),
 			                pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.7),
-			                heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
 			                disableDepthTestDistance : Number.POSITIVE_INFINITY,
 			            }
 			        });					
@@ -297,7 +297,6 @@ function showPlataforma( entity ) {
 	    	outlineColor : Cesium.Color.RED,
 	    	outlineWidth : 5,
 	    	fill : false,
-	    	heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
 	    	height : 50,
 	    	extrudedHeight : 100,
 	    	numberOfVerticalLines : 64,
@@ -392,9 +391,7 @@ function loadPlataformas( plataformas ) {
 		    ellipse: {
 		    	outline : true,
 		    	extrudedHeight : 200,
-		    	heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
 		    	height : 10,
-		    	
 		        semiMajorAxis: 300,
 		        semiMinorAxis: 300,
                 material: new Cesium.ImageMaterialProperty({ 
@@ -407,14 +404,13 @@ function loadPlataformas( plataformas ) {
                 //style : Cesium.LabelStyle.FILL_AND_OUTLINE,
                 fillColor : Cesium.Color.BLACK,
                 //outlineColor : Cesium.Color.BLACK,	                
-                font: '14px Consolas',
+                font: '10px Consolas',
                 //outlineWidth : 1,
                 //showBackground : true,
                 //backgroundColor : Cesium.Color.WHITE,
                 horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
                 eyeOffset : new Cesium.Cartesian3(0.0, 800.0, 0.0),
                 pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.4, 1.5e7, 0.7),
-                heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
                 disableDepthTestDistance : Number.POSITIVE_INFINITY,
             }
         });
