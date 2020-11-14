@@ -70,16 +70,18 @@
     </a>
 
     <ul style="background-color: transparent; border: 0px;" class="dropdown-menu dropdown-menu-lg">
+    	<!-- 
         <li style="margin-top: 5px;">
-			<button title="Buffer" id="toolBuffer" type="button" class="btn btn-warning btn-flat disabled" style="padding: 0px;">
+			<button title="Buffer" id="toolBuffer" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/buffer.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
         <li style="margin-top: 5px;">
-			<button title="Gráfico de Voronoi" id="toolVoronoi" type="button" class="btn btn-warning btn-flat disabled" style="padding: 0px;">
+			<button title="Gráfico de Voronoi" id="toolVoronoi" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/voronoi.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
+         -->
         <li style="margin-top: 5px;">
 			<button title="Perfil de Elevação" id="toolPrfilElevacao" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/perfil2.png" style="width: 35px; height: 35px;">
@@ -144,6 +146,8 @@
 				<img src="${midasLocation}/atlas/icons/plataforma.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
+        
+        <!-- 
 		<li style="margin-top: 5px;">
 			<button title="Previsão do Tempo" id="toolMetocMain" type="button" class="btn btn-warning  btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/clima2.png" style="width: 35px; height: 35px;">
@@ -154,6 +158,8 @@
 				<img src="${midasLocation}/atlas/icons/metoc.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
+         -->
+        
 		<li style="margin-top: 5px;">
 			<button title="Cor Meteorológica" id="toolCOR" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/cormet.png" style="width: 35px; height: 35px;">

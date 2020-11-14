@@ -22,7 +22,9 @@ function closeQueryToolBarMenu() {
 	currentPanelActiveAerodromo = '';
 }
 
-function closeMetocToolBarMenu() {
+function closePCNToolBarMenu() {
+	$("#toolPCN").addClass("btn-primary");
+	$("#toolPCN").removeClass("btn-danger");
 	hideAllButtonBars();
 }
 
@@ -312,6 +314,8 @@ function bindToolBarButtons() {
 	
 	$("#toolPCN").click( function(){
 		$("#pcnMenuBox").show(300);
+		$("#toolPCN").removeClass("btn-primary");
+		$("#toolPCN").addClass("btn-danger");
 	});	
 
 	$("#toolCOR").click( function(){
