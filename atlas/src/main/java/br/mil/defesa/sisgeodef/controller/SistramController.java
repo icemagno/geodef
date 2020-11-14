@@ -17,19 +17,13 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/sistram")
 public class SistramController {
 
-	//@Autowired
-	//private Environment env;	
-	
     @Autowired
     private LoadBalancerClient loadBalancer;
     
 	private String doRequestGet( String url ) {
 		
-		//String gaiaAddress = env.getProperty("gaia.url");
-		//if( gaiaAddress == null ) {
-			ServiceInstance serviceInstance = loadBalancer.choose("sistram");
-			String sistramAddress = serviceInstance.getUri().toString(); 
-		//}
+		ServiceInstance serviceInstance = loadBalancer.choose("sistram");
+		String sistramAddress = serviceInstance.getUri().toString(); 
 			
 		String uri = sistramAddress +  url;
 		System.out.println( uri );

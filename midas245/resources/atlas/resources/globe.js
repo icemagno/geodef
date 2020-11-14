@@ -203,7 +203,9 @@ function startMap( theMapStyle ) {
 	
 	
 	// Conecta o WebSocket
-	connect();
+	//connect();
+	
+	
 	drawHelper = new DrawHelper( viewer );
 	drawedFeaturesBillboards = new Cesium.BillboardCollection({scene: viewer.scene});
 	scene.groundPrimitives.add( drawedFeaturesBillboards );
@@ -679,7 +681,7 @@ function updatePanelFooter( position ) {
 		var eaArr = easting.split(".");
 		var noArr = northing.split(".");
 		
-		var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArray[0] + " " + noArray[0];
+		var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0] + " " + noArr[0];
 		
 		$("#mapUtm").text( theUtm );    	    
 		

@@ -1,8 +1,7 @@
 
 
-function doProfile( line, steps ){
+function doProfile( positions, steps ){
 	var segments = [];
-    var positions = line.positions;
     var result = [];
 	for( x=0; x < positions.length-1; x++ ){
 		segments.push( processLineSegment( positions[x], positions[x+1], steps ) );

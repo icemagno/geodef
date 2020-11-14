@@ -141,7 +141,7 @@ function plataformas() {
 	
 	var plataformasUrl = "/sistram/plataformas"; 
 	var loadingId = createUUID();
-    jQuery.ajax({
+    $.ajax({
 		url: plataformasUrl, 
 		type: "GET", 
 		beforeSend : function() {

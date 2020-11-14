@@ -59,11 +59,28 @@ function modelCallback(modelGraphics, time, externalFiles) {
     console.log( resource );
 }
 
-function saveTerrainProfile(){
-    console.log( profileGeometries );
 
-    /*
+function downloadBlob(filename, blob) {
+    if (window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveBlob(blob, filename);
+    } else {
+        var elem = window.document.createElement("a");
+        elem.href = window.URL.createObjectURL(blob);
+        elem.download = filename;
+        document.body.appendChild(elem);
+        elem.click();
+        document.body.removeChild(elem);
+    }
+}
+
+function saveTerrainProfile(){
+
     var entityCollection = new Cesium.EntityCollection();
+
+    entityCollection.add( profileGeometries.line );
+    for( x=0; x < profileGeometries.points.length; x++  ){
+        entityCollection.add( profileGeometries.points[x] );
+    }
 
     Cesium.exportKml({
         entities: entityCollection,
@@ -76,8 +93,11 @@ function saveTerrainProfile(){
          // file is the name of the file used in the KML document as the href
          // externalFiles[file] is a blob with the contents of the file
         }
+
+        downloadBlob( "perfil.kmz", result.kmz );
+
     });
-    */
+
 }
 
 
@@ -85,18 +105,32 @@ function calcLineTerrainProfile(){
 
 	drawHelper.startDrawingPolyline({
 		callback: function(positions) {
-			
+			/*
             var polyline = new DrawHelper.PolylinePrimitive({
                 positions: positions,
                 width: 2,
                 geodesic: true
             });	
             scene.primitives.add( polyline );
-            
+            */
+            var polyline = viewer.entities.add({
+                name: "Perfil de Elevação",
+                polyline: {
+                    positions: positions,
+                    width: 2,
+                    material: new Cesium.PolylineOutlineMaterialProperty({
+                        color: Cesium.Color.ORANGE,
+                        outlineWidth: 2,
+                        outlineColor: Cesium.Color.BLACK,
+                    }),
+                    clampToGround: true,
+                },
+            });
+
             profileGeometries.line = polyline;
             
 
-            var result = doProfile( polyline, 60 ); // Numero de pontos a serem gerados na interpolacao
+            var result = doProfile( positions, 60 ); // Numero de pontos a serem gerados na interpolacao
             var cartographics = [];
             for( x=0; x < result.length; x++ ){
             	var cartesian = result[x];
@@ -125,7 +159,8 @@ function calcLineTerrainProfile(){
                     elevationDatas.push( elevationData );
                     
                     var profilePoint = viewer.entities.add({
-            		    position : result[x],
+                        position : result[x],
+                        properties : elevationData,
             		    point : {
             		        pixelSize : 4,
             		        color : Cesium.Color.RED,
