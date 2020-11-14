@@ -312,45 +312,40 @@
 	<script src="/resources/Cesium/Cesium.js" type="text/javascript"></script>
 	<script src="/resources/graticule/Graticule.js" type="text/javascript"></script>
 	<script src="/resources/html2canvas.js" type="text/javascript"></script>
+	<script src="/resources/drawhelper/drawhelper.js"></script>
+	<script src="/resources/profilehelper/profilehelper.js"></script>
 
-	<script src="${midasLocation}/atlas/resources/entityexporter.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/convertions.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/menubar.js" type="text/javascript"></script>
-	
 	<script src="${midasLocation}/atlas/resources/scalebar/viewerCesiumNavigationMixin.min.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/globe.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/geohash.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/drawfeatures.js" type="text/javascript"></script>
-
 	<script src="${midasLocation}/atlas/resources/arvorecarto.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/layers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/controlsidebar.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/profile.js" type="text/javascript"></script>
-
+	<script src="${midasLocation}/atlas/resources/utmconvert.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/modal.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/querylayer.js" type="text/javascript"></script>
-
-	<script src="/resources/drawhelper/drawhelper.js"></script>
-	<script src="/resources/profilehelper/profilehelper.js"></script>
-	
-	<script src="/resources/windy/Particle.js"></script>
-	<script src="/resources/windy/WindField.js"></script>
-	<script src="${midasLocation}/atlas/resources/Windy.js"></script>
-
 	<script src="${midasLocation}/atlas/resources/cormeteoro.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/radares-cappi.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/screenshot.js" type="text/javascript"></script>
 
 
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoMetocRadarProvider.js" type="text/javascript"></script>
-	<script src="${midasLocation}/atlas/resources/utmconvert.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/js/providers/MagnoBuildingsProvider.js" type="text/javascript"></script>
 
+	<!-- SOLUCIONADORES -->
 	<script src="${midasLocation}/atlas/resources/sistram.js" type="text/javascript"></script>
-
 	<script src="${midasLocation}/atlas/resources/avisosradio.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/pcn.js" type="text/javascript"></script>
 
-
+	<!--    VERIFICAR UTILIDADE DESSES    -->
+	<script src="/resources/windy/Particle.js"></script>
+	<script src="/resources/windy/WindField.js"></script>
+	<script src="${midasLocation}/atlas/resources/radares-cappi.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/Windy.js"></script>
+	<script src="${midasLocation}/atlas/resources/entityexporter.js" type="text/javascript"></script>
 	<!-- 
 	<script src="${midasLocation}/atlas/resources/jsonlayers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/profilegraph.js" type="text/javascript"></script>
@@ -372,7 +367,6 @@
  	-->
 
 	<!-- 	
-	<script src="${midasLocation}/atlas/resources/js/providers/MagnoBuildingsProvider.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoPointCloudProvider.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoMarineTrafficProvider.js" type="text/javascript"></script>
 	 -->
