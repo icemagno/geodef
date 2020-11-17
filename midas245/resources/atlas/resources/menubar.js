@@ -260,8 +260,6 @@ function bindToolBarButtons() {
 	//***********************************************************
     $("#toolRoutes").click( function(){
     	if( isRouteSolutionActive ){
-			$("#toolRoutes").addClass("btn-warning");
-			$("#toolRoutes").removeClass("btn-danger");
     		cancelRouteSolution();
     	} else {
     		startRouteSolution();

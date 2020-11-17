@@ -30,6 +30,8 @@ function cancelRouteSolution(){
 	routeEventHandler.removeInputAction( Cesium.ScreenSpaceEventType.LEFT_CLICK );
 	routeEventHandler.removeInputAction( Cesium.ScreenSpaceEventType.RIGHT_CLICK );
 	isRouteSolutionActive = false;
+	$("#toolRoutes").addClass("btn-warning");
+	$("#toolRoutes").removeClass("btn-danger");
 	routeEventHandler = null;
 	$("#routeMenuBox").hide();
 	cancelRouteEditing();
