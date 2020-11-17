@@ -184,4 +184,50 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+
+<div
+	style="opacity: 0.9; display: none; padding: 5px; text-align: right; width: 170px; height: 115px; border: 1px solid #3c8dbc; background-color: #f9fafc; position: absolute; z-index: 99999; left: 0px; top: 0px;"
+	id="contextMenuRouteInit">
+	<button id="btnStartRoute" onclick="setStartRoute()"
+		type="button" class="btn btn-flat btn-block btn-primary btn-xs">Origem
+		da Rota Aqui</button>
+	<button id="btnEndRoute" onclick="calculateRoute()" type="button"
+		class="btn btn-flat btn-block btn-primary btn-xs disabled">Destino
+		da Rota Aqui</button>
+	<button id="btnBlockRoute" onclick="insertBlockRoute()"
+		type="button" class="btn btn-flat btn-block btn-primary btn-xs">Inserir
+		Bloqueio de Rota</button>
+	<button onclick="cancelRouteEditing()" type="button"
+		class="btn btn-flat btn-block btn-xs">Cancelar</button>
+</div>
+
+<div
+	style="opacity: 0.9; display: none; padding: 5px; text-align: right; width: 170px; height: 170px; border: 1px solid #3c8dbc; background-color: #f9fafc; position: absolute; z-index: 99999; left: 0px; top: 0px;"
+	id="contextMenuRecalcRoute">
+	<button id="btnEdtStartRoute" onclick="recalculateRoute('start')"
+		type="button" class="btn btn-flat btn-block btn-primary btn-xs">Mover
+		Origem Aqui</button>
+	<button id="btnEdtEndRoute" onclick="recalculateRoute('end')"
+		type="button" class="btn btn-flat btn-block btn-primary btn-xs">Mover
+		Destino Aqui</button>
+	<button id="btnDerivateRoute"
+		onclick="recalculateRoute('newstart')" type="button"
+		class="btn btn-flat btn-block btn-primary btn-xs">Nova
+		Origem Aqui</button>
+	<button id="btnDerivateRoute"
+		onclick="recalculateRoute('derivate')" type="button"
+		class="btn btn-flat btn-block btn-primary btn-xs">Novo
+		Destino Aqui</button>
+	<button id="btnDerivateRoute"
+		onclick="recalculateRoute('addwaypoint')" type="button"
+		class="btn btn-flat btn-block btn-primary btn-xs">Obrigatório
+		Passar Aqui</button>
+	<button onclick="cancelRouteEditing()" type="button"
+		class="btn btn-flat btn-block btn-xs">Cancelar</button>
+</div>
+
 						

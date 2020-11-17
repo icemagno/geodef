@@ -17,10 +17,10 @@ var isRouteSolutionActive = false;
 
 
 function startRouteSolution(){
+	routeEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
 	bindRouteRightClick();
 	$("#routeMenuBox").show( 300 );
 	isRouteSolutionActive = true;
-	routeEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
 }
 
 
@@ -31,6 +31,28 @@ function cancelRouteSolution(){
 	routeEventHandler = null;
 	$("#routeMenuBox").hide();
 	cancelRouteEditing();
+}
+
+function bindRouteRightClick() {
+	routeEventHandler.setInputAction(function ( e ) {
+		var position = e.position;
+		routeMouseClickPosition = position;
+		
+		$("#contextMenuRouteInit").css({
+			top: position.y + 5, 
+			left: position.x + 5, 
+			display:'block'
+		});
+		if( startPoint ) {
+			$("#btnEndRoute").removeClass( "disabled" )
+		}
+		
+	}, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
+
+	
+	routeEventHandler.setInputAction(function ( e ) {
+		hideRouteMenu();
+	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);			
 }
 
 function setStartRoute() {
@@ -624,31 +646,6 @@ function bindEditRouteRightClick() {
 	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);			
 	
 }
-
-function bindRouteRightClick() {
-	routeEventHandler.setInputAction(function ( e ) {
-		var position = e.position;
-		routeMouseClickPosition = position;
-		
-		$("#contextMenuRouteInit").css({
-			top: position.y + 5, 
-			left: position.x + 5, 
-			display:'block'
-		});
-		if( startPoint ) {
-			$("#btnEndRoute").removeClass( "disabled" )
-		}
-		
-	}, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
-
-	
-	routeEventHandler.setInputAction(function ( e ) {
-		hideRouteMenu();
-	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);			
-	
-	
-}
-
 
 function addToPanelRoute( route ) {
 	var uuid = route.uuid;
