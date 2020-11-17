@@ -255,15 +255,6 @@ function redraw() {
 function doSomeSandBoxTests(){
 
 	/*
-	var mapPointerLongitude = -81.29424905810427;
-	var mapPointerLatitude = -32.71566851242333;
-	var utmVal =  fromLatLon( mapPointerLatitude, mapPointerLongitude);
-	console.log( mapPointerLatitude + "," + mapPointerLongitude );
-	console.log( utmVal );	
-	*/
-	
-	
-	/*
 	var url = "/radar?l={l}&r={r}&t={t}&b={b}";
 	var buildingsProvider = new MagnoMetocRadarProvider({
 	  debugTiles : false,
@@ -694,7 +685,10 @@ function updatePanelFooter( position ) {
 		var eaArr = easting.split(".");
 		var noArr = northing.split(".");
 		
-		var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0] + " " + noArr[0];
+		var eaDec = eaArr[1].substring(0,2);
+		var noDec = noArr[1].substring(0,2);
+		
+		var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0].substring(0,5) + "." + eaDec + " " + noArr[0].substring(0,5) + "." + noDec;
 		
 		$("#mapUtm").text( theUtm );    	    
 		
@@ -764,27 +758,4 @@ function removeMouseClickListener() {
 }
 
 
-function bindRouteRightClick() {
-	mainEventHandler.setInputAction(function ( e ) {
-		var position = e.position;
-		routeMouseClickPosition = position;
-		
-		$("#contextMenuRouteInit").css({
-			top: position.y + 5, 
-			left: position.x + 5, 
-			display:'block'
-		});
-		if( startPoint ) {
-			$("#btnEndRoute").removeClass( "disabled" )
-		}
-		
-	}, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
-
-	
-	mainEventHandler.setInputAction(function ( e ) {
-		hideRouteMenu();
-	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);			
-	
-	
-}
 

@@ -16,7 +16,7 @@
 
 <div class="btn-group">
 	<!-- FULLSCREEN  -->
-	<button title="Tela Cheia" id="toolFullScreen" type="button"class="btn btn-primary navbar-btn topmnubtn" >
+	<button title="Tela Cheia" id="toolFullScreen" type="button"class="btn btn-success navbar-btn topmnubtn" >
 		<img src="${midasLocation}/atlas/icons/fullscreen2.png"  class="topmnuimg">
 	</button>
 </div>

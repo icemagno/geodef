@@ -7,13 +7,31 @@ var routeInInstruction = null;
 var startPoint = null;
 var editingRoute = false;
 var clickedPointPin = null;
-
 var routeColorActive = new Cesium.PolylineGlowMaterialProperty({ glowPower : 0.14, color : Cesium.Color.LIMEGREEN });
 var routeColorSelected = new Cesium.PolylineGlowMaterialProperty({ glowPower : 0.14, color : Cesium.Color.RED });			    	 
-	
 var routeBeingEdited = {};
-
 var barrierPoints = [];
+
+var routeEventHandler = null;
+var isRouteSolutionActive = false;
+
+
+function startRouteSolution(){
+	bindRouteRightClick();
+	$("#routeMenuBox").show( 300 );
+	isRouteSolutionActive = true;
+	routeEventHandler = new Cesium.ScreenSpaceEventHandler( scene.canvas );
+}
+
+
+function cancelRouteSolution(){
+	routeEventHandler.removeInputAction( Cesium.ScreenSpaceEventType.LEFT_CLICK );
+	routeEventHandler.removeInputAction( Cesium.ScreenSpaceEventType.RIGHT_CLICK );
+	isRouteSolutionActive = false;
+	routeEventHandler = null;
+	$("#routeMenuBox").hide();
+	cancelRouteEditing();
+}
 
 function setStartRoute() {
 	startPoint = getLatLogFromMouse( routeMouseClickPosition );
@@ -589,7 +607,7 @@ function recalculateRoute( type ) {
 
 function bindEditRouteRightClick() {
 	
-	mainEventHandler.setInputAction(function ( e ) {
+	routeEventHandler.setInputAction(function ( e ) {
 		var position = e.position;
 		routeMouseClickPosition = position;
 		
@@ -601,9 +619,33 @@ function bindEditRouteRightClick() {
 		
 	}, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
 
-	mainEventHandler.setInputAction(function ( e ) {
+	routeEventHandler.setInputAction(function ( e ) {
 		cancelRouteEditing();
 	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);			
+	
+}
+
+function bindRouteRightClick() {
+	routeEventHandler.setInputAction(function ( e ) {
+		var position = e.position;
+		routeMouseClickPosition = position;
+		
+		$("#contextMenuRouteInit").css({
+			top: position.y + 5, 
+			left: position.x + 5, 
+			display:'block'
+		});
+		if( startPoint ) {
+			$("#btnEndRoute").removeClass( "disabled" )
+		}
+		
+	}, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
+
+	
+	routeEventHandler.setInputAction(function ( e ) {
+		hideRouteMenu();
+	}, Cesium.ScreenSpaceEventType.LEFT_CLICK);			
+	
 	
 }
 

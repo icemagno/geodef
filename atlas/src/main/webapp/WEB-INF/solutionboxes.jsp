@@ -33,6 +33,54 @@
 
 
 
+<!-- ROTA -->
+<div id="routeMenuBox" class="toolBarMenuBox">
+	<div class="box-body">
+		<div class="table-responsive">
+			<table id="routeMenuTable" class="table"
+				style="margin-bottom: 0px; width: 100%">
+				<tr>
+					<td class="layerTable"><i class="fa fa-automobile"></i>
+						&nbsp;<b>Ferramenta de Rota</b></td>
+					<td style="width: 5px; padding: 0px;"><a title="Fechar"
+						href="#" onClick="closeRouteToolBarMenu();"
+						class="text-light-blue pull-right"><i
+							class="fa fa-close"></i></a></td>
+				</tr>
+				<tr style="border-bottom: 2px solid #3c8dbc">
+					<td class="layerTable" colspan="2"><span
+						style="font-size: 11px"><i>Use o botão direito do
+								mouse para abrir as opções.</i></span></td>
+				</tr>
+				<tr>
+					<td class="layerTable">Sugerir Rota Alternativa (mais
+						lento)</td>
+					<td class="layerTable" style="text-align: right;"><input
+						id="allowAlternatives" type="checkbox" class="pull-right"></td>
+				</tr>
+				<tr>
+					<td class="layerTable">Raio do Bloqueio de Rota (metros)</td>
+					<td class="layerTable" style="text-align: right;"><input
+						value="5" class="pull-right"
+						style="text-align: right; height: 17px; width: 50px; font-family: Consolas;"
+						id="barrierRadius"></td>
+				</tr>
+				<tr>
+					<td class="layerTable">Bloqueio tem precedência sobre
+						Obrigatoriedade</td>
+					<td class="layerTable" style="text-align: right;"><input
+						id="blockRoutePrecedence" checked type="checkbox"
+						class="pull-right"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+
+
 <!-- PCN -->
 <div id="pcnMenuBox" class="toolBarMenuBox">
 	<div class="box-body">

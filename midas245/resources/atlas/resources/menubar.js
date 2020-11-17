@@ -13,10 +13,6 @@ function cancelWaitingOp(){
 	$("#mainWaitPanel").hide();
 }
 
-function hideRouteDir() {
-	$("#routeContainer").hide();
-}
-
 function closeQueryToolBarMenu() {
 	$("#queryMenuBox").hide();
 	currentPanelActiveAerodromo = '';
@@ -33,13 +29,6 @@ function closePCNToolBarMenu() {
 function closeVsToolBarMenu() {
 	hideAllButtonBars();
 	cancelViewShedTool();
-}
-
-function closeRouteToolBarMenu() {
-	hideAllButtonBars();
-	hideRouteMenu();
-	cancelRouteEditing();
-	hideRouteDir();
 }
 
 function closePlataformasToolBarMenu() {
@@ -93,17 +82,6 @@ function bindToolBarButtons() {
     $("#showToolQuery").click( function(){
    		queryLayer();
 	});
-    
-    
-    $("#showToolRoutes").click( function(){
-    	var wasVisible = isVisible('BAR_ROUTE');
-		hideAllButtonBars();
-    	if( !wasVisible ) {
-    		visibleBar = 'BAR_ROUTE';	
-    		bindRouteRightClick();
-       		$("#routeMenuBox").show( 300 );
-    	}
-    });
     
     $("#show3DTools").click( function(){
     	var wasVisible = isVisible('BAR_ANALYSIS');
@@ -222,10 +200,6 @@ function bindToolBarButtons() {
     
     // ==================================================
     
-    $("#routeDirButton").click( function(){
-    	hideRouteDir();
-    });
-
 	$("#toolScreenSnapShot").click( function(){
 		screenShot();
 	});
@@ -266,9 +240,6 @@ function bindToolBarButtons() {
 	$("#toolBuffer").click( function(){
 		//
 	});
-	$("#toolRoutes").click( function(){
-		//
-	});
 	
 	// Botoes da barra lateral esquerda.
 	$("#openCatalogBtn").click( function(){
@@ -283,6 +254,31 @@ function bindToolBarButtons() {
 	 *                     SOLUCIONADORES 
 	 * **************************************************/
 
+
+	//***********************************************************
+	//                 ROTA 
+	//***********************************************************
+    $("#toolRoutes").click( function(){
+    	if( isRouteSolutionActive ){
+			$("#toolRoutes").addClass("btn-warning");
+			$("#toolRoutes").removeClass("btn-danger");
+    		cancelRouteSolution();
+    	} else {
+    		startRouteSolution();
+			$("#toolRoutes").removeClass("btn-warning");
+			$("#toolRoutes").addClass("btn-danger");
+    	}
+    	
+    });
+
+    $("#routeDirButton").click( function(){
+    	$("#routeContainer").hide();
+    });
+    
+
+    // **********************************************************
+	
+	
 	$("#toolGtOpA").click( function(){
 		if( isPlataformaSolutionActive ){
 			cancelPlataformaSolution();
