@@ -82,7 +82,7 @@ public class PasswordController extends BasicController {
 					userOld.setMustchange( true );
 					userOld.setTempPassword( newPassword );
 					
-					BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+					BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(8);
 					userOld.setPassword( encoder.encode( newPassword ) );
 					
 					
@@ -111,7 +111,7 @@ public class PasswordController extends BasicController {
 		for( int x=0; x < 5; x++  ) {
 			String novaSenha = password + String.valueOf( x );
 			
-			BCryptPasswordEncoder enc = new BCryptPasswordEncoder(5);
+			BCryptPasswordEncoder enc = new BCryptPasswordEncoder(8);
 			
 			PasswordHistory ph = new PasswordHistory();
 			ph.setPassword( enc.encode(novaSenha) );
@@ -126,7 +126,7 @@ public class PasswordController extends BasicController {
 	@RequestMapping(value = "/checkpassword", method = RequestMethod.GET) 
 	public @ResponseBody String checkPassword( @RequestParam("plainPassword") String plainPassword, @RequestParam("userId") Long userId ) {
 		
-		BCryptPasswordEncoder enc = new BCryptPasswordEncoder(16);
+		BCryptPasswordEncoder enc = new BCryptPasswordEncoder(8);
 		
 		List<PasswordHistory> lastPasswords = passwordRepository.findAllByUserId(userId);
 		for( PasswordHistory ph : lastPasswords  ) {

@@ -154,7 +154,7 @@ public class UserController extends BasicController {
 			user.setEnabled( true );
 			
 			if ( (password != null) && !password.equals("") && password.equals( password2 ) ) {
-				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(8);
 				user.setPassword( encoder.encode( password ) );
 			} 
 			

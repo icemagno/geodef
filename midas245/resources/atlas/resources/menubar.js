@@ -265,8 +265,6 @@ function bindToolBarButtons() {
     		cancelRouteSolution();
     	} else {
     		startRouteSolution();
-			$("#toolRoutes").removeClass("btn-warning");
-			$("#toolRoutes").addClass("btn-danger");
     	}
     	
     });

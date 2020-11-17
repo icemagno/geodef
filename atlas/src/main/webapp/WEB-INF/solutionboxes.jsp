@@ -43,7 +43,7 @@
 					<td class="layerTable"><i class="fa fa-automobile"></i>
 						&nbsp;<b>Ferramenta de Rota</b></td>
 					<td style="width: 5px; padding: 0px;"><a title="Fechar"
-						href="#" onClick="closeRouteToolBarMenu();"
+						href="#" onClick="cancelRouteSolution();"
 						class="text-light-blue pull-right"><i
 							class="fa fa-close"></i></a></td>
 				</tr>

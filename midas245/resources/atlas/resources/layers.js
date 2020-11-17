@@ -314,7 +314,141 @@ function updateLegendImages(){
 }
 
 
+function getARouteCard( route, defaultImage ){
+	var uuid = route.uuid;
+	var properties = route.line.properties;
+	var dist = parseFloat( properties.distance ) / 1000;
+	var tempo = ( parseFloat( properties.time ) / 1000 ) / 3600 ;
+	var primary = "Primária";
+	if ( !route.primary ) {
+		primary = "Alternativa";
+	}
+	
+	var positions = route.line.polyline.positions.getValue();
+	
+	var l1 = getLatLogFromCartesian( positions[0] );
+	var l2 = getLatLogFromCartesian( positions[ positions.length -1 ] );
+	
+	var p1 = convertDMS( parseFloat( l1.latitude ), parseFloat( l1.longitude ) ) ;
+	var p2 = convertDMS( parseFloat( l2.latitude ), parseFloat( l2.longitude ) ) ;
 
+	var p1Text = p1.lat + ' ' + p1.latCard + ', ' + p1.lon + ' ' + p1.lonCard;
+	var p2Text = p2.lat + ' ' + p2.latCard + ', ' + p2.lon + ' ' + p2.lonCard;
+
+	var routeText = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">';
+
+	routeText = routeText + '<tr><td class="layerTable">Distância</td>' +
+	'<td colspan="2" class="layerTable" style="text-align: right;">'+dist.toFixed(2)  +' Km</td></tr>';
+	
+	routeText = routeText + '<tr><td class="layerTable">Tempo</td>'+
+	'<td colspan="2" class="layerTable" style="text-align: right;">'+tempo.toFixed(2)+' Horas</td></tr>';
+	
+	routeText = routeText + '<tr><td class="layerTable">Origem</td>'+
+	'<td colspan="2" class="layerTable" style="text-align: right;">'+ p1Text +'</td></tr>';
+	
+	routeText = routeText + '<tr><td class="layerTable">Destino</td>'+
+	'<td colspan="2" class="layerTable" style="text-align: right;">'+ p2Text +'</td></tr>';
+
+	routeText = routeText + '<tr><td colspan="3" class="layerTable" style="text-align: right;"><button onclick="gotoRoute(\''+uuid+'\')"  type="button" class="btn btn-block btn-primary btn-xs btn-flat">Localizar</button></td></tr>';
+	
+
+	routeText = routeText + '</table>';
+
+	var layerAlias = "Rota " + primary;
+	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
+	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
+
+	'<div class="box-tools pull-right">'+                           
+		'<button id="hdlay_'+uuid+'" onClick="hideRoute(\''+uuid+'\');" title="Ocultar Camada" type="button" style="padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye"></i></button>'+
+		'<button id="swlay_'+uuid+'" onClick="showRoute(\''+uuid+'\');" title="Exibir Camada" type="button" style="display:none;padding: 0px;margin-right:15px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-eye-slash"></i></button>'+
+		'<button id="expd_'+uuid+'" onClick="expandCard(\''+uuid+'\');" title="Expandir" type="button" style="padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-right"></i></button>'+
+		'<button id="cops_'+uuid+'"onClick="collapseCard(\''+uuid+'\');" title="Recolher" type="button" style="display:none;padding: 0px;" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-caret-down"></i></button>'+
+	'</div>' +	
+
+	'</td></tr>'; 
+	table = table + '<tr><td colspan="2" style="width: 80%;">'; 
+	table = table + '<input id="SL_'+uuid+'" type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" ' +
+		'data-slider-tooltip="hide" data-slider-step="5" data-slider-value="100" data-slider-id="blue">';
+	table = table + '</td><td style="width:20%" >' + 
+	'<a title="Excluir Camada" href="#" onClick="deleteRoute(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
+	'<a title="Editar Camada" style="margin-right: 10px;" href="#" onClick="editRoute(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-pencil-square-o"></i></a>' + 
+	'<a title="RF-ZZZ" style="display:none;margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-gear"></i></a>' + 
+	'<a title="RF-WWW" style="display:none;margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
+	'</td></tr>';
+	table = table + '</table></div>';
+	var layerText = '<div class="sortable" id="'+uuid+'" style="overflow:hidden;height:70px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
+	table + '</div>' + 
+
+	'<div style="height: 200px;" class="box-footer feature-legend" id="ROT_'+uuid+'">' + routeText + '</div>' + 
+	'</div>';
+
+	return layerText;
+}
+
+function showRoute( uuid ){
+	var route = getRoute( uuid );
+	var idH = "#hdlay_" + uuid;
+	var idS = "#swlay_" + uuid;
+	if( route ){
+		$( idH ).show();
+		$( idS ).hide();
+		route.m1.billboard.show = true;
+		route.m2.billboard.show = true;
+		route.line.polyline.show = true;
+	}
+}
+
+function hideRoute( uuid ){
+	var route = getRoute( uuid );
+	var idH = "#hdlay_" + uuid;
+	var idS = "#swlay_" + uuid;
+	if( route ){
+		$( idH ).hide();
+		$( idS ).show();
+		route.m1.billboard.show = false;
+		route.m2.billboard.show = false;
+		route.line.polyline.show = false;
+	}
+}
+
+/*
+
+function showFeature( uuid ){
+	var featureData = getFeatureById( uuid );
+	var idH = "#hdlay_" + uuid;
+	var idS = "#swlay_" + uuid;
+	if( featureData ){
+		$( idH ).show();
+		$( idS ).hide();
+		featureData.feature.show = true;
+	}
+}
+
+function hideFeature( uuid ){
+	var featureData = getFeatureById( uuid );
+}
+
+
+
+*/
+
+function addRouteCard( route ){
+    var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
+    var layerText = getARouteCard( route, defaultImage );
+	$("#activeLayerContainer").append( layerText );
+
+	var uuid = route.uuid;
+	$("#SL_"+uuid).bootstrapSlider({});
+	$("#SL_"+uuid).on("slide", function(slideEvt) {
+		var valu = slideEvt.value / 100;
+		var tUuid = this.id.substr(3);
+		var route = getRoute( tUuid );
+		route.m1.billboard.color = route.m1.billboard.color.getValue().withAlpha ( valu ); 
+		route.m2.billboard.color = route.m2.billboard.color.getValue().withAlpha ( valu ); 
+		route.line.polyline.material.color = route.line.polyline.material.color.getValue().withAlpha( valu );
+	});	
+
+} 
 
 
 

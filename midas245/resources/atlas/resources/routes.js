@@ -21,6 +21,8 @@ function startRouteSolution(){
 	bindRouteRightClick();
 	$("#routeMenuBox").show( 300 );
 	isRouteSolutionActive = true;
+	$("#toolRoutes").removeClass("btn-warning");
+	$("#toolRoutes").addClass("btn-danger");
 }
 
 
@@ -256,6 +258,16 @@ function deleteBarrier( uuid ) {
 	}
 }
 
+
+function getRoute( uuid ) {
+	for ( y=0; y<routeResultLines.length; y++ ) {
+		if( routeResultLines[y].uuid == uuid ) {
+			return routeResultLines[y];
+		}
+	}
+	return null;
+}
+
 function gotoRoute( uuid ) {
 	var selectedRouteView = null;
 	for ( y=0; y<routeResultLines.length; y++ ) {
@@ -348,7 +360,7 @@ function showMarker( indexPosition, uuid ) {
 			        image : '/resources/img/marker.png',
 		            pixelOffset : new Cesium.Cartesian2(0, -10),
 		            scaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.5),
-		            heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
+		            //heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
 		            disableDepthTestDistance : Number.POSITIVE_INFINITY            
 			    }
 			});	
@@ -368,6 +380,9 @@ function exportDirectionsToPDF() {
 }
 
 function editRoute( uuid ) {
+
+	if( !isRouteSolutionActive ) startRouteSolution();
+
 	hideRouteMenu();
 	for ( y=0; y<routeResultLines.length; y++ ) {
 		if( routeResultLines[y].uuid == uuid ) {
@@ -628,7 +643,6 @@ function recalculateRoute( type ) {
 }
 
 function bindEditRouteRightClick() {
-	
 	routeEventHandler.setInputAction(function ( e ) {
 		var position = e.position;
 		routeMouseClickPosition = position;
@@ -647,70 +661,6 @@ function bindEditRouteRightClick() {
 	
 }
 
-function addToPanelRoute( route ) {
-	var uuid = route.uuid;
-	var properties = route.line.properties;
-	var dist = parseFloat( properties.distance ) / 1000;
-	var tempo = ( parseFloat( properties.time ) / 1000 ) / 3600 ;
-	var primary = "Primária";
-	if ( !route.primary ) {
-		primary = "Alternativa";
-	}
-	
-	var positions = route.line.polyline.positions.getValue();
-	
-	var l1 = getLatLogFromCartesian( positions[0] );
-	var l2 = getLatLogFromCartesian( positions[ positions.length -1 ] );
-	
-	var p1 = convertDMS( parseFloat( l1.latitude ), parseFloat( l1.longitude ) ) ;
-	var p2 = convertDMS( parseFloat( l2.latitude ), parseFloat( l2.longitude ) ) ;
-	
-	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
-	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable"><i class="fa fa-map-signs"></i> &nbsp; <b>Rota '+primary+'</b>' +
-	'<a title="Apagar Rota" href="#" onClick="deleteRoute(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
-	'<a title="Exibir Instruções" style="margin-right: 10px;" href="#" onClick="showInstructions(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-arrow-circle-o-left"></i></a>' + 
-	'<a title="Editar Rota" style="margin-right: 10px;" href="#" onClick="editRoute(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-edit"></i></a>' + 
-	'<a title="Exportar Para PDF" style="margin-right: 10px;" href="#" onClick="exportRouteToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-file-pdf-o"></i></a>' + 
-	'</td></tr>'; 
-	
-	table = table + '<tr><td class="layerTable">Distância</td>'+
-	'<td colspan="2" class="layerTable" style="text-align: right;">'+dist.toFixed(2)  +' Km</td></tr>';
-	table = table + '<tr><td class="layerTable">Tempo</td>'+
-	'<td colspan="2" class="layerTable" style="text-align: right;">'+tempo.toFixed(2)+' Horas</td></tr>';
-	table = table + '<tr><td class="layerTable">Origem</td>'+
-	'<td colspan="2" class="layerTable" style="text-align: right;">'+ p1.lat + ' ' + p1.latCard + ', ' + p1.lon + ' ' + p1.lonCard +'</td></tr>';
-	
-	table = table + '<tr><td class="layerTable">Destino</td>'+
-	'<td colspan="2" class="layerTable" style="text-align: right;">'+ p2.lat + ' ' + p2.latCard + ', ' + p2.lon + ' ' + p2.lonCard +'</td></tr>';
-
-	table = table + '<tr><td colspan="3" class="layerTable" style="text-align: right;">' + 
-		'<img title="Localizar Hospitais" class="poiicon" src="/resources/pois/hospital-button.png" onclick="getPoi(\''+uuid+'\', \'HOSP\');">' + 
-		'<img title="Sem Função" class="poiicon" src="/resources/pois/obras-button.png" >' +
-		'<img title="Sem Função" class="poiicon" src="/resources/pois/rodoviaria-button.png" >' +
-		'<img title="Sem Função" class="poiicon" src="/resources/pois/gasolina-button.png" >' +
-		'<img title="Sem Função" class="poiicon" src="/resources/pois/airport-button.png" >' +
-		'<img title="Sem Função" class="poiicon" src="/resources/pois/port-button.png" >' +
-		'<img title="Sem Função" class="poiicon" src="/resources/pois/railway-button.png" >' +
-		'<img title="Sem Função" class="poiicon" src="/resources/pois/helipad-button.png" >' +
-		'<img title="Sem Função" class="poiicon" src="/resources/pois/estadio-button.png" >' +
-		'<img title="Sem Função" class="poiicon" src="/resources/pois/police-button.png" >' +
-	'</td></tr>';
-	
-	
-	table = table + '<tr><td colspan="3" class="layerTable" style="text-align: right;"><button onclick="gotoRoute(\''+uuid+'\')"  type="button" class="btn btn-block btn-primary btn-xs btn-flat">Localizar</button></td></tr>';
-	table = table + '</table></div>';
-	
-	var layerText = '<div id="'+uuid+'" style="margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
-	table + '</div></div>';
-
-	jQuery("#routesContainer").append( layerText );
-	
-	var count = jQuery('#routesContainer').children().length;
-	jQuery("#routesCounter").html( count );	
-	
-	jQuery("#layerContainer").show( "slow" );
-	
-}
 
 function showRotaPoi( entity ) {
 	var theName = entity.properties.name;
@@ -749,7 +699,7 @@ function receivePois( features ) {
 		        image : icon,
 	            pixelOffset : new Cesium.Cartesian2(0, -10),
 	            scaleByDistance : new Cesium.NearFarScalar(1.5e2, 0.6, 1.5e7, 0.2),
-	            heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
+	            //heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
 	            disableDepthTestDistance : Number.POSITIVE_INFINITY            
 		    }
 		});
@@ -884,7 +834,7 @@ function loadRoute( geoJsonRoute, data, canGoTo ) {
 			route.data = data;
 			
 			routeResultLines.push( route );	
-			addToPanelRoute( route );
+			addRouteCard( route );
 			
 		}
 
@@ -902,15 +852,18 @@ function loadRoute( geoJsonRoute, data, canGoTo ) {
 
 
 function putMarker( thePosition, icon ) {
-	
+	var material = new Cesium.Material.fromType("Color");
+	material.uniforms.color = Cesium.Color.WHITE.withAlpha(1.0);   	
+
 	var entity = viewer.entities.add({
 		name : 'ROTA_PINO',
 	    position : thePosition,
 	    billboard :{
-	        image : '/resources/img/' + icon,
+			image : '/resources/img/' + icon,
+			color : material.uniforms.color,
             pixelOffset : new Cesium.Cartesian2(0, -10),
             scaleByDistance : new Cesium.NearFarScalar(1.5e2, 0.6, 1.5e7, 0.2),
-            heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
+            //heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
             disableDepthTestDistance : Number.POSITIVE_INFINITY            
 	    }
 	});
