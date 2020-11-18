@@ -49,40 +49,40 @@
 			
 			<div class="form-group">
 				<label class="control-sidebar-subheading"> Configurações </label>
-				<div class="box-body">
+				<div class="box-body" style="background-color: #3c8dbc;">
 					<table id="configTable" style="width:100%">
 						<tr>
 							<td>
-								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn btn btn-warning btn-flat disabled" style="padding: 0px;">
+								<button title="Grid Geográfico" id="" type="button" class="configBtn btn btn-primary disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/grid.png" style="width: 35px; height: 35px;">
 								</button>
 							</td>
 							<td>
-								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn  btn btn-warning btn-flat disabled" style="padding: 0px;">
+								<button title="Mapa de Situação" id="" type="button" class="configBtn  btn btn-primary disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/mini_mapa.png" style="width: 35px; height: 35px;">
 								</button>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn btn btn-warning btn-flat disabled" style="padding: 0px;">
+								<button title="Legenda" id="" type="button" class="configBtn btn btn-primary disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/legenda2.png" style="width: 35px; height: 35px;">
 								</button>
 							</td>
 							<td>
-								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn  btn btn-warning btn-flat disabled" style="padding: 0px;">
+								<button title="Instrumentos de Aviação" id="" type="button" class="configBtn  btn btn-primary disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/instrumentos.png" style="width: 35px; height: 35px;">
 								</button>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn btn btn-warning btn-flat disabled" style="padding: 0px;">
+								<button title="Modo Offline" id="" type="button" class="configBtn btn btn-primary disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/offline.png" style="width: 35px; height: 35px;">
 								</button>
 							</td>
 							<td>
-								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn  btn btn-warning btn-flat disabled" style="padding: 0px;">
+								<button title="Avisos" id="" type="button" class="configBtn  btn btn-primary btn-flat disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/avisos.png" style="width: 35px; height: 35px;">
 								</button>
 							</td>
@@ -102,7 +102,7 @@
 </aside>
 <!-- Add the sidebar's background. This div must be placed
       immediately after the control sidebar -->
-<div class="control-sidebar-bg" style="width: 247px !important;"></div>
+<div class="control-sidebar-bg" ></div>
 
 
 		

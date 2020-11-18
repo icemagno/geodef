@@ -103,6 +103,13 @@
     </a>
     
     <ul style="background-color: transparent; border: 0px;" class="dropdown-menu dropdown-menu-lg">
+    
+        <li style="margin-top: 5px;">
+			<button title="Visão Zênite" id="toolZenite" type="button" class="btn btn-success btn-flat disabled" style="padding: 0px;">
+				<img src="${midasLocation}/atlas/icons/vista_topo.png.png" style="width: 35px; height: 35px;">
+			</button>
+		</li>    
+    
         <li style="margin-top: 5px;">
 			<button title="Construções OpenStreetMap" id="toolOSM3D" type="button" class="btn btn-warning btn-flat disabled" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/osm3d.png" style="width: 35px; height: 35px;">
@@ -118,7 +125,7 @@
 
 <div class="btn-group">
 	<!-- MEDIR  -->
-	<button title="Medir Distâncias e Áreas" id="showMeasureTools" type="button"class="btn btn-primary navbar-btn topmnubtn" >
+	<button title="Medir Distâncias e Áreas" id="showMeasureTools" type="button"class="btn btn-primary navbar-btn topmnubtn disabled" >
 		<img src="${midasLocation}/atlas/icons/measure.png"  class="topmnuimg">
 	</button>
 </div>

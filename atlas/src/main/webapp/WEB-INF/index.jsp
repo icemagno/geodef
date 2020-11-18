@@ -8,6 +8,10 @@
 
 <style>
 
+	#configTable td{
+		padding: 15px;
+	}
+
 	ul.gj-list-md li {
 		font-size: 12px;
 	}
