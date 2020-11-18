@@ -57,7 +57,7 @@
 									<img src="${midasLocation}/atlas/icons/grid.png" style="width: 35px; height: 35px;">
 								</button>
 							</td>
-							<td>
+							<td style="text-align: right;">
 								<button title="Mapa de Situação" id="" type="button" class="configBtn  btn btn-primary disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/mini_mapa.png" style="width: 35px; height: 35px;">
 								</button>
@@ -69,7 +69,7 @@
 									<img src="${midasLocation}/atlas/icons/legenda2.png" style="width: 35px; height: 35px;">
 								</button>
 							</td>
-							<td>
+							<td style="text-align: right;">
 								<button title="Instrumentos de Aviação" id="" type="button" class="configBtn  btn btn-primary disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/instrumentos.png" style="width: 35px; height: 35px;">
 								</button>
@@ -81,7 +81,7 @@
 									<img src="${midasLocation}/atlas/icons/offline.png" style="width: 35px; height: 35px;">
 								</button>
 							</td>
-							<td>
+							<td style="text-align: right;">
 								<button title="Avisos" id="" type="button" class="configBtn  btn btn-primary btn-flat disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/avisos.png" style="width: 35px; height: 35px;">
 								</button>

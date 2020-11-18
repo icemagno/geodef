@@ -106,7 +106,7 @@
     
         <li style="margin-top: 5px;">
 			<button title="Visão Zênite" id="toolZenite" type="button" class="btn btn-success btn-flat disabled" style="padding: 0px;">
-				<img src="${midasLocation}/atlas/icons/vista_topo.png.png" style="width: 35px; height: 35px;">
+				<img src="${midasLocation}/atlas/icons/vista_topo.png" style="width: 35px; height: 35px;">
 			</button>
 		</li>    
     
