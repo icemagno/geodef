@@ -50,7 +50,11 @@
 			<div class="form-group">
 				<label class="control-sidebar-subheading"> Configurações </label>
 				<div class="box-body">
-					(Espaço Reservado)
+					<table id="configTable">
+						<tr><td><img src="${midasLocation}/atlas/icons/grid.png"></td><td><img src="${midasLocation}/atlas/icons/mini_mapa.png"></td></tr>
+						<tr><td><img src="${midasLocation}/atlas/icons/legenda2.png"></td><td><img src="${midasLocation}/atlas/icons/instrumentos.png"></td></tr>
+						<tr><td><img src="${midasLocation}/atlas/icons/offline.png"></td><td><img src="${midasLocation}/atlas/icons/avisos.png"></td></tr>
+					</table>
 				</div>
 			</div>
 			

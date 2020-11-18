@@ -70,18 +70,18 @@
     </a>
 
     <ul style="background-color: transparent; border: 0px;" class="dropdown-menu dropdown-menu-lg">
-    	<!-- 
+    	 
         <li style="margin-top: 5px;">
-			<button title="Buffer" id="toolBuffer" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
+			<button title="Buffer" id="toolBuffer" type="button" class="btn btn-warning btn-flat disabled" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/buffer.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
         <li style="margin-top: 5px;">
-			<button title="Gráfico de Voronoi" id="toolVoronoi" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
+			<button title="Gráfico de Voronoi" id="toolVoronoi" type="button" class="btn btn-warning btn-flat disabled" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/voronoi.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
-         -->
+         
         <li style="margin-top: 5px;">
 			<button title="Perfil de Elevação" id="toolPrfilElevacao" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/perfil2.png" style="width: 35px; height: 35px;">
@@ -104,12 +104,12 @@
     
     <ul style="background-color: transparent; border: 0px;" class="dropdown-menu dropdown-menu-lg">
         <li style="margin-top: 5px;">
-			<button title="Construções OpenStreetMap" id="toolOSM3D" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
+			<button title="Construções OpenStreetMap" id="toolOSM3D" type="button" class="btn btn-warning btn-flat disabled" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/osm3d.png" style="width: 35px; height: 35px;">
 			</button>
         </li>
         <li style="margin-top: 5px;">
-			<button title="Influência Visual (Viewshed)" id="toolViewShed" type="button" class="btn btn-warning btn-flat" style="padding: 0px;">
+			<button title="Influência Visual (Viewshed)" id="toolViewShed" type="button" class="btn btn-warning btn-flat disabled" style="padding: 0px;">
 				<img src="${midasLocation}/atlas/icons/viewshed.png" style="width: 35px; height: 35px;">
 			</button>
         </li>

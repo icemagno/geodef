@@ -93,7 +93,8 @@ function startMap( theMapStyle ) {
 	mapStyle = theMapStyle;
 	
 	if( mapStyle == '2D'){
-		$("#analise3dMainBtn").addClass('disabled');
+		//$("#analise3dMainBtn").addClass('disabled');
+		console.log('Desabilitei temporariamente o chaveamento do botão de 3D');
 	} 
 	
 	

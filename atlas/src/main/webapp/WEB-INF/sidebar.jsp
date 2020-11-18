@@ -18,7 +18,7 @@
 					<button style="cursor:pointer" title="Meu Lugar" id="myPlaceBtn" type="button" class="btn btn-xs">
 						<img src="${midasLocation}/atlas/icons/my_place.png" style="height: 19px;"> 
 					</button>
-					<button style="cursor:pointer" title="Buscar por coordenadas" type="button" class="btn btn-xs">
+					<button style="cursor:pointer" title="Buscar por coordenadas" type="button" class="btn btn-xs disabled">
 						<img src="${midasLocation}/atlas/icons/buscar_coordenadas2.png" style="height: 19px;">
 					</button>
 					<button style="cursor:pointer" id="helpOnSerachBarBtn" type="button" class="btn btn-xs">
