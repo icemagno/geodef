@@ -50,10 +50,43 @@
 			<div class="form-group">
 				<label class="control-sidebar-subheading"> Configurações </label>
 				<div class="box-body">
-					<table id="configTable">
-						<tr><td><img src="${midasLocation}/atlas/icons/grid.png"></td><td><img src="${midasLocation}/atlas/icons/mini_mapa.png"></td></tr>
-						<tr><td><img src="${midasLocation}/atlas/icons/legenda2.png"></td><td><img src="${midasLocation}/atlas/icons/instrumentos.png"></td></tr>
-						<tr><td><img src="${midasLocation}/atlas/icons/offline.png"></td><td><img src="${midasLocation}/atlas/icons/avisos.png"></td></tr>
+					<table id="configTable" style="width:100%">
+						<tr>
+							<td>
+								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn btn btn-warning btn-flat disabled" style="padding: 0px;">
+									<img src="${midasLocation}/atlas/icons/grid.png" style="width: 35px; height: 35px;">
+								</button>
+							</td>
+							<td>
+								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn  btn btn-warning btn-flat disabled" style="padding: 0px;">
+									<img src="${midasLocation}/atlas/icons/mini_mapa.png" style="width: 35px; height: 35px;">
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn btn btn-warning btn-flat disabled" style="padding: 0px;">
+									<img src="${midasLocation}/atlas/icons/legenda2.png" style="width: 35px; height: 35px;">
+								</button>
+							</td>
+							<td>
+								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn  btn btn-warning btn-flat disabled" style="padding: 0px;">
+									<img src="${midasLocation}/atlas/icons/instrumentos.png" style="width: 35px; height: 35px;">
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn btn btn-warning btn-flat disabled" style="padding: 0px;">
+									<img src="${midasLocation}/atlas/icons/offline.png" style="width: 35px; height: 35px;">
+								</button>
+							</td>
+							<td>
+								<button title="Construções OpenStreetMap" id="" type="button" class="configBtn  btn btn-warning btn-flat disabled" style="padding: 0px;">
+									<img src="${midasLocation}/atlas/icons/avisos.png" style="width: 35px; height: 35px;">
+								</button>
+							</td>
+						</tr>
 					</table>
 				</div>
 			</div>
@@ -69,7 +102,7 @@
 </aside>
 <!-- Add the sidebar's background. This div must be placed
       immediately after the control sidebar -->
-<div class="control-sidebar-bg"></div>
+<div class="control-sidebar-bg" style="width: 247px !important;"></div>
 
 
 		
