@@ -128,6 +128,27 @@
 	  vertical-align: middle;
 	}	
 		
+
+
+    #trigger-upload {
+        color: white;
+        font-size: 14px;
+        padding: 7px 20px;
+        background-image: none;
+    }
+
+    #fine-uploader-manual-trigger .qq-upload-button {
+        margin-right: 15px;
+    }
+
+    #fine-uploader-manual-trigger .buttons {
+        width: 36%;
+    }
+
+    #fine-uploader-manual-trigger .qq-uploader .qq-total-progress-bar-container {
+        width: 60%;
+    }		
+		
 </style>
 
 
@@ -160,6 +181,19 @@
 		</div>
 	</div>
 	
+	<!-- MODAL DE UPLOAD DE ARQUIVO || UPLOAD.JS -->	
+	<div  class="modal fade bs-example-modal-lg" id="uploadUserDataModal" tabindex="-1" role="dialog" aria-labelledby="uploadUserModalLabel" aria-hidden="true">
+		<div style="width:700px" class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body" id="uploadUserDataContainer">
+					<div id="fine-uploader-manual-trigger"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	
 	<!-- *********************************************** -->
@@ -334,6 +368,7 @@
 	<script src="${midasLocation}/atlas/resources/querylayer.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/cormeteoro.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/screenshot.js" type="text/javascript"></script>
+	<script src="${midasLocation}/atlas/resources/upload.js" type="text/javascript"></script>
 
 
 	<script src="${midasLocation}/atlas/resources/js/providers/MagnoMetocRadarProvider.js" type="text/javascript"></script>

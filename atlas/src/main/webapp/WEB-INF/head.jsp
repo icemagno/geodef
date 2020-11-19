@@ -70,5 +70,7 @@
 	  <!-- Theme style -->
 	  <link rel="stylesheet" href="${midasLocation}/dist/css/AdminLTE.css">
 
+
+	  <link  rel="stylesheet" href="/resources/fine-uploader/fine-uploader-new.css">
 	  
 	</head>

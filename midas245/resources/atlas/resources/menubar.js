@@ -246,7 +246,7 @@ function bindToolBarButtons() {
 		openCatalogBox();
 	});
 	$("#uploadUserDataBtn").click( function(){
-		//
+		showUploadUserData();
 	});
 
 
