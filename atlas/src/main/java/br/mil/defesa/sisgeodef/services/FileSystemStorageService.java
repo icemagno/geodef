@@ -28,8 +28,8 @@ public class FileSystemStorageService implements StorageService {
     private Path basePath = Paths.get("/uploads");
 
     @Override
-    public void save(UploadRequest ur) {
-
+    public String save(UploadRequest ur) {
+    	String result;
         if (ur.getFile().isEmpty()) {
             throw new StorageException(String.format("File with uuid = [%s] is empty", ur.getUuid().toString()));
         }
@@ -40,15 +40,19 @@ public class FileSystemStorageService implements StorageService {
         } else {
             targetFile = basePath.resolve(ur.getUuid()).resolve(ur.getFileName());
         }
+        
         try {
             Files.createDirectories(targetFile.getParent());
             Files.copy(ur.getFile().getInputStream(), targetFile);
+            result = targetFile.toString();
+            log.info("saved " + ur.toString() );
         } catch (IOException e) {
             String errorMsg = String.format("Error occurred when saving file with uuid = [%s]", ur);
             log.error(errorMsg, e);
             throw new StorageException(errorMsg, e);
         }
-
+        
+        return result;
     }
 
     @Override

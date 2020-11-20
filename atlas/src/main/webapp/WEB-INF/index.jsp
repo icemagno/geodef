@@ -147,6 +147,10 @@
 
     #fine-uploader-manual-trigger .qq-uploader .qq-total-progress-bar-container {
         width: 60%;
+    }
+    
+    .qq-thumbnail-selector{
+    	width: 30px;
     }		
 		
 </style>

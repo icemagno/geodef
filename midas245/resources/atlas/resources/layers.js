@@ -385,6 +385,76 @@ function getARouteCard( route, defaultImage ){
 	return layerText;
 }
 
+
+function deleteUserData( uuid ){
+	for( x=0; x < userDataPoints.length; x++ ) {
+		userDataPackage = userDataPoints[x];
+		if( userDataPackage.uuid === uuid ){
+
+			for( y=0; y < userDataPackage.entities.length; y++){
+				viewer.entities.remove( userDataPackage.entities[y] );
+			}
+
+			userDataPoints.splice(x, 1);
+			$("#" + uuid).fadeOut(400, function(){
+				$("#" + uuid).remove();
+			});
+
+console.log( userDataPoints );
+
+			return;
+			
+		}
+	}
+}
+
+function editUserData( uuid ){
+	console.log( 'EDIT' );
+}
+
+function getAUserDataCard( uuid, defaultImage, fileName ){
+
+	var layerAlias = "Dados do Usuário";
+	var table = '<div class="table-responsive"><table class="table" style="margin-bottom: 0px;width:100%">' + 
+	'<tr style="border-bottom:2px solid #3c8dbc"><td colspan="3" class="layerTable">' + defaultImage + '&nbsp; <b>'+layerAlias+'</b>'+
+
+	'<div class="box-tools pull-right"> &nbsp; </div>' +	
+
+	'</td></tr>'; 
+	table = table + '<tr><td colspan="2" style="width: 80%;">'; 
+	table = table + fileName;
+	table = table + '</td><td style="width:20%" >' + 
+	'<a title="Excluir Camada" href="#" onClick="deleteUserData(\''+uuid+'\');" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>' + 
+	'<a title="Editar Camada" style="margin-right: 10px;" href="#" onClick="editUserData(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-pencil-square-o"></i></a>' + 
+	'<a title="RF-ZZZ" style="display:none;margin-right: 10px;" href="#" onClick="layerToDown(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-gear"></i></a>' + 
+	'<a title="RF-WWW" style="display:none;margin-right: 10px;" href="#" onClick="exportLayerToPDF(\''+uuid+'\');" class="text-light-blue pull-right"><i class="fa fa-search-plus"></i></a>' + 
+	'</td></tr>';
+	table = table + '</table></div>';
+	var layerText = '<div class="sortable" id="'+uuid+'" style="overflow:hidden;height:70px;background-color:white; margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' +
+	table + '</div>' + 
+
+	'<div style="height: 200px;" class="box-footer feature-legend" id="ROT_'+uuid+'">&nbsp;</div>' + 
+	'</div>';
+
+	return layerText;
+
+
+}
+
+function addUserDataCard( userDataPackage ){
+	var uuid = userDataPackage.uuid;
+	var defaultImage = "<img title='Alterar Ordem' style='cursor:move;border:1px solid #cacaca;width:19px;' src='/resources/img/drag.png'>";
+    var layerText = getAUserDataCard( uuid, defaultImage, userDataPackage.fileName );
+	$("#activeLayerContainer").append( layerText );
+
+	/*
+	$("#SL_"+uuid).bootstrapSlider({});
+	$("#SL_"+uuid).on("slide", function(slideEvt) {
+		//
+	});	
+	*/
+}
+
 function showRoute( uuid ){
 	var route = getRoute( uuid );
 	var idH = "#hdlay_" + uuid;

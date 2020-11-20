@@ -6,11 +6,7 @@ import br.mil.defesa.sisgeodef.misc.UploadRequest;
  * Created by ovaldez on 11/13/16.
  */
 public interface StorageService {
-
-    void save(UploadRequest uploadRequest);
-
+    String save(UploadRequest uploadRequest);
     void delete(String uuid);
-
     void mergeChunks(String uuid, String fileName, int totalParts, long totalFileSize);
-
 }

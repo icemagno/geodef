@@ -51,7 +51,7 @@ function plotaPontoAviso(aviso){
 	        image : '/resources/img/pin-end.png',
             pixelOffset : new Cesium.Cartesian2(0, -10),
             scaleByDistance : new Cesium.NearFarScalar(1.5e2, 0.6, 1.5e7, 0.2),
-            heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
+            //heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
             disableDepthTestDistance : Number.POSITIVE_INFINITY            
 	    },
 	});	

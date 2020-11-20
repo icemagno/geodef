@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import br.mil.defesa.sisgeodef.misc.StorageException;
 import br.mil.defesa.sisgeodef.misc.UploadRequest;
 import br.mil.defesa.sisgeodef.misc.UploadResponse;
+import br.mil.defesa.sisgeodef.services.CsvImporterService;
 import br.mil.defesa.sisgeodef.services.StorageService;
 
 @RestController
@@ -25,7 +26,10 @@ public class UploadController {
 
 	@Autowired
     private StorageService storageService;
-
+	
+	@Autowired
+	private CsvImporterService csvImporterService;
+	
     @CrossOrigin
     @PostMapping("/userdata")
     public ResponseEntity<UploadResponse> upload(
@@ -42,15 +46,11 @@ public class UploadController {
         request.setPartIndex(partIndex);
         request.setTotalParts(totalParts);
 
-        storageService.save(request);
+        String filePath = storageService.save(request);
 
         UploadResponse response = new UploadResponse( true );	
+        response.setContent( csvImporterService.csvToJson( request, filePath ) );
         
-        JSONObject obj = new JSONObject();
-        obj.put("Carlos", "Magno");
-        obj.put("uuid", uuid);
-        
-        response.setContent( obj.toString() );
         return ResponseEntity.ok().body( response );
     }    
     
