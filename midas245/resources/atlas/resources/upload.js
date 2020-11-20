@@ -16,7 +16,8 @@ function showUploadUserData(){
             }
         },
         validation: {
-            allowedExtensions: ['csv', 'kmz', 'kml', 'zip','txt','json'],
+            //allowedExtensions: ['csv', 'kmz', 'kml', 'zip','txt','json'],
+            allowedExtensions: ['csv', 'txt'],
             itemLimit: 3,
             sizeLimit: 15000000 // 15mb            
         },  

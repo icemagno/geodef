@@ -35,7 +35,7 @@
 			<button id="openCatalogBtn" style="text-align: left;width:85%;float:left" type="button" class="btn btn-primary">
 				<i style="font-size: 18px;" class="fa fa-plus-circle"></i> &nbsp; Adicionar Camada
 			</button>
-			<button id="uploadUserDataBtn" style="float:right; width:14%" type="button" class="btn btn-primary">
+			<button title="Enviar Arquivos" id="uploadUserDataBtn" style="float:right; width:14%" type="button" class="btn btn-primary">
 				<i style="font-size: 18px;" class="fa fa-upload"></i>
 			</button>
 		</div>

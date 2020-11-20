@@ -49,7 +49,7 @@ public class UploadController {
         String filePath = storageService.save(request);
 
         UploadResponse response = new UploadResponse( true );	
-        response.setContent( csvImporterService.csvToJson( request, filePath ) );
+        response.setContent( csvImporterService.toJson( request, filePath ) );
         
         return ResponseEntity.ok().body( response );
     }    

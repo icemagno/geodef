@@ -12,8 +12,8 @@ import br.mil.defesa.sisgeodef.misc.UploadRequest;
 
 @Service
 public class CsvImporterService {
-
-	public String csvToJson( UploadRequest request, String filePath ) {
+	
+	public String toJson( UploadRequest request, String filePath ) {
 		JSONObject fc = new JSONObject();
 		// LAT, LON, TEXTO
 		// -13,195341449999999;-59,7813019500000;COMODORO-MT/Apreensão de Madeira

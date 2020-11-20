@@ -193,6 +193,7 @@
 					<div id="fine-uploader-manual-trigger"></div>
 				</div>
 				<div class="modal-footer">
+					<div style="float:left;text-align: left;">Somente arquivo CSV/TXT formatado da seguinte forma:<br>LATITUDE | LONGITUDE | DESCRIÇÃO</div>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 				</div>
 			</div>
