@@ -13,12 +13,21 @@ public class UploadResponse {
     private String errorMsg;
     private String content;
     private boolean success;
+    private String kind;
 
     public UploadResponse(boolean success) {
         this.success = success;
     }
 
-    public UploadResponse(boolean success, String errorMsg) {
+    public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public UploadResponse(boolean success, String errorMsg) {
         this.errorMsg = errorMsg;
         this.success = success;
     }

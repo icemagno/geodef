@@ -1,5 +1,6 @@
 package br.mil.defesa.sisgeodef.services;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import br.mil.defesa.sisgeodef.misc.UploadRequest;
@@ -8,9 +9,9 @@ import br.mil.defesa.sisgeodef.misc.UploadRequest;
 public class KmlImporterService {
 
 	public String toJson( UploadRequest request, String filePath ) {
-
-		
-		return "";
+		JSONObject fc = new JSONObject();
+		fc.put("filePath", filePath);
+		return fc.toString();
 	}	
 	
 }

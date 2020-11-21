@@ -1,6 +1,5 @@
 package br.mil.defesa.sisgeodef.controller;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +17,7 @@ import br.mil.defesa.sisgeodef.misc.StorageException;
 import br.mil.defesa.sisgeodef.misc.UploadRequest;
 import br.mil.defesa.sisgeodef.misc.UploadResponse;
 import br.mil.defesa.sisgeodef.services.CsvImporterService;
+import br.mil.defesa.sisgeodef.services.KmlImporterService;
 import br.mil.defesa.sisgeodef.services.StorageService;
 
 @RestController
@@ -29,6 +29,9 @@ public class UploadController {
 	
 	@Autowired
 	private CsvImporterService csvImporterService;
+	
+	@Autowired
+	private KmlImporterService kmlImporterService;
 	
     @CrossOrigin
     @PostMapping("/userdata")
@@ -47,9 +50,17 @@ public class UploadController {
         request.setTotalParts(totalParts);
 
         String filePath = storageService.save(request);
-
         UploadResponse response = new UploadResponse( true );	
-        response.setContent( csvImporterService.toJson( request, filePath ) );
+
+        System.out.println( filePath );
+        if( filePath.endsWith("kml") || filePath.endsWith("kmz") ) {
+        	response.setContent( kmlImporterService.toJson( request, filePath) );
+        	response.setKind("kml");
+        } else {
+            response.setContent( csvImporterService.toJson( request, filePath ) );
+            response.setKind("csv");
+        }
+        
         
         return ResponseEntity.ok().body( response );
     }    
