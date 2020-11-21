@@ -25,7 +25,7 @@ public class FileSystemStorageService implements StorageService {
 
     private static final Logger log = LoggerFactory.getLogger(FileSystemStorageService.class);
 
-    private Path basePath = Paths.get("/uploads");
+    private Path basePath = Paths.get("/srv/calisto/uploads/");
 
     @Override
     public String save(UploadRequest ur) {

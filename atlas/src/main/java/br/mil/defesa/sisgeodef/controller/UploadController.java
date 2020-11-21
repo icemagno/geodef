@@ -54,7 +54,7 @@ public class UploadController {
 
         System.out.println( filePath );
         if( filePath.endsWith("kml") || filePath.endsWith("kmz") ) {
-        	response.setContent( kmlImporterService.toJson( request, filePath) );
+        	response.setContent( kmlImporterService.toJson( request, fileName) );
         	response.setKind("kml");
         } else {
             response.setContent( csvImporterService.toJson( request, filePath ) );

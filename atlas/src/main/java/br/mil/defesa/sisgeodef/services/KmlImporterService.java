@@ -8,9 +8,11 @@ import br.mil.defesa.sisgeodef.misc.UploadRequest;
 @Service
 public class KmlImporterService {
 
-	public String toJson( UploadRequest request, String filePath ) {
+    private String urlPath = "http://sisgeodef.defesa.mil.br/calisto/uploads/";
+	
+	public String toJson( UploadRequest request, String fileName ) {
 		JSONObject fc = new JSONObject();
-		fc.put("filePath", filePath);
+		fc.put("fileName", urlPath + fileName);
 		return fc.toString();
 	}	
 	
