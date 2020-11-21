@@ -91,68 +91,84 @@ function showUploadUserData(){
 }
 
 
+function loadFeaturesFromCsv( featureCollection ){
+    var promise = Cesium.GeoJsonDataSource.load( featureCollection );
+    promise.then( function( dataSource ) {
+        var entities = dataSource.entities.values;
+        var userDataPackage = {};
+        userDataPackage.uuid = createUUID();
+        userDataPackage.fileName = fileName;
+        userDataPackage.entities = [];
+        if( (entities != null) && ( entities.length > 0 ) ){
+            for (var i = 0; i < entities.length; i++) {
+                var entity = entities[i];
+                var nome = entity.properties['texto'];
+
+                var userPoint = viewer.entities.add({
+                    name : 'IMPORT_USER_POINT',
+                    position : entity.position,
+                    billboard :{
+                        image : '/resources/img/pin-start.png',
+                        pixelOffset : new Cesium.Cartesian2(0, -10),
+                        scaleByDistance : new Cesium.NearFarScalar(1.5e2, 0.6, 1.5e7, 0.2),
+                        eyeOffset : new Cesium.Cartesian3(0.0, 0.0, 0.0),
+                        horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
+                        verticalOrigin : Cesium.VerticalOrigin.CENTER,
+                        disableDepthTestDistance : Number.POSITIVE_INFINITY     
+                    },
+                    label : {
+                        text : nome,
+                        fillColor : Cesium.Color.BLACK,
+                        font: '10px Consolas',
+                        horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
+                        eyeOffset : new Cesium.Cartesian3(0.0, 800.0, 0.0),
+                        pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.4, 1.5e7, 0.7),
+                        disableDepthTestDistance : Number.POSITIVE_INFINITY,
+                    }
+
+                });	
+
+                userDataPackage.entities.push( userPoint );
+
+            }            
+        } 
+        
+        userDataPoints.push( userDataPackage );
+        addUserDataCard( userDataPackage );
+    });    
+
+    fireToast( 'info', 'Sucesso', 'Dados carregados com sucesso.', '404' );
+
+}
+
 function loadUserDataResult( responseJSON, fileName ){
-    
+    $('#uploadUserDataModal').modal('hide');
+    $('#uploadUserDataModal').modal('dispose');
+    $('#fine-uploader-manual-trigger').empty();
+
+    console.log( responseJSON );
+
     var jsonObj = JSON.parse( responseJSON.content );
     
     if( jsonObj.features ){
+        loadFeaturesFromCsv( jsonObj );
+        return;        
+    } 
+
+    if( jsonObj.filePath ){
         
-        var promise = Cesium.GeoJsonDataSource.load( jsonObj );
-        promise.then( function( dataSource ) {
-            var entities = dataSource.entities.values;
-            var userDataPackage = {};
-            userDataPackage.uuid = createUUID();
-            userDataPackage.fileName = fileName;
-            userDataPackage.entities = [];
-            if( (entities != null) && ( entities.length > 0 ) ){
-                for (var i = 0; i < entities.length; i++) {
-                    var entity = entities[i];
-                    var nome = entity.properties['texto'];
+        var dataSourcePromise = viewer.dataSources.add(Cesium.KmlDataSource.load( jsonObj.filePath , options));
+        dataSourcePromise.then(function(dataSource){
+            var rider = dataSource.entities.getById('CSDL');//在kml中必须有此id
+            viewer.flyTo(rider);
+        }).otherwise(function(error){
+            window.alert(error);
+        });
+    
 
-                    var userPoint = viewer.entities.add({
-                        name : 'IMPORT_USER_POINT',
-                        position : entity.position,
-                        billboard :{
-                            image : '/resources/img/pin-start.png',
-                            pixelOffset : new Cesium.Cartesian2(0, -10),
-                            scaleByDistance : new Cesium.NearFarScalar(1.5e2, 0.6, 1.5e7, 0.2),
-                            eyeOffset : new Cesium.Cartesian3(0.0, 0.0, 0.0),
-                            horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
-                            verticalOrigin : Cesium.VerticalOrigin.CENTER,
-                            disableDepthTestDistance : Number.POSITIVE_INFINITY     
-                        },
-			            label : {
-			                text : nome,
-                            fillColor : Cesium.Color.BLACK,
-                            font: '10px Consolas',
-                            horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
-                            eyeOffset : new Cesium.Cartesian3(0.0, 800.0, 0.0),
-                            pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.4, 1.5e7, 0.7),
-                            disableDepthTestDistance : Number.POSITIVE_INFINITY,
-			            }
-
-                    });	
-
-                    userDataPackage.entities.push( userPoint );
-
-                }            
-            } 
-            
-            userDataPoints.push( userDataPackage );
-            addUserDataCard( userDataPackage );
-        });    
-
-        fireToast( 'info', 'Sucesso', 'Dados carregados com sucesso.', '404' );
-
-    } else {
-        fireToast( 'error', 'Erro', 'Não foi possível carregar os dados do arquivo.', '404' );
     }
 
-    //$("#uploadUserDataModal .close").click();
-    $('#uploadUserDataModal').modal('hide');
-    $('#uploadUserDataModal').modal('dispose');
-
-    $('#fine-uploader-manual-trigger').empty();
+    fireToast( 'error', 'Erro', 'Não foi possível carregar os dados do arquivo.', '404' );
 
 }
 
