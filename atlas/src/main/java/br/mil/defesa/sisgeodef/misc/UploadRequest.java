@@ -65,7 +65,7 @@ public class UploadRequest {
     }
 
     public void setFileName(String fileName) {
-        this.fileName = fileName;
+        this.fileName = fileName.replaceAll("\\s+","");
     }
 
     @Override

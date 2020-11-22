@@ -159,10 +159,16 @@ function loadUserDataResult( responseJSON, fileName ){
         
         var dataSourcePromise = viewer.dataSources.add(Cesium.KmlDataSource.load( jsonObj.filePath , options));
         dataSourcePromise.then(function(dataSource){
-            var rider = dataSource.entities.getById('CSDL');//在kml中必须有此id
-            viewer.flyTo(rider);
+            var entities = dataSource.entities.values;
+            if( (entities != null) && ( entities.length > 0 ) ){
+                for (var i = 0; i < entities.length; i++) {
+                    var entity = entities[i];
+                    console.log( entity );
+                }
+            }                
+
         }).otherwise(function(error){
-            window.alert(error);
+            
         });
     
 
