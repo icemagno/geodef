@@ -276,7 +276,9 @@
 					<div id="logging"></div>
 				
 					<div class="fullWindow" id="cesiumContainer">
-					
+						
+						<div id="measureContainer"></div>
+						
 						<div id="searchBarHelpContainer" style="display:none;position:absolute;top:2px;left:350px;z-index:999;width:380px;" class="box box-solid">
 							<div class="box-header with-border">
 								<h3 class="box-title">Formato do Texto de Busca</h3>

@@ -255,6 +255,19 @@ function redraw() {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 
+	var measureWidget = new Cesium.Measure({
+		container : 'measureContainer',
+		scene : scene,
+		units : new Cesium.MeasureUnits({
+			distanceUnits : Cesium.DistanceUnits.METERS,
+			areaUnits : Cesium.AreaUnits.SQUARE_METERS,
+			volumeUnits : Cesium.VolumeUnits.CUBIC_FEET,
+			angleUnits : Cesium.AngleUnits.DEGREES,
+			slopeUnits : Cesium.AngleUnits.GRADE
+		})
+   });
+
+
 	/*
 	var url = "/radar?l={l}&r={r}&t={t}&b={b}";
 	var buildingsProvider = new MagnoMetocRadarProvider({
