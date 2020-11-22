@@ -393,6 +393,9 @@
 	<script src="${midasLocation}/atlas/resources/radares-cappi.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/Windy.js"></script>
 	<script src="${midasLocation}/atlas/resources/entityexporter.js" type="text/javascript"></script>
+	
+	
+	<script src="${midasLocation}/atlas/resources/measure-test.js" type="text/javascript"></script>
 	<!-- 
 	<script src="${midasLocation}/atlas/resources/jsonlayers.js" type="text/javascript"></script>
 	<script src="${midasLocation}/atlas/resources/profilegraph.js" type="text/javascript"></script>
