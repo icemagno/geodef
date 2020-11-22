@@ -395,6 +395,10 @@ function deleteUserData( uuid ){
 				viewer.entities.remove( userDataPackage.entities[y] );
 			}
 
+			if( userDataPackage.dataSource ){
+				viewer.dataSources.remove( userDataPackage.dataSource );
+			}
+
 			userDataPoints.splice(x, 1);
 			$("#" + uuid).fadeOut(400, function(){
 				$("#" + uuid).remove();

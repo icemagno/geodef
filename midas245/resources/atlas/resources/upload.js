@@ -42,7 +42,6 @@ function showUploadUserData(){
             sizeSymbols: [ "kB", "MB", "GB", "TB", "PB", "EB" ]
         },        
         callbacks: {
-            
             onComplete: function(id, name, responseJSON, maybeXhr) {
                 loadUserDataResult( responseJSON, name );
             },
@@ -74,7 +73,7 @@ function showUploadUserData(){
         },
         
         autoUpload: false,
-        debug: true
+        debug: false
     });
 
     qq(document.getElementById("trigger-upload")).attach("click", function() {
@@ -85,13 +84,58 @@ function showUploadUserData(){
     $('#uploadUserDataModal').attr('class', 'modal fade bs-example-modal-lg').attr('aria-labelledby','catalogModalLabel');
     $('#uploadUserDataModal').modal('show');
     $("#uploadUserDataModal").on("hidden.bs.modal", function () {
-       console.log('Janela fechou');
        $("#fine-uploader-manual-trigger").empty();
     });	
 }
 
 
-function loadFeaturesFromCsv( featureCollection ){
+function loadFeaturesFromKml( fileNameUrl, fileName ){
+    $("#mainWaitPanel").show();
+
+    var options = {
+        camera : viewer.scene.camera,
+        canvas : viewer.scene.canvas
+    };
+
+    var promise = Cesium.KmlDataSource.load( fileNameUrl , options );
+    promise.then(function(dataSource){
+        viewer.dataSources.add( dataSource );
+
+        //var entities = dataSource.entities.values;
+        var userDataPackage = {};
+        userDataPackage.uuid = createUUID();
+        userDataPackage.fileName = fileName;
+        userDataPackage.entities = [];
+        userDataPackage.dataSource = dataSource;
+
+        /*
+        var entities = dataSource.entities.values;
+        if( (entities != null) && ( entities.length > 0 ) ){
+            for (var i = 0; i < entities.length; i++) {
+                var entity = entities[i];
+            }
+        }
+        */
+
+       userDataPoints.push( userDataPackage );
+       addUserDataCard( userDataPackage );
+
+        $("#mainWaitPanel").hide();
+        fireToast( 'info', 'Sucesso', 'Dados carregados com sucesso.', '404' );                
+        return;
+    }).otherwise(function(error){
+        $("#mainWaitPanel").hide();
+        fireToast( 'error', 'Erro', 'Não foi possível carregar os dados do arquivo.', '404' );
+        return;        
+    });
+
+
+}
+
+function loadFeaturesFromGeoJson( featureCollection, fileName ){
+    $("#mainWaitPanel").show();
+
+
     var promise = Cesium.GeoJsonDataSource.load( featureCollection );
     promise.then( function( dataSource ) {
         var entities = dataSource.entities.values;
@@ -99,11 +143,12 @@ function loadFeaturesFromCsv( featureCollection ){
         userDataPackage.uuid = createUUID();
         userDataPackage.fileName = fileName;
         userDataPackage.entities = [];
+        userDataPackage.dataSource = null;
+
         if( (entities != null) && ( entities.length > 0 ) ){
             for (var i = 0; i < entities.length; i++) {
                 var entity = entities[i];
                 var nome = entity.properties['texto'];
-
                 var userPoint = viewer.entities.add({
                     name : 'IMPORT_USER_POINT',
                     position : entity.position,
@@ -135,46 +180,40 @@ function loadFeaturesFromCsv( featureCollection ){
         
         userDataPoints.push( userDataPackage );
         addUserDataCard( userDataPackage );
-    });    
-
-    fireToast( 'info', 'Sucesso', 'Dados carregados com sucesso.', '404' );
+        fireToast( 'info', 'Sucesso', 'Dados carregados com sucesso.', '404' );
+        $("#mainWaitPanel").hide();
+    }).otherwise(function(error){
+        $("#mainWaitPanel").hide();
+        fireToast( 'error', 'Erro', 'Não foi possível carregar os dados do arquivo.', '404' );
+    });
 
 }
 
 function loadUserDataResult( responseJSON, fileName ){
+
     $('#uploadUserDataModal').modal('hide');
-    $('#uploadUserDataModal').modal('dispose');
     $('#fine-uploader-manual-trigger').empty();
 
-    var jsonObj = JSON.parse( responseJSON );
-    console.log( jsonObj );
+    var responseContent = JSON.parse( responseJSON.content );
     
-    if( jsonObj.kind === 'csv' ){
-        loadFeaturesFromCsv( jsonObj.content );
+    if( responseJSON.kind === 'csv' ){
+        loadFeaturesFromGeoJson( responseContent, fileName  );
         return;        
     } 
 
-    if( jsonObj.kind === 'kml' ){
-        
-        var dataSourcePromise = viewer.dataSources.add(Cesium.KmlDataSource.load( jsonObj.filePath , options));
-        dataSourcePromise.then(function(dataSource){
-            var entities = dataSource.entities.values;
-            if( (entities != null) && ( entities.length > 0 ) ){
-                for (var i = 0; i < entities.length; i++) {
-                    var entity = entities[i];
-                    console.log( entity );
-                }
-            }                
-
-        }).otherwise(function(error){
-            
-        });
-    
-
+    if( responseJSON.kind === 'kml' ){
+        loadFeaturesFromKml( responseContent.fileName, fileName )
+        return;
     }
 
-    fireToast( 'error', 'Erro', 'Não foi possível carregar os dados do arquivo.', '404' );
+    if( responseJSON.kind === 'jso' ){
+        loadFeaturesFromGeoJson( responseContent, fileName  );
+        return;        
+    } 
 
+
+    fireToast( 'error', 'Erro', 'Tipo de arquivo desconhecido.', '404' );
+    
 }
 
 
