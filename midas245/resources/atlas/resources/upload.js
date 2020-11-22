@@ -146,16 +146,15 @@ function loadUserDataResult( responseJSON, fileName ){
     $('#uploadUserDataModal').modal('dispose');
     $('#fine-uploader-manual-trigger').empty();
 
-    console.log( responseJSON );
-
-    var jsonObj = JSON.parse( responseJSON.content );
+    var jsonObj = JSON.parse( responseJSON );
+    console.log( jsonObj );
     
-    if( jsonObj.features ){
-        loadFeaturesFromCsv( jsonObj );
+    if( jsonObj.kind === 'csv' ){
+        loadFeaturesFromCsv( jsonObj.content );
         return;        
     } 
 
-    if( jsonObj.filePath ){
+    if( jsonObj.kind === 'kml' ){
         
         var dataSourcePromise = viewer.dataSources.add(Cesium.KmlDataSource.load( jsonObj.filePath , options));
         dataSourcePromise.then(function(dataSource){

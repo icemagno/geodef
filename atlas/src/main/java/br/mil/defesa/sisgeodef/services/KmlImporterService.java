@@ -12,7 +12,7 @@ public class KmlImporterService {
 	
 	public String toJson( UploadRequest request, String fileName ) {
 		JSONObject fc = new JSONObject();
-		fc.put("fileName", urlPath + fileName);
+		fc.put("fileName", urlPath + request.getUuid() + "/" + fileName);
 		return fc.toString();
 	}	
 	
