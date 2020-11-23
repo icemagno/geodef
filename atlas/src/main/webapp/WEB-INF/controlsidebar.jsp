@@ -33,8 +33,10 @@
 									<img title="Ortoimagens BDGEX" class="img-responsive basemapimg" src="${midasLocation}/atlas/basemaps/bg_bdgex_orto.jpg" alt="Photo">
 								</div>
 								<div style="position:relative;margin: 2px;">
+									<!-- 
 									<input style="cursor:pointer;position: absolute;top:2px;right:2px" type="radio" name="optionsRadios" id="optionsRadios6" value="option1">
-									<img title="Nenhuma" class="img-responsive basemapimg" src="${midasLocation}/atlas/basemaps/bg_white.jpg" alt="Photo">
+									 -->
+									<img class="img-responsive basemapimg" src="${midasLocation}/atlas/basemaps/bg_white.jpg" alt="Photo">
 								</div>
 							</div>
 						</div>
