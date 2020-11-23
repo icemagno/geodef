@@ -45,9 +45,16 @@ var MagnoBuildingsProvider = function MagnoBuildingsProvider(options) {
     this._viewer =  options.viewer;
     this._localCache = {};
     this._imageryCache = null;
+    this._dataSources = [];
     this._onWhenFeaturesAcquired = Cesium.defaultValue(options.whenFeaturesAcquired, null);
     this._name = "MagnoBuildingsProvider"; 
     
+    this._flushData = function(){
+        for( x=0; x < this._dataSources.length; x++ ){
+            this._viewer.dataSources.remove( this._dataSources[x], true );
+        }
+    }
+
     /*
     var that = this;
     this._clock = setInterval( function( ){ 
@@ -242,7 +249,14 @@ Object.defineProperties(MagnoBuildingsProvider.prototype, {
         get : function() {
             return true;
         }
+    },
+
+    flushData : {
+        get : function(){
+            return this._flushData;
+        }
     }
+
 });
 
 /**
@@ -339,20 +353,19 @@ MagnoBuildingsProvider.prototype.requestFeatures = function ( x, y, level, bbox 
 	    }
 	} 
 	
-
 	var url = this._sourceUrl.replace("{l}", bbox.swCorner.lon).
 	replace("{r}", bbox.neCorner.lon).
 	replace("{t}", bbox.neCorner.lat).
 	replace("{b}", bbox.swCorner.lat) + "&count=" + this._featuresPerTile;
-
-	console.log( url );
 	
 	var promise = Cesium.GeoJsonDataSource.load( url );
 	promise.then(function( dataSource ) {
 		var entities = dataSource.entities.values;
 		if( entities != null ){
 			
-			that._viewer.dataSources.add( dataSource );
+            that._viewer.dataSources.add( dataSource );
+            that._dataSources.push( dataSource );
+
 			var terrainSamplePositions = [];
 			
 			for (var i = 0; i < entities.length; i++) {
@@ -389,23 +402,13 @@ MagnoBuildingsProvider.prototype.requestFeatures = function ( x, y, level, bbox 
 			}
 			
 		} else {
-			console.log( "Erro" );
+			//
 		}
 		
 	}).otherwise(function(error){
-		console.log( error );
+		//console.log( error );
 	});
 
-};
-
-
-MagnoBuildingsProvider.prototype.whenFeaturesAcquired = function ( entities ) {
-	/*
-    for (var i = 0; i < entities.length; i++) {
-        var entity = entities[i];
-        console.log( entity.properties.imageryData );
-    } 
-    */   
 };
 
 

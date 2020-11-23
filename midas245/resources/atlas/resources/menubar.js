@@ -325,28 +325,10 @@ function bindToolBarButtons() {
 			startCorMetSolution();
 		}		
 	});	
-	
-	/* **************************************************
-	 *                     EXPERIMENTAL 
-	 * **************************************************/
-	$("#toolOSM3D").click( function(){
-		getBuildings();
-	});
-	
-	$("#toolFavelas").click( function(){
-		drawFavelas();
-	});
-	
-	$("#toolNuvemPontos").click( function(){
-		loadPC();
-	});
 
-	$("#toolFlood").click( function(){
-		startFlood();
+	$("#toolOSM3D").click( function(){
+		startOsmBuildings();
 	});
-	
-	/******************************************************/ 
-	
 	
 	
 }

@@ -395,7 +395,7 @@ function deleteUserData( uuid ){
 			}
 
 			if( userDataPackage.dataSource ){
-				viewer.dataSources.remove( userDataPackage.dataSource );
+				viewer.dataSources.remove( userDataPackage.dataSource, true );
 			}
 
 			userDataPoints.splice(x, 1);
