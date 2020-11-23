@@ -45,7 +45,7 @@ function initControlSideBar(){
 	});
 
 	$("#optionsRadios6").click( function(){
-		doChangeBaseLayer('none');
+		// vazio
 	});
 	
 };
@@ -57,6 +57,5 @@ function populateBaseLayerCollection(){
 	baselayerCollection['osm'] = baseOsmProvider;
 	baselayerCollection['ortoimagens'] = getProvider( mapproxy, 'ortoimagens', false, 'png', false );
 	baselayerCollection['gebco'] = getProvider( mapproxy, 'gebco', false, 'png', false );
-	baselayerCollection['none'] = null;
 }
 

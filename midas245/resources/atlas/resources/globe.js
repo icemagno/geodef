@@ -255,9 +255,6 @@ function redraw() {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 
-	testMeasure();
-
-
 	/*
 	var url = "/radar?l={l}&r={r}&t={t}&b={b}";
 	var buildingsProvider = new MagnoMetocRadarProvider({
