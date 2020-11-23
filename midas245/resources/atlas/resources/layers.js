@@ -296,14 +296,13 @@ function updateLegendImages(){
 			var legendUrl = "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest +
 				'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth;
 			
-			console.log( legendUrl );
-
 			jQuery.ajax({
 				url: legendUrl,
 				type: "GET", 
+				uuid : imgUUID,
 				success: function( imagePath ) {
 					if( imagePath != '' ){
-						$( "#" + imgUUID ).attr("src", imagePath );
+						$( "#" + this.uuid ).attr("src", imagePath );
 					} else {
 						console.log('Sem legenda.');
 					}
