@@ -357,7 +357,7 @@
 	<script src="/resources/Cesium/Cesium.js" type="text/javascript"></script>
 	<script src="/resources/graticule/Graticule.js" type="text/javascript"></script>
 	<script src="/resources/html2canvas.js" type="text/javascript"></script>
-	<script src="/resources/drawhelper/drawhelper.js"></script>
+	<script src="${midasLocation}/atlas/resources/drawhelper.js"></script>
 	<script src="/resources/profilehelper/profilehelper.js"></script>
 
 	<script src="${midasLocation}/atlas/resources/convertions.js" type="text/javascript"></script>
