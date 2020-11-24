@@ -1,7 +1,23 @@
 
+
+var isAvRadioSolutionActive = false;
 var avisosEntities = [];
 var avisoRadioHandler = null;
 var receivedNaviosSAR = [];
+
+function startAvisoRadio(){
+	if( isAvRadioSolutionActive ){
+		isAvRadioSolutionActive = false;
+		$("#toolAvisoRadio").removeClass("btn-danger");
+		$("#toolAvisoRadio").addClass("btn-warning");
+		deleteAvisos();
+	} else {
+		isAvRadioSolutionActive = true;
+		avisosRadio( false );
+		$("#toolAvisoRadio").addClass("btn-danger");
+		$("#toolAvisoRadio").removeClass("btn-warning");
+	}
+}
 
 
 function pointToArray( geom ){

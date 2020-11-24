@@ -1,6 +1,51 @@
 
 var qtdQueryResult = 0;
 
+
+function showEntityData( entity ){
+	if( !entity.properties ) return;
+
+	var layerName = "Feição sem nome";
+	if( entity.name ) layerName = entity.name;
+	
+	var qtd = entity.properties.propertyNames.length
+	var uuid = "QL-" + createUUID();
+	qtdQueryResult++;
+	$("#qtdQueryResult").text( qtdQueryResult );
+
+	var table = '<table id="'+uuid+'" class="table table-bordered table-hover"><thead><tr>'; 
+
+	for(  x=0; x < qtd; x++  ) {
+		var pName = entity.properties.propertyNames[x];
+		table = table + '<th>'+ pName +'</th>'; 
+	}
+
+	table = table + '</tr></thead><tbody>';
+
+	table = table + '<tr>';
+	for( x=0; x < qtd; x++  ) {
+		var pName = entity.properties.propertyNames[x];
+		var pValue = entity.properties[ pName ];
+		if( !pValue || pValue == null || pValue == 'null ') pValue = '&nbsp;';
+
+		/*
+		if( pValue instanceof Object ) {
+			console.log( pValue.getValue() );
+			//pValue = '[OBJETO]';
+		}
+		*/
+		table = table + '<td>'+pValue+'</td>';
+	}
+	table = table + '</tr>';
+	$("#queryResultBody").append( table ) ;
+
+	makeTable( uuid );
+	
+	$("#" + uuid + "_info").html("<b>" + layerName + "</b>" );
+
+}
+
+
 function showFeaturesData( featureCollection, stackedProvider ){
 	var layerName = stackedProvider.data.sourceName;
 	var sourceLogo = stackedProvider.data.sourceLogo;
@@ -39,40 +84,7 @@ function showFeaturesData( featureCollection, stackedProvider ){
 	
 	$("#queryResultBody").append( table ) ;
 	
-	$('#' + uuid).DataTable({
-		 'responsive'  : false,
-		 'searching'   : false,
-		 'autoWidth'   : false,
-    	 'destroy'     : true,
-         'scrollY'     : 150,
-         'scrollX'     : true,
-         'ordering'    : false,
-         'paging'      : false,
-         'dom': '<"top"i>rt<"bottom"><"clear">',
-		 language: {
-		    searchPlaceholder: "Localizar",
-		    search: "_INPUT_",
-		    paginate: {
-		        first:    '«',
-		        previous: '‹',
-		        next:     '›',
-		        last:     '»'
-		    },
-		    emptyTable: "Nenhum Registro Encontrado",
-		    zeroRecords: "Nenhum Registro Encontrado",
-		    infoEmpty: "Sem registros",
-		    infoFiltered: " - filtrado de _MAX_ records",
-		    aria: {
-		        paginate: {
-		            first:    'Primeiro',
-		            previous: 'Anterior',
-		            next:     'Próximo',
-		            last:     'Último'
-		        }
-		    }    		        
-		    
-		 }    			
-	});
+	makeTable( uuid );
 	
 	$("#" + uuid + "_info").html("<b>" + layerName + "</b>" );
 }
@@ -102,4 +114,41 @@ function showQueryResultContainer(){
     });
     
 	
+}
+
+function makeTable( uuid ){
+	$('#' + uuid).DataTable({
+		'responsive'  : false,
+		'searching'   : false,
+		'autoWidth'   : false,
+		'destroy'     : true,
+		'scrollY'     : 150,
+		'scrollX'     : true,
+		'ordering'    : false,
+		'paging'      : false,
+		'dom': '<"top"i>rt<"bottom"><"clear">',
+		language: {
+		   searchPlaceholder: "Localizar",
+		   search: "_INPUT_",
+		   paginate: {
+			   first:    '«',
+			   previous: '‹',
+			   next:     '›',
+			   last:     '»'
+		   },
+		   emptyTable: "Nenhum Registro Encontrado",
+		   zeroRecords: "Nenhum Registro Encontrado",
+		   infoEmpty: "Sem registros",
+		   infoFiltered: " - filtrado de _MAX_ records",
+		   aria: {
+			   paginate: {
+				   first:    'Primeiro',
+				   previous: 'Anterior',
+				   next:     'Próximo',
+				   last:     'Último'
+			   }
+		   }    		        
+		   
+		}    			
+   });
 }

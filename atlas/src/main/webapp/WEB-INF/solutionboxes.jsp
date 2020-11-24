@@ -186,7 +186,23 @@
 </div>
 
 
-
+<!-- CONTEUDO DOS AVISOS -->
+<div id="avisosContainer"
+	style="display: none; font-size: 11px; height: 323px; left: 320px; position: absolute; z-index: 9999; top: 45px; width: 350px; background-color: white; border-bottom: 2px solid #3c8dbc;">
+	<div style="padding: 0px;" class="box-header with-border">
+		<button id="avisosButton" style="text-align: left;"
+			type="button" class="btn btn-block btn-primary btn-xs btn-flat">
+			<i class="fa fa-arrows-alt"></i> &nbsp; Avisos Vigentes 
+			<a style="color: white;" title="Fechar" href="#" onClick=" $('#avisosContainer').hide(); " class="pull-right"><i class="fa fa-close"></i></a>
+		</button>
+		<div >
+			<img style='float:right;height: 38px; width: 348px;' src='/resources/img/logo-chm.png'>
+			<img style='position: absolute; right: 1px; bottom: 2px;height: 38px; width: 43px;' src='/resources/img/chm.png'>
+		</div>
+	</div>
+	<div id="avisosDetailContainer"
+		style="background-color: white; padding: 5px;"></div>
+</div>
 
 
 <div

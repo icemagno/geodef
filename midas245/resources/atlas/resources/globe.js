@@ -212,14 +212,23 @@ function startMap( theMapStyle ) {
 	//connect();
 	
 	
-	drawHelper = new DrawHelper( viewer, function( object ){
-		viewer._container.style.cursor = "help";
-		//console.log( object.id.properties );
+	drawHelper = new DrawHelper( viewer, function( object, position ){
+		
+		if( object.id ){
+			viewer._container.style.cursor = "help";
+			if( object.id.properties ){
+				var qtd = object.id.properties.propertyNames.length
+				drawHelper._tooltip.showAt( position , qtd + ' atributo(s)' );
+			} else {
+				drawHelper._tooltip.showAt( position , 'sem atributos' );
+			}
+		}
+
+
 	}, function(){
+		drawHelper._tooltip.setVisible(false);
 		viewer._container.style.cursor = "default";		
 	});
-	
-	
 	
 	drawedFeaturesBillboards = new Cesium.BillboardCollection({scene: viewer.scene});
 	scene.groundPrimitives.add( drawedFeaturesBillboards );
@@ -737,14 +746,12 @@ function getMapMousePosition( movement ) {
 
 function addMouseHoverListener() {
 	mainEventHandler.setInputAction( function(movement) {
-		
 		var position = getMapPosition3D2D( movement.endPosition );
 		try {
 			if ( position ) updatePanelFooter( position );
 		} catch ( err ) {
 			// ignore
 		}
-		
 	}, Cesium.ScreenSpaceEventType.MOUSE_MOVE );
 };
 

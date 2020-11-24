@@ -47,9 +47,6 @@ var DrawHelper = (function() {
 			var pickedObject = scene.pick(position);
 			if( pickedObject ) {
 				var theObject;
-				
-				console.log( pickedObject.primitive );
-				
 				if ( ( pickedObject.primitive instanceof Cesium.GroundPrimitive  || pickedObject.primitive instanceof Cesium.GroundPolylinePrimitive ) && pickedObject.primitive.geometryInstances ){
 					theObject = pickedObject.primitive.geometryInstances.pickPrimitive;
 				} else {
@@ -79,10 +76,10 @@ var DrawHelper = (function() {
 				
                 var pickedObject = scene.pick(movement.endPosition);
 				if( pickedObject ) {
-					if( _self._callbackMouseOverFunction ) _self._callbackMouseOverFunction( pickedObject );
+					if( _self._callbackMouseOverFunction ) _self._callbackMouseOverFunction( pickedObject, movement.endPosition );
 					try{
 						var thePrimitive;
-						if ( pickedObject.primitive instanceof Cesium.GroundPrimitive  || pickedObject.primitive instanceof Cesium.GroundPolylinePrimitive  ){
+						if ( (pickedObject.primitive instanceof Cesium.GroundPrimitive  || pickedObject.primitive instanceof Cesium.GroundPolylinePrimitive) && pickedObject.primitive.geometryInstances  ){
 							thePrimitive = pickedObject.primitive.geometryInstances.pickPrimitive;
 						} else {
 							thePrimitive = pickedObject.primitive;

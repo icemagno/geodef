@@ -726,11 +726,11 @@ function queryLayer() {
 		    if ( Cesium.defined( pickedObject ) ) {
 		    	var entity = pickedObject.id;
 		    	if( entity ){
-		    		console.log("QUERY ENTITY: " + entity.name );
-					if ( entity.name === "PCN_RUNWAY") showRunwayInfo( entity );
-		    	}
+					showEntityData( entity );
+				}
 		    	
 		    	/*
+				if ( entity.name === "PCN_RUNWAY") showRunwayInfo( entity );
 		    	if ( entity.name === 'ROTA_POI') showRotaPoi( entity );
 		    	if ( entity.name === 'PHOTO_HASTE') showStreetImage( entity );
 		    	if ( entity.name === "CORMET_AERODROMO") showColorAerodromo( entity );
@@ -739,13 +739,12 @@ function queryLayer() {
 		    	*/
 		    	
 		    } else {
-		    	console.log('Nenhuma entidade clicada.');
+		    	//console.log('Nenhuma entidade clicada.');
 		    }
 		}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 	
 	}	
 }
-
 
 
 // ***************************************************************************

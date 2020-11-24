@@ -35,12 +35,6 @@ function closePlataformasToolBarMenu() {
 	hideAllButtonBars();
 }
 
-function closeAvisosRadioToolBarMenu() {
-	hideAllButtonBars();
-	$('#avisosContainer').hide();
-	deleteAvisos();
-}
-
 function closeMeasureToolBarMenu() {
 	hideAllButtonBars();
 }
@@ -286,11 +280,7 @@ function bindToolBarButtons() {
 
 	/* --------------   AVISOS RADIO -------------  */
 	$("#toolAvisoRadio").click( function(){
-		$("#avisosRadioMenuBox").show(300);
-	});	
-	$("#loadAvisosRadioBtn").click( function(){
-		var sarEventsOnlyFilter = $("#sarEventsOnly").prop('checked');
-		avisosRadio( sarEventsOnlyFilter );
+		startAvisoRadio();
 	});	
 	
 	/* --------------   METOC --------------------  */
