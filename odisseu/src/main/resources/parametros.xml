@@ -12,8 +12,8 @@
                <ogc:BBOX>
                   <ogc:PropertyName>ows:BoundingBox</ogc:PropertyName>
                   <gml:Envelope xmlns:gml="http://www.opengis.net/gml">
-                     <gml:lowerCorner>-24 -45</gml:lowerCorner>
-                     <gml:upperCorner>-20 -40</gml:upperCorner>
+                     <gml:lowerCorner>-34 -74</gml:lowerCorner>
+                     <gml:upperCorner>6 -28</gml:upperCorner>
                   </gml:Envelope>
                </ogc:BBOX>
                <ogc:Or>
