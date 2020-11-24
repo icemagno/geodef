@@ -341,13 +341,13 @@ function addAvisoCard( aviso ){
 	table = table + "</table></div>";
 
 	var layerText = '<div class="avisoCard" id="'+aviso.avisoId+'" style="margin-bottom: 5px;border: 1px solid #cacaca;" ><div class="box-body">' + table + '</div></div>';
-	jQuery("#avisosDetailContainer").append( layerText );			
+	$("#avisosDetailContainer").append( layerText );			
 	
 }
 
 function reloadAvisosListDisplay( sarEventsOnlyFilter, avisosRadio ){
 	deleteAvisos();
-	jQuery("#avisosContainer").show( 400 );
+	// $("#avisosContainer").show( 400 );
 	
 	for( var x=0; x < avisosRadio.length; x++  ) {
 		var aviso = avisosRadio[x];
@@ -496,8 +496,6 @@ function getShipFromVesselTracker( navio ){
 function avisosRadio( sarEventsOnlyFilter ){
 	
 	var avisossUrl = "/aviso/getavisos?mock=false";
-	
-	console.log( avisossUrl );
 	
 	var loadingId = createUUID();
     jQuery.ajax({
