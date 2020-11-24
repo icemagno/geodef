@@ -188,7 +188,7 @@
 
 <!-- CONTEUDO DOS AVISOS -->
 <div id="avisosContainer"
-	style="display: none; font-size: 11px; height: 323px; left: 320px; position: absolute; z-index: 9999; top: 45px; width: 350px; background-color: white; border-bottom: 2px solid #3c8dbc;">
+	style="display: none; font-size: 11px; height: 323px; left: 350px; position: absolute; z-index: 9999; top: 45px; width: 350px; background-color: white; border-bottom: 2px solid #3c8dbc;">
 	<div style="padding: 0px;" class="box-header with-border">
 		<button id="avisosButton" style="text-align: left;"
 			type="button" class="btn btn-block btn-primary btn-xs btn-flat">
