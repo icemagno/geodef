@@ -35,6 +35,8 @@ public class CatalogTopics implements Serializable {
     @JoinColumn(name="topic_id")
     private List<CatalogSource> sources;	
 
+	@Column(name = "ordem")
+	private Integer ordem;
     
     public CatalogTopics() {
 		this.sources = new ArrayList<CatalogSource>();
@@ -70,6 +72,15 @@ public class CatalogTopics implements Serializable {
 
 	public void setSources(List<CatalogSource> sources) {
 		this.sources = sources;
+	}
+
+	public Integer getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(Integer ordem) {
+		this.ordem = ordem;
 	}	
+	
 	
 }
