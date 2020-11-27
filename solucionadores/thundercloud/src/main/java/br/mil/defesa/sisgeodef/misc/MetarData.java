@@ -25,7 +25,7 @@ public class MetarData implements Serializable {
 	public MetarData(Metar metar) {
 		super();
 		this.metar = metar;
-		String icao = metar.getAirport().getIcao();
+		String icao = metar.getAirport().getIcao().toUpperCase();
 		if( icao.equals("SBGL") ) {
 			alpha = 1600; beta = 610;
 		}
