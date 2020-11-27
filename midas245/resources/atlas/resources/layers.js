@@ -631,7 +631,7 @@ function addLayerCard( data ){
 		});
 		*/
 		
-		//$('#activeLayerContainer').slimScroll();
+		$('#activeLayerContainer').slimScroll();
 		
 		fireToast( 'info', 'Concluído', 'A camada foi adicionada ao seu projeto.' , '000' );
 
