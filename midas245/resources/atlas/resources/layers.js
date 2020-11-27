@@ -609,6 +609,7 @@ function addLayerCard( data ){
 		var legUUID = "LEG_" + uuid;
 		var imgUUID = "IMG_" + uuid;
 		
+		/*
 		var urlLeg = "/proxy/getlegend?uuid=" + uuid + "&sourceId=" + data.id + '&bw='+globalScreenViewport.bWest+
 				'&bs='+globalScreenViewport.bSouth+'&be='+globalScreenViewport.bEast+'&bn='+globalScreenViewport.bNorth;
 			
@@ -628,6 +629,7 @@ function addLayerCard( data ){
 				}
 			}
 		});
+		*/
 		
 		$('#activeLayerContainer').slimScroll();
 		
