@@ -84,9 +84,14 @@
 								</button>
 							</td>
 							<td style="text-align: right;">
+								<button title="Rosa dos Ventos" id="optAvi" type="button" class="configBtn  btn btn-primary btn-flat disabled" style="padding: 0px;">
+									<img src="${midasLocation}/atlas/icons/rosa.png" style="width: 35px; height: 35px;">
+								</button>
+								<!-- 
 								<button title="Avisos" id="optAvi" type="button" class="configBtn  btn btn-primary btn-flat disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/avisos.png" style="width: 35px; height: 35px;">
 								</button>
+								 -->
 							</td>
 						</tr>
 					</table>
