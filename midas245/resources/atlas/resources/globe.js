@@ -496,8 +496,7 @@ function bindInterfaceElements() {
         height: viewportHeight - 10 + 'px',
         wheelStep : 10,
     });
-	
-	console.log( viewportHeight - 10 );
+
 	
 	$("#activeLayerContainer").sortable({
 		update: function( event, ui ) {
