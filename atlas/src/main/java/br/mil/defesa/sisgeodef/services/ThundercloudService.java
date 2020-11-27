@@ -259,6 +259,27 @@ public class ThundercloudService {
 			return ex.getMessage();
 		}
 		return responseBody ;
+	}
+
+
+	public String getRadarCappi(String local) {
+		ServiceInstance thundercloudInstance = loadBalancer.choose("thundercloud");
+		String thundercloudAddress = thundercloudInstance.getUri().toString(); 
+		String uri = thundercloudAddress + "/cappi/" + local;
+
+		String responseBody = "[]";
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			ResponseEntity<String> result = restTemplate.getForEntity( uri, String.class);
+			responseBody = result.getBody().toString();
+		} catch (HttpClientErrorException e) {
+		    responseBody = e.getResponseBodyAsString();
+		    String statusText = e.getStatusText();
+		    System.out.println( statusText );
+		} catch ( Exception ex) {
+			return ex.getMessage();
+		}
+		return responseBody ;
 	}    
 	
 }
