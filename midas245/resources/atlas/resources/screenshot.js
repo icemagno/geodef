@@ -70,7 +70,7 @@ function screenShot() {
 	
 	prepareScreenshot();
 	
-	fireToast( 'info', 'Aguarde...', 'A imagem firará pronta em alguns segundos.', '' );
+	fireToast( 'info', 'Aguarde...', 'A imagem ficará pronta em alguns segundos.', '' );
 	
 }
 

@@ -111,7 +111,8 @@ function backInTime( horaObj ){
 function horaAtual( rd ){
 	var data = new Date();
 	var minuto = data.getMinutes();
-	var hora = data.getHours();
+	var hora = data.getHours() + 3;
+	if( hora > 24 ) hora = hora - 24;
 	if( rd ) {
 		minuto = roundDown( minuto, 10 );
 	}
