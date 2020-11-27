@@ -46,7 +46,7 @@ public class AvisoRadioController {
 	public @ResponseBody String getAvisos( @RequestParam(value="mock",required=true) Boolean mock ) {
 		if( mock ) {
 			return doRequestGet("/avisos/mock" ); 
-		} else	return doRequestGet("/avisos" );
+		} else	return doRequestGet("/avisos/" );
 	}
 
 	@RequestMapping(value = "/getareas", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
