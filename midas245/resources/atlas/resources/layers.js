@@ -287,6 +287,10 @@ function importVectors( uuid ){
 
 
 function updateLegendImages(){
+	
+	return;
+	
+	
 	for( x=0; x<stackedProviders.length;x++ ){
 		var sp = stackedProviders[x];
 		var data = sp.data;
