@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>ET-EDGV-DEFESA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/bootstrap.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                </button>
+                <a class="navbar-brand" href="../../index.html">ET-EDGV-DEFESA</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Aeronáutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-aeronautica.html">Índice Cartografia Aeronáutica</a></li>
+                            <li><a href="../../entidades/entidades-aeronauticas.html">Lista de Entidades</a></li>
+                            <li><a href="../../atributos/atributos-aeronauticos.html">Lista de Atributos</a></li>
+                            <li><a href="../../dominios/dominios-aeronauticos.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Náutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-nautica.html">Índice Cartografia Náutica</a></li>
+                            <li><a href="../../entidades/entidades-nautica.html">Lista de Entidades</a></li>
+                            <li><a href="../../atributos/atributos-nautico.html">Lista de Atributos</a></li>
+                            <li><a href="../../dominios/dominios-nautico.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Terrestre<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-terrestre.html">Índice Cartografia Terrestre</a></li>
+                            <li><a href="../../entidades/maptopo-pe.html">Mapeamento Topográfico Pequenas Escalas</a></li>
+                            <li><a href="../../entidades/maptopo-ge.html">Mapeamento Topográfico Grandes Escalas</a></li>                            
+                            <li><a href="../../dominios/dominios-terrestres.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Dados do Domínio</h4>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Forma_Da_Baliza</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Seção</td>
+                                <td>3.12</td>
+                            </tr>
+                            <tr>
+                                <td>Descrição</td>
+                                <td>Domínio de forma da baliza</td>
+                            </tr>
+                            <tr>
+                                <td>Atributos</td>
+                                <td>
+                                    <table class="table table-bordered" style="background-color: transparent;">
+                                        <thead>
+                                            <tr style="background-color: #eaeaea">
+                                                <th>Atributo</th>
+                                                <th>Tipo</th>
+                                                <th>Tamanho</th>
+                                                <th>Not Null</th>
+                                                <th>Descrição</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                    <td>nome</td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td>Sim</td>
+                                    <td>Nome Da Forma</td>
+                                  </tr><tr>
+                                    <td>descricao</td>
+                                    <td>text</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Descrição Da Forma</td>
+                                  </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Domínios
+                                </td>
+                                <td>
+                                    <table class="table table-bordered" style="background-color: transparent;">
+                                        <thead>
+                                            <tr style="background-color: #eaeaea">
+                                                <th>Nome/Valor</th>
+                                                <th>Descrição</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                    <td>Flutuante</td>
+                                    <td>Baliza instalada com uma câmara flutuante e presa ao leito marinho para servir de auxílio à navegação.</td>
+                                  </tr> <tr>
+                                    <td>Monte de pedras</td>
+                                    <td>Monte de pedras, geralmente cônico ou piramidal, construído como auxílio à navegação.</td>
+                                  </tr> <tr>
+                                    <td>Pilha</td>
+                                    <td>Estaca de madeira, aço ou concreto preso ao leito marinho que serve como auxílio à navegação.</td>
+                                  </tr> <tr>
+                                    <td>Poste</td>
+                                    <td>Poste de madeira ou metal fixado no leito para servir de auxílio à navegação ou suporte a um intrumento de navegação.</td>
+                                  </tr> <tr>
+                                    <td>Torre</td>
+                                    <td>Torre da ordem de 10 m de altura utilizada como auxílio à navegação.</td>
+                                  </tr> <tr>
+                                    <td>Treliça</td>
+                                    <td>Estrurura metálica ou de madeira utilizada como auxílio à navegação.</td>
+                                  </tr> <tr>
+                                    <td>Tronco de árvore</td>
+                                    <td>Tronco de árvore presas ao leito marinho para servir de auxílio à navegação.</td>
+                                  </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Usos</td>
+                                <td>
+                                    <a href="../../entidades/entidades-nautica/baliza.html">Baliza</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><a href="../dominios-nautico.html" style="float:right">Voltar para lista de domínios náutico</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="panel panel-default" style="border: #000">
+            <div class="panel-footer">Desenvolvido por CASNAV - Centro de Análise de Sistemas Navais </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Visualizador EDGV-DEFESA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              </button>
+              <a class="navbar-brand" href="../index.html">ET-EDGV-DEFESA</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Aeronáutica<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="../cartografia-aeronautica.html">Índice Cartografia Aeronáutica</a></li>
+                          <li><a href="../entidades/entidades-aeronauticas.html">Lista de Entidades</a></li>
+                          <li><a href="../atributos/atributos-aeronauticos.html">Lista de Atributos</a></li>
+                          <li><a href="../dominios/dominios-aeronauticos.html">Lista de Domínios</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown active">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Náutica<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="../cartografia-nautica.html">Índice Cartografia Náutica</a></li>
+                          <li><a href="../entidades/entidades-nautica.html">Lista de Entidades</a></li>
+                          <li><a href="../atributos/atributos-nautico.html">Lista de Atributos</a></li>
+                          <li><a href="../dominios/dominios-nautico.html">Lista de Domínios</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Terrestre<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="../cartografia-terrestre.html">Índice Cartografia Terrestre</a></li>
+                          <li><a href="../entidades/entidades-terrestres.html">Lista de Entidades</a></li>
+                          <li><a href="../atributos/atributos-terrestres.html">Lista de Atributos</a></li>
+                          <li><a href="../dominios/dominios-terrestres.html">Lista de Domínios</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="well">
+      <div class="row">
+        <div class="col-lg-9">
+          <h2>Especificações Técnicas Para Estruturação de <br>Dados Geoespaciais Vetoriais de Defesa</h2>
+        </div>
+        <div class="col-lg-3">
+          <h4>ET-EDGV-DEFESA<br></h4>
+          <h4>Dezembro 2017 <br></h4>
+          <h5>Versão 3.0</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4>Lista de Domínios Náuticos</h4></div>
+    <div class="panel-body">
+      <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Seção</th>
+            <th>Nome</th>
+            <th>Definição</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          <tr>
+            <td><a href="dominios-nautico/categ-area-restricao.html">3.1</a></td>
+            <td><a href="dominios-nautico/categ-area-restricao.html">Categ_Area_Restricao</a></td>
+            <td>Domínio de categoria da área de restrição</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/categ-cosntrucao-costeira.html">3.2</a></td>
+            <td><a href="dominios-nautico/categ-cosntrucao-costeira.html">Categ_Const_Costeira</a></td>
+            <td>Domínio de categoria da construção costeira</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/categ-da-plataforma-offshore.html">3.3</a></td>
+            <td><a href="dominios-nautico/categ-da-plataforma-offshore.html">Categ_Da_Plataforma_Offshore</a></td>
+            <td>Domínio de categoria de plataforma offshore</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/categ-de-obstrucao.html">3.4</a></td>
+            <td><a href="dominios-nautico/categ-de-obstrucao.html">Categ_De_Obstrucao</a></td>
+            <td>Domínio de categoria de obstrucao</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/categ-do-cabo-submarino.html">3.5</a></td>
+            <td><a href="dominios-nautico/categ-do-cabo-submarino.html">Categ_Do_Cabo_Submarino</a></td>
+            <td>Domínio de categoria de cabo submarino</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/categ-do-duto-submarino.html">3.6</a></td>
+            <td><a href="dominios-nautico/categ-do-duto-submarino.html">Categ_Do_Duto_Submarino</a></td>
+            <td>Domínio de categoria de duto submarino</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/categ-producao-offshore.html">3.7</a></td>
+            <td><a href="dominios-nautico/categ-producao-offshore.html">Categ_Producao_Offshore</a></td>
+            <td>Domínio de categoria da producao offshore</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/categ-sinal.html">3.8</a></td>
+            <td><a href="dominios-nautico/categ-sinal.html">Categ_Sinal</a></td>
+            <td>Domínio de categoria de sinal</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/composicao-do-fundo.html">3.9</a></td>
+            <td><a href="dominios-nautico/composicao-do-fundo.html">Composicao_Do_Fundo</a></td>
+            <td>Domínio da composição de fundo</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/cor.html">3.10</a></td>
+            <td><a href="dominios-nautico/cor.html">Cor</a></td>
+            <td>Domínio de cor</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/efeitos-da-agua.html">3.11</a></td>
+            <td><a href="dominios-nautico/efeitos-da-agua.html">Efeitos_Da_Agua</a></td>
+            <td>Domínio de efeitos da água</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/forma-da-baliza.html">3.12</a></td>
+            <td><a href="dominios-nautico/forma-da-baliza.html">Forma_Da_Baliza</a></td>
+            <td>Domínio de forma da baliza</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/forma-da-boia.html">3.13</a></td>
+            <td><a href="dominios-nautico/forma-da-boia.html">Forma_Da_Boia</a></td>
+            <td>Domínio de forma da bóia</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/natureza-do-fundo.html">3.14</a></td>
+            <td><a href="dominios-nautico/natureza-do-fundo.html">Natureza_Do_Fundo</a></td>
+            <td>Domínio de natureza do fundo</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/padrao-de-cores.html">3.15</a></td>
+            <td><a href="dominios-nautico/padrao-de-cores.html">Padrao_de_Cores</a></td>
+            <td>Domínio do padrão de cores</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/produto.html">3.16</a></td>
+            <td><a href="dominios-nautico/produto.html">Produto</a></td>
+            <td>Domínio de produto</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/restricao.html">3.17</a></td>
+            <td><a href="dominios-nautico/restricao.html">Restricao</a></td>
+            <td>Domínio de restrição</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/segmentos-ponte.html">3.18</a></td>
+            <td><a href="dominios-nautico/segmentos-ponte.html">Segmentos_Ponte</a></td>
+            <td>Domínio de segmentos de ponte</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/situacao.html">3.19</a></td>
+            <td><a href="dominios-nautico/situacao.html">Situacao</a></td>
+            <td>Domínio de situação</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/status.html">3.20</a></td>
+            <td><a href="dominios-nautico/status.html">Status</a></td>
+            <td>Domínio de status</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/tipo-area-fundeio.html">3.21</a></td>
+            <td><a href="dominios-nautico/tipo-area-fundeio.html">Tipo_Area_Fundeio</a></td>
+            <td>Domínio de tipo de áreas de fundeio</td>
+          </tr><tr>
+            <td><a href="dominios-nautico/tipo-aux.html">3.22</a></td>
+            <td><a href="dominios-nautico/tipo-aux.html">Tipo_Aux</a></td>
+            <td>Domínio de tipo auxiliar</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  <div class="container-fluid">
+      <div class="panel panel-default" style="border: #000">
+          <div class="panel-footer">Desenvolvido por CASNAV - Centro de Análise de Sistemas Navais </div>
+      </div>
+  </div>
+  <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+</body>
+</html>

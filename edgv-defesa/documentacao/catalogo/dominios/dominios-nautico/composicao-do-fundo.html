@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>ET-EDGV-DEFESA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/bootstrap.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                </button>
+                <a class="navbar-brand" href="../../index.html">ET-EDGV-DEFESA</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Aeronáutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-aeronautica.html">Índice Cartografia Aeronáutica</a></li>
+                            <li><a href="../../entidades/entidades-aeronauticas.html">Lista de Entidades</a></li>
+                            <li><a href="../../atributos/atributos-aeronauticos.html">Lista de Atributos</a></li>
+                            <li><a href="../../dominios/dominios-aeronauticos.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Náutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-nautica.html">Índice Cartografia Náutica</a></li>
+                            <li><a href="../../entidades/entidades-nautica.html">Lista de Entidades</a></li>
+                            <li><a href="../../atributos/atributos-nautico.html">Lista de Atributos</a></li>
+                            <li><a href="../../dominios/dominios-nautico.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Terrestre<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-terrestre.html">Índice Cartografia Terrestre</a></li>
+                            <li><a href="../../entidades/maptopo-pe.html">Mapeamento Topográfico Pequenas Escalas</a></li>
+                            <li><a href="../../entidades/maptopo-ge.html">Mapeamento Topográfico Grandes Escalas</a></li>                            
+                            <li><a href="../../dominios/dominios-terrestres.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Dados do Domínio</h4>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Composicao_Do_Fundo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Seção</td>
+                                <td>3.9</td>
+                            </tr>
+                            <tr>
+                                <td>Descrição</td>
+                                <td>Domínio da composição de fundo</td>
+                            </tr>
+                            <tr>
+                                <td>Atributos</td>
+                                <td>
+                                    <table class="table table-bordered" style="background-color: transparent;">
+                                        <thead>
+                                            <tr style="background-color: #eaeaea">
+                                                <th>Atributo</th>
+                                                <th>Tipo</th>
+                                                <th>Tamanho</th>
+                                                <th>Not Null</th>
+                                                <th>Descrição</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                    <td>nome</td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td>Sim</td>
+                                    <td>Nome Da Composição</td>
+                                  </tr><tr>
+                                    <td>descricao</td>
+                                    <td>text</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Descrição Da Composição</td>
+                                  </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Domínios
+                                </td>
+                                <td>
+                                    <table class="table table-bordered" style="background-color: transparent;">
+                                        <thead>
+                                            <tr style="background-color: #eaeaea">
+                                                <th>Nome/Valor</th>
+                                                <th>Descrição</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                    <td>Lama</td>
+                                    <td>Terra macia e molhada.</td>
+                                  </tr> <tr>
+                                    <td>Areia</td>
+                                    <td>Partículas de 0.0625 a 2 mm.</td>
+                                  </tr> <tr>
+                                    <td>Barro</td>
+                                    <td>Partículas com menos de 0,002 mm.</td>
+                                  </tr> <tr>
+                                    <td>Cascalho</td>
+                                    <td>Partículas de 2 a 4 mm.</td>
+                                  </tr> <tr>
+                                    <td>Concha </td>
+                                    <td>Exoesqueleto de vários animais aquáticos.</td>
+                                  </tr> <tr>
+                                    <td>Coral</td>
+                                    <td>Esqueletos calcários rígidos de muitas tribos de pólipos marinhos.</td>
+                                  </tr> <tr>
+                                    <td>Lava</td>
+                                    <td>O fluido ou semifluido que escoa de um vulcão.</td>
+                                  </tr> <tr>
+                                    <td>Lodo</td>
+                                    <td>Partículas de 0.002 a 0.0625 mm.</td>
+                                  </tr> <tr>
+                                    <td>Paralelepípedo</td>
+                                    <td>Partículas de 64 a 256 mm.</td>
+                                  </tr> <tr>
+                                    <td>Pedra</td>
+                                    <td>Termo geral para fragmentos de rochas, variando em tamanho de seixos e cascalho de pedras ou uma grannde massa de rocha.</td>
+                                  </tr> <tr>
+                                    <td>Pedregulho</td>
+                                    <td>Partícula com diâmetro de 256 mm ou superior.</td>
+                                  </tr> <tr>
+                                    <td>Rocha</td>
+                                    <td>Qualquer formação de origem natural que constitui parte integrante da litosfera.</td>
+                                  </tr> <tr>
+                                    <td>Seixo</td>
+                                    <td>Partículas de 6 a 64 mm.</td>
+                                  </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Usos</td>
+                                <td>
+                                    <a href="../../entidades/entidades-nautica/tenca.html">Tenca</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><a href="../dominios-nautico.html" style="float:right">Voltar para lista de domínios náutico</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="panel panel-default" style="border: #000">
+            <div class="panel-footer">Desenvolvido por CASNAV - Centro de Análise de Sistemas Navais </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

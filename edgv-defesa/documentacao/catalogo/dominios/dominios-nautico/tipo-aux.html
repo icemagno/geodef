@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>ET-EDGV-DEFESA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/bootstrap.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                </button>
+                <a class="navbar-brand" href="../../index.html">ET-EDGV-DEFESA</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Aeronáutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-aeronautica.html">Índice Cartografia Aeronáutica</a></li>
+                            <li><a href="../../entidades/entidades-aeronauticas.html">Lista de Entidades</a></li>
+                            <li><a href="../../atributos/atributos-aeronauticos.html">Lista de Atributos</a></li>
+                            <li><a href="../../dominios/dominios-aeronauticos.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Náutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-nautica.html">Índice Cartografia Náutica</a></li>
+                            <li><a href="../../entidades/entidades-nautica.html">Lista de Entidades</a></li>
+                            <li><a href="../../atributos/atributos-nautico.html">Lista de Atributos</a></li>
+                            <li><a href="../../dominios/dominios-nautico.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Terrestre<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-terrestre.html">Índice Cartografia Terrestre</a></li>
+                            <li><a href="../../entidades/maptopo-pe.html">Mapeamento Topográfico Pequenas Escalas</a></li>
+                            <li><a href="../../entidades/maptopo-ge.html">Mapeamento Topográfico Grandes Escalas</a></li>                            
+                            <li><a href="../../dominios/dominios-terrestres.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Dados do Domínio</h4>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Tipo_Aux</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Seção</td>
+                                <td>3.22</td>
+                            </tr>
+                            <tr>
+                                <td>Descrição</td>
+                                <td>Domínio de tipo auxiliar</td>
+                            </tr>
+                            <tr>
+                                <td>Atributos</td>
+                                <td>
+                                    <table class="table table-bordered" style="background-color: transparent;">
+                                        <thead>
+                                            <tr style="background-color: #eaeaea">
+                                                <th>Atributo</th>
+                                                <th>Tipo</th>
+                                                <th>Tamanho</th>
+                                                <th>Not Null</th>
+                                                <th>Descrição</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                    <td>nome</td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td>Sim</td>
+                                    <td>Nome Do Tipo</td>
+                                  </tr><tr>
+                                    <td>descricao</td>
+                                    <td>text</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Descrição Do Tipo</td>
+                                  </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Domínios
+                                </td>
+                                <td>
+                                    <table class="table table-bordered" style="background-color: transparent;">
+                                        <thead>
+                                            <tr style="background-color: #eaeaea">
+                                                <th>Nome/Valor</th>
+                                                <th>Descrição</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                    <td>DME</td>
+                                    <td>Equipamento radiotelemétrico (Distance measuring equipment)</td>
+                                  </tr> <tr>
+                                    <td>ILS</td>
+                                    <td>Sistema de pouso por instrumentos (Instrument Landing System)</td>
+                                  </tr> <tr>
+                                    <td>ILS_DME</td>
+                                    <td>ILS e DME combinados</td>
+                                  </tr> <tr>
+                                    <td>LOC</td>
+                                    <td>Localizer</td>
+                                  </tr> <tr>
+                                    <td>LOC_DME</td>
+                                    <td>Localizer e DME combinados</td>
+                                  </tr> <tr>
+                                    <td>MKR</td>
+                                    <td>Radiobaliza (Marker Beacon)</td>
+                                  </tr> <tr>
+                                    <td>MLS</td>
+                                    <td>Sistema de pouso por micro-ondas (Microwave Landing System)</td>
+                                  </tr> <tr>
+                                    <td>MLS_DME</td>
+                                    <td>MLS e DME combinados</td>
+                                  </tr> <tr>
+                                    <td>NDB</td>
+                                    <td>Radiofarol não-direcional (Non-Directional Radio Beacon)</td>
+                                  </tr> <tr>
+                                    <td>NDB_DME</td>
+                                    <td>NDB com DME</td>
+                                  </tr> <tr>
+                                    <td>NDB_MKR</td>
+                                    <td>NDB e MKR combinados</td>
+                                  </tr> <tr>
+                                    <td>TACAN</td>
+                                    <td>Auxílio à navegação aérea tática em UHF</td>
+                                  </tr> <tr>
+                                    <td>VOR</td>
+                                    <td>Radiofarol onidirecional em VHF (VHF Omni Directional Radio Range)</td>
+                                  </tr> <tr>
+                                    <td>VOR_DME</td>
+                                    <td>VOR e DME combinados</td>
+                                  </tr> <tr>
+                                    <td>VORTAC</td>
+                                    <td>VOR e TACAN combinados</td>
+                                  </tr> <tr>
+                                    <td>Outros</td>
+                                    <td>-</td>
+                                  </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Usos</td>
+                                <td>
+                                    |USOS|
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><a href="../dominios-nautico.html" style="float:right">Voltar para lista de domínios náutico</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="panel panel-default" style="border: #000">
+            <div class="panel-footer">Desenvolvido por CASNAV - Centro de Análise de Sistemas Navais </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

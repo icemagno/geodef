@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Visualizador EDGV-DEFESA-DEFESA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../NOVA-VERSAO/css/bootstrap.css">
+    <script src="../../../js/jquery.min.js"></script>
+    <script src="../../../js/bootstrap.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">EDGV-DEFESA</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Aeronáutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../cartografia-aeronautica.html">Índice Cartografia Aeronáutica</a></li>
+                            <li><a href="#">Lista de Entidades</a></li>
+                            <li><a href="#">Lista de Atributos</a></li>
+                            <li><a href="../../dominios/dominios-aeronauticos.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Náutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../cartografia-nautica.html">Índice Cartografia Náutica</a></li>
+                            <li><a href="#">Lista de Entidades</a></li>
+                            <li><a href="#">Lista de Atributos</a></li>
+                            <li><a href="../dominios/dominios-nauticos.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Terrestre<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../cartografia-terrestre.html">Índice Cartografia Terrestre</a></li>
+                            <li><a href="#">Lista de Entidades</a></li>
+                            <li><a href="#">Lista de Atributos</a></li>
+                            <li><a href="../dominios/dominios-terrestres.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--<div class="container-fluid">
+        <div class="well">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h2>Especificações Técnicas Para Estruturação de <br>Dados Geoespaciais Vetoriais de Defesa</h2>
+                </div>
+                <div class="col-lg-3">
+                    <h4>ET-EDGV-DEFESA<br></h4>
+                    <h4>Dezembro 2017 <br></h4>
+                    <h5>Versão 3.0</h5>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Dados do Domínio</h4>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th>Nome</th>
+                          <th>Categ_Producao_Offshore</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td>Seção</a></td>
+                        <td>3.7</td>
+                    </tr>
+                      <tr>
+                          <td>Descrição</a></td>
+                          <td>Domínio de categoria da producao offshore</td>
+                      </tr>
+                      <tr>
+                          <td>Atributos</td>
+                          <td>
+                            <table class="table table-bordered" style="background-color: transparent;">
+                                <thead>
+                                    <tr style="background-color: #eaeaea">
+                                        <th>Atributo</th>
+                                        <th>Tipo</th>
+                                        <th>Tamanho</th>
+                                        <th>Not Null</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>nome</td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td>Sim</td>
+                                    <td>Nome Da Categoria</td>
+                                  </tr><tr>
+                                    <td>descricao</td>
+                                    <td>text</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Descrição Da Categoria</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Domínios
+                        </td>
+                        <td>
+                            <table class="table table-bordered" style="background-color: transparent;">
+                                <thead>
+                                    <tr style="background-color: #eaeaea">
+                                        <th>Nome/Valor</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Depósito de madeira</td>
+                                    <td>Area de armazenamento de madeira utilizada para a construção, carpintaria ou marcenaria.</td>
+                                  </tr> <tr>
+                                    <td>Estação de energia</td>
+                                    <td>Instalação fixa que contém um aparelho para conversão em larga escala de alguma forma de energia</td>
+                                  </tr> <tr>
+                                    <td>Fábrica</td>
+                                    <td>Instalações onde os bens são fabricados</td>
+                                  </tr> <tr>
+                                    <td>Mina</td>
+                                    <td>Escavação para extrair materiais da terra.</td>
+                                  </tr> <tr>
+                                    <td>Monte de entulho</td>
+                                    <td>Despejo oriundo de uma mina, planta industrial ou terra.</td>
+                                  </tr> <tr>
+                                    <td>Parque eólico</td>
+                                    <td>Area dentro da qual estão localizados um conjunto de motores eólicos.</td>
+                                  </tr> <tr>
+                                    <td>Parque de reservatório</td>
+                                    <td>Area dentro da qual um certo número de tanques de armazenamento de grande capacidade estão localizados, geralmente utilizados para produtos de petróleo bruto ou derivados de petróleo.</td>
+                                  </tr> <tr>
+                                    <td>Pedreira</td>
+                                    <td>Escavação em rocha sólida a partir da qual é removida pedra de calcário, de construção, etc.</td>
+                                  </tr> <tr>
+                                    <td>Refinaria de petróleo</td>
+                                    <td>Sistema de unidades de processamento usada para converter petróleo bruto em combustíveis, lubrificantes e outros produtos derivados do petróleo.</td>
+                                  </tr> <tr>
+                                    <td>Reserva</td>
+                                    <td>Sobressalentes de material, equipamentos e outro suprimentos.</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td>Usos</td>
+                          <td>
+                              |USOS|
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+                <p><a href="../index.html" style="float:right">Voltar</a></p>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="panel panel-default" style="border: #000">
+            <div class="panel-footer">Desenvolvido por CASNAV - Centro de Análise de Sistemas Navais </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

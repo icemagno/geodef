@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Visualizador EDGV-DEFESA-DEFESA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../NOVA-VERSAO/css/bootstrap.css">
+    <script src="../../../js/jquery.min.js"></script>
+    <script src="../../../js/bootstrap.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">EDGV-DEFESA</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Aeronáutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../cartografia-aeronautica.html">Índice Cartografia Aeronáutica</a></li>
+                            <li><a href="#">Lista de Entidades</a></li>
+                            <li><a href="#">Lista de Atributos</a></li>
+                            <li><a href="../../dominios/dominios-aeronauticos.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Náutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../cartografia-nautica.html">Índice Cartografia Náutica</a></li>
+                            <li><a href="#">Lista de Entidades</a></li>
+                            <li><a href="#">Lista de Atributos</a></li>
+                            <li><a href="../dominios/dominios-nauticos.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Terrestre<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../cartografia-terrestre.html">Índice Cartografia Terrestre</a></li>
+                            <li><a href="#">Lista de Entidades</a></li>
+                            <li><a href="#">Lista de Atributos</a></li>
+                            <li><a href="../dominios/dominios-terrestres.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--<div class="container-fluid">
+        <div class="well">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h2>Especificações Técnicas Para Estruturação de <br>Dados Geoespaciais Vetoriais de Defesa</h2>
+                </div>
+                <div class="col-lg-3">
+                    <h4>ET-EDGV-DEFESA<br></h4>
+                    <h4>Dezembro 2017 <br></h4>
+                    <h5>Versão 3.0</h5>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Dados do Domínio</h4>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th>Nome</th>
+                          <th>Categ_De_Obstrucao</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td>Seção</a></td>
+                        <td>3.4</td>
+                    </tr>
+                      <tr>
+                          <td>Descrição</a></td>
+                          <td>Domínio de categoria de obstrucao</td>
+                      </tr>
+                      <tr>
+                          <td>Atributos</td>
+                          <td>
+                            <table class="table table-bordered" style="background-color: transparent;">
+                                <thead>
+                                    <tr style="background-color: #eaeaea">
+                                        <th>Atributo</th>
+                                        <th>Tipo</th>
+                                        <th>Tamanho</th>
+                                        <th>Not Null</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>nome</td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td>Sim</td>
+                                    <td>Nome Da Categoria</td>
+                                  </tr><tr>
+                                    <td>descricao</td>
+                                    <td>text</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Descrição Da Categoria</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Domínios
+                        </td>
+                        <td>
+                            <table class="table table-bordered" style="background-color: transparent;">
+                                <thead>
+                                    <tr style="background-color: #eaeaea">
+                                        <th>Nome/Valor</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Tronco</td>
+                                    <td>Árvore, galhos ou troncos, integrados ao leito do mar, de um rio ou de um lago.</td>
+                                  </tr> <tr>
+                                    <td>Area de obstruções</td>
+                                    <td>Area de numerosos perigos não identificados à navegação.</td>
+                                  </tr> <tr>
+                                    <td>Barreira de amarracao</td>
+                                    <td>Barreira flutuante usada para proteger a foz de um rio ou a boca de um porto ou para criar uma area protegida para fins de armazenamento.</td>
+                                  </tr> <tr>
+                                    <td>Barreira para gelo</td>
+                                    <td>Barreiras flutuantes ou fundeadas, utilizadas para desviar a direção de camadas de gelo para evitar danos a pilares de pontes e de outras estruturas.</td>
+                                  </tr> <tr>
+                                    <td>Berço Marinho</td>
+                                    <td>Estrutura permanente situado na água, moldada com vigas de madeira e cheio de rochas ou pedregulhos.</td>
+                                  </tr> <tr>
+                                    <td>Cabeça de Poço</td>
+                                    <td>Estrutura submarina que se projeta a alguma distância acima do leito marinho, tampando um poço de petróleo ou gás.</td>
+                                  </tr> <tr>
+                                    <td>Difusor</td>
+                                    <td>Estrutura de um emissário através do qual os líquidos são descarregados.</td>
+                                  </tr> <tr>
+                                    <td>Fundo sujo</td>
+                                    <td>Area sobre a qual é seguro navegar, mas que deve ser evitada para fundeio, extração de solo e pesca.</td>
+                                  </tr> <tr>
+                                    <td>Viveiro de peixes</td>
+                                    <td>Areas estabelecidas por interesses privados , em geral pescadores desportivos , para simular recifes naturais e naufrágios que atraem peixes.</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td>Usos</td>
+                          <td>
+                              |USOS|
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+                <p><a href="../index.html" style="float:right">Voltar</a></p>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="panel panel-default" style="border: #000">
+            <div class="panel-footer">Desenvolvido por CASNAV - Centro de Análise de Sistemas Navais </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>ET-EDGV-DEFESA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../css/bootstrap.css">
+    <script src="../../../js/jquery.js"></script>
+    <script src="../../../js/bootstrap.js"></script>
+    <script>
+        function menosZomm() {
+            $('#myImg').height($('#myImg').height() * 0.8);
+            $('#myImg').width($('#myImg').width() * 0.8);
+        }
+
+        function maisZomm() {
+            $('#myImg').height($('#myImg').height() * 1.2);
+            $('#myImg').width($('#myImg').width() * 1.2);
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                </button>
+                <a class="navbar-brand" href="../../../index.html">ET-EDGV-DEFESA</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Aeronáutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../cartografia-aeronautica.html">Índice Cartografia Aeronáutica</a></li>
+                            <li><a href="../../../entidades/entidades-aeronauticas.html">Lista de Entidades</a></li>
+                            <li><a href="../../../dominios/dominios-aeronauticos.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Náutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../cartografia-nautica.html">Índice Cartografia Náutica</a></li>
+                            <li><a href="../../../entidades/entidades-nautica.html">Lista de Entidades</a></li>
+                            <li><a href="../../../dominios/dominios-nautico.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Terrestre<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../cartografia-terrestre.html">Índice Cartografia Terrestre</a></li>
+                            <li><a href="../../../entidades/maptopo-pe.html">Pequenas Escalas</a></li>
+                            <li><a href="../../../entidades/maptopo-ge.html">Grandes Escalas</a></li>
+                            <li><a href="../../../dominios/dominios-terrestres.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Dados de Entidades</h4>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Equip_Agropec &nbsp;
+                                    <button type="button" class="btn " data-toggle="modal"  data-target="#myModal" data-placement="top" title="Visualizar Diagrama"><img src="../../../img/project-diagram-solid.svg" style="width: 20px;">
+                                    </button>                                    
+                                    <div class="modal fade" id="myModal" role="dialog">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content" style="width:100%">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            Zoom:
+                                  		<button type="button" class="btn btn-default" onclick="menosZomm()" >-</button>
+                                            <button type="button" class="btn btn-default" onclick="maisZomm()" >+</button>
+                                          </div>
+                                          <div class="modal-body" >
+                                            <div class="mo">
+                                              <img id="myImg" src="../../../img/imagens_edgv3/1_2_Estrutura Economica.jpg" alt="Snow" >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Seção</td>
+                                <td>1.2.1</td>
+                            </tr>
+                            <tr>
+                                <td>Descrição</td>
+                                <td>Equipamento agropecuário é aquele que possui propriedades relativas à execução de atividades de natureza agropecuária.</td>
+                            </tr>
+                            <tr>
+                                <td>Geometria</td>
+                                <td>Ponto, Linha, Polígono</td>
+                            </tr>
+                        <tr>
+                            <td>Atributos</td>
+                            <td>
+                                <table class="table table-bordered" style="background-color: transparent;">
+                                    <thead>
+                                        <tr style="background-color: #eaeaea">
+                                            <th>Atributo</th>
+                                            <th>Tipo</th>
+                                            <th>Tamanho</th>
+                                            <th>Requisito</th>
+                                            <th>Descrição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                    <td>nome</td>
+                                    <td>varchar</td>
+                                    <td>80</td>
+                                    <td>0..1</td>
+                                    <td>Indica o nome completo da instância.</td>
+                                  </tr><tr>
+                                    <td>geometriaAproximada</td>
+                                    <td>boolean</td>
+                                    <td>-</td>
+                                    <td>1</td>
+                                    <td>Indica que a geometria adquirida é aproximada em relação à escala prevista para o produto cartográfico.</td>
+                                  </tr><tr>
+                                    <td>operacional</td>
+                                    <td>int</td>
+                                    <td>-</td>
+                                    <td>1</td>
+                                    <td>Indica a situação em relação ao uso.</td>
+                                  </tr><tr>
+                                    <td>situacaoFisica</td>
+                                    <td>int</td>
+                                    <td>-</td>
+                                    <td>0..1</td>
+                                    <td>Identifica a situação quanto à atividade.</td>
+                                  </tr><tr>
+                                    <td>tipoEquipAgropec</td>
+                                    <td>int</td>
+                                    <td>-</td>
+                                    <td>1</td>
+                                    <td>Indica o tipo do equipamento de agropecuária.</td>
+                                  </tr><tr>
+                                    <td>matConstr</td>
+                                    <td>int</td>
+                                    <td>-</td>
+                                    <td>0..*</td>
+                                    <td>Indica o tipo de material de construção predominante.</td>
+                                  </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Relacionamentos
+                            </td>
+                            <td>
+                                <table class="table table-bordered" style="background-color: transparent;">
+                                    <thead>
+                                        <tr style="background-color: #eaeaea">
+                                            <th>Atributo</th>
+                                            <th>Tipo</th>
+                                            <th>Domínio</th>
+                                            <th>Requisito</th>
+                                            <th>Descrição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        |LISTAFK|
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Relacionamentos Espaciais
+                            </td>
+                            <td>
+                                <table class="table table-bordered" style="background-color: transparent;">
+                                    <thead>
+                                        <tr style="background-color: #eaeaea">
+                                            <th>Classe</th>
+                                            <th>Tipo</th>
+                                            <th>Requisito</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td>|CLASSERELESP|</td>
+                                        <td>|TIPORELESP|</td>
+                                        <td>|REQUISITORELESP|</td>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Usos</td>
+                            <td>|LISTAUSOS|</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p><a href="../entidades-nautica.html" style="float:right">Voltar para lista de entidades náutica</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="panel panel-default" style="border: #000">
+            <div class="panel-footer">Desenvolvido por CASNAV - Centro de Análise de Sistemas Navais </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

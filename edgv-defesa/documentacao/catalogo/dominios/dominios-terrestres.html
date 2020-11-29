@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Visualizador EDGV-DEFESA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              </button>
+              <a class="navbar-brand" href="../index.html">ET-EDGV-DEFESA</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Aeronáutica<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="../cartografia-aeronautica.html">Índice Cartografia Aeronáutica</a></li>
+                          <li><a href="../entidades/entidades-aeronauticas.html">Lista de Entidades</a></li>
+                          <li><a href="../dominios/dominios-aeronauticos.html">Lista de Domínios</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Náutica<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="../cartografia-nautica.html">Índice Cartografia Náutica</a></li>
+                          <li><a href="../entidades/entidades-nautica.html">Lista de Entidades</a></li>
+                          <li><a href="../dominios/dominios-nautico.html">Lista de Domínios</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown active">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Terrestre<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="../cartografia-terrestre.html">Índice Cartografia Terrestre</a></li>
+                        <li><a href="../entidades/maptopo-pe.html">Mapa Topográfico Pequenas Escalas</a></li>
+                        <li><a href="../entidades/maptopo-ge.html">Mapa Topográfico Grandes Escalas</a></li>
+                        <li><a href="../dominios/dominios-terrestres.html">Lista de Domínios</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="well">
+      <div class="row">
+        <div class="col-lg-9">
+          <h2>Especificações Técnicas Para Estruturação de <br>Dados Geoespaciais Vetoriais de Defesa</h2>
+        </div>
+        <div class="col-lg-3">
+          <h4>ET-EDGV-DEFESA<br></h4>
+          <h4>Dezembro 2017 <br></h4>
+          <h5>Versão 3.0</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4>Lista de Domínios Terrestres</h4></div>
+    <div class="panel-body">
+      <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Seção</th>
+            <th>Nome</th>
+            <th>Definição</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          <tr>
+            <td><a href="dominios-terrestre/administracao.html">3.1</a></td>
+            <td><a href="dominios-terrestre/administracao.html">administracao</a></td>
+            <td>Indica a esfera administrativa responsável por algum objeto</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/aptidao-operacional-atracadouro.html">3.2</a></td>
+            <td><a href="dominios-terrestre/aptidao-operacional-atracadouro.html">aptidao_operacional_atracadouro</a></td>
+            <td>Indica a aptidão operacional do atracadouro</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/atividade.html">3.3</a></td>
+            <td><a href="dominios-terrestre/atividade.html">atividade</a></td>
+            <td>Indica o tipo de atividade desempenhada</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/auxiliar.html">3.4</a></td>
+            <td><a href="dominios-terrestre/auxiliar.html">auxiliar</a></td>
+            <td>Indica um valor booleano ou desconhecido</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/bitola.html">3.5</a></td>
+            <td><a href="dominios-terrestre/bitola.html">bitola</a></td>
+            <td>Indica o tipo de bitola</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/causa.html">3.6</a></td>
+            <td><a href="dominios-terrestre/causa.html">causa</a></td>
+            <td>Indica causa determinante do surgimento do vertedouro ou sumidouro</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/causa-exposicao.html">3.7</a></td>
+            <td><a href="dominios-terrestre/causa-exposicao.html">causa_exposicao</a></td>
+            <td>Indica a causa da exposição</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/classe-ativ-econ.html">3.8</a></td>
+            <td><a href="dominios-terrestre/classe-ativ-econ.html">classe_ativ_econ</a></td>
+            <td>Indica a classe de atividade econômica</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/classificacao.html">3.9</a></td>
+            <td><a href="dominios-terrestre/classificacao.html">classificacao</a></td>
+            <td>Indica o tipo de aeroporto quanto à destinação de serviços</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/classificacao-porte.html">3.10</a></td>
+            <td><a href="dominios-terrestre/classificacao-porte.html">classificacao_porte</a></td>
+            <td>Indica o tipo de porte da vegetação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/condicao-terreno.html">3.11</a></td>
+            <td><a href="dominios-terrestre/condicao-terreno.html">condicao_terreno</a></td>
+            <td>Indica a condição do terreno, onde ocorre a vegetação cultivada</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/cultivo-predominante.html">3.12</a></td>
+            <td><a href="dominios-terrestre/cultivo-predominante.html">cultivo_predominante</a></td>
+            <td>Tipifica a vegetação, quanto ao cultivo</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/denominacao-associada.html">3.13</a></td>
+            <td><a href="dominios-terrestre/denominacao-associada.html">denominacao_associada</a></td>
+            <td>Indica a denominação dada ao cemitério</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/densidade.html">3.14</a></td>
+            <td><a href="dominios-terrestre/densidade.html">densidade</a></td>
+            <td>Indica a densidade da vegetação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/destinacao-cemiterio.html">3.15</a></td>
+            <td><a href="dominios-terrestre/destinacao-cemiterio.html">destinacao_cemiterio</a></td>
+            <td>Indica a destinação dada ao cemitério</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/destinado-a.html">3.16</a></td>
+            <td><a href="dominios-terrestre/destinado-a.html">destinado_a</a></td>
+            <td>Identifica a destinação do produto</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/divisao-ativ-econ.html">3.17</a></td>
+            <td><a href="dominios-terrestre/divisao-ativ-econ.html">divisao_ativ_econ</a></td>
+            <td>Indica o tipo da divisão de atividade econômica</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/especie.html">3.18</a></td>
+            <td><a href="dominios-terrestre/especie.html">especie</a></td>
+            <td>Indica a espécie existente na vegetação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/especie-trecho-energia.html">3.19</a></td>
+            <td><a href="dominios-terrestre/especie-trecho-energia.html">especie_trecho_energia</a></td>
+            <td>Indica os valores possíveis para a espécie do trecho de energia</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/estado-fisico.html">3.20</a></td>
+            <td><a href="dominios-terrestre/estado-fisico.html">estado_fisico</a></td>
+            <td>Indica o estado do resíduo contido no depósito de saneamento</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/finalidade.html">3.21</a></td>
+            <td><a href="dominios-terrestre/finalidade.html">finalidade</a></td>
+            <td>Indica a finalidade da edificação comercial, de serviços ou residencial</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/finalidade-cultura.html">3.22</a></td>
+            <td><a href="dominios-terrestre/finalidade-cultura.html">finalidade_cultura</a></td>
+            <td>Indica a finalidade da cultura</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/finalidade-deposito.html">3.23</a></td>
+            <td><a href="dominios-terrestre/finalidade-deposito.html">finalidade_deposito</a></td>
+            <td>Indica a finalidade do depósito</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/finalidade-galeria-bueiro.html">3.24</a></td>
+            <td><a href="dominios-terrestre/finalidade-galeria-bueiro.html">finalidade_galeria_bueiro</a></td>
+            <td>Indica a finalidade de canalização da água</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/finalidade-patio.html">3.25</a></td>
+            <td><a href="dominios-terrestre/finalidade-patio.html">finalidade_patio</a></td>
+            <td>Indica a finalidade do pátio</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/forma-extracao.html">3.26</a></td>
+            <td><a href="dominios-terrestre/forma-extracao.html">forma_extracao</a></td>
+            <td>Indicação a forma da atividade extrativista</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/forma-rocha.html">3.27</a></td>
+            <td><a href="dominios-terrestre/forma-rocha.html">forma_rocha</a></td>
+            <td>Indica a forma da rocha</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/grupo-ativ-econ.html">3.28</a></td>
+            <td><a href="dominios-terrestre/grupo-ativ-econ.html">grupo_ativ_econ</a></td>
+            <td>Indica o grupo de atividades econômicas da CNAE</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/jurisdicao.html">3.29</a></td>
+            <td><a href="dominios-terrestre/jurisdicao.html">jurisdicao</a></td>
+            <td>Indica a jurisdição aplicada</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/local-equip-desenv-social.html">3.30</a></td>
+            <td><a href="dominios-terrestre/local-equip-desenv-social.html">local_equip_desenv_social</a></td>
+            <td>Identifica onde se localiza o equipamento social</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/mat-condutor.html">3.31</a></td>
+            <td><a href="dominios-terrestre/mat-condutor.html">mat_condutor</a></td>
+            <td>Indica o tipo de material do condutor do trecho de comunicação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/mat-constr.html">3.32</a></td>
+            <td><a href="dominios-terrestre/mat-constr.html">mat_constr</a></td>
+            <td>Indica o tipo de material de construção predominante</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/mat-transp.html">3.33</a></td>
+            <td><a href="dominios-terrestre/mat-transp.html">mat_transp</a></td>
+            <td>Indica o tipo do material transportado</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/material-predominante.html">3.34</a></td>
+            <td><a href="dominios-terrestre/material-predominante.html">material_predominante</a></td>
+            <td>Indica o material predominante</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/modal-uso.html">3.35</a></td>
+            <td><a href="dominios-terrestre/modal-uso.html">modal_uso</a></td>
+            <td>Identifica o modal viário</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/modalidade.html">3.36</a></td>
+            <td><a href="dominios-terrestre/modalidade.html">modalidade</a></td>
+            <td>Indica a modalidade praticada na edificação de comunicação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/nivel-atencao.html">3.37</a></td>
+            <td><a href="dominios-terrestre/nivel-atencao.html">nivel_atencao</a></td>
+            <td>Indica o nível de atenção à saúde</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/nr-linhas.html">3.38</a></td>
+            <td><a href="dominios-terrestre/nr-linhas.html">nr_linhas</a></td>
+            <td>Indica o número de linhas férreas</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/posicao-rel-edific.html">3.39</a></td>
+            <td><a href="dominios-terrestre/posicao-rel-edific.html">posicao_rel_edific</a></td>
+            <td>Indica a posição da torre em relação à edificação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/posicao-relativa.html">3.40</a></td>
+            <td><a href="dominios-terrestre/posicao-relativa.html">posicao_relativa</a></td>
+            <td>Indica a posição do elemento em relação à superfície do terreno</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/proc-extracao.html">3.41</a></td>
+            <td><a href="dominios-terrestre/proc-extracao.html">proc_extracao</a></td>
+            <td>Identifica o processo de extração utilizado</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/proximidade.html">3.42</a></td>
+            <td><a href="dominios-terrestre/proximidade.html">proximidade</a></td>
+            <td>Identifica o tipo de relação de proximidade</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/qualid-agua.html">3.43</a></td>
+            <td><a href="dominios-terrestre/qualid-agua.html">qualid_agua</a></td>
+            <td>Indica o tipo de qualidade da água</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/rede-referencia.html">3.44</a></td>
+            <td><a href="dominios-terrestre/rede-referencia.html">rede_referencia</a></td>
+            <td>Indica a rede de referência adotada</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/referencial-altim.html">3.45</a></td>
+            <td><a href="dominios-terrestre/referencial-altim.html">referencial_altim</a></td>
+            <td>Indica o referencial altimétrico adotado</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/referencial-grav.html">3.46</a></td>
+            <td><a href="dominios-terrestre/referencial-grav.html">referencial_grav</a></td>
+            <td>Indica o referencial gravimétrico utilizado</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/regime.html">3.47</a></td>
+            <td><a href="dominios-terrestre/regime.html">regime</a></td>
+            <td>Indica o regime do curso d´água</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/revestimento.html">3.48</a></td>
+            <td><a href="dominios-terrestre/revestimento.html">revestimento</a></td>
+            <td>Indica o tipo de revestimento</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/secao-ativ-econ.html">3.49</a></td>
+            <td><a href="dominios-terrestre/secao-ativ-econ.html">secao_ativ_econ</a></td>
+            <td>Indica a seção de atividades econômicas da CNAE</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/setor.html">3.50</a></td>
+            <td><a href="dominios-terrestre/setor.html">setor</a></td>
+            <td>Indica o tipo de setor de um trecho de duto</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/sigla-uf.html">3.51</a></td>
+            <td><a href="dominios-terrestre/sigla-uf.html">sigla_uf</a></td>
+            <td>Indica a sigla da unidade da federação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/sistema-geodesico.html">3.52</a></td>
+            <td><a href="dominios-terrestre/sistema-geodesico.html">sistema_geodesico</a></td>
+            <td>Indica o sistema geodésico do ponto</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/situacao-agua.html">3.53</a></td>
+            <td><a href="dominios-terrestre/situacao-agua.html">situacao_agua</a></td>
+            <td>Indica a situação da água, contida no depósito</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/situacao-costa.html">3.54</a></td>
+            <td><a href="dominios-terrestre/situacao-costa.html">situacao_costa</a></td>
+            <td>Identifica a situação física da costa</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/situacao-em-agua.html">3.55</a></td>
+            <td><a href="dominios-terrestre/situacao-em-agua.html">situacao_em_agua</a></td>
+            <td>Identifica a situação do elemento em água</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/situacao-espacial.html">3.56</a></td>
+            <td><a href="dominios-terrestre/situacao-espacial.html">situacao_espacial</a></td>
+            <td>Indica a situação espacial</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/situacao-fisica.html">3.57</a></td>
+            <td><a href="dominios-terrestre/situacao-fisica.html">situacao_fisica</a></td>
+            <td>Indica a situação física da estrutura em relação ao uso</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/situacao-juridica.html">3.58</a></td>
+            <td><a href="dominios-terrestre/situacao-juridica.html">situacao_juridica</a></td>
+            <td>Indica a situação jurídica</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/situacao-marco.html">3.59</a></td>
+            <td><a href="dominios-terrestre/situacao-marco.html">situacao_marco</a></td>
+            <td>Identifica a situação física do marco quanto à sua conservação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-aglom-rur-isol.html">3.60</a></td>
+            <td><a href="dominios-terrestre/tipo-aglom-rur-isol.html">tipo_aglom_rur_isol</a></td>
+            <td>Identifica o tipo de aglomerado rural isolado</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-ahe.html">3.61</a></td>
+            <td><a href="dominios-terrestre/tipo-ahe.html">tipo_ahe</a></td>
+            <td>Identifica a tipo de aproveitamento hidrelétrico</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-alter-antrop.html">3.62</a></td>
+            <td><a href="dominios-terrestre/tipo-alter-antrop.html">tipo_alter_antrop</a></td>
+            <td>Indica o tipo de uma alteração fisiográfica antrópica</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-area.html">3.63</a></td>
+            <td><a href="dominios-terrestre/tipo-area.html">tipo_area</a></td>
+            <td>Identifica a tipo de área de uso específico</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-area-umida.html">3.64</a></td>
+            <td><a href="dominios-terrestre/tipo-area-umida.html">tipo_area_umida</a></td>
+            <td>Identifica o tipo de área úmida</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-assentamento-precario.html">3.65</a></td>
+            <td><a href="dominios-terrestre/tipo-assentamento-precario.html">tipo_assentamento_precario</a></td>
+            <td>Identifica o tipo de assentamento oo uent</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-associado.html">3.66</a></td>
+            <td><a href="dominios-terrestre/tipo-associado.html">tipo_associado</a></td>
+            <td>Identifica o tipo associado</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-atracad.html">3.67</a></td>
+            <td><a href="dominios-terrestre/tipo-atracad.html">tipo_atracad</a></td>
+            <td>Identifica o tipo de atracadouro</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-banco.html">3.68</a></td>
+            <td><a href="dominios-terrestre/tipo-banco.html">tipo_banco</a></td>
+            <td>Identifica o tipo de banco de areia</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-caminho-aereo.html">3.69</a></td>
+            <td><a href="dominios-terrestre/tipo-caminho-aereo.html">tipo_caminho_aereo</a></td>
+            <td>Identifica o tipo de caminho aéreo</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-campo.html">3.70</a></td>
+            <td><a href="dominios-terrestre/tipo-campo.html">tipo_campo</a></td>
+            <td>Identifica o tipo de campo</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-campo-quadra.html">3.71</a></td>
+            <td><a href="dominios-terrestre/tipo-campo-quadra.html">tipo_campo_quadra</a></td>
+            <td>Indica o tipo do campo ou quadra</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-capital.html">3.72</a></td>
+            <td><a href="dominios-terrestre/tipo-capital.html">tipo_capital</a></td>
+            <td>Identifica a esfera administrativa da capital</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-cemiterio.html">3.73</a></td>
+            <td><a href="dominios-terrestre/tipo-cemiterio.html">tipo_cemiterio</a></td>
+            <td>Indica o tipo de cemitério</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-combustivel.html">3.74</a></td>
+            <td><a href="dominios-terrestre/tipo-combustivel.html">tipo_combustivel</a></td>
+            <td>Indica o tipo de combustível utilizado na termelétrica</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-complexo-aeroportuario.html">3.75</a></td>
+            <td><a href="dominios-terrestre/tipo-complexo-aeroportuario.html">tipo_complexo_aeroportuario</a></td>
+            <td>Indica o tipo de complexo aeroportuário</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-complexo-desportivo-lazer.html">3.76</a></td>
+            <td><a href="dominios-terrestre/tipo-complexo-desportivo-lazer.html">tipo_complexo_desportivo_lazer</a></td>
+            <td>Indica o tipo de complexo desportivo de lazer</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-complexo-portuario.html">3.77</a></td>
+            <td><a href="dominios-terrestre/tipo-complexo-portuario.html">tipo_complexo_portuario</a></td>
+            <td>Indica o tipo de complexo portuário</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-conteudo.html">3.78</a></td>
+            <td><a href="dominios-terrestre/tipo-conteudo.html">tipo_conteudo</a></td>
+            <td>Identifica o tipo de conteúdo</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-curva-nivel.html">3.79</a></td>
+            <td><a href="dominios-terrestre/tipo-curva-nivel.html">tipo_curva_nivel</a></td>
+            <td>Indica o tipo de curva de nível</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-delim-fis.html">3.80</a></td>
+            <td><a href="dominios-terrestre/tipo-delim-fis.html">tipo_delim_fis</a></td>
+            <td>Indica o tipo de delimitação física</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-dep-geral.html">3.81</a></td>
+            <td><a href="dominios-terrestre/tipo-dep-geral.html">tipo_dep_geral</a></td>
+            <td>Indica o tipo de depósito geral</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-abast.html">3.82</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-abast.html">tipo_edif_abast</a></td>
+            <td>Indica o tipo de edificação de abastecimento e consumo de água</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-aero.html">3.83</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-aero.html">tipo_edif_aero</a></td>
+            <td>Indica o tipo de edificação ou construção aeroportuária</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-agropec.html">3.84</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-agropec.html">tipo_edif_agropec</a></td>
+            <td>Indica o tipo da edificação agropecuária, de extrativismo vegetal ou de pesca</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-comerc-serv.html">3.85</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-comerc-serv.html">tipo_edif_comerc_serv</a></td>
+            <td>Indica o tipo da edificação comercial ou de serviços</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-comunic.html">3.86</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-comunic.html">tipo_edif_comunic</a></td>
+            <td>Indica o tipo da edificação de comunicação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-energia.html">3.87</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-energia.html">tipo_edif_energia</a></td>
+            <td>Indica o tipo de atividade desenvolvida em uma edificação de energia</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-lazer.html">3.88</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-lazer.html">tipo_edif_lazer</a></td>
+            <td>Indica o tipo da edificação ou construção de lazer</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-metro-ferrov.html">3.89</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-metro-ferrov.html">tipo_edif_metro_ferrov</a></td>
+            <td>Indica o tipo da edificação metro-ferroviária</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-port.html">3.90</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-port.html">tipo_edif_port</a></td>
+            <td>Indica o tipo de edificação ou construção aeroportuária</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-relig.html">3.91</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-relig.html">tipo_edif_relig</a></td>
+            <td>Indica o tipo de denominação específica da edificação religiosa</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-rod.html">3.92</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-rod.html">tipo_edif_rod</a></td>
+            <td>Indica o tipo de edificação rodoviária</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-saneam.html">3.93</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-saneam.html">tipo_edif_saneam</a></td>
+            <td>Indica o tipo de edificação de saneamento</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-edif-turist.html">3.94</a></td>
+            <td><a href="dominios-terrestre/tipo-edif-turist.html">tipo_edif_turist</a></td>
+            <td>Indica o tipo de edificação ou construção turística</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-elem-nat.html">3.95</a></td>
+            <td><a href="dominios-terrestre/tipo-elem-nat.html">tipo_elem_nat</a></td>
+            <td>Indica o tipo de elemento natural</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-elevador.html">3.96</a></td>
+            <td><a href="dominios-terrestre/tipo-elevador.html">tipo_elevador</a></td>
+            <td>Indica o tipo de elevador</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-embarcacao.html">3.97</a></td>
+            <td><a href="dominios-terrestre/tipo-embarcacao.html">tipo_embarcacao</a></td>
+            <td>Indica o tipo de embarcação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-entroncamento.html">3.98</a></td>
+            <td><a href="dominios-terrestre/tipo-entroncamento.html">tipo_entroncamento</a></td>
+            <td>Indica o tipo de entrocamento</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-equip-agropec.html">3.99</a></td>
+            <td><a href="dominios-terrestre/tipo-equip-agropec.html">tipo_equip_agropec</a></td>
+            <td>Indica o tipo de equipamento agropecuário</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-equip-desenv-social.html">3.100</a></td>
+            <td><a href="dominios-terrestre/tipo-equip-desenv-social.html">tipo_equip_desenv_social</a></td>
+            <td>Indica o tipo de equipamento social de desenvolvimento social</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-est-gerad.html">3.101</a></td>
+            <td><a href="dominios-terrestre/tipo-est-gerad.html">tipo_est_gerad</a></td>
+            <td>Identifica o tipo de estação geradora de energia</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-estrut.html">3.102</a></td>
+            <td><a href="dominios-terrestre/tipo-estrut.html">tipo_estrut</a></td>
+            <td>Identifica o tipo de estrutura de transporte</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-exposicao.html">3.103</a></td>
+            <td><a href="dominios-terrestre/tipo-exposicao.html">tipo_exposicao</a></td>
+            <td>Indica o tipo do estrutura, em relação à exposição</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-ext-min.html">3.104</a></td>
+            <td><a href="dominios-terrestre/tipo-ext-min.html">tipo_ext_min</a></td>
+            <td>Indica o tipo de extrativismo mineral</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-fonte-dagua.html">3.105</a></td>
+            <td><a href="dominios-terrestre/tipo-fonte-dagua.html">tipo_fonte_dagua</a></td>
+            <td>Indica o tipo de fonte de água</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-fundeadouro.html">3.106</a></td>
+            <td><a href="dominios-terrestre/tipo-fundeadouro.html">tipo_fundeadouro</a></td>
+            <td>Indica o tipo de fundeadouro</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-hierarquia.html">3.107</a></td>
+            <td><a href="dominios-terrestre/tipo-hierarquia.html">tipo_hierarquia</a></td>
+            <td>Identifica o tipo de hierarquia</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-ilha.html">3.108</a></td>
+            <td><a href="dominios-terrestre/tipo-ilha.html">tipo_ilha</a></td>
+            <td>Indica o tipo de ilha</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-instal-militar.html">3.109</a></td>
+            <td><a href="dominios-terrestre/tipo-instal-militar.html">tipo_instal_militar</a></td>
+            <td>Indica o tipo de inslatalação militar</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-lavoura.html">3.110</a></td>
+            <td><a href="dominios-terrestre/tipo-lavoura.html">tipo_lavoura</a></td>
+            <td>Indica a forma de cultura da vegetação cultivada</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-localidade.html">3.111</a></td>
+            <td><a href="dominios-terrestre/tipo-localidade.html">tipo_localidade</a></td>
+            <td>Indica o tipo de localidade</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-manguezal.html">3.112</a></td>
+            <td><a href="dominios-terrestre/tipo-manguezal.html">tipo_manguezal</a></td>
+            <td>Indica o tipo de manguezal</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-massa-dagua.html">3.113</a></td>
+            <td><a href="dominios-terrestre/tipo-massa-dagua.html">tipo_massa_dagua</a></td>
+            <td>Indica o tipo de massa d’água</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-obst.html">3.114</a></td>
+            <td><a href="dominios-terrestre/tipo-obst.html">tipo_obst</a></td>
+            <td>Indica o tipo de obstáculo à navegação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-org-civil.html">3.115</a></td>
+            <td><a href="dominios-terrestre/tipo-org-civil.html">tipo_org_civil</a></td>
+            <td>Indica o tipo de órgão civil</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-passag-viad.html">3.116</a></td>
+            <td><a href="dominios-terrestre/tipo-passag-viad.html">tipo_passag_viad</a></td>
+            <td>Indica o tipo de passagem ou viaduto</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-pavimentacao.html">3.117</a></td>
+            <td><a href="dominios-terrestre/tipo-pavimentacao.html">tipo_pavimentacao</a></td>
+            <td>Indica o tipo de estrutura construída após a terraplanagem por meio de camadas de vários materiais de diferentes características de resistência e deformabilidade</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-pista.html">3.118</a></td>
+            <td><a href="dominios-terrestre/tipo-pista.html">tipo_pista</a></td>
+            <td>Indica o tipo de pista aeroportuária</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-pista-comp.html">3.119</a></td>
+            <td><a href="dominios-terrestre/tipo-pista-comp.html">tipo_pista_comp</a></td>
+            <td>Indica o tipo de uma pista de competição</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-plataforma.html">3.120</a></td>
+            <td><a href="dominios-terrestre/tipo-plataforma.html">tipo_plataforma</a></td>
+            <td>Indica o tipo de plataforma</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-poco-mina.html">3.121</a></td>
+            <td><a href="dominios-terrestre/tipo-poco-mina.html">tipo_poco_mina</a></td>
+            <td>Indica o tipo de poço ou mina em relação ao seu posicionamento no terreno</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-ponte.html">3.122</a></td>
+            <td><a href="dominios-terrestre/tipo-ponte.html">tipo_ponte</a></td>
+            <td>Indica o tipo de ponte</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-poste.html">3.123</a></td>
+            <td><a href="dominios-terrestre/tipo-poste.html">tipo_poste</a></td>
+            <td>Indica o tipo de poste</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-posto-fisc.html">3.124</a></td>
+            <td><a href="dominios-terrestre/tipo-posto-fisc.html">tipo_posto_fisc</a></td>
+            <td>Indica o tipo de uma posto fiscal</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-produto-residuo.html">3.125</a></td>
+            <td><a href="dominios-terrestre/tipo-produto-residuo.html">tipo_produto_residuo</a></td>
+            <td>Indica o tipo de produto ou resíduo</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-pto-est-med.html">3.126</a></td>
+            <td><a href="dominios-terrestre/tipo-pto-est-med.html">tipo_pto_est_med</a></td>
+            <td>Indica o tipo de ponto de estação de medição</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-pto-ref-geod-topo.html">3.127</a></td>
+            <td><a href="dominios-terrestre/tipo-pto-ref-geod-topo.html">tipo_pto_ref_geod_topo</a></td>
+            <td>Indica o tipo de ponto de referência geodésico/ topográfico</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-quebra-molhe.html">3.128</a></td>
+            <td><a href="dominios-terrestre/tipo-quebra-molhe.html">tipo_quebra_molhe</a></td>
+            <td>Indica se o elemento é um quebramar ou um molhe</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-queda.html">3.129</a></td>
+            <td><a href="dominios-terrestre/tipo-queda.html">tipo_queda</a></td>
+            <td>Indica o tipo de queda d´água</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-recife.html">3.130</a></td>
+            <td><a href="dominios-terrestre/tipo-recife.html">tipo_recife</a></td>
+            <td>Indica o tipo de recife</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-ref.html">3.131</a></td>
+            <td><a href="dominios-terrestre/tipo-ref.html">tipo_ref</a></td>
+            <td>Indica o tipo de referência planialtimétrica</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-rep-diplomatica.html">3.132</a></td>
+            <td><a href="dominios-terrestre/tipo-rep-diplomatica.html">tipo_rep_diplomatica</a></td>
+            <td>Indica o tipo de representação diplomática</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-saneamento-basico.html">3.133</a></td>
+            <td><a href="dominios-terrestre/tipo-saneamento-basico.html">tipo_saneamento_basico</a></td>
+            <td>Indica o tipo de saneamento básico</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-sinal.html">3.134</a></td>
+            <td><a href="dominios-terrestre/tipo-sinal.html">tipo_sinal</a></td>
+            <td>Indica o tipo de sinalização de navegação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-sum-vert.html">3.135</a></td>
+            <td><a href="dominios-terrestre/tipo-sum-vert.html">tipo_sum_vert</a></td>
+            <td>Indica se é sumidouro ou vertedouro</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-terreno-exposto.html">3.136</a></td>
+            <td><a href="dominios-terrestre/tipo-terreno-exposto.html">tipo_terreno_exposto</a></td>
+            <td>Indica o tipo de terreno exposto</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-transporte.html">3.137</a></td>
+            <td><a href="dominios-terrestre/tipo-transporte.html">tipo_transporte</a></td>
+            <td>Indica o tipo de transporte</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-travessia.html">3.138</a></td>
+            <td><a href="dominios-terrestre/tipo-travessia.html">tipo_travessia</a></td>
+            <td>Indica o tipo de travessia</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-travessia-ped.html">3.139</a></td>
+            <td><a href="dominios-terrestre/tipo-travessia-ped.html">tipo_travessia_ped</a></td>
+            <td>Indica o tipo de travessia para pedestre</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-trecho-comunic.html">3.140</a></td>
+            <td><a href="dominios-terrestre/tipo-trecho-comunic.html">tipo_trecho_comunic</a></td>
+            <td>Indica o tipo de trecho de comunicação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-trecho-drenagem.html">3.141</a></td>
+            <td><a href="dominios-terrestre/tipo-trecho-drenagem.html">tipo_trecho_drenagem</a></td>
+            <td>Indica o tipo de trecho de drenagem</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-trecho-duto.html">3.142</a></td>
+            <td><a href="dominios-terrestre/tipo-trecho-duto.html">tipo_trecho_duto</a></td>
+            <td>Indica os valores possíveis para tipo de trecho de duto</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-trecho-ferrov.html">3.143</a></td>
+            <td><a href="dominios-terrestre/tipo-trecho-ferrov.html">tipo_trecho_ferrov</a></td>
+            <td>Indica os valores possíveis para tipo de trecho ferroviário</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-tunel.html">3.144</a></td>
+            <td><a href="dominios-terrestre/tipo-tunel.html">tipo_tunel</a></td>
+            <td>Indica os valores possíveis para tipo de túnel</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-unid-prot-integ.html">3.145</a></td>
+            <td><a href="dominios-terrestre/tipo-unid-prot-integ.html">tipo_unid_prot_integ</a></td>
+            <td>Indica os valores possíveis para tipo de unidade de proteção integral</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-unid-protegida.html">3.146</a></td>
+            <td><a href="dominios-terrestre/tipo-unid-protegida.html">tipo_unid_protegida</a></td>
+            <td>Indica os valores possíveis para tipo de unidade protegida</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-unid-uso-sust.html">3.147</a></td>
+            <td><a href="dominios-terrestre/tipo-unid-uso-sust.html">tipo_unid_uso_sust</a></td>
+            <td>Indica os valores possíveis para tipo de unidade de uso sustentável</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-uso-edif.html">3.148</a></td>
+            <td><a href="dominios-terrestre/tipo-uso-edif.html">tipo_uso_edif</a></td>
+            <td>Indica o tipo de uso da edificação pública civil</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-vegetacao.html">3.149</a></td>
+            <td><a href="dominios-terrestre/tipo-vegetacao.html">tipo_vegetacao</a></td>
+            <td>Indica o tipo da vegetação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/tipo-via.html">3.150</a></td>
+            <td><a href="dominios-terrestre/tipo-via.html">tipo_via</a></td>
+            <td>Indica o tipo da via</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/trafego.html">3.151</a></td>
+            <td><a href="dominios-terrestre/trafego.html">trafego</a></td>
+            <td>Tipo de utilização das vias por veículos motorizados, veículos não motorizados, pedestres e animais (Ex: burros), para fins de circulação</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/unidade-volume.html">3.152</a></td>
+            <td><a href="dominios-terrestre/unidade-volume.html">unidade_volume</a></td>
+            <td>Indica o tipo de unidade de volume</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/uso-pista.html">3.153</a></td>
+            <td><a href="dominios-terrestre/uso-pista.html">uso_pista</a></td>
+            <td>Indica o tipo de uso da pista</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/uso-principal.html">3.154</a></td>
+            <td><a href="dominios-terrestre/uso-principal.html">uso_principal</a></td>
+            <td>Indica o uso principal para um duto</td>
+          </tr><tr>
+            <td><a href="dominios-terrestre/booleano.html">-</a></td>
+            <td><a href="dominios-terrestre/booleano.html">booleano</a></td>
+            <td>Indica o tipo </td>
+          </tr>
+        </tbody>
+      </table>
+      <p><a href="../cartografia-terreste.html" style="float:right">Índice cartografia terrestre</a></p>
+    </div>
+  </div>
+  </div>
+  <div class="container-fluid">
+      <div class="panel panel-default" style="border: #000">
+          <div class="panel-footer">Desenvolvido por CASNAV - Centro de Análise de Sistemas Navais </div>
+      </div>
+  </div>
+  <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+</body>
+</html>

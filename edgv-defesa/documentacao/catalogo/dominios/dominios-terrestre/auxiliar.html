@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>ET-EDGV-DEFESA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/bootstrap.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                </button>
+                <a class="navbar-brand" href="../../index.html">ET-EDGV-DEFESA</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Aeronáutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-aeronautica.html">Índice Cartografia Aeronáutica</a></li>
+                            <li><a href="../../entidades/entidades-aeronauticas.html">Lista de Entidades</a></li>
+                            <li><a href="../../atributos/atributos-aeronauticos.html">Lista de Atributos</a></li>
+                            <li><a href="../../dominios/dominios-aeronauticos.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Náutica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-nautica.html">Índice Cartografia Náutica</a></li>
+                            <li><a href="../../entidades/entidades-nautica.html">Lista de Entidades</a></li>
+                            <li><a href="../../atributos/atributos-nautico.html">Lista de Atributos</a></li>
+                            <li><a href="../../dominios/dominios-nautico.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cartografia Terrestre<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../cartografia-terrestre.html">Índice Cartografia Terrestre</a></li>
+                            <li><a href="../../entidades/maptopo-pe.html">Mapeamento Topográfico Pequenas Escalas</a></li>
+                            <li><a href="../../entidades/maptopo-ge.html">Mapeamento Topográfico Grandes Escalas</a></li>                            
+                            <li><a href="../../dominios/dominios-terrestres.html">Lista de Domínios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Dados do Domínio</h4>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Auxiliar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Seção</td>
+                                <td>3.4</td>
+                            </tr>
+                            <tr>
+                                <td>Descrição</td>
+                                <td>Indica um valor booleano ou desconhecido</td>
+                            </tr>
+                            <tr>
+                                <td>Atributos</td>
+                                <td>
+                                    <table class="table table-bordered" style="background-color: transparent;">
+                                        <thead>
+                                            <tr style="background-color: #eaeaea">
+                                                <th>Atributo</th>
+                                                <th>Tipo</th>
+                                                <th>Tamanho</th>
+                                                <th>Not Null</th>
+                                                <th>Descrição</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                    <td>nome</td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td>Sim</td>
+                                    <td>Nome Do Domínio</td>
+                                  </tr><tr>
+                                    <td>descricao</td>
+                                    <td>text</td>
+                                    <td>-</td>
+                                    <td></td>
+                                    <td>Descrição Do Valor Do Domínio</td>
+                                  </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Domínios
+                                </td>
+                                <td>
+                                    <table class="table table-bordered" style="background-color: transparent;">
+                                        <thead>
+                                            <tr style="background-color: #eaeaea">
+                                                <th>Nome/Valor</th>
+                                                <th>Descrição</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                    <td>Não</td>
+                                    <td>Valor booleano “falso”.</td>
+                                  </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Usos</td>
+                                <td>
+                                    <a href="../../entidades/entidades-terrestre/acesso.html">Acesso</a>, <a href="../../entidades/entidades-terrestre/arquibancada.html">Arquibancada</a>, <a href="../../entidades/entidades-terrestre/atracadouro-terminal.html">Atracadouro_Terminal</a>, <a href="../../entidades/entidades-terrestre/barragem.html">Barragem</a>, <a href="../../entidades/entidades-terrestre/caminho-aereo.html">Caminho_Aereo</a>, <a href="../../entidades/entidades-terrestre/campo-quadra.html">Campo_Quadra</a>, <a href="../../entidades/entidades-terrestre/canal-vala.html">Canal_Vala</a>, <a href="../../entidades/entidades-terrestre/ciclovia.html">Ciclovia</a>, <a href="../../entidades/entidades-terrestre/complexo-comunicacao.html">Complexo_Comunicacao</a>, <a href="../../entidades/entidades-terrestre/complexo-desportivo-lazer.html">Complexo_Desportivo_Lazer</a>, <a href="../../entidades/entidades-terrestre/complexo-desportivo-lazer.html">Complexo_Desportivo_Lazer</a>, <a href="../../entidades/entidades-terrestre/complexo-desportivo-lazer.html">Complexo_Desportivo_Lazer</a>, <a href="../../entidades/entidades-terrestre/complexo-gerador-energia-eletrica.html">Complexo_Gerador_Energia_Eletrica</a>, <a href="../../entidades/entidades-terrestre/complexo-portuario.html">Complexo_Portuario</a>, <a href="../../entidades/entidades-terrestre/complexo-saneamento.html">Complexo_Saneamento</a>, <a href="../../entidades/entidades-terrestre/comporta.html">Comporta</a>, <a href="../../entidades/entidades-terrestre/cremalheira.html">Cremalheira</a>, <a href="../../entidades/entidades-terrestre/delimitacao-fisica.html">Delimitacao_Fisica</a>, <a href="../../entidades/entidades-terrestre/deposito-geral.html">Deposito_Geral</a>, <a href="../../entidades/entidades-terrestre/deposito-geral.html">Deposito_Geral</a>, <a href="../../entidades/entidades-terrestre/eclusa.html">Eclusa</a>, <a href="../../entidades/entidades-terrestre/edif-constr-turistica.html">Edif_Constr_Turistica</a>, <a href="../../entidades/entidades-terrestre/edif-industrial.html">Edif_Industrial</a>, <a href="../../entidades/entidades-terrestre/edificacao.html">Edificacao</a>, <a href="../../entidades/entidades-terrestre/edificacao.html">Edificacao</a>, <a href="../../entidades/entidades-terrestre/edificacao.html">Edificacao</a>, <a href="../../entidades/entidades-terrestre/equip-agropec.html">Equip_Agropec</a>, <a href="../../entidades/entidades-terrestre/est-gerad-energia-eletrica.html">Est_Gerad_Energia_Eletrica</a>, <a href="../../entidades/entidades-terrestre/estrut-transporte.html">Estrut_Transporte</a>, <a href="../../entidades/entidades-terrestre/ext-mineral.html">Ext_Mineral</a>, <a href="../../entidades/entidades-terrestre/funicular.html">Funicular</a>, <a href="../../entidades/entidades-terrestre/girador-ferroviario.html">Girador_Ferroviario</a>, <a href="../../entidades/entidades-terrestre/hab-indigena.html">Hab_Indigena</a>, <a href="../../entidades/entidades-terrestre/hab-indigena.html">Hab_Indigena</a>, <a href="../../entidades/entidades-terrestre/massa-dagua.html">Massa_Dagua</a>, <a href="../../entidades/entidades-terrestre/massa-dagua.html">Massa_Dagua</a>, <a href="../../entidades/entidades-terrestre/obra-de-arte-viaria.html">Obra_De_Arte_Viaria</a>, <a href="../../entidades/entidades-terrestre/obra-de-arte-viaria.html">Obra_De_Arte_Viaria</a>, <a href="../../entidades/entidades-terrestre/passeio.html">Passeio</a>, <a href="../../entidades/entidades-terrestre/patio.html">Patio</a>, <a href="../../entidades/entidades-terrestre/piscina.html">Piscina</a>, <a href="../../entidades/entidades-terrestre/pista-competicao.html">Pista_Competicao</a>, <a href="../../entidades/entidades-terrestre/pista-ponto-pouso.html">Pista_Ponto_Pouso</a>, <a href="../../entidades/entidades-terrestre/pista-ponto-pouso.html">Pista_Ponto_Pouso</a>, <a href="../../entidades/entidades-terrestre/quebramar-Molhe.html">Quebramar_Molhe</a>, <a href="../../entidades/entidades-terrestre/ruina.html">Ruina</a>, <a href="../../entidades/entidades-terrestre/sinalizacao.html">Sinalizacao</a>, <a href="../../entidades/entidades-terrestre/sitio-arqueologico.html">Sitio_Arqueologico</a>, <a href="../../entidades/entidades-terrestre/subest-transm-distrib-energia-eletrica.html">Subest_Transm_Distrib_Energia_Eletrica</a>, <a href="../../entidades/entidades-terrestre/subest-transm-distrib-energia-eletrica.html">Subest_Transm_Distrib_Energia_Eletrica</a>, <a href="../../entidades/entidades-terrestre/torre-comunic.html">Torre_Comunic</a>, <a href="../../entidades/entidades-terrestre/torre-comunic.html">Torre_Comunic</a>, <a href="../../entidades/entidades-terrestre/torre-energia.html">Torre_Energia</a>, <a href="../../entidades/entidades-terrestre/torre-energia.html">Torre_Energia</a>, <a href="../../entidades/entidades-terrestre/trecho-comunic.html">Trecho_Comunic</a>, <a href="../../entidades/entidades-terrestre/trecho-drenagem.html">Trecho_Drenagem</a>, <a href="../../entidades/entidades-terrestre/trecho-duto.html">Trecho_Duto</a>, <a href="../../entidades/entidades-terrestre/trecho-energia.html">Trecho_Energia</a>, <a href="../../entidades/entidades-terrestre/trecho-energia.html">Trecho_Energia</a>, <a href="../../entidades/entidades-terrestre/trecho-ferroviario.html">Trecho_Ferroviario</a>, <a href="../../entidades/entidades-terrestre/trecho-ferroviario.html">Trecho_Ferroviario</a>, <a href="../../entidades/entidades-terrestre/trecho-hidroviario.html">Trecho_Hidroviario</a>, <a href="../../entidades/entidades-terrestre/veg-natural.html">Veg_Natural</a>, <a href="../../entidades/entidades-terrestre/veg-natural.html">Veg_Natural</a>, <a href="../../entidades/entidades-terrestre/via-deslocamento.html">Via_Deslocamento</a>, <a href="../../entidades/entidades-terrestre/via-deslocamento.html">Via_Deslocamento</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><a href="../dominios-terrestres.html" style="float:right">Voltar para lista de domínios terrestres</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="panel panel-default" style="border: #000">
+            <div class="panel-footer">Desenvolvido por CASNAV - Centro de Análise de Sistemas Navais </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
