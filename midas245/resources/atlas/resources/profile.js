@@ -45,7 +45,16 @@ function showProfileCard( data ){
 	});    
     
     $("#terrainProfileCloseBtn").click( function(){
-    	$("#terrainProfileContainer").remove();	
+        $("#terrainProfileContainer").remove();
+        
+        if( profileGeometries ) {
+            entityCollection.remove( profileGeometries.line );
+            for( x=0; x < profileGeometries.points.length; x++  ){
+                entityCollection.remove( profileGeometries.points[x] );
+            }  
+            profileGeometries = {};      
+        }
+
     });
 
     $("#terrainProfileSaveBtn").click( function(){
