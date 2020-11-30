@@ -67,9 +67,14 @@
 						</tr>
 						<tr>
 							<td>
+								<button title="Escala" id="optLeg" type="button" class="configBtn btn btn-primary disabled" style="padding: 0px;">
+									<img src="${midasLocation}/atlas/icons/escala.png" style="width: 35px; height: 35px;">
+								</button>
+								<!-- 
 								<button title="Legenda" id="optLeg" type="button" class="configBtn btn btn-primary disabled" style="padding: 0px;">
 									<img src="${midasLocation}/atlas/icons/legenda2.png" style="width: 35px; height: 35px;">
 								</button>
+								-->
 							</td>
 							<td style="text-align: right;">
 								<button title="Instrumentos de Aviação" id="optIns" type="button" class="configBtn  btn btn-primary disabled" style="padding: 0px;">
