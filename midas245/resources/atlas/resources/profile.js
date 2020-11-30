@@ -48,9 +48,6 @@ function showProfileCard( data ){
         $("#terrainProfileContainer").remove();
         
         if( profileGeometries ) {
-
-console.log('APAGANDO PERFIL');
-
             viewer.entities.remove( profileGeometries.line );
             for( x=0; x < profileGeometries.points.length; x++  ){
                 viewer.entities.remove( profileGeometries.points[x] );
