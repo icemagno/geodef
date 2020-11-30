@@ -39,7 +39,7 @@ public class CatalogController {
 	
 	@RequestMapping(value = "/topics", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public @ResponseBody List<CatalogTopics> getTopics() {
-		List<CatalogTopics> topics = catalogRepository.findAllByOrdem();
+		List<CatalogTopics> topics = catalogRepository.findByOrderByOrdemAsc();
 		return topics; 
 	}
 
