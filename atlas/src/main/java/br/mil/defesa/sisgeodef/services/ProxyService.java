@@ -150,9 +150,11 @@ public class ProxyService {
 		CatalogSource source = catalogService.getSource(sourceId);
 		if( source != null ) {
 			
-			String url = source.getSourceAddressOriginal();
-			if( url.contains("http://sisgeodef.defesa.mil.br") ) {
-				url = "http://pleione:8080/geoserver/wms";
+			String sao = source.getSourceAddressOriginal();
+			if( sao.contains("http://sisgeodef.defesa.mil.br") ) {
+				System.out.println("Endereço externo -- " + sao );
+				sao = sao.replace("sisgeodef.defesa.mil.br", "pleione:8080");
+				System.out.println("Endereço interno -- " + sao );
 			}
 
 			double latD = Double.valueOf( lat );
@@ -164,7 +166,7 @@ public class ProxyService {
 			
 			String bbox = "&bbox=" + bs + "," + bw + "," + bn + "," + be;
 			//String bbox = lat + "," + lon + "," + lat + "," + lon;
-			String sourceUrl = url + "?service=wfs"
+			String sourceUrl = sao + "?service=wfs"
 					+ "&version=2.0.0"
 					+ "&request=GetFeature"
 					+ "&BBOX=" + bbox
