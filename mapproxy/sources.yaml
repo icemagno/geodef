@@ -7812,7 +7812,12 @@ sources:
       url: https://sistemas.florestal.gov.br/geoserver/ows
       layers: geifn:vm_biomas
       transparent: true
-      
+  focos_ams_48h_wms:
+    type: wms
+    req:
+      url: http://terrabrasilis.dpi.inpe.br/geoserver/ows
+      layers: queimadas:focos_ams_48h
+      transparent: true       
       
       
       

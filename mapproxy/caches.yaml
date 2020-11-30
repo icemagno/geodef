@@ -6399,3 +6399,10 @@ caches:
     format: custom_format
     request_format: image/png
     transparent: true    
+  focos_ams_48h_cache:
+    grids: [geodetic]
+    sources: [focos_ams_48h_wms]
+    link_single_color_image: true
+    format: custom_format
+    request_format: image/png
+    transparent: true      
