@@ -113,7 +113,7 @@ public class MeteoroCorController {
 		SimpleDateFormat formatterNow= new SimpleDateFormat("yyyyMMddHH");
 		Date date = new Date( System.currentTimeMillis() );
 		String endDate = formatterNow.format(date);		
-		String url = "local=sbrj,sbgl,sbaf,sbsc,sbes,sbcb,sbme,sbcp&msg=metar&data_ini=" + startDate+ "&data_fim=" + endDate;
+		String url = "local=sbtt,sbsv,sbsn,sbsl,sbsg,sbrf,sbpv,sbps,sbpp,sbpk,sbpa,sbnf,sbmq,sbkp,sbjp,sbgr,sbgo,sbfz,sbfl,sbfi,sbeg,sbcz,sbcy,sbct,sbcg,sbcf,sbbv,sbbr,sbbe,sbar,sbys,sbvt,sbvh,sbur,sbul,sbug,sbua,sbtf,sbte,sbtb,sbta,sbsr,sbsp,sbsm,sbsj,sbrp,sbrb,sbpl,sbpj,sbpf,sboi,sbnt,sbnm,sbms,sbmo,sbmn,sbml,sbmk,sbma,sblo,sblj,sbkg,sbjv,sbja,sbiz,sbip,sbih,sbht,sbfn,sbdo,sbdn,sbcx,sbco,sbcn,sbcj,sbcc,sbbw,sbbu,sbbi,sbbg,sbax,sbat,sbaq,sban,sbae,sbrj,sbgl,sbaf,sbsc,sbes,sbcb,sbme,sbcp&msg=metar&data_ini=" + startDate+ "&data_fim=" + endDate;
 		String metarData = doRequestGet(url);
 		
 		String[] metars = metarData.split("\n");
@@ -135,7 +135,7 @@ public class MeteoroCorController {
 				System.out.println("ERRO. A mensagem recebida da REDEMET foi:");
 				System.out.println( s );
 				System.out.println("------------------------------------------------------------------------");
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		} 
 		return metarList;
