@@ -46,6 +46,8 @@ public class MeteoroCorController {
 		
 		String uri = "http://www.redemet.aer.mil.br/api/consulta_automatica/index.php?" + url;
 
+		System.out.println( uri );
+		
 		String responseBody = "";
 		
 		RestTemplate restTemplate;
