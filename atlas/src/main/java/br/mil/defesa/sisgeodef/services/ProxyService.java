@@ -113,8 +113,11 @@ public class ProxyService {
 		    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 	
 			String sao = source.getSourceAddressOriginal();
+			
 			if( sao.contains("http://sisgeodef.defesa.mil.br") ) {
-				sao = "http://pleione:8080/geoserver/wms";
+				System.out.println("Endereço externo -- " + sao );
+				sao = sao.replace("sisgeodef.defesa.mil.br", "pleione:8080");
+				System.out.println("Endereço interno -- " + sao );
 			}
 			
 		    MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
