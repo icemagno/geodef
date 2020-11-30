@@ -6405,4 +6405,11 @@ caches:
     link_single_color_image: true
     format: custom_format
     request_format: image/png
-    transparent: true      
+    transparent: true    
+  ica_heliport_cache:
+    grids: [geodetic]
+    sources: [ica_heliport_wms]
+    link_single_color_image: true
+    format: custom_format
+    request_format: image/png
+    transparent: true          

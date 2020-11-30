@@ -7818,6 +7818,12 @@ sources:
       url: http://terrabrasilis.dpi.inpe.br/geoserver/ows
       layers: queimadas:focos_ams_48h
       transparent: true       
+  ica_heliport_wms:
+    type: wms
+    req:
+      url: https://geoaisweb.decea.gov.br/geoserver/ICA/wms
+      layers: ICA:heliport
+      transparent: true       
       
       
       

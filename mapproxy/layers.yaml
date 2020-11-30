@@ -2683,4 +2683,7 @@ layers:
     sources: [geifn_vm_biomas_cache]    
   - name: queimadas:focos_ams_48h
     title: Focos na América do Sul nas últimas 48 horas
-    sources: [focos_ams_48h_cache]    
+    sources: [focos_ams_48h_cache]   
+  - name: ICA:heliport
+    title: Focos na América do Sul nas últimas 48 horas
+    sources: [ica_heliport_cache]      
