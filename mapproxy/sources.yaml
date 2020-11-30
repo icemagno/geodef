@@ -7803,3 +7803,16 @@ sources:
       url: http://mapas.mma.gov.br/i3geo/ogc.php?tema=ucsmu
       layers: ucsmu
       transparent: true
+  geifn_vm_biomas_wms:
+    type: wms
+    wms_opts:
+      legendgraphic: true
+      featureinfo: true
+    req:
+      url: https://sistemas.florestal.gov.br/geoserver/ows
+      layers: geifn:vm_biomas
+      transparent: true
+      
+      
+      
+      

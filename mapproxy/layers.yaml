@@ -2681,3 +2681,6 @@ layers:
   - name: ucsmu
     title: Migração Automática
     sources: [ucsmu_cache]
+  - name: geifn_vm_biomas
+    title: Biomas SFB
+    sources: [geifn_vm_biomas_cache]    

@@ -6392,3 +6392,10 @@ caches:
     format: custom_format
     request_format: image/png
     transparent: true
+  geifn_vm_biomas_cache:
+    grids: [geodetic]
+    sources: [geifn_vm_biomas_wms]
+    link_single_color_image: true
+    format: custom_format
+    request_format: image/png
+    transparent: true    
