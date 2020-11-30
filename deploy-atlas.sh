@@ -17,7 +17,7 @@ docker ps -a | awk '{ print $1,$2 }' | grep sisgeodef/atlas:1.0 | awk '{print $1
 docker rmi sisgeodef/atlas:1.0
 docker build --tag=sisgeodef/atlas:1.0 --rm=true .
 
-docker run --name atlas-temp --hostname=atlas \
+docker run --name atlas --hostname=atlas \
 -e ARCHIMEDES_CONFIG_URI=http://archimedes:36206/ \
 -v /etc/localtime:/etc/localtime:ro \
 -v /srv/calisto/:/srv/calisto/ \
