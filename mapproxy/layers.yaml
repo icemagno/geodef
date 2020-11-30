@@ -2660,9 +2660,6 @@ layers:
   - name: cemaden_dev:wrf-horas-96
     title: Migração Automática
     sources: [wrf-horas-96_cache]
-  - name: queimadas:focos_ams_48h
-    title: Focos na América do Sul nas últimas 48 horas
-    sources: [focos_ams_48h_cache]
   - name: ucsfi
     title: Migração Automática
     sources: [ucsfi_cache]
