@@ -48,9 +48,9 @@ function showProfileCard( data ){
         $("#terrainProfileContainer").remove();
         
         if( profileGeometries ) {
-            entityCollection.remove( profileGeometries.line );
+            viewer.entities.remove( profileGeometries.line );
             for( x=0; x < profileGeometries.points.length; x++  ){
-                entityCollection.remove( profileGeometries.points[x] );
+                viewer.entities.remove( profileGeometries.points[x] );
             }  
             profileGeometries = {};      
         }
@@ -114,6 +114,9 @@ function calcLineTerrainProfile(){
 
 	drawHelper.startDrawingPolyline({
 		callback: function(positions) {
+
+            $("#mainWaitPanel").show();
+
 			/*
             var polyline = new DrawHelper.PolylinePrimitive({
                 positions: positions,
@@ -186,7 +189,9 @@ function calcLineTerrainProfile(){
             	resultData.elevationDatas = elevationDatas;
             	resultData.profilePoints = profilePoints;
             	showProfileCard( resultData );
-            	
+                
+                
+                $("#mainWaitPanel").hide();
             });
             
 		}
