@@ -11,5 +11,5 @@ import br.mil.defesa.sisgeodef.model.CatalogTopics;
 @Repository
 @Transactional
 public interface CatalogTopicsRepository extends JpaRepository<CatalogTopics, Integer> {
-	List<CatalogTopics> findAllByOrdem();
+	List<CatalogTopics> findByOrderByOrdemAsc();
 }
