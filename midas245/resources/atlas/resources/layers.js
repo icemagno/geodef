@@ -704,7 +704,7 @@ function queryLayer() {
 		$("#showToolQuery").addClass("btn-danger");
 		
 		queryLayerEventHandler.setInputAction( function( click ) {
-
+/*
 			var pickRay = viewer.camera.getPickRay( click.position  );
 			var featuresPromise = viewer.imageryLayers.pickImageryLayerFeatures(pickRay, viewer.scene);
 			if (!Cesium.defined(featuresPromise)) {
@@ -718,17 +718,15 @@ function queryLayer() {
 					}
 				});
 			}
+*/
 
 
 			
-			/*
 			var position = getMapPosition3D2D( click.position );
 			cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic( position );
 			var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(10);
 			var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(10);    	    
-			
 			showQueryResultContainer( )
-			
 			for( x=0; x<stackedProviders.length;x++ ) {
 				var sp = stackedProviders[x];
 				var queryUrl = "/proxy/getfeatureinfo?layerId=" + sp.data.id + "&lat=" + latitudeString + '&lon='+longitudeString;
@@ -756,7 +754,7 @@ function queryLayer() {
 		    } else {
 		    	//console.log('Nenhuma entidade clicada.');
 			}
-			*/
+
 		}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 	
 	}	
