@@ -148,6 +148,9 @@ public class ProxyService {
 	public String getFeatureInfo(Integer sourceId, String lat, String lon) {
 		String responseBody = "[]";
 		CatalogSource source = catalogService.getSource(sourceId);
+		
+		System.out.println("investigando camada " + source.getSourceName() );
+		
 		if( source != null ) {
 			
 			String sao = source.getSourceAddressOriginal().replace("/wms", "/wfs");
@@ -191,6 +194,7 @@ public class ProxyService {
 			} catch (HttpClientErrorException e) {
 				responseBody = e.getResponseBodyAsString();
 			} catch ( Exception ex) {
+				ex.printStackTrace();
 				return ex.getMessage();
 			}
 			

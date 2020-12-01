@@ -44,6 +44,7 @@ public class ProxyController {
 	public @ResponseBody String getFeatureInfo( @RequestParam(value="layerId",required=true ) Integer layerId,
 			@RequestParam(value="lat",required=true ) String lat,
 			@RequestParam(value="lon",required=true ) String lon ) {
+		System.out.println("Acionado " + layerId );
 		return proxyService.getFeatureInfo( layerId, lat, lon );
 	}
 	
