@@ -674,7 +674,7 @@ function getBaseImageryProvider( sourceUrl, sourceLayers, canQuery, transparency
 		layers : sourceLayers,
 		tileWidth: 256,
 		tileHeight: 256,		
-		enablePickFeatures : canQuery,
+		enablePickFeatures : true,
 		parameters : { 
 			version: '1.1.0',
 			transparent : isTransparent,
@@ -705,6 +705,23 @@ function queryLayer() {
 		
 		queryLayerEventHandler.setInputAction( function( click ) {
 
+			var pickRay = viewer.camera.getPickRay( click.position  );
+			var featuresPromise = viewer.imageryLayers.pickImageryLayerFeatures(pickRay, viewer.scene);
+			if (!Cesium.defined(featuresPromise)) {
+				console.log('No features picked.');
+			} else {
+				Cesium.when(featuresPromise, function(features) {
+					// This function is called asynchronously when the list if picked features is available.
+					console.log('Number of features: ' + features.length);
+					if (features.length > 0) {
+						console.log('First feature name: ' + features[0].name);
+					}
+				});
+			}
+
+
+			
+			/*
 			var position = getMapPosition3D2D( click.position );
 			cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic( position );
 			var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(10);
@@ -735,18 +752,11 @@ function queryLayer() {
 					showEntityData( entity );
 				}
 		    	
-		    	/*
-				if ( entity.name === "PCN_RUNWAY") showRunwayInfo( entity );
-		    	if ( entity.name === 'ROTA_POI') showRotaPoi( entity );
-		    	if ( entity.name === 'PHOTO_HASTE') showStreetImage( entity );
-		    	if ( entity.name === "CORMET_AERODROMO") showColorAerodromo( entity );
-		    	if ( entity.name === "MUNICIPIO_PREVISAO") showPrevisaoMunicipio( entity );
-		    	if ( entity.name === "AERODROMO_METOC") showMetarAerodromo( entity );
-		    	*/
 		    	
 		    } else {
 		    	//console.log('Nenhuma entidade clicada.');
-		    }
+			}
+			*/
 		}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 	
 	}	
@@ -766,7 +776,7 @@ function createImageryProvider( sourceUrl, sourceLayers, canQuery, transparency,
 		layers : sourceLayers,
 		tileWidth: 256,
 		tileHeight: 256,		
-		enablePickFeatures : canQuery,
+		enablePickFeatures : true,
 		parameters : { 
 			transparent : false,
 			srs	: 'EPSG:4326',
@@ -785,7 +795,7 @@ function createFilteredImageryProvider( sourceUrl, sourceLayers, canQuery, trans
 		layers : sourceLayers,
 		tileWidth: 256,
 		tileHeight: 256,		
-		enablePickFeatures : canQuery,
+		enablePickFeatures : true,
 		parameters : { 
 			transparent : true,
 			srs	: 'EPSG:4326',
