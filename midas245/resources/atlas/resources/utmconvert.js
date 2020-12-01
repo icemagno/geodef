@@ -24,7 +24,7 @@ var P5 = 1097 / 512 * _E4;
 
 var R = 6378137;
 
-var ZONE_LETTERS = 'CDEFGHJKLMNPQRSTUVWXX';
+var ZONE_LETTERS = 'NNNNNNNNNNNSSSSSSSSSS';
 
 function toLatLon(easting, northing, zoneNum, zoneLetter, northern, strict) {
   strict = strict !== undefined ? strict : true;
