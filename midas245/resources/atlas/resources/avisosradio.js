@@ -166,7 +166,7 @@ function procuraNaviosSAR( lat, lon, raio ) {
 					    	//stRotation : heading,
 					    	outline : true,
 					    	extrudedHeight : 100,
-					    	heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
+					    	//heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
 					    	height : 10,
 					        semiMajorAxis: 200,
 					        semiMinorAxis: 200,
@@ -185,7 +185,7 @@ function procuraNaviosSAR( lat, lon, raio ) {
 			                horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
 			                eyeOffset : new Cesium.Cartesian3(0.0, 500.0, 0.0),
 			                pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.7),
-			                heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
+			                //heightReference : Cesium.HeightReference.CLAMP_TO_GROUND,
 			                disableDepthTestDistance : Number.POSITIVE_INFINITY,
 			            }
 			        });					
