@@ -697,8 +697,8 @@ function updatePanelFooter( position ) {
 		var eaDec = eaArr[1].substring(0,2);
 		var noDec = noArr[1].substring(0,2);
 		
-		//var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0].substring(0,5) + "." + eaDec + " " + noArr[0].substring(0,5) + "." + noDec;
-		var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0] + " " + noArr[0];
+		var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0].substring(0,5) + "." + eaDec + " " + noArr[0].substring(0,5) + "." + noDec;
+		//var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0] + " " + noArr[0];
 		
 		$("#mapUtm").text( theUtm );    	    
 		
