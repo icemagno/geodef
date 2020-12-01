@@ -106,7 +106,7 @@ function bindToolBarButtons() {
     });
     
     $("#toolGuia").click( function(){
-    	window.open("/resources/img/fastguide/index.html");
+    	window.open("/midas/atlas/fastguide/index.html");
     });
 	
 	
