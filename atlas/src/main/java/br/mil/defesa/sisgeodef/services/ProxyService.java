@@ -150,7 +150,7 @@ public class ProxyService {
 		CatalogSource source = catalogService.getSource(sourceId);
 		if( source != null ) {
 			
-			String sao = source.getSourceAddressOriginal();
+			String sao = source.getSourceAddressOriginal().replace("/wms", "/wfs");
 			if( sao.contains("http://sisgeodef.defesa.mil.br") ) {
 				System.out.println("Endereço externo -- " + sao );
 				sao = sao.replace("sisgeodef.defesa.mil.br", "pleione:8080");
