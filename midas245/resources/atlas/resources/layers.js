@@ -721,12 +721,12 @@ function queryLayer() {
 */
 
 
-			
+			/*
 			var position = getMapPosition3D2D( click.position );
 			cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic( position );
 			var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(10);
 			var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(10);    	    
-			showQueryResultContainer( )
+			showQueryResultContainer( );
 			for( x=0; x<stackedProviders.length;x++ ) {
 				var sp = stackedProviders[x];
 				var queryUrl = "/proxy/getfeatureinfo?layerId=" + sp.data.id + "&lat=" + latitudeString + '&lon='+longitudeString;
@@ -740,13 +740,14 @@ function queryLayer() {
 					}
 				});
 			}
-			
+			*/
 			
 			// Objetos
 			var pickedObject = viewer.scene.pick( click.position );
 		    if ( Cesium.defined( pickedObject ) ) {
 		    	var entity = pickedObject.id;
-		    	if( entity ){
+				if( entity ){2
+					showQueryResultContainer( );
 					showEntityData( entity );
 				}
 		    	
