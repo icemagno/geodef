@@ -25,6 +25,7 @@ function startOsmBuildings(){
 
 
 function getBuildings() {
+
 	var url = "/buildings?l={l}&r={r}&t={t}&b={b}";
 	buildingsProvider = new MagnoBuildingsProvider({
 		debugTiles : false,
