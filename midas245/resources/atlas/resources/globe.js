@@ -92,9 +92,9 @@ function startMap( theMapStyle ) {
 	
 	mapStyle = theMapStyle;
 	
-	if( mapStyle == '3D'){
-		$("#toolOSM3D").removeClass('disabled');
-		$("#toolViewShed").removeClass('disabled');
+	if( mapStyle == '2D'){
+		//$("#analise3dMainBtn").addClass('disabled');
+		console.log('Desabilitei temporariamente o chaveamento do botão de 3D');
 	} 
 	
 	
@@ -264,8 +264,8 @@ function redraw() {
 // Rotina para realizar testes. Nao eh para rodar em produção!!!
 function doSomeSandBoxTests(){
 
-	/*
-	var url = "/radar?l={l}&r={r}&t={t}&b={b}";
+	
+	var url = "http://sisgeodef.defesa.mil.br:36103/radar?l={l}&r={r}&t={t}&b={b}";
 	var buildingsProvider = new MagnoMetocRadarProvider({
 	  debugTiles : false,
 	  viewer : viewer,
@@ -281,7 +281,7 @@ function doSomeSandBoxTests(){
 	  }
 	});
 	viewer.imageryLayers.addImageryProvider( buildingsProvider );	
-	*/
+	
 	
 	
 	// initCappiMonitor();
@@ -496,7 +496,8 @@ function bindInterfaceElements() {
         height: viewportHeight - 10 + 'px',
         wheelStep : 10,
     });
-
+	
+	
 	
 	$("#activeLayerContainer").sortable({
 		update: function( event, ui ) {
@@ -697,8 +698,8 @@ function updatePanelFooter( position ) {
 		var eaDec = eaArr[1].substring(0,2);
 		var noDec = noArr[1].substring(0,2);
 		
-		var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0].substring(0,5) + "." + eaDec + "   " + noArr[0].substring(0,5) + "." + noDec;
-		//var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0] + " " + noArr[0];
+		//var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0].substring(0,5) + "." + eaDec + " " + noArr[0].substring(0,5) + "." + noDec;
+		var theUtm = utmVal.zoneNum + utmVal.zoneLetter + " " + eaArr[0] + " " + noArr[0];
 		
 		$("#mapUtm").text( theUtm );    	    
 		
