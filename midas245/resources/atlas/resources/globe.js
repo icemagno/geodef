@@ -267,18 +267,16 @@ function doSomeSandBoxTests(){
 	
 	var url = "http://sisgeodef.defesa.mil.br:36103/radar?l={l}&r={r}&t={t}&b={b}";
 	var buildingsProvider = new MagnoMetocRadarProvider({
-	  debugTiles : false,
-	  viewer : viewer,
-	  activationLevel : 5,
-	  sourceUrl : url,
-	  featuresPerTile : 1000,
-	  rampStart : '#b9e1fa',
-	  rampEnd : '#039eff',
-	  rampCountStart : -30,
-	  rampCountEnd : 50,
-	  whenFeaturesAcquired : function( entities ){
+		debugTiles : false,
+		viewer : viewer,
+		activationLevel : 5,
+		sourceUrl : url,
+		featuresPerTile : 1000,
+		/*
+		whenFeaturesAcquired : function( entities ){
 		console.log( entities.length + " celulas recebidas." );
-	  }
+		}
+		*/
 	});
 	viewer.imageryLayers.addImageryProvider( buildingsProvider );	
 	

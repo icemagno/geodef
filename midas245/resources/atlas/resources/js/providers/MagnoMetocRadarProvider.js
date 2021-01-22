@@ -47,12 +47,9 @@ var MagnoMetocRadarProvider = function MagnoMetocRadarProvider(options) {
     this._imageryCache = null;
     this._onWhenFeaturesAcquired = Cesium.defaultValue(options.whenFeaturesAcquired, null);
     this._name = "MagnoMetocRadarProvider"; 
-	this._rampStart = Cesium.defaultValue(options.rampStart, '#000000');
-	this._rampEnd = Cesium.defaultValue(options.rampEnd, '#ff0ff0');
-	this._rampCountStart = Cesium.defaultValue(options.rampCountStart, 0);
-	this._rampCountEnd = Cesium.defaultValue(options.rampCountEnd, 50);
-	this._ramp = this.generateColor( this._rampStart,this._rampEnd,this._rampCountStart,this._rampCountEnd);
-	this._points = this._viewer.scene.primitives.add( new Cesium.PointPrimitiveCollection() );
+    this._points = this._viewer.scene.primitives.add( new Cesium.PointPrimitiveCollection() );
+    
+    this.connectSocket();
 }
 
 Object.defineProperties( MagnoMetocRadarProvider.prototype, {
@@ -352,45 +349,47 @@ MagnoMetocRadarProvider.prototype.loadFeatures = function( x, y, level, bbox ){
 	replace("{r}", bbox.neCorner.lon).
 	replace("{t}", bbox.neCorner.lat).
 	replace("{b}", bbox.swCorner.lat) + "&count=" + this._featuresPerTile;
-	 
+    
+    console.log("Requesting...");
+    
 	var promise = Cesium.GeoJsonDataSource.load( url );
 	promise.then( function( dataSource ) {
-		
+		/*
 		var entities = dataSource.entities.values;
 		if( (entities != null) && ( entities.length > 0 ) ){
 			if (that._onWhenFeaturesAcquired )  that._onWhenFeaturesAcquired( entities );
-			
+            
+            console.log( url );
+
 			for (var i = 0; i < entities.length; i++) {
-				var entity = entities[i];
+                var entity = entities[i];
+                
 				if( entity.properties['getproperties'] ){
 					var properties = entity.properties['getproperties'].getValue();
 					
-					
 					if( properties.dbz_03000 ){
 						
-						// de 03000 a 12000
 						for ( var [key, value] of Object.entries( properties ) ) {
 							
 							if( key.includes("dbz_") ){
 								var markHeight = parseInt( key.substring(4, 9) );
-								var positions = entity.polygon.hierarchy.valueOf().positions;
-								var rect = Cesium.Rectangle.fromCartesianArray( positions );
-								var centerPoint = Cesium.Rectangle.center( rect );
-								var cartesian = Cesium.Cartesian3.fromRadians( centerPoint.longitude, centerPoint.latitude, markHeight ); 
-								var index = Math.round(value);
-								//if( index > 0 ){
-									if( index > that._rampCountEnd ) index = that._rampCountEnd;
-									if( index < that._rampCountStart ) index = that._rampCountStart;
-									var theColor = that._ramp[ index ];
-									
-									var colorCesium = Cesium.Color.fromCssColorString( "#"+theColor );
-									
-									that._points.add({
-									  position : cartesian,
-									  pixelSize: 0.4,
-									  color : colorCesium,
-									});
-								//}
+                                var centerPoint = entity.position._value;
+                                var cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic(centerPoint);
+                                var longitude = Cesium.Math.toDegrees(cartographic.longitude);
+                                var latitude = Cesium.Math.toDegrees(cartographic.latitude);
+
+								var cartesian = Cesium.Cartesian3.fromDegrees ( longitude, latitude, markHeight ); 
+                                var index = Math.round(value);
+                                var theColor = that.generateColor( index, 'dbz' );
+                                var colorCesium = Cesium.Color.fromCssColorString( theColor );
+                                that._points.add({
+                                    position : cartesian,
+                                    pixelSize: 0.8,
+                                    color : colorCesium,
+                                    //scaleByDistance : new Cesium.NearFarScalar(1.5e2, 15, 1.5e7, 0.0),
+                                    //translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.0)                                    
+                                });
+
 							}	
 						}		
 						
@@ -402,69 +401,13 @@ MagnoMetocRadarProvider.prototype.loadFeatures = function( x, y, level, bbox ){
 			}	
 			
 			
-		}
-		/*
-		if( entities != null ){
-			var points = that._viewer.scene.primitives.add( new Cesium.PointPrimitiveCollection() );
-			var minAlt = 99999;
-			for (var i = 0; i < entities.length; i++) {
-				var entity = entities[i];
-				var position = entity.position._value;
-				var cartesian = Cesium.Cartesian3.fromElements( position.x, position.y, position.z );
-				
-				try {
-					terrainSamplePositions.push( Cesium.Cartographic.fromCartesian( cartesian ) );
-					var cartographic = Cesium.Cartographic.fromCartesian( cartesian );
-			    	var longitude = Cesium.Math.toDegrees(cartographic.longitude);
-			    	var latitude = Cesium.Math.toDegrees(cartographic.latitude);
-			    	var height = cartographic.height;
-					
-					var data = entity.properties['data'].getValue();
-					var intensity = data[0];
-					var zNorm = ( intensity - 292) / (1164 - 292) ;
-					if( zNorm < 0 ) zNorm = 0;
-					
-					if( height < minAlt ) minAlt = height;
-					
-			        var position = cartesian;
-					points.add({
-					  position : position,
-					  pixelSize: 1.0,
-					  color : Cesium.Color.GAINSBORO.withAlpha( zNorm ),
-					  //heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
-				      //disableDepthTestDistance: Number.POSITIVE_INFINITY,				  
-				      //translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 8.0e6, 0.0),
-					}).customId = [longitude, latitude, height];
-			    	
-				} catch (e) {
-					console.log( e );
-				}				
-				
-			}
-			
-			
-			if(  entities.length > 0 ) {
-		        Cesium.when(Cesium.sampleTerrainMostDetailed( that._viewer.terrainProvider, terrainSamplePositions ), function() {
-			        for (var i = 0; i < terrainSamplePositions.length; i++) {
-			            //var cartographic = terrainSamplePositions[i];
-						//var terrainHeight = cartographic.height;
-						var height = points.get(i).customId[2];
-						var newHeight = ( height - minAlt ) + 1;
-						var newPosition = Cesium.Cartesian3.fromDegrees( points.get(i).customId[0], points.get(i).customId[1], newHeight );	
-						points.get(i).position = newPosition;
-			        }
-			    });
-			}			
-		} else {
-			console.log( "Erro" );
-		}
-		*/	
+        }
+        */
 	}).otherwise(function(error){
-		console.log( error );
+		//console.log( error );
 	});
 
 };
-
 
 
 /**
@@ -485,63 +428,48 @@ MagnoMetocRadarProvider.prototype.pickFeatures = function (x, y, level, longitud
     return undefined;
 };
 
+MagnoMetocRadarProvider.prototype.connectSocket = function( ){
+    var that = this;
 
-MagnoMetocRadarProvider.prototype.hex = function(c) {
-  var s = "0123456789abcdef";
-  var i = parseInt (c);
-  if (i == 0 || isNaN (c))
-    return "00";
-  i = Math.round (Math.min (Math.max (0, i), 255));
-  return s.charAt ((i - i % 16) / 16) + s.charAt (i % 16);
-}
+//Buffer size 5120087 bytes for session 'p2exrl1b' exceeds the allowed limit 5120000
 
-/* Convert an RGB triplet to a hex string */
-MagnoMetocRadarProvider.prototype.convertToHex = function (rgb) {
-  return this.hex(rgb[0]) + this.hex(rgb[1]) + this.hex(rgb[2]);
-}
+    var socket = new SockJS('http://sisgeodef.defesa.mil.br:36103/radar-data');
+    socket.withCredentials = false;
 
-/* Remove '#' in color hex string */
-MagnoMetocRadarProvider.prototype.trim = function(s) { return (s.charAt(0) == '#') ? s.substring(1, 7) : s }
-
-/* Convert a hex string to an RGB triplet */
-MagnoMetocRadarProvider.prototype.convertToRGB = function(hex) {
-  var color = [];
-  color[0] = parseInt ((this.trim(hex)).substring (0, 2), 16);
-  color[1] = parseInt ((this.trim(hex)).substring (2, 4), 16);
-  color[2] = parseInt ((this.trim(hex)).substring (4, 6), 16);
-  return color;
-}
-
-MagnoMetocRadarProvider.prototype.generateColor = function(colorStart,colorEnd,colorCountStart, colorCountEnd){
-
-	// The beginning of your gradient
-	var start = this.convertToRGB (colorStart);    
-
-	// The end of your gradient
-	var end   = this.convertToRGB (colorEnd);    
-
-	// The number of colors to compute
-	var len = Math.abs(colorCountStart) + Math.abs(colorCountEnd);
-
-	//Alpha blending amount
-	var alpha = 0.0;
-
-	var saida = [];
+	var stompClient = Stomp.over(socket);
+	stompClient.heartbeat.outgoing = 5000;
+	stompClient.heartbeat.incoming = 5000;    
+	stompClient.debug = null;
 	
-	for (i = colorCountStart; i <= colorCountEnd; i++) {
-		var c = [];
-		alpha += (1.0/len);
+	stompClient.connect({}, function(frame) {
 		
-		c[0] = start[0] * alpha + (1 - alpha) * end[0];
-		c[1] = start[1] * alpha + (1 - alpha) * end[1];
-		c[2] = start[2] * alpha + (1 - alpha) * end[2];
+		stompClient.subscribe('/points/dbz', function(notification) {
+            var payload =  JSON.parse( notification.body );
+            
+            //console.log( payload );
 
-		saida[i] = this.convertToHex (c);
-	}
-	
-	return saida;
-	
+            var cartesian = Cesium.Cartesian3.fromDegrees ( payload.lon, payload.lat, payload.altitude ); 
+            //var index = Math.round( payload.value );
+            var colorCesium = Cesium.Color.fromCssColorString( payload.color );
+            that._points.add({
+                position : cartesian,
+                pixelSize: 2.5,
+                color : colorCesium,
+                //scaleByDistance : new Cesium.NearFarScalar(1.5e2, 15, 1.5e7, 0.0),
+                //translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.0)                                    
+            });
+
+
+
+        });
+        
+	}, function( theMessage ) {
+        socket = null;
+        stompClient = null;
+		that.connectSocket();
+	});     
+
+
 }
-
 
 
