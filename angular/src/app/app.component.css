@@ -1,0 +1,51 @@
+::ng-deep .cesium-viewer-toolbar {
+    position: initial !important;
+}
+
+.div-header {
+    background-color: salmon;
+    color: seashell;
+    width: 100%;
+    height: 6%;
+    top: 0;
+}
+
+.div-map {
+    position: fixed;
+}
+
+.div-sidebar {}
+
+.button-sidebar {
+    background-color: darkmagenta;
+    color: azure;
+    width: 20px;
+    height: 36px;
+    position: sticky;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+}
+.icon-sidebar {
+    font-size: 18px;
+    margin-top: 25%;
+}
+
+.div-sidebar-open {
+    background-color: gold;
+    color: honeydew;
+    width: 25%;
+    height: 90%;
+    position: relative;
+}
+
+.div-footer {
+    background-color: springgreen;
+    color: thistle;
+    width: 100%;
+    height: 4%;
+    bottom: 0;
+    position: fixed;
+}
